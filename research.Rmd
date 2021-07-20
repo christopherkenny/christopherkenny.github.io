@@ -7,7 +7,7 @@ output: distill::distill_article
 ---
 # Publications
 
-### [The Essential Role of Empirical Validation in Legislative Redistricting Simulation]()
+### [The Essential Role of Empirical Validation in Legislative Redistricting Simulation](https://doi.org/10.1080/2330443X.2020.1791773)
 <details>
 <summary>BibTeX</summary>
 
