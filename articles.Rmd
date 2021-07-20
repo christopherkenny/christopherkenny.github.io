@@ -1,0 +1,56 @@
+---
+title: "Research"
+description: |
+  Research in American Politics and Political Methodology
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+# Publications
+
+### [The Essential Role of Empirical Validation in Legislative Redistricting Simulation]()
+<details>
+<summary>BibTeX</summary>
+
+```
+@article{fife:etal:20,
+  author = {Benjamin Fifield and Kosuke Imai and Jun Kawahara and Christopher T. Kenny},
+  title = {The Essential Role of Empirical Validation in Legislative Redistricting Simulation},
+  journal = {Statistics and Public Policy},
+  volume = {7},
+  number = {1},
+  pages = {52-68},
+  year  = {2020},
+  publisher = {Taylor & Francis},
+  doi = {10.1080/2330443X.2020.1791773},
+  URL = {https://doi.org/10.1080/2330443X.2020.1791773},
+  eprint = {https://doi.org/10.1080/2330443X.2020.1791773},
+}
+```
+</details> 
+<details>
+<summary>Abstract</summary>
+As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.
+</details>
+
+
+# Selected Working Papers
+
+### [The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis](https://arxiv.org/abs/2105.14197)
+<details>
+<summary>BibTeX</summary>
+
+```
+@misc{kenn:etal:21,
+      title={The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis}, 
+      author={Christopher T. Kenny and Shiro Kuriwaki and Cory McCartan and Evan Rosenman and Tyler Simko and Kosuke Imai},
+      year={2021},
+      eprint={2105.14197},
+      archivePrefix={arXiv},
+      primaryClass={stat.AP},
+}
+```
+</details>
+<details>
+<summary>Abstract</summary>
+The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
+</details>
