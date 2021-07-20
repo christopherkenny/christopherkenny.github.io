@@ -1,0 +1,12 @@
+---
+title: "Christopher T. Kenny"
+description: |
+  Ph.D. Candidate, Department of Government, Harvard University
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Hi! This website is in progress. I am shifting from OpenScholar to have more control over the html elements of this site. Please take a look at [https://www.christophertkenny.com](https://www.christophertkenny.com) for now!
