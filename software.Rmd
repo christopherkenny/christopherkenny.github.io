@@ -8,14 +8,56 @@ output: distill::distill_article
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(kableExtra)
+library(tidyverse)
 ```
 
 # Packages on CRAN:
- - [redist](https://alarm-redist.github.io/redist/): Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)
- - [geomander](https://christopherkenny.github.io/geomander/): Geographic Tools for Studying Gerrymandering
- - [PL94171](https://corymccartan.github.io/PL94171/): Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)
-- [censable](https://christopherkenny.github.io/censable/): Making Census Data More Usable
- 
+```{r cran}
+tb <- tibble(
+  name = c('redist', 'geomander', 'PL94171', 'censable'),
+  logo = '',
+  info = c('redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 
+           'geomander: Geographic Tools for Studying Gerrymandering',
+           'PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan) ',
+           'censable: Making Census Data More Usable')
+)
+
+tb %>% select(-name) %>% 
+  kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
+  column_spec(1,
+              image = spec_image(
+                path = c('hexes/hex_redist.png', 
+                         'hexes/hex_geomander.png', 
+                         'hexes/hex_pl94171.png',
+                         'hexes/hex_censable.png'), 
+                width = 250, 
+                height = 250)) %>% 
+  column_spec(2, 
+              link = c('https://alarm-redist.github.io/redist/',
+                       'https://christopherkenny.github.io/geomander/',
+                       'https://corymccartan.github.io/PL94171/',
+                       'https://christopherkenny.github.io/censable/'))
+```
+
 # Packages on GitHub:
- - [ppmf](https://christopherkenny.github.io/ppmf/): Read Census Privacy Protected Microdata Files
- - [divseg](https://christopherkenny.github.io/divseg/): Compute Diversity and Segregation Indices
+```{r github}
+tb <- tibble(
+  name = c('divseg', 'ppmf'),
+  logo = '',
+  info = c('divseg: Compute Diversity and Segregation Indices', 
+           'ppmf: Read Census Privacy Protected Microdata Files')
+)
+
+tb %>% select(-name) %>% 
+  kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
+  column_spec(1,
+              image = spec_image(
+                path = c('hexes/hex_divseg.png', 
+                         'hexes/hex_ppmf.png'), 
+                width = 250, 
+                height = 250)) %>% 
+  column_spec(2, 
+              link = c('https://christopherkenny.github.io/divseg/',
+                       'https://christopherkenny.github.io/ppmf/'))
+```
