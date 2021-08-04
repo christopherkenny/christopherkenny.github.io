@@ -14,8 +14,8 @@ knitr::opts_chunk$set(echo = FALSE)
  - [redist](https://alarm-redist.github.io/redist/): Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)
  - [geomander](https://christopherkenny.github.io/geomander/): Geographic Tools for Studying Gerrymandering
  - [PL94171](https://corymccartan.github.io/PL94171/): Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)
+- [censable](https://christopherkenny.github.io/censable/): Making Census Data More Usable
  
 # Packages on GitHub:
  - [ppmf](https://christopherkenny.github.io/ppmf/): Read Census Privacy Protected Microdata Files
- - [censable](https://christopherkenny.github.io/censable/): Making Census Data More Usable
  - [divseg](https://christopherkenny.github.io/divseg/): Compute Diversity and Segregation Indices
