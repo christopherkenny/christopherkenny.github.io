@@ -36,7 +36,9 @@ As granular data about elections and voters become available, redistricting simu
 # Selected Working Papers
 
 ### [The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis](https://arxiv.org/abs/2105.14197)
+
 Covered by [The Washington Post](https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html), [Associated Press](https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49), [NC Policy Watch](http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/), and [The Harvard Crimson](https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/).
+
 <details>
 <summary>BibTeX</summary>
 
