@@ -11,8 +11,4 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-
-
-
-
-
+<embed src="https://github.com/christopherkenny/christopherkenny.github.io/cv/cv.pdf" type="application/pdf" />
