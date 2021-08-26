@@ -19,7 +19,7 @@ tb <- tribble(
   'geomander', '', 'geomander: Geographic Tools for Studying Gerrymandering', 'CRAN',
   'PL94171', '', 'PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)', 'CRAN',
   'censable', '', 'censable: Making Census Data More Usable', 'CRAN',
-  'divseg', '', 'divseg: Compute Diversity and Segregation Indices', 'GitHub',
+  'divseg', '', 'divseg: Compute Diversity and Segregation Indices', 'CRAN',
   'ppmf',   '', 'ppmf: Read Census Privacy Protected Microdata Files', 'GitHub'
 )
 
@@ -35,14 +35,17 @@ tb %>% filter(status == 'CRAN') %>%
                 path = c('hexes/hex_redist.png', 
                          'hexes/hex_geomander.png', 
                          'hexes/hex_pl94171.png',
-                         'hexes/hex_censable.png'), 
+                         'hexes/hex_censable.png',
+                         'hexes/hex_divseg.png'), 
                 width = img_size, 
-                height = img_size)) %>% 
+                height = img_size)
+              ) %>% 
   column_spec(2, 
               link = c('https://alarm-redist.github.io/redist/',
                        'https://christopherkenny.github.io/geomander/',
                        'https://corymccartan.github.io/PL94171/',
-                       'https://christopherkenny.github.io/censable/'))
+                       'https://christopherkenny.github.io/censable/',
+                       'https://christopherkenny.github.io/divseg/'))
 ```
 
 # Packages on GitHub:
@@ -51,12 +54,12 @@ tb %>% filter(status == 'GitHub') %>%
   select(-name, -status) %>% 
   kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
   column_spec(1,
-              image = spec_image(
-                path = c('hexes/hex_divseg.png', 
-                         'hexes/hex_ppmf.png'), 
-                width = img_size, 
-                height = img_size)) %>% 
+              image ='hexes/hex_ppmf.png',# spec_image(
+                #path = c('hexes/hex_ppmf.png'), 
+                #width = img_size, 
+                #height = img_size)
+              width = '1in') %>% 
   column_spec(2, 
-              link = c('https://christopherkenny.github.io/divseg/',
-                       'https://christopherkenny.github.io/ppmf/'))
+              link = c('https://christopherkenny.github.io/ppmf/'),
+              width = '7in')
 ```

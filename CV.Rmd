@@ -1,5 +1,5 @@
 ---
-title: "CV"
+title: "Cirriculum Vitae"
 description: |
   Last Updated August 2021.
 date: "`r Sys.Date()`"
@@ -11,4 +11,6 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-<embed src="https://github.com/christopherkenny/christopherkenny.github.io/cv/cv.pdf" type="application/pdf" />
+<embed src="https://github.com/christopherkenny/christopherkenny.github.io/blob/main/cv/cv.pdf" type="application/pdf" />
+
+--- 
