@@ -9,7 +9,4 @@ site: distill::distill_website
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Hi! This website is in progress. I am shifting from OpenScholar to have more control over the html elements of this site. Please take a look at [https://www.christophertkenny.com](https://www.christophertkenny.com) for now!
-
-About me:
-I am a rising G3 in Government at Harvard University. As I close in on dissertation specifics, I am largely using this summer to write R packages that I expect to use for topics related to my dissertation. This relies mostly on Census data and metrics relevant for electoral system fairness and reform. I am especially interested in (and consequently focused on) redistricting in the US. Redistricting functions as a short term, but highly influential, method of reform.
+I am a Ph.D. candidate in the Department of Government, studying American Politics and Political Methodology. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am a affiliated with the Center for American Political Studies at Harvard University and the Algorithm-Assisted Redistricting Methodology (ALARM) Project.
