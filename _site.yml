@@ -6,13 +6,13 @@ output_dir: "docs"
 navbar:
   right:
     - text: "Home"
-      href: index.html
-    - text: "About"
       href: about.html
     - text: "Research"
       href: research.html
     - text: "Software"
       href: software.html
+    - text: "CV"
+      href: CV.html
     - text: "Blog"
       href: https://corymccartan.github.io/redistricting21/
     - icon: fab fa-twitter
