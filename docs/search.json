@@ -5,7 +5,7 @@
       "title": "Christopher T. Kenny",
       "author": [],
       "contents": "\n\n          \n          \n          Christopher T. Kenny\n          \n          \n          Home\n          About\n          Research\n          Software\n          CV\n          Blog\n          \n          \n          \n          \n          \n          \n          \n          \n          \n          ☰\n          \n          \n      \n        \n          \n            \n              \n            \n              Christopher T. Kenny\n            \n            \n              \n                \n                    \n                      \n                        Twitter\n                      \n                    \n                  \n                                    \n                    \n                      \n                        GitHub\n                      \n                    \n                  \n                                    \n                    \n                      \n                        Email\n                      \n                    \n                  \n                                  \n            \n          \n        \n        \n        \n          \n            \n            About Me\n            I am a PhD Candidate in Government at Harvard University. I study American Politics and Quantitative Methodology. I focus on redistricting.\n            \n            \n            Education\n            Harvard University | Cambridge, MA\n            Ph.D. in Government | Expected May 2024\n            M.A. in Government | August 2019 - May 2021\n            Cornell University | Ithaca, NY\n            B.A. in Mathematics and Government | August 2015 - May 2019\n            \n          \n        \n      \n    \n\n    \n      \n        \n          \n            \n              \n            \n              Christopher T. Kenny\n            \n            \n              \n                \n                                    \n                    \n                      Twitter\n                    \n                  \n                                    \n                    \n                      GitHub\n                    \n                  \n                                    \n                    \n                      Email\n                    \n                  \n                                  \n              \n            \n            \n              \n              About Me\n              I am a PhD Candidate in Government at Harvard University. I study American Politics and Quantitative Methodology. I focus on redistricting.\n              \n              \n              Education\n              Harvard University | Cambridge, MA\n              Ph.D. in Government | Expected May 2024\n              M.A. in Government | August 2019 - May 2021\n              Cornell University | Ithaca, NY\n              B.A. in Mathematics and Government | August 2015 - May 2019\n              \n            \n        \n      \n    \n\n    \n    \n    \n      Christopher T. Kenny\n      \n      \n\n  \n  ",
-      "last_modified": "2021-08-30T13:55:05-04:00"
+      "last_modified": "2021-08-30T20:19:43-04:00"
     },
     {
       "path": "CV.html",
@@ -14,7 +14,7 @@
       "author": [],
       "date": "`r Sys.Date()`",
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-30T13:55:08-04:00"
+      "last_modified": "2021-08-30T20:19:45-04:00"
     },
     {
       "path": "index.html",
@@ -22,7 +22,7 @@
       "description": "Ph.D. Candidate, Department of Government, Harvard University\n",
       "author": [],
       "contents": "\nI am a Ph.D. candidate in the Department of Government, studying American Politics and Political Methodology. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am a affiliated with the Center for American Political Studies at Harvard University and the Algorithm-Assisted Redistricting Methodology (ALARM) Project.\n\n\n\n",
-      "last_modified": "2021-08-30T13:55:10-04:00"
+      "last_modified": "2021-08-30T20:19:45-04:00"
     },
     {
       "path": "research.html",
@@ -31,7 +31,7 @@
       "author": [],
       "date": "`r Sys.Date()`",
       "contents": "\nPublications\nThe Essential Role of Empirical Validation in Legislative Redistricting Simulation\n\nBibTeX\n@article{fife:etal:20,\n  author = {Benjamin Fifield and Kosuke Imai and Jun Kawahara and Christopher T. Kenny},\n  title = {The Essential Role of Empirical Validation in Legislative Redistricting Simulation},\n  journal = {Statistics and Public Policy},\n  volume = {7},\n  number = {1},\n  pages = {52-68},\n  year  = {2020},\n  publisher = {Taylor & Francis},\n  doi = {10.1080/2330443X.2020.1791773},\n  URL = {https://doi.org/10.1080/2330443X.2020.1791773},\n  eprint = {https://doi.org/10.1080/2330443X.2020.1791773},\n}\n\nAbstract\n\nAs granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.\nSelected Working Papers\nThe Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis\nCovered by The Washington Post, Associated Press, NC Policy Watch, and The Harvard Crimson.\n\nBibTeX\n@misc{kenn:etal:21,\n      title={The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis}, \n      author={Christopher T. Kenny and Shiro Kuriwaki and Cory McCartan and Evan Rosenman and Tyler Simko and Kosuke Imai},\n      year={2021},\n      eprint={2105.14197},\n      archivePrefix={arXiv},\n      primaryClass={stat.AP},\n}\n\nAbstract\n\nThe US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.\n\n\n\n",
-      "last_modified": "2021-08-30T13:55:10-04:00"
+      "last_modified": "2021-08-30T20:19:47-04:00"
     },
     {
       "path": "software.html",
@@ -40,7 +40,7 @@
       "author": [],
       "date": "`r Sys.Date()`",
       "contents": "\nPackages on CRAN:\n\n\n\n\n redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai) \n\n\n\n\n geomander: Geographic Tools for Studying Gerrymandering \n\n\n\n\n PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan) \n\n\n\n\n censable: Making Census Data More Usable \n\n\n\n\n divseg: Compute Diversity and Segregation Indices \n\n\nPackages on GitHub:\n\n\n\n\n ppmf: Read Census Privacy Protected Microdata Files \n\n\n\n\n\n",
-      "last_modified": "2021-08-30T13:55:16-04:00"
+      "last_modified": "2021-08-30T20:19:47-04:00"
     }
   ],
   "collections": []
