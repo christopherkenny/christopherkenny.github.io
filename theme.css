@@ -76,3 +76,12 @@ d-appendix {
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 
+.rowwise {
+  display:flex;
+}
+.rowwise .left {
+  flex: 1;
+}
+.rowwise .right {
+  flex: 1;
+}
