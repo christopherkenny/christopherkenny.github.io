@@ -74,8 +74,8 @@ d-appendix {
 }
 
 /*-- Additional custom styles --*/
-/* Add any additional CSS rules below                      */
-
+/* Add any additional CSS rules below                      /*
+/*
 .rowwise {
   display:flex;
 }
@@ -85,3 +85,4 @@ d-appendix {
 .rowwise .right {
   flex: 1;
 }
+*/

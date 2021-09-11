@@ -8,9 +8,6 @@ output: distill::distill_article
 # Publications
 
 ### [The Essential Role of Empirical Validation in Legislative Redistricting Simulation](https://doi.org/10.1080/2330443X.2020.1791773)
-:::: {#enum .rowwise}
-
-::: {.left}
 
 <details>
 <summary>BibTeX</summary>
@@ -33,19 +30,12 @@ output: distill::distill_article
 
 </details> 
 
-:::
-
-::: {.right}
-
 
 <details>
 <summary>Abstract</summary>
 As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.
 </details>
 
-:::
-
-::::
 
 
 # Selected Working Papers
@@ -54,9 +44,6 @@ As granular data about elections and voters become available, redistricting simu
 
 Covered by [The Washington Post](https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html), [Associated Press](https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49), [NC Policy Watch](http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/), and [The Harvard Crimson](https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/).
 
-:::: {#dpredist .rowwise}
-
-::: {.left}
 <details>
 <summary>BibTeX</summary>
 
@@ -71,14 +58,8 @@ Covered by [The Washington Post](https://www.washingtonpost.com/local/social-iss
 }
 ```
 </details>
-:::
 
-::: {.right}
 <details>
 <summary>Abstract</summary>
 The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
 </details>
-
-:::
-
-:::: 
