@@ -7,7 +7,39 @@ output: distill::distill_article
 ---
 # Publications
 
+### [The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis](https://www.science.org/doi/10.1126/sciadv.abk3283)
+
+(with Shiro Kuriwaki, Cory McCartan, Evan Rosenman, and Tyler Simko). 2021. Science Advances.
+
+Covered by [The Washington Post](https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html), [Associated Press](https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49), [NC Policy Watch](http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/), and [The Harvard Crimson](https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/).
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@article{kenn:etal:21,
+author = {Christopher T. Kenny  and Shiro Kuriwaki  and Cory McCartan  and Evan T. R. Rosenman  and Tyler Simko  and Kosuke Imai },
+title = {The Use of Differential Privacy for Census Data and its Impact on Redistricting: The Case of the 2020 U.S. Census},
+journal = {Science Advances},
+volume = {7},
+number = {41},
+pages = {eabk3283},
+year = {2021},
+doi = {10.1126/sciadv.abk3283},
+URL = {https://www.science.org/doi/abs/10.1126/sciadv.abk3283},
+eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
+}
+```
+</details>
+
+<details>
+<summary>Abstract</summary>
+The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
+</details>
+
 ### [The Essential Role of Empirical Validation in Legislative Redistricting Simulation](https://doi.org/10.1080/2330443X.2020.1791773)
+
+(with Benjamin Fifield, Kosuke Imai, and Jun Kawahara). 2020. Statistics and Public Policy.
 
 <details>
 <summary>BibTeX</summary>
@@ -37,29 +69,7 @@ As granular data about elections and voters become available, redistricting simu
 </details>
 
 
-
+<!--
 # Selected Working Papers
+-->
 
-### [The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis](https://arxiv.org/abs/2105.14197)
-
-Covered by [The Washington Post](https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html), [Associated Press](https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49), [NC Policy Watch](http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/), and [The Harvard Crimson](https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/).
-
-<details>
-<summary>BibTeX</summary>
-
-```
-@misc{kenn:etal:21,
-      title={The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis}, 
-      author={Christopher T. Kenny and Shiro Kuriwaki and Cory McCartan and Evan Rosenman and Tyler Simko and Kosuke Imai},
-      year={2021},
-      eprint={2105.14197},
-      archivePrefix={arXiv},
-      primaryClass={stat.AP},
-}
-```
-</details>
-
-<details>
-<summary>Abstract</summary>
-The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
-</details>
