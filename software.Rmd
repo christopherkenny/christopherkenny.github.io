@@ -16,11 +16,16 @@ img_size <- 300
 tb <- tribble(
   ~name, ~logo, ~info, ~status,
   'redist', '', 'redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN',
+  'redistmetrics', '', 'redistmetrics: Redistricting metrics (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN',
   'geomander', '', 'geomander: Geographic Tools for Studying Gerrymandering', 'CRAN',
   'PL94171', '', 'PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)', 'CRAN',
   'censable', '', 'censable: Making Census Data More Usable', 'CRAN',
+  'ggredist', '', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'GitHub',
+  'cvap', '', 'cvap: Citizen Voting Age Population', 'CRAN', 
   'divseg', '', 'divseg: Compute Diversity and Segregation Indices', 'CRAN',
-  'ppmf',   '', 'ppmf: Read Census Privacy Protected Microdata Files', 'GitHub'
+  'ppmf',   '', 'ppmf: Read Census Privacy Protected Microdata Files', 'CRAN',
+  'alarmdata', '', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imais)', 'GitHub',
+  'ei', '', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub'
 )
 
 ```
@@ -32,20 +37,29 @@ tb %>% filter(status == 'CRAN') %>%
   kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
   column_spec(1,
               image = spec_image(
-                path = c('hexes/hex_redist.png', 
+                path = c('hexes/hex_redist.png',
+                         'hexes/hex_redistmetrics.png',
                          'hexes/hex_geomander.png', 
                          'hexes/hex_pl94171.png',
                          'hexes/hex_censable.png',
-                         'hexes/hex_divseg.png'), 
+                         'hexes/hex_cvap.png',
+                         'hexes/hex_divseg.png',
+                         'hexes/hex_ppmf.png'
+                ), 
                 width = img_size, 
                 height = img_size)
-              ) %>% 
+  ) %>% 
   column_spec(2, 
               link = c('https://alarm-redist.github.io/redist/',
+                       'https://alarm-redist.github.io/redistmetrics/',
                        'https://christopherkenny.github.io/geomander/',
                        'https://corymccartan.github.io/PL94171/',
                        'https://christopherkenny.github.io/censable/',
-                       'https://christopherkenny.github.io/divseg/'))
+                       'https://christopherkenny.github.io/cvap/',
+                       'https://christopherkenny.github.io/divseg/',
+                       'https://christopherkenny.github.io/ppmf/'
+              )
+  )
 ```
 
 # Packages on GitHub:
@@ -54,12 +68,16 @@ tb %>% filter(status == 'GitHub') %>%
   select(-name, -status) %>% 
   kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
   column_spec(1,
-              image ='hexes/hex_ppmf.png',# spec_image(
-                #path = c('hexes/hex_ppmf.png'), 
-                #width = img_size, 
-                #height = img_size)
-              width = '1in') %>% 
+              image = spec_image(
+                path = c('hexes/hex_ggredist.png',
+                         'hexes/hex_alarmdata.png',
+                         'hexes/hex_ei.png'), 
+                width = img_size, 
+                height = img_size)
+  ) %>% 
   column_spec(2, 
-              link = c('https://christopherkenny.github.io/ppmf/'),
-              width = '7in')
+              link = c('https://alarm-redist.github.io/ggredist/',
+                       'https://alarm-redist.github.io/alarmdata/',
+                       'https://iqss-research.github.io/ei/')
+  )
 ```
