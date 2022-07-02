@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Christopher T. Kenny: Research</title>
@@ -92,8 +94,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-09"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-09"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-07-02"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-07-02"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Christopher T. Kenny: Research"/>
@@ -111,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Research"]},{"type":"character","attributes":{},"value":["Research in American Politics and Political Methodology\n"]},{"type":"character","attributes":{},"value":["2021-10-09"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Research"]},{"type":"character","attributes":{},"value":["Research in American Politics and Political Methodology\n"]},{"type":"character","attributes":{},"value":["2022-07-02"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1032,10 +1034,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1865,7 +1863,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1876,6 +1883,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1975,6 +2007,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1997,7 +2031,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2356,7 +2390,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2376,7 +2410,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Research","description":"Research in American Politics and Political Methodology","authors":[],"publishedDate":"2021-10-09T00:00:00.000+00:00"}
+{"title":"Research","description":"Research in American Politics and Political Methodology","authors":[],"publishedDate":"2022-07-02T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2420,9 +2454,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h1 id="publications">Publications</h1>
-<h3 id="the-impact-of-the-u.s.-census-disclosure-avoidance-system-on-redistricting-and-voting-rights-analysis"><a href="https://www.science.org/doi/10.1126/sciadv.abk3283">The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis</a></h3>
-<p>(with Shiro Kuriwaki, Cory McCartan, Evan Rosenman, and Tyler Simko). 2021. Science Advances.</p>
-<p>Covered by <a href="https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html">The Washington Post</a>, <a href="https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49">Associated Press</a>, <a href="http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/">NC Policy Watch</a>, and <a href="https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/">The Harvard Crimson</a>.</p>
+<h3
+id="the-impact-of-the-u.s.-census-disclosure-avoidance-system-on-redistricting-and-voting-rights-analysis"><a
+href="https://www.science.org/doi/10.1126/sciadv.abk3283">The Impact of
+the U.S. Census Disclosure Avoidance System on Redistricting and Voting
+Rights Analysis</a></h3>
+<p>(with Shiro Kuriwaki, Cory McCartan, Evan Rosenman, and Tyler Simko).
+2021. Science Advances.</p>
+<p>Covered by <a
+href="https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html">The
+Washington Post</a>, <a
+href="https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49">Associated
+Press</a>, <a
+href="http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/">NC
+Policy Watch</a>, and <a
+href="https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/">The
+Harvard Crimson</a>.</p>
 <details>
 <summary>
 BibTeX
@@ -2444,10 +2491,32 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 <summary>
 Abstract
 </summary>
-The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
+The US Census Bureau plans to protect the privacy of 2020 Census
+respondents through its Disclosure Avoidance System (DAS), which
+attempts to achieve differential privacy guarantees by adding noise to
+the Census microdata. By applying redistricting simulation and analysis
+methods to DAS-protected 2010 Census data, we find that the protected
+data are not of sufficient quality for redistricting purposes. We
+demonstrate that the injected noise makes it impossible for states to
+accurately comply with the One Person, One Vote principle. Our analysis
+finds that the DAS-protected data are biased against certain areas,
+depending on voter turnout and partisan and racial composition, and that
+these biases lead to large and unpredictable errors in the analysis of
+partisan and racial gerrymanders. Finally, we show that the DAS
+algorithm does not universally protect respondent privacy. Based on the
+names and addresses of registered voters, we are able to predict their
+race as accurately using the DAS-protected data as when using the 2010
+Census data. Despite this, the DAS-protected data can still inaccurately
+estimate the number of majority-minority districts. We conclude with
+recommendations for how the Census Bureau should proceed with privacy
+protection for the 2020 Census.
 </details>
-<h3 id="the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation"><a href="https://doi.org/10.1080/2330443X.2020.1791773">The Essential Role of Empirical Validation in Legislative Redistricting Simulation</a></h3>
-<p>(with Benjamin Fifield, Kosuke Imai, and Jun Kawahara). 2020. Statistics and Public Policy.</p>
+<h3
+id="the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation"><a
+href="https://doi.org/10.1080/2330443X.2020.1791773">The Essential Role
+of Empirical Validation in Legislative Redistricting Simulation</a></h3>
+<p>(with Benjamin Fifield, Kosuke Imai, and Jun Kawahara). 2020.
+Statistics and Public Policy.</p>
 <details>
 <summary>
 BibTeX
@@ -2470,12 +2539,121 @@ BibTeX
 <summary>
 Abstract
 </summary>
-As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.
+As granular data about elections and voters become available,
+redistricting simulation methods are playing an increasingly important
+role when legislatures adopt redistricting plans and courts determine
+their legality. These simulation methods are designed to yield a
+representative sample of all redistricting plans that satisfy statutory
+guidelines and requirements such as contiguity, population parity, and
+compactness. A proposed redistricting plan can be considered
+gerrymandered if it constitutes an outlier relative to this sample
+according to partisan fairness metrics. Despite their growing use, an
+insufficient effort has been made to empirically validate the accuracy
+of the simulation methods. We apply a recently developed computational
+method that can efficiently enumerate all possible redistricting plans
+and yield an independent sample from this population. We show that this
+algorithm scales to a state with a couple of hundred geographical units.
+Finally, we empirically examine how existing simulation methods perform
+on realistic validation datasets.
 </details>
-<!--
-# Selected Working Papers
--->
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="working-papers">Working Papers</h1>
+<h3 id="individual-and-differential-harm-in-redistricting"><a
+href="https://osf.io/preprints/socarxiv/nc2x7/">Individual and
+Differential Harm in Redistricting</a></h3>
+<p>(with Cory McCartan). Current version: 2022-06-24.</p>
+<details>
+<summary>
+BibTeX
+</summary>
+<pre><code>@misc{mcca:kenn:22,
+  doi = {10.31235/osf.io/nc2x7},
+  url = {https://osf.io/preprints/socarxiv/nc2x7/},
+  author = {McCartan, Cory and Kenny, Christopher T.},
+  keywords = {representation, redistricting, voting rights, individual harm},
+  title = {Individual and Differential Harm in Redistricting},
+  publisher = {SocArXiv},
+  year = {2022}
+}</code></pre>
+</details>
+</details>
+<details>
+<summary>
+Abstract
+</summary>
+Social scientists have developed dozens of measures for assessing
+partisan bias in redistricting.But these measures cannot be easily
+adapted to other groups, including those defined by race, class, or
+geography. Nor are they applicable to single- or no-party contexts such
+as local redistricting. To overcome these limitations, we propose a
+unified framework of harm for evaluating the impacts of a districting
+plan on individual voters and the groups to which they belong. We
+consider a voter harmed if their chosen candidate is not elected under
+the current plan, but would be under a different plan. Harm improves on
+existing measures by both focusing on the choices of individual voters
+and directly incorporating counterfactual plans. We discuss strategies
+for estimating harm, and demonstrate the utility of our framework
+through analyses of partisan gerrymandering in New Jersey, voting rights
+litigation in Alabama, and racial dynamics of Boston City Council
+elections.
+</details>
+<h3
+id="simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states-50statesimulations"><a
+href="https://arxiv.org/abs/2206.10763">Simulated redistricting plans
+for the analysis and evaluation of redistricting in the United States:
+50stateSimulations</a></h3>
+<p>(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang,
+Melissa Wu, Shiro Kuriwaki, and Kosuke Imai). Current version
+2022-06-21.</p>
+<details>
+<summary>
+BibTeX
+</summary>
+<pre><code>@misc{50statesSimulations,
+  doi = {10.48550/ARXIV.2206.10763},
+  url = {https://arxiv.org/abs/2206.10763},
+  author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
+  keywords = {Applications (stat.AP), Computers and Society (cs.CY), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations},
+  publisher = {arXiv},
+  year = {2022}
+}</code></pre>
+</details>
+</details>
+<details>
+<summary>
+Abstract
+</summary>
+This article introduces the 50stateSimulations, a collection of
+simulated congressional districting plans and underlying code developed
+by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The
+50stateSimulations allow for the evaluation of enacted and other
+congressional redistricting plans in the United States. While the use of
+redistricting simulation algorithms has become standard in academic
+research and court cases, any simulation analysis requires non-trivial
+efforts to combine multiple data sets, identify state-specific
+redistricting criteria, implement complex simulation algorithms, and
+summarize and visualize simulation outputs. We have developed a complete
+workflow that facilitates this entire process of simulation-based
+redistricting analysis for the congressional districts of all 50 states.
+The resulting 50stateSimulations include ensembles of simulated 2020
+congressional redistricting plans and necessary replication data. We
+also provide the underlying code, which serves as a template for
+customized analyses. All data and code are free and publicly available.
+This article details the design, creation, and validation of the data.
+</details>
+<h1 id="works-in-progress">Works-in-Progress</h1>
+<h3
+id="inequality-in-administrative-democracy-large-sample-evidence-from-american-financial-regulation">Inequality
+in Administrative Democracy: Large-Sample Evidence from American
+Financial Regulation</h3>
+<p>(with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian
+Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)</p>
+<p>Awarded the 2021 Herbert Kaufman Award.</p>
+<h3 id="algorithm-assisted-redistricting-methodology">Algorithm-Assisted
+Redistricting Methodology</h3>
+<p>(with Kosuke Imai, Cory McCartan, and Tyler Simko). Book project.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

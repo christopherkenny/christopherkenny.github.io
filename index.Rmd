@@ -9,4 +9,4 @@ site: distill::distill_website
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-I am a Ph.D. candidate in the Department of Government, studying American Politics and Political Methodology. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am a affiliated with the Center for American Political Studies at Harvard University and the Algorithm-Assisted Redistricting Methodology (ALARM) Project.
+I am a Ph.D. candidate in the Department of Government, studying American Politics and Political Methodology. I am currently serving as a post-doc at the Election Law Clinic at Harvard Law School. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am affiliated with the Center for American Political Studies at Harvard University, the Center for American Political Studies at Harvard University, and the Algorithm-Assisted Redistricting Methodology (ALARM) Project.
