@@ -121,11 +121,39 @@ Social scientists have developed dozens of measures for assessing partisan bias 
 
 </details> 
 
-</details>
-
 <details>
 <summary>Abstract</summary>
 This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.
+</details>
+
+
+### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://arxiv.org/abs/2208.06968)
+
+(with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai). Current version 2022-08-15.
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@misc{https://doi.org/10.48550/arxiv.2208.06968,
+  doi = {10.48550/ARXIV.2208.06968},
+  url = {https://arxiv.org/abs/2208.06968},
+  author = {Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Kuriwaki, Shiro and Imai, Kosuke},
+  keywords = {Physics and Society (physics.soc-ph), Applications (stat.AP), FOS: Physical sciences, FOS: Physical sciences, FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition},
+  publisher = {arXiv},
+  year = {2022},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+```
+
+</details> 
+
+
+<details>
+<summary>Abstract</summary>
+Congressional district lines in many U.S. states are drawn by partisan actors, raising concerns about gerrymandering. To isolate the electoral impact of gerrymandering from the effects of other factors including geography and redistricting rules, we compare predicted election outcomes under the enacted plan with those under a large sample of non-partisan, simulated alternative plans for all states. We find that partisan gerrymandering is widespread in the 2020 redistricting cycle, but most of the bias it creates cancels at the national level, giving Republicans two additional seats, on average. In contrast, moderate pro-Republican bias due to geography and redistricting rules remains. Finally, we find that partisan gerrymandering reduces electoral competition and makes the House's partisan composition less responsive to shifts in the national vote.
 </details>
 
 
