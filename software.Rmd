@@ -24,7 +24,7 @@ tb <- tribble(
   'cvap', '', 'cvap: Citizen Voting Age Population', 'CRAN', 
   'divseg', '', 'divseg: Compute Diversity and Segregation Indices', 'CRAN',
   'ppmf',   '', 'ppmf: Read Census Privacy Protected Microdata Files', 'CRAN',
-  'alarmdata', '', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imais)', 'GitHub',
+  'alarmdata', '', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub',
   'ei', '', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub'
 )
 
