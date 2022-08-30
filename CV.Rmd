@@ -1,7 +1,7 @@
 ---
 title: "Cirriculum Vitae"
 description: |
-  Last Updated August 2021.
+  Last Updated August 2022.
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
