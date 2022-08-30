@@ -1,83 +1,107 @@
 ---
 title: "Software"
-description: |
-  R Packages
+description: "R Packages"
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(kableExtra)
 library(tidyverse)
+library(gt)
 
-img_size <- 300
+make_url <- function(x, y) {
+  paste0('<a href="', tb %>% filter(logo %in% x) %>% slice(match(logo, x)) %>% pull(link), '">', y, '</a>')
+}
 
 tb <- tribble(
-  ~name, ~logo, ~info, ~status,
-  'redist', '', 'redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN',
-  'redistmetrics', '', 'redistmetrics: Redistricting metrics (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN',
-  'geomander', '', 'geomander: Geographic Tools for Studying Gerrymandering', 'CRAN',
-  'PL94171', '', 'PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)', 'CRAN',
-  'censable', '', 'censable: Making Census Data More Usable', 'CRAN',
-  'ggredist', '', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'GitHub',
-  'cvap', '', 'cvap: Citizen Voting Age Population', 'CRAN', 
-  'divseg', '', 'divseg: Compute Diversity and Segregation Indices', 'CRAN',
-  'ppmf',   '', 'ppmf: Read Census Privacy Protected Microdata Files', 'CRAN',
-  'alarmdata', '', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub',
-  'ei', '', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub'
-)
+  ~name, ~info, ~status, ~link, 
+  'redist', 'redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN', 'https://alarm-redist.org/redist/',
+  'redistmetrics', 'redistmetrics: Redistricting metrics (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN', 'https://alarm-redist.org/redistmetrics/',
+  'geomander', 'geomander: Geographic Tools for Studying Gerrymandering', 'CRAN', 'https://christophertkenny.com/geomander/', 
+  'PL94171', 'PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)', 'CRAN', 'https://corymccartan.com/PL94171/',
+  'censable', 'censable: Making Census Data More Usable', 'CRAN', 'https://christophertkenny.com/censable/',
+  'tinytiger', 'tinytiger: Lightweight Interface to TIGER/Line Shapefiles (with Cory McCartan)', 'CRAN', 'https://alarm-redist.org/tinytiger/',
+  'dots', 'dots: Dot Density Maps', 'CRAN', 'https://christophertkenny.com/dots/',
+  'cvap', 'cvap: Citizen Voting Age Population', 'CRAN', 'https://christophertkenny.com/cvap/', 
+  'ppmf',   'ppmf: Read Census Privacy Protected Microdata Files', 'CRAN', 'https://christophertkenny.com/ppmf/',
+  'divseg', 'divseg: Compute Diversity and Segregation Indices', 'CRAN', 'https://christophertkenny.com/divseg/',
+  'name', 'name: Tools for Working with Names', 'CRAN', 'https://christophertkenny.com/name/',
+  'jot', 'jot: Jot Down Notes for Later', 'CRAN', 'https://christophertkenny.com/jot/',
+  'ei', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub', 'https://iqss-research.github.io/ei/',
+  'alarmdata', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub', 'https://alarm-redist.org/alarmdata/',
+  'ggredist', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'GitHub', 'https://alarm-redist.org/ggredist/',
+) %>% 
+  mutate(
+    logo = paste0('hexes/hex_', name, '.png'),
+    .after = name
+  )
 
+# counts <- tb %>% 
+#   filter(status == 'CRAN') %>% 
+#   pull(name) %>% 
+#   cranlogs::cran_downloads(from = '2015-05-18') %>% 
+#   group_by(package) %>% 
+#   summarize(count = sum(count)) %>% 
+#   rename(name = package)
 ```
 
 # Packages on CRAN:
 ```{r cran}
-tb %>% filter(status == 'CRAN') %>% 
-  select(-name, -status) %>% 
-  kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
-  column_spec(1,
-              image = spec_image(
-                path = c('hexes/hex_redist.png',
-                         'hexes/hex_redistmetrics.png',
-                         'hexes/hex_geomander.png', 
-                         'hexes/hex_pl94171.png',
-                         'hexes/hex_censable.png',
-                         'hexes/hex_cvap.png',
-                         'hexes/hex_divseg.png',
-                         'hexes/hex_ppmf.png'
-                ), 
-                width = img_size, 
-                height = img_size)
+tb %>% 
+  filter(status == 'CRAN') %>% 
+  select(logo, info) %>% 
+  gt() %>% 
+  text_transform(
+    locations = cells_body(columns = logo),
+    fn = function(x) {
+      make_url(x, y = 
+                 local_image(
+                   filename = x,
+                   height = 100
+                 )
+      )
+    }
+  ) %>%
+  tab_options(
+    column_labels.hidden = TRUE
   ) %>% 
-  column_spec(2, 
-              link = c('https://alarm-redist.github.io/redist/',
-                       'https://alarm-redist.github.io/redistmetrics/',
-                       'https://christopherkenny.github.io/geomander/',
-                       'https://corymccartan.github.io/PL94171/',
-                       'https://christopherkenny.github.io/censable/',
-                       'https://christopherkenny.github.io/cvap/',
-                       'https://christopherkenny.github.io/divseg/',
-                       'https://christopherkenny.github.io/ppmf/'
-              )
-  )
+  cols_width(
+    logo ~ px(100)
+  ) %>% 
+  tab_style(
+    style = cell_text(weight = 'bold'),
+    locations = cells_body(columns = info)
+  ) %>% 
+  gt::gtsave(filename = 'tabs/cran.html')
 ```
 
 # Packages on GitHub:
 ```{r github}
-tb %>% filter(status == 'GitHub') %>% 
-  select(-name, -status) %>% 
-  kbl(format = 'html', col.names = NULL, toprule = TRUE, escape = FALSE) %>%
-  column_spec(1,
-              image = spec_image(
-                path = c('hexes/hex_ggredist.png',
-                         'hexes/hex_alarmdata.png',
-                         'hexes/hex_ei.png'), 
-                width = img_size, 
-                height = img_size)
+tb %>% 
+  filter(status == 'GitHub') %>% 
+  select(logo, info) %>% 
+  gt() %>% 
+  text_transform(
+    locations = cells_body(columns = logo),
+    fn = function(x) {
+      make_url(x,
+               local_image(
+                 filename = x,
+                 height = 100
+               )
+      )
+    }
+  ) %>%
+   tab_options(
+     column_labels.hidden = TRUE
   ) %>% 
-  column_spec(2, 
-              link = c('https://alarm-redist.github.io/ggredist/',
-                       'https://alarm-redist.github.io/alarmdata/',
-                       'https://iqss-research.github.io/ei/')
-  )
+  cols_width(
+    logo ~ px(100)
+  ) %>% 
+  tab_style(
+    style = cell_text(weight = 'bold'),
+    locations = cells_body(columns = info)
+  ) %>% 
+  gt::gtsave(filename = 'tabs/github.html')
 ```
