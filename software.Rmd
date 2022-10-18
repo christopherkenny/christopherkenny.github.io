@@ -31,7 +31,7 @@ tb <- tribble(
   'ei', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub', 'https://iqss-research.github.io/ei/',
   'alarmdata', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub', 'https://alarm-redist.org/alarmdata/',
   'ggredist', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'GitHub', 'https://alarm-redist.org/ggredist/',
-  'congress', 'congress: Access the Congress.gov API', 'GitHub', 'https://christophertkenny.com/congress/'
+  'congress', 'congress: Access the Congress.gov API', 'CRAN', 'https://christophertkenny.com/congress/'
 ) %>% 
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
