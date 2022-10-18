@@ -7,9 +7,62 @@ output: distill::distill_article
 ---
 # Publications
 
-### [The Impact of the U.S. Census Disclosure Avoidance System on Redistricting and Voting Rights Analysis](https://www.science.org/doi/10.1126/sciadv.abk3283)
+### [Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations](https://arxiv.org/abs/2206.10763)
 
-(with Shiro Kuriwaki, Cory McCartan, Evan Rosenman, and Tyler Simko). 2021. Science Advances.
+(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai). Forthcoming. Scientific Data.
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@misc{50statesSimulations,
+  doi = {10.48550/ARXIV.2206.10763},
+  url = {https://arxiv.org/abs/2206.10763},
+  author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
+  keywords = {Applications (stat.AP), Computers and Society (cs.CY), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations},
+  publisher = {arXiv},
+  year = {2022}
+}
+```
+
+</details> 
+
+<details>
+<summary>Abstract</summary>
+This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.
+</details>
+
+
+### [Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System](https://arxiv.org/abs/2210.08383)
+
+(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko). Forthcoming. Harvard Data Science Review.
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@article{kenn:etal:22,
+author = {Christopher T. Kenny  and Shiro Kuriwaki  and Cory McCartan  and Evan T. R. Rosenman  and Tyler Simko  and Kosuke Imai },
+title = {Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System},
+journal = {Harvard Data Science Review},,
+year = {Forthcoming},
+doi = {	arXiv:2210.08383},
+URL = {https://arxiv.org/abs/2210.08383},
+}
+```
+</details>
+
+<details>
+<summary>Abstract</summary>
+In "Differential Perspectives: Epistemic Disconnects Surrounding the US Census Bureau's Use of Differential Privacy," boyd and Sarathy argue that empirical evaluations of the Census Disclosure Avoidance System (DAS), including our published analysis, failed to recognize how the benchmark data against which the 2020 DAS was evaluated is never a ground truth of population counts. In this commentary, we explain why policy evaluation, which was the main goal of our analysis, is still meaningful without access to a perfect ground truth. We also point out that our evaluation leveraged features specific to the decennial Census and redistricting data, such as block-level population invariance under swapping and voter file racial identification, better approximating a comparison with the ground truth. Lastly, we show that accurate statistical predictions of individual race based on the Bayesian Improved Surname Geocoding, while not a violation of differential privacy, substantially increases the disclosure risk of private information the Census Bureau sought to protect. We conclude by arguing that policy makers must confront a key trade-off between data utility and privacy protection, and an epistemic disconnect alone is insufficient to explain disagreements between policy choices.
+</details>
+
+
+
+### [The use of differential privacy for census data and its impact on redistricting: The case of the 2020 U.S. Census](https://www.science.org/doi/10.1126/sciadv.abk3283)
+
+(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko). 2021. Science Advances.
 
 Covered by [The Washington Post](https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html), [Associated Press](https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49), [NC Policy Watch](http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/), and [The Harvard Crimson](https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/).
 
@@ -99,32 +152,6 @@ As granular data about elections and voters become available, redistricting simu
 Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography.  Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.
 </details>
 
-
-### [Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations](https://arxiv.org/abs/2206.10763)
-
-(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai). Current version 2022-06-21.
-
-<details>
-<summary>BibTeX</summary>
-
-```
-@misc{50statesSimulations,
-  doi = {10.48550/ARXIV.2206.10763},
-  url = {https://arxiv.org/abs/2206.10763},
-  author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
-  keywords = {Applications (stat.AP), Computers and Society (cs.CY), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations},
-  publisher = {arXiv},
-  year = {2022}
-}
-```
-
-</details> 
-
-<details>
-<summary>Abstract</summary>
-This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.
-</details>
 
 
 ### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://arxiv.org/abs/2208.06968)
