@@ -73,8 +73,8 @@ tb %>%
   tab_style(
     style = cell_text(weight = 'bold'),
     locations = cells_body(columns = info)
-  ) #%>% 
- # gt::gtsave(filename = 'tabs/cran.html')
+  ) %>% 
+  gt::gtsave(filename = 'tabs/cran.html')
 ```
 
 # Packages on GitHub:
@@ -103,6 +103,6 @@ tb %>%
   tab_style(
     style = cell_text(weight = 'bold'),
     locations = cells_body(columns = info)
-  ) #%>% 
-  #gt::gtsave(filename = 'tabs/github.html')
+  ) %>% 
+  gt::gtsave(filename = 'tabs/github.html')
 ```
