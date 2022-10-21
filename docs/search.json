@@ -21,8 +21,8 @@
       "title": "Christopher T. Kenny",
       "description": "Ph.D. Candidate, Department of Government, Harvard University\n",
       "author": [],
-      "contents": "\r\nI am a Ph.D. candidate in the Department of Government, studying\r\nAmerican Politics and Political Methodology. I am currently serving as a\r\npre-doc at the Election Law Clinic at Harvard Law School. My substantive\r\nfocus is on redistricting and gerrymandering. I work on open source R\r\ntools for analyzing redistricting and voting rights in context. I am\r\naffiliated with the Center for American Political Studies at Harvard\r\nUniversity, the Center for American Political Studies at Harvard\r\nUniversity, and the Algorithm-Assisted Redistricting Methodology (ALARM)\r\nProject.\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-10-18T15:58:06-04:00"
+      "contents": "\r\nI am a Ph.D. candidate in the Department of Government, studying\r\nAmerican Politics and Political Methodology. I am currently serving as a\r\npre-doc at the Election Law Clinic at Harvard Law School. My substantive\r\nfocus is on redistricting and gerrymandering. I work on open source R\r\ntools for analyzing redistricting and voting rights in context. I am\r\naffiliated with the Center for American Political Studies at Harvard\r\nUniversity, the Institute for Quantitative Social Science, and the\r\nAlgorithm-Assisted Redistricting Methodology (ALARM) Project.\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-10-20T20:00:06-04:00"
     },
     {
       "path": "research.html",
@@ -39,8 +39,8 @@
       "description": "R Packages",
       "author": [],
       "date": "`r Sys.Date()`",
-      "contents": "\r\nPackages on CRAN:\r\n\r\n\r\n\r\nPackages on GitHub:\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-10-18T15:58:13-04:00"
+      "contents": "\r\nPackages on CRAN:\r\n\r\n\r\n\r\nredist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)\r\nredistmetrics: Redistricting metrics (with Cory McCartan, Ben Fifield, and Kosuke Imai)\r\ngeomander: Geographic Tools for Studying Gerrymandering\r\nPL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)\r\ncensable: Making Census Data More Usable\r\ntinytiger: Lightweight Interface to TIGER/Line Shapefiles (with Cory McCartan)\r\ndots: Dot Density Maps\r\ncvap: Citizen Voting Age Population\r\nppmf: Read Census Privacy Protected Microdata Files\r\ndivseg: Compute Diversity and Segregation Indices\r\nname: Tools for Working with Names\r\njot: Jot Down Notes for Later\r\ncongress: Access the Congress.gov API\r\n\r\nPackages on GitHub:\r\n\r\n\r\n\r\nei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)\r\nalarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)\r\nggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-10-18T16:28:55-04:00"
     }
   ],
   "collections": []
