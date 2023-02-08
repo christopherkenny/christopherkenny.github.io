@@ -7,23 +7,56 @@ output: distill::distill_article
 ---
 # Publications
 
-### [Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations](https://arxiv.org/abs/2206.10763)
 
-(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai). Forthcoming. Scientific Data.
+### [Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System](https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1)
+
+(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko). 2023. Harvard Data Science Review.
 
 <details>
 <summary>BibTeX</summary>
 
 ```
-@misc{50statesSimulations,
-  doi = {10.48550/ARXIV.2206.10763},
-  url = {https://arxiv.org/abs/2206.10763},
-  author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
-  keywords = {Applications (stat.AP), Computers and Society (cs.CY), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Simulated redistricting plans for the analysis and evaluation of redistricting in the United States: 50stateSimulations},
-  publisher = {arXiv},
-  year = {2022}
+@article{kenn:etal:23,
+	author = {Kenny, Christopher T. and Kuriwaki, Shiro and McCartan, Cory and Rosenman, Evan T. R. and Simko, Tyler and Imai, Kosuke},
+	journal = {Harvard Data Science Review},
+	number = {Special Issue 2},
+	year = {2023},
+	month = {jan 31},
+	note = {https://hdsr.mitpress.mit.edu/pub/6ffzuq19},
+	publisher = {},
+	title = {Comment: The {Essential} {Role} of {Policy} {Evaluation} for the 2020 {Census} {DisclosureAvoidance} {System}},
+	volume = { },
 }
+```
+</details>
+
+<details>
+<summary>Abstract</summary>
+In ["Differential Perspectives: Epistemic Disconnects Surrounding the US Census Bureau's Use of Differential Privacy,"](https://doi.org/10.1162/99608f92.66882f0e) boyd and Sarathy argue that empirical evaluations of the Census Disclosure Avoidance System (DAS), including our published analysis, failed to recognize how the benchmark data against which the 2020 DAS was evaluated is never a ground truth of population counts. In this commentary, we explain why policy evaluation, which was the main goal of our analysis, is still meaningful without access to a perfect ground truth. We also point out that our evaluation leveraged features specific to the decennial Census and redistricting data, such as block-level population invariance under swapping and voter file racial identification, better approximating a comparison with the ground truth. Lastly, we show that accurate statistical predictions of individual race based on the Bayesian Improved Surname Geocoding, while not a violation of differential privacy, substantially increases the disclosure risk of private information the Census Bureau sought to protect. We conclude by arguing that policy makers must confront a key trade-off between data utility and privacy protection, and an epistemic disconnect alone is insufficient to explain disagreements between policy choices.
+</details>
+
+### [Simulated redistricting plans for the analysis and evaluation of redistricting in the United States](https://www.nature.com/articles/s41597-022-01808-2)
+
+(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai). 2022. Scientific Data.
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@article{50statesSimulations,
+  title = {Simulated Redistricting Plans for the Analysis and Evaluation of Redistricting in the {{United States}}},
+  author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
+  year = {2022},
+  month = nov,
+  journal = {Scientific Data},
+  volume = {9},
+  number = {1},
+  pages = {689},
+  issn = {2052-4463},
+  doi = {10.1038/s41597-022-01808-2},
+  abstract = {This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.}
+}
+
 ```
 
 </details> 
@@ -32,32 +65,6 @@ output: distill::distill_article
 <summary>Abstract</summary>
 This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.
 </details>
-
-
-### [Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System](https://arxiv.org/abs/2210.08383)
-
-(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko). Forthcoming. Harvard Data Science Review.
-
-<details>
-<summary>BibTeX</summary>
-
-```
-@article{kenn:etal:22,
-author = {Christopher T. Kenny  and Shiro Kuriwaki  and Cory McCartan  and Evan T. R. Rosenman  and Tyler Simko  and Kosuke Imai },
-title = {Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System},
-journal = {Harvard Data Science Review},,
-year = {Forthcoming},
-doi = {	arXiv:2210.08383},
-URL = {https://arxiv.org/abs/2210.08383},
-}
-```
-</details>
-
-<details>
-<summary>Abstract</summary>
-In "Differential Perspectives: Epistemic Disconnects Surrounding the US Census Bureau's Use of Differential Privacy," boyd and Sarathy argue that empirical evaluations of the Census Disclosure Avoidance System (DAS), including our published analysis, failed to recognize how the benchmark data against which the 2020 DAS was evaluated is never a ground truth of population counts. In this commentary, we explain why policy evaluation, which was the main goal of our analysis, is still meaningful without access to a perfect ground truth. We also point out that our evaluation leveraged features specific to the decennial Census and redistricting data, such as block-level population invariance under swapping and voter file racial identification, better approximating a comparison with the ground truth. Lastly, we show that accurate statistical predictions of individual race based on the Bayesian Improved Surname Geocoding, while not a violation of differential privacy, substantially increases the disclosure risk of private information the Census Bureau sought to protect. We conclude by arguing that policy makers must confront a key trade-off between data utility and privacy protection, and an epistemic disconnect alone is insufficient to explain disagreements between policy choices.
-</details>
-
 
 
 ### [The use of differential privacy for census data and its impact on redistricting: The case of the 2020 U.S. Census](https://www.science.org/doi/10.1126/sciadv.abk3283)
