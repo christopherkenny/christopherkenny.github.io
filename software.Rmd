@@ -30,20 +30,24 @@ tb <- tribble(
   'jot', 'jot: Jot Down Notes for Later', 'CRAN', 'https://christophertkenny.com/jot/',
   'ei', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub', 'https://iqss-research.github.io/ei/',
   'alarmdata', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub', 'https://alarm-redist.org/alarmdata/',
-  'ggredist', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'GitHub', 'https://alarm-redist.org/ggredist/',
-  'congress', 'congress: Access the Congress.gov API', 'CRAN', 'https://christophertkenny.com/congress/'
+  'ggredist', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'CRAN', 'https://alarm-redist.org/ggredist/',
+  'congress', 'congress: Access the Congress.gov API', 'CRAN', 'https://christophertkenny.com/congress/',
+  'planscorer', 'planscorer: Score Redistricting Plans with PlanScore', 'GitHub', 'https://christophertkenny.com/planscorer/',
+  'redistverse', 'redistverse: Easily Install and Load Redistricting Software', 'GitHub', 'https://alarm-redist.org/redistverse/',
+  'crayons', 'crayons: Color Palettes from Crayon Boxes', 'GitHub', 'https://christophertkenny.com/crayons/',
+  'apportion', 'apportion: Apportion Seats', 'CRAN', 'https://christophertkenny.com/apportion/'
 ) %>% 
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
     .after = name
   )
 
-# counts <- tb %>% 
-#   filter(status == 'CRAN') %>% 
-#   pull(name) %>% 
-#   cranlogs::cran_downloads(from = '2015-05-18') %>% 
-#   group_by(package) %>% 
-#   summarize(count = sum(count)) %>% 
+# counts <- tb %>%
+#   filter(status == 'CRAN') %>%
+#   pull(name) %>%
+#   cranlogs::cran_downloads(from = '2015-05-18') %>%
+#   group_by(package) %>%
+#   summarize(count = sum(count)) %>%
 #   rename(name = package)
 ```
 
