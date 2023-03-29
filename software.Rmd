@@ -34,7 +34,7 @@ tb <- tribble(
   'congress', 'congress: Access the Congress.gov API', 'CRAN', 'https://christophertkenny.com/congress/',
   'planscorer', 'planscorer: Score Redistricting Plans with PlanScore', 'GitHub', 'https://christophertkenny.com/planscorer/',
   'redistverse', 'redistverse: Easily Install and Load Redistricting Software', 'GitHub', 'https://alarm-redist.org/redistverse/',
-  'crayons', 'crayons: Color Palettes from Crayon Boxes', 'GitHub', 'https://christophertkenny.com/crayons/',
+  'crayons', 'crayons: Color Palettes from Crayon Boxes', 'CRAN', 'https://christophertkenny.com/crayons/',
   'apportion', 'apportion: Apportion Seats', 'CRAN', 'https://christophertkenny.com/apportion/'
 ) %>% 
   mutate(
