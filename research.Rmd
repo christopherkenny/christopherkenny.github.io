@@ -7,6 +7,37 @@ output: distill::distill_article
 ---
 # Publications
 
+### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://arxiv.org/abs/2208.06968) 
+
+(with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai). Current version 2022-08-15.
+
+**Forthcoming in PNAS**
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@misc{https://doi.org/10.48550/arxiv.2208.06968,
+  doi = {10.48550/ARXIV.2208.06968},
+  url = {https://arxiv.org/abs/2208.06968},
+  author = {Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Kuriwaki, Shiro and Imai, Kosuke},
+  keywords = {Physics and Society (physics.soc-ph), Applications (stat.AP), FOS: Physical sciences, FOS: Physical sciences, FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition},
+  publisher = {arXiv},
+  year = {2022},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+```
+
+</details> 
+
+
+<details>
+<summary>Abstract</summary>
+Congressional district lines in many U.S. states are drawn by partisan actors, raising concerns about gerrymandering. To isolate the electoral impact of gerrymandering from the effects of other factors including geography and redistricting rules, we compare predicted election outcomes under the enacted plan with those under a large sample of non-partisan, simulated alternative plans for all states. We find that partisan gerrymandering is widespread in the 2020 redistricting cycle, but most of the bias it creates cancels at the national level, giving Republicans two additional seats, on average. In contrast, moderate pro-Republican bias due to geography and redistricting rules remains. Finally, we find that partisan gerrymandering reduces electoral competition and makes the House's partisan composition less responsive to shifts in the national vote.
+</details>
+
 
 ### [Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System](https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1)
 
@@ -158,38 +189,6 @@ As granular data about elections and voters become available, redistricting simu
 <summary>Abstract</summary>
 Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography.  Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.
 </details>
-
-
-
-### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://arxiv.org/abs/2208.06968)
-
-(with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai). Current version 2022-08-15.
-
-<details>
-<summary>BibTeX</summary>
-
-```
-@misc{https://doi.org/10.48550/arxiv.2208.06968,
-  doi = {10.48550/ARXIV.2208.06968},
-  url = {https://arxiv.org/abs/2208.06968},
-  author = {Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Kuriwaki, Shiro and Imai, Kosuke},
-  keywords = {Physics and Society (physics.soc-ph), Applications (stat.AP), FOS: Physical sciences, FOS: Physical sciences, FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {arXiv.org perpetual, non-exclusive license}
-}
-
-```
-
-</details> 
-
-
-<details>
-<summary>Abstract</summary>
-Congressional district lines in many U.S. states are drawn by partisan actors, raising concerns about gerrymandering. To isolate the electoral impact of gerrymandering from the effects of other factors including geography and redistricting rules, we compare predicted election outcomes under the enacted plan with those under a large sample of non-partisan, simulated alternative plans for all states. We find that partisan gerrymandering is widespread in the 2020 redistricting cycle, but most of the bias it creates cancels at the national level, giving Republicans two additional seats, on average. In contrast, moderate pro-Republican bias due to geography and redistricting rules remains. Finally, we find that partisan gerrymandering reduces electoral competition and makes the House's partisan composition less responsive to shifts in the national vote.
-</details>
-
 
 
 # Works-in-Progress
