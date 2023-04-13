@@ -16,6 +16,15 @@ output:
 
 I am a PhD Candidate in Government at Harvard University. I study American Politics and Quantitative Methodology. I focus on redistricting.
 
+## Current Affiliations
+
+[ALARM Project](https://alarm-redist.github.io/)
+
+[Institute for Quantitative Social Science](https://www.iq.harvard.edu/)
+
+[Center for American Political Studies](https://caps.gov.harvard.edu/)
+
+
 ## Education
 
 **Harvard University** | Cambridge, MA
