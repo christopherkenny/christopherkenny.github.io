@@ -35,7 +35,8 @@ tb <- tribble(
   'planscorer', 'planscorer: Score Redistricting Plans with PlanScore', 'GitHub', 'https://christophertkenny.com/planscorer/',
   'redistverse', 'redistverse: Easily Install and Load Redistricting Software', 'GitHub', 'https://alarm-redist.org/redistverse/',
   'crayons', 'crayons: Color Palettes from Crayon Boxes', 'CRAN', 'https://christophertkenny.com/crayons/',
-  'apportion', 'apportion: Apportion Seats', 'CRAN', 'https://christophertkenny.com/apportion/'
+  'apportion', 'apportion: Apportion Seats', 'CRAN', 'https://christophertkenny.com/apportion/',
+  'gptzeror', 'Identify Text Written by Large Language Models using GPTZero', 'CRAN', 'https://christophertkenny.com/gptzeror'
 ) %>% 
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
