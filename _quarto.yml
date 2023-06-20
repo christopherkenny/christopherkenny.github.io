@@ -7,7 +7,7 @@ website:
   navbar:
     right:
       - text: "Home"
-        href: about.html
+        href: home.html
       - text: "Research"
         href: research.html
       - text: "Software"
