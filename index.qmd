@@ -1,0 +1,42 @@
+---
+title: "Christopher T. Kenny"
+description: |
+  Ph.D. Candidate, Department of Government, Harvard University
+about:
+  template: trestles
+  image: "figs/ckenny.jpg"
+  links:
+    - text: Twitter
+      url: "https://twitter.com/Chris_T_Kenny"
+    - text: GitHub
+      url: "https://github.com/christopherkenny"
+    - text: Email
+      url: "christopherkenny@fas.harvard.edu"
+sidebar: false
+---
+::::{.column-page}
+## About Me
+
+I am a PhD candidate in the Department of Government, studying American Politics and Political Methodology. I am currently teaching a course on redistricting entitled "Drawing Democracies," aimed at Harvard college sophomores. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am affiliated with the Center for American Political Studies at Harvard University, the Institute for Quantitative Social Science, and the Algorithm-Assisted Redistricting Methodology (ALARM) Project. In 2022, I was a fellow at the Election Law Clinic at Harvard Law School.
+
+## Current Affiliations
+
+[ALARM Project](https://alarm-redist.github.io/)
+
+[Institute for Quantitative Social Science](https://www.iq.harvard.edu/)
+
+[Center for American Political Studies](https://caps.gov.harvard.edu/)
+
+
+## Education
+
+**Harvard University** | Cambridge, MA
+
+Ph.D. in Government | Expected May 2024 
+
+M.A. in Government | August 2019 - May 2021
+
+**Cornell University** | Ithaca, NY
+
+B.A. in Mathematics and Government | August 2015 - May 2019
+::::
