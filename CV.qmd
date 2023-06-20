@@ -1,0 +1,10 @@
+---
+title: "Curriculum Vitae"
+description: |
+  Last Updated April 2023.
+date: last-modified
+---
+
+<embed src="cv/cv.pdf" height="1000" width="100%" type="application/pdf" />
+
+--- 

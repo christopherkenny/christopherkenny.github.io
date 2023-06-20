@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: "docs"
+
+website:
+  title: "Christopher T. Kenny"
+  navbar:
+    right:
+      - text: "Home"
+        href: about.html
+      - text: "Research"
+        href: research.html
+      - text: "Software"
+        href: software.html
+      - text: "CV"
+        href: CV.html
+      - text: "Blog"
+        href: https://corymccartan.github.io/redistricting21/
+      - icon: twitter
+        href: https://twitter.com/Chris_T_Kenny
+      - icon: github
+        href: https://github.com/christopherkenny
+      - icon: journals
+        href: https://orcid.org/0000-0002-9386-6860
+    background: "#B3001B"
+
+
+format:
+  html:
+    theme: yeti
+    sidebar: false
