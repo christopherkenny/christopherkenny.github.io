@@ -6,8 +6,6 @@ website:
   title: "Christopher T. Kenny"
   navbar:
     right:
-      - text: "Home"
-        href: index.html
       - text: "Research"
         href: research.html
       - text: "Software"
