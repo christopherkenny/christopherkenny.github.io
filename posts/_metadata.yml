@@ -1,3 +1,8 @@
+# options apply to all posts in this folder
+
+# freeze computational output
+freeze: true
+
 toc: true
 toc-title: Table of contents
 toc-location: left
@@ -7,3 +12,4 @@ author:
   - name: Christopher T. Kenny
     url: https://christophertkenny.com
     orcid: 0000-0002-9386-6860
+    
