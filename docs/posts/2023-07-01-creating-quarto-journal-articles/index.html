@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christopher T. Kenny">
+<meta name="dcterms.date" content="2023-07-03">
+<meta name="description" content="A long walk through creating Quarto templates for journal articles.">
+
+<title>Christopher T. Kenny - Creating Quarto Journal Article Templates</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Christopher T. Kenny</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html" rel="" target="">
+ <span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html" rel="" target="">
+ <span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CV.html" rel="" target="">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://corymccartan.github.io/redistricting21/" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Chris_T_Kenny" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/christopherkenny" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://orcid.org/0000-0002-9386-6860" rel="" target=""><i class="bi bi-journals" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a>
+  <ul class="collapse">
+  <li><a href="#your-template-background" id="toc-your-template-background" class="nav-link" data-scroll-target="#your-template-background">Your Template Background</a></li>
+  <li><a href="#my-template-background" id="toc-my-template-background" class="nav-link" data-scroll-target="#my-template-background">My Template Background</a></li>
+  </ul></li>
+  <li><a href="#making-the-template" id="toc-making-the-template" class="nav-link" data-scroll-target="#making-the-template">Making the Template</a>
+  <ul class="collapse">
+  <li><a href="#the-readme" id="toc-the-readme" class="nav-link" data-scroll-target="#the-readme">The README</a></li>
+  </ul></li>
+  <li><a href="#adding-latex-files-into-the-template" id="toc-adding-latex-files-into-the-template" class="nav-link" data-scroll-target="#adding-latex-files-into-the-template">Adding LaTeX Files into the Template</a>
+  <ul class="collapse">
+  <li><a href="#editing-template.qmd-part-1-the-yaml" id="toc-editing-template.qmd-part-1-the-yaml" class="nav-link" data-scroll-target="#editing-template.qmd-part-1-the-yaml">Editing <code>template.qmd</code> (Part 1: The YAML)</a></li>
+  <li><a href="#using-the-yaml-in-latex" id="toc-using-the-yaml-in-latex" class="nav-link" data-scroll-target="#using-the-yaml-in-latex">Using the YAML in LaTeX</a></li>
+  <li><a href="#editing-template.qmd-part-2-the-body" id="toc-editing-template.qmd-part-2-the-body" class="nav-link" data-scroll-target="#editing-template.qmd-part-2-the-body">Editing <code>template.qmd</code> (Part 2: The Body)</a></li>
+  <li><a href="#revising-the-readme" id="toc-revising-the-readme" class="nav-link" data-scroll-target="#revising-the-readme">Revising the README</a></li>
+  <li><a href="#adding-a-.quartoignore" id="toc-adding-a-.quartoignore" class="nav-link" data-scroll-target="#adding-a-.quartoignore">Adding a <code>.quartoignore</code></a></li>
+  <li><a href="#cleaning-up" id="toc-cleaning-up" class="nav-link" data-scroll-target="#cleaning-up">Cleaning up</a></li>
+  <li><a href="#fin" id="toc-fin" class="nav-link" data-scroll-target="#fin">Fin</a></li>
+  </ul></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Creating Quarto Journal Article Templates</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">quarto</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>A long walk through creating Quarto templates for journal articles.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Christopher T. Kenny </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 3, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>This post is largely written for my future self. If you’re not me and you’ve ended up here, I do hope that this is helpful for you, but it may fall below or above your current experience. I’ll include informative links as I think of them to help with the latter. For the former, this post may be too specific to my process to be helpful.</p>
+<section id="your-template-background" class="level3">
+<h3 class="anchored" data-anchor-id="your-template-background">Your Template Background</h3>
+<p>As with all blog posts, I’m assuming you both know everything and nothing. You have every clue how Quarto, Markdown, LaTeX, pandoc, and Lua work and simultaneously have never used anything but Microsoft Word.</p>
+<p>More realistically, you need some experience with one of Quarto, RMarkdown, or Markdown and definitely some experience with LaTeX.</p>
+<p>You needn’t be an expert on the first part, but if you’re new to LaTeX, take some time to write a few documents before trying to build templates that rely on it for pdf-output.</p>
+</section>
+<section id="my-template-background" class="level3">
+<h3 class="anchored" data-anchor-id="my-template-background">My Template Background</h3>
+<p>I’ve made a handful of templates for Quarto and RMarkdown. A few of them are public, but many of them are hacky one-off solutions to some problem. I’m focused here on the more-focused public template, where you want it to work in general for a journal’s set of problems.</p>
+<p>Perhaps most importantly, I’ve got about eight years of self-taught LaTeX experience. That’s good for me and bad for you (or maybe good for you and bad for me). My solutions to problems often (1) produce correct output and (2) are sub-optimal. That’s not the best, but if you care about (1) more, then, hey, we’ve got some work to do.</p>
+<p>For full context: This post was mostly written while I was making a <a href="https://github.com/christopherkenny/pnas">PNAS template for Quarto</a>. Previously, I used the <code>rticles::pnas_template()</code> but (at the time of writing) I was trying to get a better sense of how Quarto built things. So, I have a sense of what it <em>should</em> look like, but no guarantee of understanding how the details work.</p>
+</section>
+</section>
+<section id="making-the-template" class="level2">
+<h2 class="anchored" data-anchor-id="making-the-template">Making the Template</h2>
+<p>First things first, we need to <a href="https://quarto.org/docs/journals/formats.html#quick-start">initialize the template</a>. We can do that in the terminal with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create extension journal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It’ll prompt you to give it a name. Names tend to be short and normally match a common journal abbrevation. Quarto has a list of templates(link), as does Awesome Quarto (link). Some names I’ve used:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>journal</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>APSR</td>
+<td><a href="https://github.com/christopherkenny/apsr">apsr</a></td>
+</tr>
+<tr class="even">
+<td>PNAS</td>
+<td><a href="https://github.com/christopherkenny/pnas">pnas</a></td>
+</tr>
+<tr class="odd">
+<td>PA, PSRM, BJPS, …</td>
+<td><a href="https://github.com/christopherkenny/cambridge-medium">cambridge-medium</a></td>
+</tr>
+<tr class="even">
+<td>Scientific Data</td>
+<td><a href="https://github.com/christopherkenny/scientific-data">scientific-data</a></td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, some are obvious. The Cambridge medium one tripped me up a bit, as it was intended for at least five journals.</p>
+<p>Now, once you have a name, it creates a new R project named for the name you provided. You can open that and give the structure a look.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the rest of this post, I’ll use building a PNAS template as the example. <code>pnas</code> can be replaced with the name you chose above.</p>
+</div>
+</div>
+<p>On creation, the file structure should look something like this:</p>
+<pre><code>.
+├── bibliography.bib
+├── pnas.Rproj
+├── README.md
+├── template.qmd
+└── _extensions
+    └── pnas
+        ├── header.tex
+        ├── pnas.lua
+        ├── styles.css
+        └── _extension.yml</code></pre>
+<p>For a journal template, we’re going to have to augment the <code>_extensions/pnas</code> folder. For now some quick bits of information on included files:</p>
+<ul>
+<li><code>README.md</code> is the general readme for the whole template. It’ll hold installation instructions, option documentation, and anything else you need users to know.</li>
+<li><code>template.qmd</code>s is where our example template goes.</li>
+<li><code>bibliography.bib</code> is a placeholder bibtex file.</li>
+<li><code>_extensions/pnas/_extension.yml</code> will hold the metadata for the template. This tells Quarto which files to use and such.
+<ul>
+<li><code>_extensions/pnas/header.tex</code> is included in the default template and will be inserted in the <em>header</em> of the LaTeX template.</li>
+</ul></li>
+<li><code>_extensions/pnas/styles.css</code> can probably be deleted at this point, unless you want to make a website version of the template, but you probably aren’t if you’re making a journal template.</li>
+<li><code>_extensions/pnas/pnas.lua</code> is the default Lua filter. <a href="https://quarto.org/docs/extensions/lua.html">Lua is powerful</a>, but only necessary for more complicated features.</li>
+</ul>
+<section id="the-readme" class="level3">
+<h3 class="anchored" data-anchor-id="the-readme">The README</h3>
+<p>The first thing I edit is the README. It can’t be finished yet, but I find it helpful to organize right away.</p>
+<p>Using RStudio’s find+replace, I change the github organization placeholder to my GitHub account name (<code>christopherkenny</code>). Then, using the same tool, I replace the file name and title with template name from before. (If you now feeling anxious about the name, this is the right time to fix it before doing anything.) Then, I remove the (now complete) TODOs for those.</p>
+<p>In the “Example” section, I then start to add more info. First, I add some template code to include a screenshot.</p>
+<pre><code>&lt;!-- pdftools::pdf_convert('template.pdf',pages = 1) 
+![[template.qmd](template.qmd)](template_1.png) --&gt;</code></pre>
+<p>Once the template is finished, I’ll run the first line in R and uncomment the second. Including a screenshot is inspired by <a href="https://github.com/CoryMcCartan/cmc-article">Cory McCartan’s pre-print template</a>. I think it’s a nice touch.</p>
+<p>The options section is helpful for the end user, but may not be super clear right now. I think it is best to hold off on that and figure it out later.</p>
+<p>For now, the last thing I’ll do is add a bit of information on licensing. Odds are good that I’m working off of some official or officially endorsed template. Even if it isn’t official, you want to give credit to the LaTeX wizardry going on behind the scenes. My license section typically takes the form, using <code>{glue}</code> syntax for placeholders:</p>
+<pre><code>## License
+This modifies the {Owner} {What} Template, available at &lt;{some_link}&gt;.
+The original template is licensed under the [{license_name}]({license_link}).
+{any_other_required_notes_about_modifications}</code></pre>
+</section>
+</section>
+<section id="adding-latex-files-into-the-template" class="level2">
+<h2 class="anchored" data-anchor-id="adding-latex-files-into-the-template">Adding LaTeX Files into the Template</h2>
+<p>Before you dive into building the Quarto part of the template, I’ll next download any relevant files for the LaTeX part of the template. For the PNAS template, I downloaded the <a href="https://www.overleaf.com/latex/templates/pnas-latex-template-for-preparing-single-column-mathematics-articles-on-overleaf-2023/drfxwmkrtdhr">source files from Overleaf</a>.</p>
+<p>From the template, I extract all of the LaTeX-related files (<code>.bst</code>, <code>.sty</code>, <code>.cls</code>, and in this case <code>.ldf</code> files). Those files go into the <code>_extensions/pnas</code> folder. Any similar files that we want to be available to the template itself should go there.</p>
+<p>Any files that are necessary for demonstrating the template can go into a higher-level folder. For example, in the PNAS template, they use a frog as the placeholder image. I make a folder called <code>figs/</code> that can hold such things.</p>
+<p>At this point, my file structure looks like:</p>
+<pre><code>.
+├── bibliography.bib
+├── figs
+│   └── frog.pdf
+├── pnas.Rproj
+├── README.md
+├── template.qmd
+└── _extensions
+    └── pnas
+        ├── header.tex
+        ├── jabbrv-ltwa-all.ldf
+        ├── jabbrv-ltwa-en.ldf
+        ├── jabbrv.sty
+        ├── pnas-new.bst
+        ├── pnas-new.cls
+        ├── pnas.lua
+        ├── pnasresearcharticle.sty
+        ├── styles.css
+        └── _extension.yml</code></pre>
+<p>Putting the files here only does so much. We have to let the template know that we have them. This all happens in <code>_extensions/pnas/_extension.yml</code></p>
+<p>There are a pair of lines in the file telling it what to use for PDFs.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">include-in-header</span><span class="kw">:</span><span class="at"> header.tex</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We’ll add some new instructions for the <code>format-resources</code> listing out the new files that we have.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">include-in-header</span><span class="kw">:</span><span class="at"> header.tex</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">format-resources</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnas-new.cls</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnas-new.bst</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnasresearcharticle.sty</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> jabbrv.sty</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> jabbrv-ltwa-all.ldf</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> jabbrv-ltwa-en.ldf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="editing-template.qmd-part-1-the-yaml" class="level3">
+<h3 class="anchored" data-anchor-id="editing-template.qmd-part-1-the-yaml">Editing <code>template.qmd</code> (Part 1: The YAML)</h3>
+<p>Once we’ve got all the files in place, it’s time to make some edits to <code>template.qmd</code> so that we can render it and see how we’re doing.</p>
+<p>The first big part is setting up the Quarto YAML. This is where all of the information that we will later use in the template will go.</p>
+<p>The first few lines of the document are standard, but we’ll make two changes to the below:</p>
+<pre><code>title: Pnas Template
+format:
+  pnas-pdf:
+    keep-tex: true  
+  pnas-html: default</code></pre>
+<p>First, I’ll give it a more fun title, here “Quarto Template for PNAS Submissions”. Second, I’m focused on making the <code>pnas-pdf</code> class, so I’ll remove the <code>pnas-html: default</code> line from line 6 (or so) of the YAML. For journals that need PDFs for submission, the extra type doesn’t seem worth the effort.</p>
+<section id="authors-and-affiliations-yaml" class="level5">
+<h5 class="anchored" data-anchor-id="authors-and-affiliations-yaml">Authors and Affiliations YAML</h5>
+<p>Not all templates use all possible information about authors. But, there is a pretty extensive set of possible pieces of information.</p>
+<p>We need to include every relevant piece of information that the journal template will use. If we don’t include everything, there might be weird empty spaces. If we over include, that’s okay, but some things will get ignored.</p>
+<p>Unlike the <code>rticles</code> templates that RMarkdown used to use, Quarto has tried to build an exhaustive schema for people’s names and their affiliations. The schema are detailed extensively at <a href="https://quarto.org/docs/journals/authors.html" class="uri">https://quarto.org/docs/journals/authors.html</a>.</p>
+<p>If we peek at some recent PNAS articles, we can see what author and affiliation information are used.</p>
+<p>Authors look something like</p>
+<blockquote class="blockquote">
+<p>Author One<span class="math inline">\(^{a, c, 1}\)</span>, Author Two<span class="math inline">\(^{b, 1, 2}\)</span>, and Author Three^<span class="math inline">\(a\)</span></p>
+</blockquote>
+<p>which is kind of a mess.</p>
+<p>1 indicates that the authors contributed equally. 2 indicates the corresponding author. a,b,c are all affiliations.</p>
+<p>Affiliations themselves are pretty standard here. They should get printed to look like</p>
+<pre><code>University, Department, City, State ZIP</code></pre>
+<p>With that much information, we can assemble the YAML for an author. To make sure we can see the difference in these, I’ll do set up the affiliations as:</p>
+<ul>
+<li>a: Harvard University, Department of Government, Cambridge, MA 02138</li>
+<li>b: Yale University, Department of Political Science, New Haven, CT 06511</li>
+<li>c: Harvard University, Department of Statistics, Cambridge, MA 02138</li>
+</ul>
+<pre><code>author:
+  - name: Author One
+    affiliations:
+      - name: Harvard University
+        id: a
+        department: Department of Government
+        city: Cambridge
+        state: MA
+        postal-code: 02138
+      - name: Harvard University
+        id: c
+        department: Department of Statistics
+        city: Cambridge
+        state: MA
+        postal-code: 02138
+    attributes:
+      equal-contributor: true</code></pre>
+<p>Note here that Author One and Author Two contributed equally and Author Two is the corresponding author.</p>
+<p>With that, we can build out the other authors.</p>
+<pre><code>  - name: Author Two
+    affiliations:
+      - name: Yale University
+        id: b
+        department: Department of Political Science
+        city: New Haven
+        state: CT
+        postal-code: 06511
+    attributes:
+      equal-contributor: true
+      corresponding: true
+  - name: Author Three
+    affiliations:
+      - ref: a</code></pre>
+<p>Building out Author Two’s affiliation is very similar, we just add a <code>corresponding: true</code> under attributes along with their information. For Author Three, we can do a cool thing and reference affiliation <code>a</code>, since it’s the same.</p>
+<p>Now at this point, I know I’ll also need the email for the corresponding author, so I’ll add an <code>email: corresponding@email.com</code> line to the Author Two chunk.</p>
+</section>
+<section id="custom-yaml-components" class="level5">
+<h5 class="anchored" data-anchor-id="custom-yaml-components">Custom YAML Components</h5>
+<p>The rest of the YAML varies immensely by journal. To figure out what we need, we have to look back at the LaTeX template. We want to identify anything where we either need to tell the template about options to use or replace filler text. To that point, I’ve pulled out each thing that I see as something we need to be controllable in the YAML.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\templatetype</span>{pnasresearcharticle} <span class="co">% Choose template</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">% {pnasresearcharticle} = Template for a two-column research article</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">% {pnasmathematics} %= Template for a one-column mathematics article</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">% {pnasinvited} %= Template for a PNAS invited submission</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It looks like we need a <code>template_type</code> argument to the YAML. Later, we can then list the options in the README. - <code>pnasresearcharticle</code>: Template for a two-column research article - <code>pnasmathematics</code>: Template for a one-column mathematics article - <code>pnasinvited</code>: Template for a PNAS invited submission</p>
+<p>We should be aware though that these actually have different official templates. This gives an important choice:</p>
+<ol type="1">
+<li>try to support it</li>
+<li>let it be set but make it clear that the template is optimized for <code>pnasresearcharticle</code> types</li>
+<li>don’t make it settable and just always use <code>pnasresearcharticle</code></li>
+</ol>
+<p>I tend to go for (2) since it might work really easily without changing anything. Aiming for (1) is commendable, but may open a new can of worms. Option (3) is really safe and might actually be the best option, but if it at least mostly works, then someone else trying to do the other type now has to start from scratch when they didn’t have to. Part of how I’ll approach this is to make it the default in LaTeX if nothing is specified.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\leadauthor</span>{Lead author last name}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is a pretty common request, as it’s used in the header of pages. To be consistent with other journal types, such as <a href="https://github.com/christopherkenny/apsr">apsr</a>, I’ll call this field <code>runningauthor</code>. It’s always better to be consistent, since it makes switching easier, but if I didn’t know about the other name, I probably would have called it <code>lead_author</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\significancestatement</span>{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. The significance statement appears in the paper itself and is required for all research papers.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For this, we can just give a new argument called <code>significance</code>, since it is just a bunch of text.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\authorcontributions</span>{Please provide details of author contributions here.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For this, we can also make a new argument called <code>author_contributions</code>. It’s a bunch of text and readable is best.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\authordeclaration</span>{Please declare any competing interests here.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I tend to call this <code>conflict_of_interest</code>, as I’ve seen it that way in the old <code>rticles</code> days.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\keywords</span>{Keyword 1 <span class="ss">$|$</span> Keyword 2 <span class="ss">$|$</span> Keyword 3 <span class="ss">$|$</span> ...}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Keywords come up in many templates and are included by default in the automatically generated YAML as <code>keywords</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\doi</span>{<span class="fu">\url</span>{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This one looked like something that we might want to change, but is probably best to leave for now. With how publications and submissions work for PNAS, you won’t know the doi until after you’re done using the template.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\firstpage</span>{12}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now this one presents an interesting question. We could include a <code>first_page</code> argument. Though, the formatting is kinda tricky. We would need to support both <code>\firstpage{12}</code> and <code>\firstpage[4]{11}</code>. It seems to me that this would be a good thing to leave out of the YAML but use within the <code>template.qmd</code>, so that it’s obvious it should be used but doesn’t require multi-option handling. That is my preference and I can’t say for sure if this is best practice.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\acknow</span>{Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can give this a name like <code>acknowledgements</code>, again looking to other templates to see what they use as names, since this is a pretty common thing to have.</p>
+<p>Okay now that gives us pretty set of YAML option to add. They’ll look like:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runningauthor</span><span class="kw">:</span><span class="at"> </span><span class="st">"One, Two, and Three"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">significance</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. The significance statement appears in the paper itself and is required for all research papers.</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author_contributions</span><span class="kw">:</span><span class="at"> </span><span class="st">"Please provide details of author contributions here."</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">conflict_of_interest</span><span class="kw">:</span><span class="at"> </span><span class="st">"Please declare any competing interests here."</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">keywords</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">template</span><span class="kw">,</span><span class="at"> demo</span><span class="kw">]</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">acknowledgements</span><span class="kw">: </span><span class="ch">|</span><span class="at"> </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As you can see, where applicable, I’m using the instructions as the placeholder text where applicable. This has the benefit of keeping the end-user instructions near the end user without them having to deep dive into the original LaTeX template.</p>
+<p>The bad news: that was the easy part. The good news: the next part walks you through the hard part.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Use Git
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you aren’t already using Git at this point, now is a good time to run <code>usethis::use_git()</code>, initialize a repo, and commit what you’ve done. This is a good save point so that if you start playing with things for the next part, you can easily remove them if you break anything.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="using-the-yaml-in-latex" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-yaml-in-latex">Using the YAML in LaTeX</h3>
+<p>Adding the arguments to the YAML doesn’t automatically change anything about the output. It makes variables available to Pandoc’s processing as the name of the YAML set. So, for example, if our YAML looked like:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Quarto Template for PNAS Submissions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>then a variable called <code>title</code> would be available for us to use. We can extract its value with `<span class="math inline">\(title\)</span>.</p>
+<p>Possibly the most common is to check if a value is set and then use it if it is. For something like <code>title</code>, where we want to pass it to the LaTeX function <code>\title{}</code>, we can do this with the following pattern.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{<span class="ss">$title$</span>}</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first and third lines here are how <code>if</code> statements are done. So, if the title is set then in your YAML, then the outputted <code>.tex</code> file will say:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{Quarto Template for PNAS Submissions}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For more details on how these types of variables work, take a look at <a href="https://pandoc.org/MANUAL.html#template-syntax">Template syntax section of the Pandoc manual</a>.</p>
+<p>Most of the templating from here is going to be finding the correct place to evaluate a variable. To find those places, we have to introduce the idea of partials, which are short files that get injected into the bigger template.</p>
+<section id="latex-partials" class="level4">
+<h4 class="anchored" data-anchor-id="latex-partials">LaTeX Partials</h4>
+<p>Partials represent little snippets of LaTeX that get joined in a specific order. Quarto is built off of a series of default partials. If you’re rendering a regular document without any of this templating, it passing through those. The defaults are very good: they cover lots of cases and do them in a smart, efficient way. The ideal is that you only have to change a small number of partials. Journals have all sorts of format choices that you want to match, so we will have to replace some.</p>
+<p>As assumed before, you know some LaTeX. A familiar, stylized LaTeX document then looks something like:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">% first line is the *doc-class*</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">% then we have the header</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">% like where we load packages with \usepackage{}</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">% This next group of lines are the *title*</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{Some Latex Document}</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>{Christopher Kenny}</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\date</span>{July 2023}</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">% then we have *before-body*</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\maketitle</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>The body of the document</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">% then we have *after-body*</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">% then we have the *before-bib*</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>The references</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">% then we have *biblio* which makes the bibliography</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each of the things in <code>*</code>s is a partial and the general place where it goes. There are more partials, like <code>toc</code>, a table of contents partial. There’s also a partial for <code>pandoc</code>, for some things that Pandoc needs for rendering from LaTeX. Odds are good that you don’t have to touch the Pandoc one!</p>
+<p>A full description of Quarto partials is available in the <a href="https://quarto.org/docs/journals/templates.html">Quarto documentation</a>. This lists out all of the partials and a short description of what they do. The source files for the partials <a href="https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/pdf/pandoc">are on GitHub</a>.</p>
+<p>Any partials that we need will live in a <code>partials</code> folder, below where the <code>_extension.yml</code> folder lives. Each partial will be a <code>.tex</code> file. So, they will all be something like: <code>_extensions/pnas/partials/*.tex</code>. Each file that we add to this folder has to be listed in <code>_extension.yml</code>, which I’ll show below.</p>
+<p>With the general idea of partials down, we can go in order from the top down and see what we need.</p>
+<section id="sec-docclass" class="level5">
+<h5 class="anchored" data-anchor-id="sec-docclass"><code>doc-class.tex</code></h5>
+<p>Okay, so first things first is the document class. In the template, it looks like this:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[9pt,twocolumn,twoside]{<span class="ex">pnas-new</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Arguably, we don’t need to change this one out. This whole partial will evaluate to one line. The default looks like this:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(fontsize)$</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$fontsize$</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(papersize)$</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$papersize$</span>paper,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(beamer)$</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  ignorenonframetext,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(handout)$</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  handout,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(aspectratio)$</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  aspectratio=<span class="ss">$aspectratio$</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(classoption)$</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$classoption$$sep$</span>,</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$documentclass$</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I say that we don’t need to necessarily change this one because we could pass the following to the YAML.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> </span><span class="st">"9pt"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">classoption</span><span class="kw">:</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="kw">-</span><span class="at"> twocolumn</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="kw">-</span><span class="at"> twoside</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> </span><span class="st">"pnas-new"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This would do the following:</p>
+<ul>
+<li><span class="math inline">\(if(fontsize)\)</span> is true, so return the fontsize (<code>9pt</code>) and include the <code>,</code>.</li>
+<li><span class="math inline">\(if(papersize)\)</span> isn’t specified, so it’s false and nothing happens.</li>
+<li><span class="math inline">\(if(beamer)\)</span> isn’t specified, so it’s false and nothing happens.</li>
+<li><span class="math inline">\(if(handout)\)</span> isn’t specified, so it’s false and nothing happens.</li>
+<li><span class="math inline">\(if(aspectratio)\)</span> isn’t specified, so it’s false and nothing happens.</li>
+</ul>
+<p>Then we get a for loop. This works like the <code>if</code> syntax from before. It takes each element of classoption (a length two vector with <code>twocolumn</code> and <code>twoside</code>), returns them followed by the seperator. The <code>$sep$, $endfor$</code> syntax just says “hey this is the separator <code>,</code>, a comma followed by a space.</p>
+<p>Finally, document class would be <code>pnas-new</code>. So that completes it as</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[9pt,twocolumn,twoside]{<span class="ex">pnas-new</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are at least three advantages to implementing this simple partial as a custom partial. First, we can hard code the <code>documentclass</code> to be just the class we want to support. This avoids weird errors related to incorrect class specifications by downstream users. Second, if we decide that something is important enough to elevate to an additional YAML argument, we can then do so and add it with a little if syntax. For example, the APSR has a special <code>nonblind</code> argument that is really important for the submission. Knowing that, I could then make it a YAML option <a href="https://github.com/christopherkenny/apsr/blob/8fdb09082ee51447d3dc00f0f37c96de1a4105d4/template.qmd#L26">here</a>. Third, we can remove some of the arguments that aren’t relevant to our template, like <code>aspectratio</code>.</p>
+<p>With that in mind, I’ll first trim the options:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(fontsize)$</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$fontsize$</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(classoption)$</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$classoption$$sep$</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$documentclass$</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then I’ll hard code the documentclass</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(fontsize)$</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$fontsize$</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(classoption)$</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="ss">$classoption$$sep$</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>]{<span class="ex">pnas-new</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, I’ll reopen the <code>template.qmd</code> file and add to the YAML the relevant options for what we were just looking at.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> </span><span class="st">"9pt"</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">classoption</span><span class="kw">:</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="kw">-</span><span class="at"> twocolumn</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="at"> </span><span class="kw">-</span><span class="at"> twoside</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’s it for that file. Now we just have to let the <code>_extension.yml</code> file know we have it, like we did for the class files above.</p>
+<p>Look for the lines we edited before and below it we’ll add a <code>template-partials</code> section to indicate that we have this file.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">include-in-header</span><span class="kw">:</span><span class="at"> header.tex</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">format-resources</span><span class="kw">:</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnas-new.cls</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnas-new.bst</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnasresearcharticle.sty</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> jabbrv.sty</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> jabbrv-ltwa-all.ldf</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> jabbrv-ltwa-en.ldf</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">template-partials</span><span class="kw">:</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"partials/doc-class.tex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="title.tex" class="level5">
+<h5 class="anchored" data-anchor-id="title.tex"><code>title.tex</code></h5>
+<p>Now, the title block definitely needs work for this example and probably for the majority of cases. The title partial will tell the document how to create the title, identify the authors, and identify anything else important that needs to be specified at the start of the document. For the PNAS template, we need to tell it how to:</p>
+<ul>
+<li>Specify the <code>\templatetype{}</code></li>
+<li>Call <code>\title{}</code></li>
+<li>Identify the authors (this one is the hardest!)</li>
+<li>Call <code>\leadauthor{}</code></li>
+<li>Call <code>\significancestatement{}</code></li>
+<li>Call <code>\authorcontributions{}</code></li>
+<li>Call <code>\authordeclaration{}</code></li>
+<li>Identify equal authors</li>
+<li>Identify corresponding authors</li>
+<li>Specify the keywords</li>
+</ul>
+<p>For the template type, we want to use an if-else statement. This lets us specify the default option for the case where no type was set. So, since there is an else, we can put it all directly inside the call to <code>\templatetype{}</code>. This will look something like:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\templatetype</span>{</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(template_type)$</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$template_type$</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$else$</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>pnasresearcharticle</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <span class="math inline">\(else\)</span> is how we specify the else part of the if-else.</p>
+<p>The next part of this is going to be familiar. If there’s a title, we want to write the title.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{<span class="ss">$title$</span>}</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If we hold onto the author pieces for a second, we can repeat that pattern for each of <code>\leadauthor{}</code>,<code>\significancestatement{}</code>,<code>\authorcontributions{}</code>, and <code>\authordeclaration{}</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(runningauthor)$</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\leadauthor</span>{<span class="ss">$runningauthor$</span>}</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(significance)$</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\significancestatement</span>{<span class="ss">$significance$</span>}</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(author_contributions)$</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\authorcontributions</span>{<span class="ss">$author_contributions$</span>}</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(conflict_of_interest)$</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\authordeclaration</span>{<span class="ss">$conflict_of_interest$</span>}</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now back to the authors and affiliations. This is often the hardest part of making a Quarto template for journals. As a reminder, we want the output to look like:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[a,c,1]{Author One}</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[b,1,2]{Author Two}</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[a]{Author Three}</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[a]{Affiliation One}</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[b]{Affiliation Two}</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[c]{Affiliation Three}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s break apart what we need for Author One.</p>
+<ul>
+<li>A name</li>
+<li>Affiliation with <code>a</code>
+<ul>
+<li>Need to make the <code>\affil</code> for <code>a</code></li>
+</ul></li>
+<li>Affiliation with <code>b</code>
+<ul>
+<li>Need to make that <code>\affil</code> for <code>b</code> too</li>
+</ul></li>
+<li>a <code>1</code> to indicate joint first authorship
+<ul>
+<li>We’ll fill that part out in a minute.</li>
+</ul></li>
+</ul>
+<p>If we look at the <a href="https://quarto.org/docs/journals/authors.html#author-schema">normalized schema for author</a> first, we can figure out how to access it. The relevant part of the YAML looks like:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">given</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">family</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">literal</span><span class="kw">:</span><span class="at"> string</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>How do we get the value? We can build it like so</p>
+<ul>
+<li>it’s part of the author: <code>$author.</code>
+<ul>
+<li>it’s part of the name: <code>name.</code>
+<ul>
+<li>we want the full thing and that’s it <code>literal$</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>So going down the little tree, we get that it is <span class="math inline">\(author.name.literal\)</span>. If we needed something like the first name, it would be <span class="math inline">\(author.name.given\)</span>.</p>
+<p>So, we can throw that into:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[...]{<span class="ss">$author.name.literal$</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>leaving the <code>...</code> for this next step.</p>
+<p>We need to extract the IDs for the affiliations for each person, so we’ll need to iterate. To iterate over the affiliations of each author, we can use the <code>by-author</code> iterator. This will let us loop over each author and grab the relevant values.</p>
+<p>If we just needed the authors, then this would look like:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>{<span class="ss">$by-author.name.literal$</span>}</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But, we need to fill in the <code>[...]</code> from above. To start, let’s do the affiliation ids. If they have affiliations, we want to loop over them.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.affiliations)$</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author.affiliations)$</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$it.id$</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="ss">$sep$</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$by-author.name.literal$</span>}</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As you can see, I’ve introduced the special keyword <code>it</code>. It’s essentially a placeholder for the current iterator. Here, that’s each entry of <code>by-author.affiliations</code> and we are accessing the <code>.id</code> from them. We’re separating them with <code>,</code>s so that they evaluate nicely.</p>
+<p>The spacing that this outputs is a little funny, so we can collapse it to be</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[<span class="ss">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss">$endfor$$endif$</span><span class="co">%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$by-author.name.literal$</span>}</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can use the <code>%</code> just as in LaTeX for the normal end of line behavior.</p>
+<p>Now this all works beautifully for the affiliations, but we also need to think about the <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>. <span class="math inline">\(1\)</span> means equal first authorship if there are multiple first authors. <span class="math inline">\(2\)</span> means corresponding author <em>assuming</em> that there are multiple first authors. So, <span class="math inline">\(1\)</span> isn’t always there but <span class="math inline">\(2\)</span> should be. Now, we can back out that if there are multiple first authors, then the author listed first will be a first author.</p>
+<p>This is good news! This means we can check if there is an equal contribution note. We can do this with our good friend LaTeX, by defining a new command for this. If there’s an equal contributor, it’ll always be 1. We can make the corresponding variable vary based on the equal contributor variable.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\equalcont</span>}{1}</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(equal-contributor)$</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\correspond</span>}{2}</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$else$</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\correspond</span>}{1}</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can then use that in our templating. If an author is listed as an equal author, we want to add a <code>,\equalcont</code> after the affiliations. So, we can do just that by adding in another line.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[<span class="ss">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss">$endfor$$endif$</span><span class="co">%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.equal-contributor)$</span>,<span class="fu">\equalcont</span><span class="ss">$endif$</span><span class="co">%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$by-author.name.literal$</span>}</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the same way, we can add information about corresponding authors. If an author is listed as the corresponding author, we want to add a <code>,\correspond</code> after the affiliations.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[<span class="ss">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss">$endfor$$endif$</span><span class="co">%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.equal-contributor)$</span>,<span class="fu">\equalcont</span><span class="ss">$endif$</span><span class="co">%</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.corresponding)$</span>,<span class="fu">\correspond</span><span class="ss">$endif$</span><span class="co">%</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$by-author.name.literal$</span>}</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we can turn to setting up the affiliation lines, with <code>\affil</code>. As with authors, there is a <code>by-affiliation</code> keyword that will let us iterate over the affiliations. For each affilition, we want something of the form:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[a]{Affiliation One}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At the most basic level, if it was just a name (like “Harvard University”), we could use a loop and the <code>it</code> syntax again to make something like this:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-affiliation)$</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[<span class="ss">$it.id$</span>]{<span class="ss">$it.name$</span>}</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We need it to do a teeny bit more though. We want something instead that uses all of the relevant pieces of the YAML to say:</p>
+<p><code>Harvard University, Department of Government, Cambridge, MA 02138</code></p>
+<p>The components of this are then:</p>
+<p><code>name, department, city, state, postal-code</code></p>
+<p>For each affiliation, we would want something like:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.name)$$it.name$$endif$</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.department)$</span>, <span class="ss">$it.department$$endif$</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.city)$</span>, <span class="ss">$it.city$$endif$</span> </span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.state)$</span>, <span class="ss">$it.state$$endif$</span> </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.postal-code)$</span>, <span class="ss">$it.postal-code$$endif$</span> </span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.country)$</span>, <span class="ss">$it.country$$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that we’re separating them with <code>,</code> at the start of each additional argument. This avoids weird spacing in the output. And we should probably add in country at the end, for if not all authors work in the US.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(it.country)$</span>, <span class="ss">$it.country$$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can put this all in its own file, called <code>_affiliation.tex</code> in the <code>partials/</code> directory. We don’t have to, but it seems to be common practice in existing templates. Then, we can call this chunk using <span class="math inline">\(_affiliation.tex()\)</span>. The benefit of doing that is it keeps the template cleaner and easier to debug later.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-affiliation)$</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[<span class="ss">$it.id$</span>]{<span class="ss">$_affiliation.tex()$</span>}</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Don’t forget to add the <code>partials/_affiliation.tex</code> line to the <code>_extension</code> file. That will now have a <code>template-partials</code> chunk like so:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">template-partials</span><span class="kw">:</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"partials/doc-class.tex"</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"partials/_affiliation.tex"</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">"partials/title.tex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, a minute ago, we did the hard work for the equal contributors, so we can add in some code to indicate the equal authors too in the template:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(equal-contributor)$</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\equalauthors</span>{<span class="fu">\textsuperscript</span>{<span class="fu">\equalcont</span>} <span class="ss">$equal-contributor$</span>}</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We add the superscript because we had just a raw number above.</p>
+<p>Now, we can do something similar for the corresponding author. This time we’ll iterate over the authors, again with <code>by-author</code> to find the corresponding one. If they’re the corresponding author, we’ll fill in the <code>...</code> below:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.corresponding)$</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\correspondingauthor</span>{...}</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Just as with the equal contributors, we want to start it with the identifier, <code>\textsuperscript{\correspond}</code>. Then we need the PNAS template text: “To whom correspondence should be addressed. E-mail:”. And last, we can get the email from the author with `<span class="math inline">\(by-author.email\)</span>.</p>
+<p>Put together, that looks like:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.corresponding)$</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\correspondingauthor</span>{<span class="fu">\textsuperscript</span>{<span class="fu">\correspond</span>}To whom correspondence should be addressed. E-mail: <span class="ss">$by-author.email$</span>}</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, we can build out the keywords. Since there can be multiple, we’ll use a for loop with a separator, like in <a href="#sec-docclass">Section&nbsp;3.2.1.1</a>. We want to iterate over each one and print them separated by a pipe, <code>|</code>.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(keywords)$</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\keywords</span>{<span class="ss">$for(keywords)$$keywords$$sep$</span> | <span class="ss">$endfor$</span>}</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All together, the file looks something like:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\templatetype</span>{<span class="ss">$if(template_type)$$template_type$$else$</span>pnasresearcharticle<span class="ss">$endif$</span>}</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{<span class="ss">$title$</span>}</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\equalcont</span>}{1}</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(equal-contributor)$</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\correspond</span>}{2}</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="ss">$else$</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\correspond</span>}{1}</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>[<span class="ss">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss">$endfor$$endif$</span><span class="co">%</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.equal-contributor)$</span>,<span class="fu">\equalcont</span><span class="ss">$endif$</span><span class="co">%</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.corresponding)$</span>,<span class="fu">\correspond</span><span class="ss">$endif$</span><span class="co">%</span></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>]{<span class="ss">$by-author.name.literal$</span>}</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-affiliation)$</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="fu">\affil</span>[<span class="ss">$it.id$</span>]{<span class="ss">$_affiliation.tex()$</span>}</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(runningauthor)$</span></span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a><span class="fu">\leadauthor</span>{<span class="ss">$runningauthor$</span>}</span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(significance)$</span></span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\significancestatement</span>{<span class="ss">$significance$</span>}</span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(author_contributions)$</span></span>
+<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a><span class="fu">\authorcontributions</span>{<span class="ss">$author_contributions$</span>}</span>
+<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-37"><a href="#cb56-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-38"><a href="#cb56-38" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(conflict_of_interest)$</span></span>
+<span id="cb56-39"><a href="#cb56-39" aria-hidden="true" tabindex="-1"></a><span class="fu">\authordeclaration</span>{<span class="ss">$conflict_of_interest$</span>}</span>
+<span id="cb56-40"><a href="#cb56-40" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-41"><a href="#cb56-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-42"><a href="#cb56-42" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(equal-contributor)$</span></span>
+<span id="cb56-43"><a href="#cb56-43" aria-hidden="true" tabindex="-1"></a><span class="fu">\equalauthors</span>{<span class="fu">\textsuperscript</span>{<span class="fu">\equalcont</span>} <span class="ss">$equal-contributor$</span>}</span>
+<span id="cb56-44"><a href="#cb56-44" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-45"><a href="#cb56-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-46"><a href="#cb56-46" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
+<span id="cb56-47"><a href="#cb56-47" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.corresponding)$</span></span>
+<span id="cb56-48"><a href="#cb56-48" aria-hidden="true" tabindex="-1"></a><span class="fu">\correspondingauthor</span>{<span class="fu">\textsuperscript</span>{<span class="fu">\correspond</span>}To whom correspondence should be addressed. E-mail: <span class="ss">$by-author.email$</span>}</span>
+<span id="cb56-49"><a href="#cb56-49" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb56-50"><a href="#cb56-50" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span>
+<span id="cb56-51"><a href="#cb56-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-52"><a href="#cb56-52" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(keywords)$</span></span>
+<span id="cb56-53"><a href="#cb56-53" aria-hidden="true" tabindex="-1"></a><span class="fu">\keywords</span>{<span class="ss">$for(keywords)$$keywords$$sep$</span> | <span class="ss">$endfor$</span>}</span>
+<span id="cb56-54"><a href="#cb56-54" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that it will eventually be processeed from top to bottom, so we have to define the LaTeX commands before we use them.</p>
+</section>
+<section id="before-body.tex" class="level5">
+<h5 class="anchored" data-anchor-id="before-body.tex"><code>before-body.tex</code></h5>
+<p>Okay, with the hardest part done, we can do this one without too much crazy stuff. This partial is all the stuff that comes after <code>\begin{document}</code> but before the writing. So, that normally includes making the title and the abstract. As you’ll see in a minute, there’s also some generic LaTeX from the template that we want here.</p>
+<p>First, if there’s a title we have to tell it to make it. This looks like much of how we built out the title section.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\maketitle</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, if there’s an abstract, we need to make that. We also need it to be in an <code>abstract</code> environment, so we can toss the whole thing into one <code>if</code> statement. For what it’s worth, this chunk goes in pretty much every template. I just copy the same chunk from old Quarto template to new Quarto template whenever I need it.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(abstract)$</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">abstract</span>}</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$abstract$</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">abstract</span>}</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And really both of these two things are handled by the <a href="https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/pdf/pandoc/before-body.tex">default partial</a>. I would have preferred to not change it, but we need some defaults to be set here that we see in the template itself. We can just straight up copy those into it. No edits necessary. If you go the route to allow setting the doi, perhaps with a YAML <code>doi:</code>, this is where you would insert that.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\dates</span>{This manuscript was compiled on <span class="fu">\today</span>}</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\doi</span>{<span class="fu">\url</span>{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\thispagestyle</span>{firststyle}</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\ifthenelse</span>{<span class="fu">\boolean</span>{shortarticle}}{<span class="fu">\ifthenelse</span>{<span class="fu">\boolean</span>{singlecolumn}}{<span class="fu">\abscontentformatted</span>}{<span class="fu">\abscontent</span>}}{}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All together, the before-body partial looks something like:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\maketitle</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(abstract)$</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">abstract</span>}</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="ss">$abstract$</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">abstract</span>}</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\dates</span>{This manuscript was compiled on <span class="fu">\today</span>}</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\doi</span>{<span class="fu">\url</span>{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\thispagestyle</span>{firststyle}</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\ifthenelse</span>{<span class="fu">\boolean</span>{shortarticle}}{<span class="fu">\ifthenelse</span>{<span class="fu">\boolean</span>{singlecolumn}}{<span class="fu">\abscontentformatted</span>}{<span class="fu">\abscontent</span>}}{}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is about the “simplest” partial to make, once you’re comfortable with partials, since it is so close to the default. If it weren’t for setting the first page style, we could have omitted it. Don’t forget to add it to <code>_extension.yml</code>.</p>
+</section>
+<section id="before-bib.tex" class="level5">
+<h5 class="anchored" data-anchor-id="before-bib.tex"><code>before-bib.tex</code></h5>
+<p>In the PNAS template, just before the bibliography, we need to include the acknowledgements. We also need to make a call to a function, <code>\showacknow{}</code> to make them appear.</p>
+<p>The first part is the same as our usual pattern. Check if there are acknowledgements, and if there are, set them.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(acknowledgements)$</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\acknow</span>{<span class="ss">$acknowledgements$</span>}</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\showacknow</span>{} <span class="co">% Display the acknowledgments section</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Within the check, we’ll add the quick call to make sure they appear.</p>
+<p>As before, we to add it to <code>_extension.yml</code>. But now we’re done with most of the work!</p>
+</section>
+</section>
+</section>
+<section id="editing-template.qmd-part-2-the-body" class="level3">
+<h3 class="anchored" data-anchor-id="editing-template.qmd-part-2-the-body">Editing <code>template.qmd</code> (Part 2: The Body)</h3>
+<p>Okay, now we can test and run with the file. To do so, we want to add some text back from the other template that instructs the user how to fill out the template. I’ll start by copying in big chunks from the template and then converting things from LaTeX to the friendlier Quarto (or sometimes R) syntax.</p>
+<p>For example, if the LaTeX template has:</p>
+<pre><code>\subsection*{Author Affiliations}</code></pre>
+<p>I’ll make that into:</p>
+<pre><code>## Author Affiliations {.unnumbered}</code></pre>
+<p>We can replace things like sections or links with some find+replace regex in RStudio:</p>
+<ul>
+<li>Replace <code>(\\subsection\*{)(.+?)(})</code> with <code>## \2 {.unnumbered}</code> to fix subsection titles.</li>
+<li>Replace <code>(\\subsubsection\*{)(.+?)(})</code> with <code>### \2 {.unnumbered}</code> to fix subsubsection titles.</li>
+<li>Replace <code>(\\href{)(.+?)(})({)(.+?)(})</code> with <code>[\5](\2)</code> to move links from LaTeX to Quarto.</li>
+<li>Replace <code>(\\ref{fig:)(.+?)(})</code> with <code>@fig-\2</code> to move cross references to Quarto syntax.</li>
+<li>Replace <code>(\\verb\|)(.+?)(\|)</code> with <code>\</code>\2`` to move verbatim environments to Quarto ones.</li>
+</ul>
+<p>As I was doing this, I got a really weird error.</p>
+<pre><code>compilation failed- error
+LaTeX Error: Not in outer par mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H &lt;return&gt;  for immediate help.
+ ...                                              
+                                                  
+l.206 \end{document}
+                     
+
+see template.log for more information.</code></pre>
+<p>The obvious thing was that I probably had a mismatch in <code>}</code> or <code>{</code> somewhere. After a few minutes, that clearly wasn’t the case. They all seemed to match and match correctly.</p>
+<p>At this point, I looked at the template again and thought about the first page special formatting. The first page has a different column width, so it’s a little special. I added some more paragraphs from the LaTeX template and it rendered fine. Playing around and if there was anything short of a page, it would fail. Otherwise, it worked beautifully. As such, I added a warning to the template in the text, so any overzealous compilers would have a clue what broke.</p>
+<pre><code>A word of warning: This template will fail with a "Not in outer par mode" warning if you try to compile it with less than one page of text.
+The template relies on having a full first page which is styled separately.
+If you see a warning to the tune of "LaTeX Error: Not in outer par mode." or referencing `\end{document}`, try writing more or adding filler text and recompiling.</code></pre>
+<p>Next, I’ll replace figures. For the most basic figures, I’ll just use raw Quarto figure syntax.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}<span class="co">%[tbhp]</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\includegraphics</span>[width=.8<span class="fu">\linewidth</span>]{<span class="ex">figs/frog.pdf</span>}</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Placeholder image of a frog with a long example legend to show justification setting.}</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\label</span>{<span class="ex">fig:frog</span>}</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>can be pretty well replicated with the shorter:</p>
+<pre><code>![Placeholder image of a frog with a long example legend to show justification setting.](figs/frog.pdf){#fig-frog}</code></pre>
+<p>Additional settings can be set within an R chunk (or other code chunk). I find it very helpful to mention the <code>fig-env</code> argument, such as below:</p>
+<blockquote class="blockquote">
+<p>In Quarto, we can do these by setting the <code>fig-env</code> command to <code>figure*</code> or <code>SCfigure*</code></p>
+</blockquote>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-side</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "This legend would be placed at the side of the figure, rather than below it."</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-env: "SCfigure*"</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="co"># tell it the options as comments with a | and a space, as above.</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set echo: false to avoid printing this text</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">'figs/frog.pdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Two column journals need the <code>figure*</code> (often called a “star figure”, “figure star”, or “star” environment) for page wide columns. PNAS also has a side-caption version, which is included in the template as the above example. This gives a clear demo of a simpler approach to including figures, at least than with LaTeX.</p>
+<p>As for tables, I tend to leave them as-is in LaTeX. Many table environments need a little something else that doesn’t seem to translate super well into Markdown syntax. Of course, you could translate them into Markdown, especially if the LaTeX doesn’t need special options.</p>
+<p>Finally, I like to include anything about the bibliography in a References section, like below. I include the special <code>\bibsplit</code> command that needs to be set manually at the end with a comment explaining how to use it.</p>
+<pre><code># References
+\bibsplit[2]
+&lt;!-- Use \bibsplit to split the references from the body of the text. Value "[2]" represents the number of reference in the left column (Note: Please avoid single column figures &amp; tables on this page.) --&gt;
+
+:::{#refs}
+:::</code></pre>
+<p>This includes the special reference div (the <code>:::</code> things) to help make it easier to understand where those will be printed. Details on that div are available in <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html#bibliography-generation">the Quarto documentation</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Don’t forget to update the <code>bibliography.bib</code> default file to include any example references you use!</p>
+</div>
+</div>
+</section>
+<section id="revising-the-readme" class="level3">
+<h3 class="anchored" data-anchor-id="revising-the-readme">Revising the README</h3>
+<p>With the Quarto and LaTeX stuff pretty much done, we want to include information for future users.</p>
+<p>First, we’ll fill out the <code>Options</code> section. In general, this should describe anything that isn’t default in the YAML or that should generally be set.</p>
+<p>For example, I want to explain a few things:</p>
+<ul>
+<li>classoption defaults</li>
+<li>setting a corresponding author</li>
+<li>affiliation IDs should be letters</li>
+</ul>
+<p>Words are useful here to refer</p>
+<p>For the PNAS template, I included the following:</p>
+<blockquote class="blockquote">
+<p>The default setting for class option generates a two column layout with:</p>
+</blockquote>
+<pre><code>classoption:
+ - twocolumn
+ - twoside</code></pre>
+<p>To set a corresponding author, ensure that the attribute “corresponding” is true and that they have an email listed. For proper formatting, each affiliation should be given a letter id (like <code>a</code>, <code>b</code>, …, <code>z</code>).</p>
+<p>Now, we can run the png code from before.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>pdftools<span class="sc">::</span><span class="fu">pdf_convert</span>(<span class="st">'template.pdf'</span>, <span class="at">pages =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will generate a file <code>template_1.png</code>.</p>
+<p>To include that in the readme, we can use Markdown, like:</p>
+<pre><code>![[template.qmd](template.qmd)](template_1.png)</code></pre>
+<p>That gives people enough information to get started with your template.</p>
+</section>
+<section id="adding-a-.quartoignore" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-.quartoignore">Adding a <code>.quartoignore</code></h3>
+<p>Now, one last thing we want to do is make sure that people using the template won’t install extra files. Things like <code>template_1.png</code> from the last section are useful in the repo, but not to the end user. We can add a file <code>.quartoignore</code> in the root directory that functions like a <code>.gitignore</code> file.</p>
+<p>Mine looks like:</p>
+<pre><code>*.pdf
+*.png
+*.rproj
+*.Rproj
+!figs/*.png</code></pre>
+<p>This ignores all pdfs, pngs, and R project files. It then un-ignores the <code>figs/</code> folder where useful example files for the template live. It’s important to include those in the template because you want the file that gets downloaded to run when someone runs</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> use template christopherkenny/pnas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But, they can be deleted once people have made sure the template works. As such, they don’t need to be included in the <code>_extension.yml</code> file, but shouldn’t be <code>.quartoignore</code>d.</p>
+</section>
+<section id="cleaning-up" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-up">Cleaning up</h3>
+<p>It’s probably over. There may be other changes, but it’s probably over. But it’s not an official template, so no one will contact you when they update it. But, one day, you might notice that it is different or someone will comment on GitHub. But for now, you’re free! Time to make another template for that other journal you were thinking about submitting to.</p>
+<p>More importantly, at this point, you should delete any files or code that you didn’t use. For this template, that means removing <code>styles.css</code> and <code>pnas.lua</code>. Also, remove them from the <code>_extension.yml</code> file. That is, delete:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">filters</span><span class="kw">:</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> pnas.lua</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fin" class="level3">
+<h3 class="anchored" data-anchor-id="fin">Fin</h3>
+<p>Last things last.</p>
+<p>If your template now works, then it’s time to make it public. A seemingly ridiculous portion of research time is spent recreating resources that surely someone else has <em>somewhere</em>. A semi-functional template is better than starting from scratch.</p>
+<p>Add a topic to the GitHub repo for <code>quarto-template</code> and anything else relevant! Congrats, you have a template. Share it on Twitter or whatever is still useful. If it doesn’t work for someone, they’ll email you or open an issue. As a wise person once said &gt; all (feedback) is good (feedback)</p>
+<p>Even if it didn’t work for someone, a little information about why it didn’t work can help you a ton for when <em>you</em> have the same issue some day.</p>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>The template created within this post is available at <a href="https://github.com/christopherkenny/pnas"><code>christopherkenny/pnas</code></a>.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{t. kenny2023,
+  author = {T. Kenny, Christopher},
+  title = {Creating {Quarto} {Journal} {Article} {Templates}},
+  date = {2023-07-03},
+  url = {https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t. kenny2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+T. Kenny, Christopher. 2023. <span>“Creating Quarto Journal Article
+Templates.”</span> July 3, 2023. <a href="https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles">https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,9 +1,6 @@
 project:
   type: website
   output-dir: "docs"
-  render:
-    - "*.qmd"
-    - "!posts/"
     
 website:
   title: "Christopher T. Kenny"
