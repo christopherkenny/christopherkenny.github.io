@@ -893,7 +893,7 @@ $if(it.country)$, $it.country$$endif$
 
 We can put this all in its own file, called `_affiliation.tex` in the `partials/` directory.
 We don't have to, but it seems to be common practice in existing templates.
-Then, we can call this chunk using $_affiliation.tex()$.
+Then, we can call this chunk using `$_affiliation.tex()$`.
 The benefit of doing that is it keeps the template cleaner and easier to debug later.
 
 ``` latex
