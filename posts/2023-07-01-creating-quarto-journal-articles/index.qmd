@@ -1,7 +1,6 @@
 ---
 title: Creating Quarto Journal Article Templates
-author: Christopher T. Kenny
-date: last-modified
+date: "2023-07-01"
 description: |
   A long walk through creating Quarto templates for journal articles.
 categories: [quarto]
@@ -432,7 +431,7 @@ title: Quarto Template for PNAS Submissions
 ```
 
 then a variable called `title` would be available for us to use.
-We can extract its value with \`$title$.
+We can extract its value with `$title$`.
 
 Possibly the most common is to check if a value is set and then use it if it is.
 For something like `title`, where we want to pass it to the LaTeX function `\title{}`, we can do this with the following pattern.
@@ -560,11 +559,11 @@ documentclass: "pnas-new"
 
 This would do the following:
 
--   $if(fontsize)$ is true, so return the fontsize (`9pt`) and include the `,`.
--   $if(papersize)$ isn't specified, so it's false and nothing happens.
--   $if(beamer)$ isn't specified, so it's false and nothing happens.
--   $if(handout)$ isn't specified, so it's false and nothing happens.
--   $if(aspectratio)$ isn't specified, so it's false and nothing happens.
+-   `$if(fontsize)$` is true, so return the fontsize (`9pt`) and include the `,`.
+-   `$if(papersize)$` isn't specified, so it's false and nothing happens.
+-   `$if(beamer)$` isn't specified, so it's false and nothing happens.
+-   `$if(handout)$` isn't specified, so it's false and nothing happens.
+-   `$if(aspectratio)$` isn't specified, so it's false and nothing happens.
 
 Then we get a for loop.
 This works like the `if` syntax from before.
@@ -937,7 +936,7 @@ $endfor$
 
 Just as with the equal contributors, we want to start it with the identifier, `\textsuperscript{\correspond}`.
 Then we need the PNAS template text: "To whom correspondence should be addressed. E-mail:".
-And last, we can get the email from the author with \`$by-author.email$.
+And last, we can get the email from the author with `$by-author.email$`.
 
 Put together, that looks like:
 
@@ -1229,6 +1228,8 @@ Details on that div are available in [the Quarto documentation](https://quarto.o
 Don't forget to update the `bibliography.bib` default file to include any example references you use!
 :::
 
+## Cleaning up
+
 ### Revising the README
 
 With the Quarto and LaTeX stuff pretty much done, we want to include information for future users.
@@ -1295,7 +1296,7 @@ But, they can be deleted once people have made sure the template works.
 As such, they don't need to be included in the `_extension.yml` file, but shouldn't be `.quartoignore`d.
 
 
-### Cleaning up
+### Deleting unused files
 
 It's probably over.
 There may be other changes, but it's probably over.
@@ -1321,7 +1322,7 @@ and
       css: styles.css
 ```
 
-### Fin
+## Finishing up
 
 Last things last.
 

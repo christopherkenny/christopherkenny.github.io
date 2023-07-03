@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Christopher T. Kenny">
-<meta name="dcterms.date" content="2023-07-03">
+<meta name="dcterms.date" content="2023-07-01">
 <meta name="description" content="A long walk through creating Quarto templates for journal articles.">
 
 <title>Christopher T. Kenny - Creating Quarto Journal Article Templates</title>
@@ -178,11 +178,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#editing-template.qmd-part-1-the-yaml" id="toc-editing-template.qmd-part-1-the-yaml" class="nav-link" data-scroll-target="#editing-template.qmd-part-1-the-yaml">Editing <code>template.qmd</code> (Part 1: The YAML)</a></li>
   <li><a href="#using-the-yaml-in-latex" id="toc-using-the-yaml-in-latex" class="nav-link" data-scroll-target="#using-the-yaml-in-latex">Using the YAML in LaTeX</a></li>
   <li><a href="#editing-template.qmd-part-2-the-body" id="toc-editing-template.qmd-part-2-the-body" class="nav-link" data-scroll-target="#editing-template.qmd-part-2-the-body">Editing <code>template.qmd</code> (Part 2: The Body)</a></li>
+  </ul></li>
+  <li><a href="#cleaning-up" id="toc-cleaning-up" class="nav-link" data-scroll-target="#cleaning-up">Cleaning up</a>
+  <ul class="collapse">
   <li><a href="#revising-the-readme" id="toc-revising-the-readme" class="nav-link" data-scroll-target="#revising-the-readme">Revising the README</a></li>
   <li><a href="#adding-a-.quartoignore" id="toc-adding-a-.quartoignore" class="nav-link" data-scroll-target="#adding-a-.quartoignore">Adding a <code>.quartoignore</code></a></li>
-  <li><a href="#cleaning-up" id="toc-cleaning-up" class="nav-link" data-scroll-target="#cleaning-up">Cleaning up</a></li>
-  <li><a href="#fin" id="toc-fin" class="nav-link" data-scroll-target="#fin">Fin</a></li>
+  <li><a href="#deleting-unused-files" id="toc-deleting-unused-files" class="nav-link" data-scroll-target="#deleting-unused-files">Deleting unused files</a></li>
   </ul></li>
+  <li><a href="#finishing-up" id="toc-finishing-up" class="nav-link" data-scroll-target="#finishing-up">Finishing up</a></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
 </nav>
@@ -214,14 +217,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Christopher T. Kenny </p>
+             <p><a href="https://christophertkenny.com">Christopher T. Kenny</a> <a href="https://orcid.org/0000-0002-9386-6860" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 3, 2023</p>
+      <p class="date">July 1, 2023</p>
     </div>
   </div>
   
@@ -501,7 +504,7 @@ Use Git
 <h3 class="anchored" data-anchor-id="using-the-yaml-in-latex">Using the YAML in LaTeX</h3>
 <p>Adding the arguments to the YAML doesn’t automatically change anything about the output. It makes variables available to Pandoc’s processing as the name of the YAML set. So, for example, if our YAML looked like:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Quarto Template for PNAS Submissions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>then a variable called <code>title</code> would be available for us to use. We can extract its value with `<span class="math inline">\(title\)</span>.</p>
+<p>then a variable called <code>title</code> would be available for us to use. We can extract its value with <code>$title$</code>.</p>
 <p>Possibly the most common is to check if a value is set and then use it if it is. For something like <code>title</code>, where we want to pass it to the LaTeX function <code>\title{}</code>, we can do this with the following pattern.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{<span class="ss">$title$</span>}</span>
@@ -577,11 +580,11 @@ Use Git
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> </span><span class="st">"pnas-new"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This would do the following:</p>
 <ul>
-<li><span class="math inline">\(if(fontsize)\)</span> is true, so return the fontsize (<code>9pt</code>) and include the <code>,</code>.</li>
-<li><span class="math inline">\(if(papersize)\)</span> isn’t specified, so it’s false and nothing happens.</li>
-<li><span class="math inline">\(if(beamer)\)</span> isn’t specified, so it’s false and nothing happens.</li>
-<li><span class="math inline">\(if(handout)\)</span> isn’t specified, so it’s false and nothing happens.</li>
-<li><span class="math inline">\(if(aspectratio)\)</span> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(fontsize)$</code> is true, so return the fontsize (<code>9pt</code>) and include the <code>,</code>.</li>
+<li><code>$if(papersize)$</code> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(beamer)$</code> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(handout)$</code> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(aspectratio)$</code> isn’t specified, so it’s false and nothing happens.</li>
 </ul>
 <p>Then we get a for loop. This works like the <code>if</code> syntax from before. It takes each element of classoption (a length two vector with <code>twocolumn</code> and <code>twoside</code>), returns them followed by the seperator. The <code>$sep$, $endfor$</code> syntax just says “hey this is the separator <code>,</code>, a comma followed by a space.</p>
 <p>Finally, document class would be <code>pnas-new</code>. So that completes it as</p>
@@ -797,7 +800,7 @@ Use Git
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\correspondingauthor</span>{...}</span>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span></span>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$endfor$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Just as with the equal contributors, we want to start it with the identifier, <code>\textsuperscript{\correspond}</code>. Then we need the PNAS template text: “To whom correspondence should be addressed. E-mail:”. And last, we can get the email from the author with `<span class="math inline">\(by-author.email\)</span>.</p>
+<p>Just as with the equal contributors, we want to start it with the identifier, <code>\textsuperscript{\correspond}</code>. Then we need the PNAS template text: “To whom correspondence should be addressed. E-mail:”. And last, we can get the email from the author with <code>$by-author.email$</code>.</p>
 <p>Put together, that looks like:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$for(by-author)$</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(by-author.attributes.corresponding)$</span></span>
@@ -993,6 +996,9 @@ Note
 </div>
 </div>
 </section>
+</section>
+<section id="cleaning-up" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-up">Cleaning up</h2>
 <section id="revising-the-readme" class="level3">
 <h3 class="anchored" data-anchor-id="revising-the-readme">Revising the README</h3>
 <p>With the Quarto and LaTeX stuff pretty much done, we want to include information for future users.</p>
@@ -1032,8 +1038,8 @@ Note
 <div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> use template christopherkenny/pnas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>But, they can be deleted once people have made sure the template works. As such, they don’t need to be included in the <code>_extension.yml</code> file, but shouldn’t be <code>.quartoignore</code>d.</p>
 </section>
-<section id="cleaning-up" class="level3">
-<h3 class="anchored" data-anchor-id="cleaning-up">Cleaning up</h3>
+<section id="deleting-unused-files" class="level3">
+<h3 class="anchored" data-anchor-id="deleting-unused-files">Deleting unused files</h3>
 <p>It’s probably over. There may be other changes, but it’s probably over. But it’s not an official template, so no one will contact you when they update it. But, one day, you might notice that it is different or someone will comment on GitHub. But for now, you’re free! Time to make another template for that other journal you were thinking about submitting to.</p>
 <p>More importantly, at this point, you should delete any files or code that you didn’t use. For this template, that means removing <code>styles.css</code> and <code>pnas.lua</code>. Also, remove them from the <code>_extension.yml</code> file. That is, delete:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">filters</span><span class="kw">:</span></span>
@@ -1042,13 +1048,13 @@ Note
 <div class="sourceCode" id="cb76"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fin" class="level3">
-<h3 class="anchored" data-anchor-id="fin">Fin</h3>
+</section>
+<section id="finishing-up" class="level2">
+<h2 class="anchored" data-anchor-id="finishing-up">Finishing up</h2>
 <p>Last things last.</p>
 <p>If your template now works, then it’s time to make it public. A seemingly ridiculous portion of research time is spent recreating resources that surely someone else has <em>somewhere</em>. A semi-functional template is better than starting from scratch.</p>
 <p>Add a topic to the GitHub repo for <code>quarto-template</code> and anything else relevant! Congrats, you have a template. Share it on Twitter or whatever is still useful. If it doesn’t work for someone, they’ll email you or open an issue. As a wise person once said &gt; all (feedback) is good (feedback)</p>
 <p>Even if it didn’t work for someone, a little information about why it didn’t work can help you a ton for when <em>you</em> have the same issue some day.</p>
-</section>
 </section>
 <section id="resources" class="level2">
 <h2 class="anchored" data-anchor-id="resources">Resources</h2>
@@ -1058,15 +1064,15 @@ Note
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{t. kenny2023,
-  author = {T. Kenny, Christopher and T. Kenny, Christopher},
+  author = {T. Kenny, Christopher},
   title = {Creating {Quarto} {Journal} {Article} {Templates}},
-  date = {2023-07-03},
+  date = {2023-07-01},
   url = {https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t. kenny2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-T. Kenny, Christopher, and Christopher T. Kenny. 2023. <span>“Creating
-Quarto Journal Article Templates.”</span> July 3, 2023. <a href="https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles">https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles</a>.
+T. Kenny, Christopher. 2023. <span>“Creating Quarto Journal Article
+Templates.”</span> July 1, 2023. <a href="https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles">https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
