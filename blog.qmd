@@ -1,0 +1,6 @@
+---
+title: "Blog Posts"
+author: "Christopher T. Kenny"
+listing:
+  contents: posts
+---
