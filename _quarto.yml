@@ -21,6 +21,7 @@ website:
       - icon: journals
         href: https://orcid.org/0000-0002-9386-6860
     background: "#B3001B"
+  google-analytics: "G-PBRM1BV0GG"
 
 
 format:
