@@ -269,7 +269,7 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="making-the-template">Making the Template</h2>
 <p>First things first, we need to <a href="https://quarto.org/docs/journals/formats.html#quick-start">initialize the template</a>. We can do that in the terminal with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create extension journal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It’ll prompt you to give it a name. Names tend to be short and normally match a common journal abbrevation. Quarto has a list of templates(link), as does Awesome Quarto (link). Some names I’ve used:</p>
+<p>It’ll prompt you to give it a name. Names tend to be short and normally match a common journal abbrevation. Quarto has a list of <a href="https://quarto.org/docs/extensions/listing-journals.html">templates</a>, as does <a href="https://github.com/mcanouil/awesome-quarto#journals">Awesome Quarto</a>. Some names I’ve used:</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -296,7 +296,7 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 </tr>
 </tbody>
 </table>
-<p>As you can see, some are obvious. The Cambridge medium one tripped me up a bit, as it was intended for at least five journals.</p>
+<p>As you can see, some are obvious. The Cambridge medium one tripped me up a bit, as it was intended for at least five journals. As such, I just named it for the template and added text to make it clear what journals it was for.</p>
 <p>Now, once you have a name, it creates a new R project named for the name you provided. You can open that and give the structure a look.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -464,7 +464,12 @@ format:
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">% {pnasresearcharticle} = Template for a two-column research article</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">% {pnasmathematics} %= Template for a one-column mathematics article</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">% {pnasinvited} %= Template for a PNAS invited submission</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It looks like we need a <code>template_type</code> argument to the YAML. Later, we can then list the options in the README. - <code>pnasresearcharticle</code>: Template for a two-column research article - <code>pnasmathematics</code>: Template for a one-column mathematics article - <code>pnasinvited</code>: Template for a PNAS invited submission</p>
+<p>It looks like we need a <code>template_type</code> argument to the YAML. Later, we can then list the options in the README.</p>
+<ul>
+<li><code>pnasresearcharticle</code>: Template for a two-column research article</li>
+<li><code>pnasmathematics</code>: Template for a one-column mathematics article</li>
+<li><code>pnasinvited</code>: Template for a PNAS invited submission</li>
+</ul>
 <p>We should be aware though that these actually have different official templates. This gives an important choice:</p>
 <ol type="1">
 <li>try to support it</li>
@@ -601,7 +606,7 @@ Use Git
 <li><code>$if(handout)$</code> isn’t specified, so it’s false and nothing happens.</li>
 <li><code>$if(aspectratio)$</code> isn’t specified, so it’s false and nothing happens.</li>
 </ul>
-<p>Then we get a for loop. This works like the <code>if</code> syntax from before. It takes each element of classoption (a length two vector with <code>twocolumn</code> and <code>twoside</code>), returns them followed by the seperator. The <code>$sep$, $endfor$</code> syntax just says “hey this is the separator <code>,</code>, a comma followed by a space.</p>
+<p>Then we get a for loop. This works like the <code>if</code> syntax from before. It takes each element of classoption (a length two vector with <code>twocolumn</code> and <code>twoside</code>), returns them followed by the seperator. The <code>$sep$, $endfor$</code> syntax just says “hey this is the separator <code>,</code>, a comma followed by a space.”</p>
 <p>Finally, document class would be <code>pnas-new</code>. So that completes it as</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[9pt,twocolumn,twoside]{<span class="ex">pnas-new</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are at least three advantages to implementing this simple partial as a custom partial. First, we can hard code the <code>documentclass</code> to be just the class we want to support. This avoids weird errors related to incorrect class specifications by downstream users. Second, if we decide that something is important enough to elevate to an additional YAML argument, we can then do so and add it with a little if syntax. For example, the APSR has a special <code>nonblind</code> argument that is really important for the submission. Knowing that, I could then make it a YAML option <a href="https://github.com/christopherkenny/apsr/blob/8fdb09082ee51447d3dc00f0f37c96de1a4105d4/template.qmd#L26">here</a>. Third, we can remove some of the arguments that aren’t relevant to our template, like <code>aspectratio</code>.</p>
@@ -664,7 +669,7 @@ Use Git
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$else$</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>pnasresearcharticle</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="ss">$endif$</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <span class="math inline">\(else\)</span> is how we specify the else part of the if-else.</p>
+<p>where <code>$else$</code> is how we specify the else part of the if-else.</p>
 <p>The next part of this is going to be familiar. If there’s a title, we want to write the title.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$if(title)$</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{<span class="ss">$title$</span>}</span>
@@ -1032,7 +1037,7 @@ Note
 <pre><code>classoption:
  - twocolumn
  - twoside</code></pre>
-<p>To set a corresponding author, ensure that the attribute “corresponding” is true and that they have an email listed. For proper formatting, each affiliation should be given a letter id (like <code>a</code>, <code>b</code>, …, <code>z</code>).</p>
+<p>To set a corresponding author, ensure that the attribute “corresponding” is true and that they have an email listed. For proper formatting, each affiliation should be given a letter id (like <code>a</code>, <code>b</code>, …, <code>z</code>). This template is designed for <code>template_type: pnasresearcharticle</code> (the default). It can also take options <code>pnasmathematics</code> or <code>pnasinvited</code>, but these are not formally supported, as they have official alternative formats available on <a href="https://www.overleaf.com/gallery/tagged/pnas">Overleaf</a>.</p>
 <p>Now, we can run the png code from before.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>pdftools<span class="sc">::</span><span class="fu">pdf_convert</span>(<span class="st">'template.pdf'</span>, <span class="at">pages =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will generate a file <code>template_1.png</code>.</p>
