@@ -57,7 +57,7 @@ tb <- tribble(
 tb %>% 
   filter(status == 'CRAN') %>% 
   select(logo, info) %>% 
-  gt() %>% 
+  gt(id = 'crantable') %>% 
   text_transform(
     locations = cells_body(columns = logo),
     fn = function(x) {
@@ -88,7 +88,7 @@ tb %>%
 tb %>% 
   filter(status == 'GitHub') %>% 
   select(logo, info) %>% 
-  gt() %>% 
+  gt(id = 'githubtable') %>% 
   text_transform(
     locations = cells_body(columns = logo),
     fn = function(x) {

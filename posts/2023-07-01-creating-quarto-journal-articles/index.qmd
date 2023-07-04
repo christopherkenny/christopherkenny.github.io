@@ -55,7 +55,7 @@ quarto create extension journal
 
 It'll prompt you to give it a name.
 Names tend to be short and normally match a common journal abbrevation.
-Quarto has a list of templates(link), as does Awesome Quarto (link).
+Quarto has a list of [templates](https://quarto.org/docs/extensions/listing-journals.html), as does [Awesome Quarto](https://github.com/mcanouil/awesome-quarto#journals).
 Some names I've used:
 
 | journal | name |
@@ -67,6 +67,7 @@ Some names I've used:
 
 As you can see, some are obvious.
 The Cambridge medium one tripped me up a bit, as it was intended for at least five journals.
+As such, I just named it for the template and added text to make it clear what journals it was for.
 
 Now, once you have a name, it creates a new R project named for the name you provided.
 You can open that and give the structure a look.
@@ -110,7 +111,8 @@ It can't be finished yet, but I find it helpful to organize right away.
 
 Using RStudio's find+replace, I change the github organization placeholder to my GitHub account name (`christopherkenny`).
 Then, using the same tool, I replace the file name and title with template name from before.
-(If you now feeling anxious about the name, this is the right time to fix it before doing anything.) Then, I remove the (now complete) TODOs for those.
+(If you now feeling anxious about the name, this is the right time to fix it before doing anything.) 
+Then, I remove the (now complete) TODOs for those.
 
 In the "Example" section, I then start to add more info.
 First, I add some template code to include a screenshot.
@@ -255,9 +257,9 @@ University, Department, City, State ZIP
 With that much information, we can assemble the YAML for an author.
 To make sure we can see the difference in these, I'll do set up the affiliations as:
 
--   a: Harvard University, Department of Government, Cambridge, MA 02138
--   b: Yale University, Department of Political Science, New Haven, CT 06511
--   c: Harvard University, Department of Statistics, Cambridge, MA 02138
+- a: Harvard University, Department of Government, Cambridge, MA 02138
+- b: Yale University, Department of Political Science, New Haven, CT 06511
+- c: Harvard University, Department of Statistics, Cambridge, MA 02138
 
 ```         
 author:
@@ -321,7 +323,10 @@ To that point, I've pulled out each thing that I see as something we need to be 
 
 It looks like we need a `template_type` argument to the YAML.
 Later, we can then list the options in the README.
-- `pnasresearcharticle`: Template for a two-column research article - `pnasmathematics`: Template for a one-column mathematics article - `pnasinvited`: Template for a PNAS invited submission
+
+- `pnasresearcharticle`: Template for a two-column research article 
+- `pnasmathematics`: Template for a one-column mathematics article 
+- `pnasinvited`: Template for a PNAS invited submission
 
 We should be aware though that these actually have different official templates.
 This gives an important choice:
@@ -568,7 +573,7 @@ This would do the following:
 Then we get a for loop.
 This works like the `if` syntax from before.
 It takes each element of classoption (a length two vector with `twocolumn` and `twoside`), returns them followed by the seperator.
-The `$sep$, $endfor$` syntax just says "hey this is the separator `,`, a comma followed by a space.
+The `$sep$, $endfor$` syntax just says "hey this is the separator `,`, a comma followed by a space."
 
 Finally, document class would be `pnas-new`.
 So that completes it as
@@ -670,7 +675,7 @@ pnasresearcharticle
 $endif$}
 ```
 
-where $else$ is how we specify the else part of the if-else.
+where `$else$` is how we specify the else part of the if-else.
 
 The next part of this is going to be familiar.
 If there's a title, we want to write the title.
@@ -1255,6 +1260,8 @@ classoption:
 ```
 To set a corresponding author, ensure that the attribute "corresponding" is true and that they have an email listed.
 For proper formatting, each affiliation should be given a letter id (like `a`, `b`, ..., `z`).
+This template is designed for `template_type: pnasresearcharticle` (the default).
+It can also take options `pnasmathematics` or `pnasinvited`, but these are not formally supported, as they have official alternative formats available on [Overleaf](https://www.overleaf.com/gallery/tagged/pnas).
 
 Now, we can run the png code from before.
 ```r
