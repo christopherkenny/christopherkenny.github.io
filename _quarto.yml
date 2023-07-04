@@ -13,7 +13,7 @@ website:
       - text: "CV"
         href: CV.html
       - text: "Blog"
-        href: https://corymccartan.github.io/redistricting21/
+        href: blog.html
       - icon: twitter
         href: https://twitter.com/Chris_T_Kenny
       - icon: github
