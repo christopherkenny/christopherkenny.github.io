@@ -31,6 +31,7 @@ tb <- tribble(
   'alarmdata', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub', 'https://alarm-redist.org/alarmdata/',
   'ggredist', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'CRAN', 'https://alarm-redist.org/ggredist/',
   'congress', 'congress: Access the Congress.gov API', 'CRAN', 'https://christophertkenny.com/congress/',
+  'feltr', 'feltr: Access the Felt API', 'CRAN', 'https://christophertkenny.com/feltr',
   'planscorer', 'planscorer: Score Redistricting Plans with PlanScore', 'GitHub', 'https://christophertkenny.com/planscorer/',
   'redistverse', 'redistverse: Easily Install and Load Redistricting Software', 'GitHub', 'https://alarm-redist.org/redistverse/',
   'crayons', 'crayons: Color Palettes from Crayon Boxes', 'CRAN', 'https://christophertkenny.com/crayons/',
