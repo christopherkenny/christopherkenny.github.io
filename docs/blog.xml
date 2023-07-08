@@ -1,0 +1,2146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Christopher T. Kenny</title>
+<link>https://christophertkenny.com/blog.html</link>
+<atom:link href="https://christophertkenny.com/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Christopher T. Kenny&#39;s Personal Website</description>
+<generator>quarto-1.4.176</generator>
+<lastBuildDate>Fri, 07 Jul 2023 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Making Maps with feltr</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>I make a lot of maps, almost always in R. Recently, I was introduced to <a href="https://felt.com">felt.com</a>. It’s a clean interface for web maps, including some great features, like drawing directly on a map or adding text annotations.</p>
+<p>The new <a href="https://christophertkenny.com/feltr/"><code>feltr</code> package</a> offers an interface to the <a href="https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa">Felt API</a>, so you can upload data to Felt directly from R. It also includes tools for reading data from Felt into R as <a href="https://r-spatial.github.io/sf/"><code>sf</code></a> objects.</p>
+<p>You can install <a href="https://cran.r-project.org/web/packages/feltr/index.html"><code>feltr</code></a> with:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'feltr'</span>)</span></code></pre></div>
+<p>Below, I’ll demo making a map with point locations of Dunkins in Cambridge, MA, from a <code>csv</code> file of Dunkin addresses.</p>
+<section id="dunkins-in-cambridge-ma" class="level2">
+<h2 class="anchored" data-anchor-id="dunkins-in-cambridge-ma">Dunkins in Cambridge, MA</h2>
+<p>First, we’ll load a few packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(feltr)</span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(here)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/chris/Documents/GitHub/christopherkenny.github.io</code></pre>
+</div>
+</div>
+<p>One of the cool things with Felt is its <a href="https://felt.com/blog/upload-anything">“Upload Anything”</a> feature, where we can upload <em>anything</em>. Here, we have a <code>csv</code> file of addresses for every Dunkin in Cambridge. It is simple, just text addresses separated into appropriate fields.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">path_dunkin_ma <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">here</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'posts/2023-07-07-making-maps-with-feltr/dunkin_ma.csv'</span>)</span>
+<span id="cb6-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(path_dunkin_ma, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">show_col_types =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,062 × 5
+   address           city     state zipcode    id
+   &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+ 1 147 N Quincy St   Abington MA    02351       1
+ 2 259 Brockton Ave  Abington MA    02351       2
+ 3 323 Centre Ave    Abington MA    02351       3
+ 4 937 Bedford St    Abington MA    02351       4
+ 5 100 Powdermill Rd Acton    MA    01720       5
+ 6 182 Great Rd      Acton    MA    01720       6
+ 7 212 Main St       Acton    MA    01720       7
+ 8 315 Main St       Acton    MA    01720       8
+ 9 44 Great Rd       Acton    MA    01720       9
+10 150 S Main St     Acushnet MA    02743      10
+# ℹ 1,052 more rows</code></pre>
+</div>
+</div>
+<p>To share this data with Felt, we first have to make a new map. We don’t have to give it any information, it’ll just make an empty map. We can pass it a title and some starting information, like where to center the map and how far to zoom.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">dunk <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">felt_create_map</span>(</span>
+<span id="cb8-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Cambridge Dunkin Desert'</span>, </span>
+<span id="cb8-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">zoom =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lat =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42.3799</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lon =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">71.10668</span></span>
+<span id="cb8-4">)</span></code></pre></div>
+</div>
+<p>Then once we have the map, we can upload the <code>csv</code> file directly to Felt. No local geocoding necessary, it’ll handle that. We can label the layer with <code>name</code> or supply colors, like <code>fill_color</code> and <code>stroke_color</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">layer_id <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">felt_add_map_layers</span>(</span>
+<span id="cb9-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">map_id =</span> dunk<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>id, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Dunkin'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">file_names =</span> path_dunkin_ma, </span>
+<span id="cb9-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill_color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#FF671F'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stroke_color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#DA1884'</span></span>
+<span id="cb9-4">)</span></code></pre></div>
+</div>
+<p>Once we do that, after a couple of minutes, we have a map. Normally it’s a few seconds if we uploaded a <code>geojson</code> or <code>shp</code> file, but geocoding takes a small bit of time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/dunkin_default.png" class="img-fluid figure-img" alt="A map of Cambridge, MA with the default Felt styling."></p>
+<figcaption class="figure-caption">Default Felt Layout</figcaption>
+</figure>
+</div>
+<p>What I find great about this is that I can handle all of the data work in R and then adjust the map as needed after. For example, I can annotate where the Department of Government buildings are with a green star or highlight where Darwin’s was (until recently) with a blue x.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/dunkin_adjusted.png" class="img-fluid figure-img" alt="A map of Cambridge, MA from Felt with annotations added."></p>
+<figcaption class="figure-caption">Annotated Map</figcaption>
+</figure>
+</div>
+<p>Clearly, Darwin’s old location would be a great place for a new Dunkin, near the middle of an existing Dunkin desert.</p>
+<p><code>feltr</code> has additional features, including:</p>
+<ul>
+<li>deleting maps with <code>felt_delete_map()</code></li>
+<li>listing details of existing maps with <code>felt_get_map()</code> and <code>felt_get_map_layers()</code></li>
+<li>downloading shapes with <code>felt_get_map_sf()</code>, <code>felt_get_map_geojson()</code>, and <code>felt_get_map_elements()</code></li>
+<li>retrieving user details with <code>felt_get_user()</code>.</li>
+</ul>
+<p>All current features of the <a href="https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa">Felt API</a> are supported in the CRAN version of <code>feltr</code>, as of July 2023. To offer feedback on <code>feltr</code> or ask questions, <a href="https://github.com/christopherkenny/feltr/issues">open an issue on GitHub</a>.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{t. kenny2023,
+  author = {T. Kenny, Christopher},
+  title = {Making {Maps} with `Feltr`},
+  date = {2023-07-07},
+  url = {https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t. kenny2023" class="csl-entry quarto-appendix-citeas">
+T. Kenny, Christopher. 2023. <span>“Making Maps with `Feltr`.”</span>
+July 7, 2023. <a href="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr">https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr</a>.
+</div></div></section></div> ]]></description>
+  <category>maps</category>
+  <category>r-pkg</category>
+  <guid>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</guid>
+  <pubDate>Fri, 07 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/hex_feltr.png" medium="image" type="image/png" height="167" width="144"/>
+</item>
+<item>
+  <title>Creating Quarto Journal Article Templates</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>This post is largely written for my future self. If you’re not me and you’ve ended up here, I do hope that this is helpful for you, but it may fall below or above your current experience. I’ll include informative links as I think of them to help with the latter. For the former, this post may be too specific to my process to be helpful.</p>
+<section id="your-template-background" class="level3">
+<h3 class="anchored" data-anchor-id="your-template-background">Your Template Background</h3>
+<p>As with all blog posts, I’m assuming you both know everything and nothing. You have every clue how Quarto, Markdown, LaTeX, pandoc, and Lua work and simultaneously have never used anything but Microsoft Word.</p>
+<p>More realistically, you need some experience with one of Quarto, RMarkdown, or Markdown and definitely some experience with LaTeX.</p>
+<p>You needn’t be an expert on the first part, but if you’re new to LaTeX, take some time to write a few documents before trying to build templates that rely on it for pdf-output.</p>
+</section>
+<section id="my-template-background" class="level3">
+<h3 class="anchored" data-anchor-id="my-template-background">My Template Background</h3>
+<p>I’ve made a handful of templates for Quarto and RMarkdown. A few of them are public, but many of them are hacky one-off solutions to some problem. I’m focused here on the more-focused public template, where you want it to work in general for a journal’s set of problems.</p>
+<p>Perhaps most importantly, I’ve got about eight years of self-taught LaTeX experience. That’s good for me and bad for you (or maybe good for you and bad for me). My solutions to problems often (1) produce correct output and (2) are sub-optimal. That’s not the best, but if you care about (1) more, then, hey, we’ve got some work to do.</p>
+<p>For full context: This post was mostly written while I was making a <a href="https://github.com/christopherkenny/pnas">PNAS template for Quarto</a>. Previously, I used the <code>rticles::pnas_template()</code> but (at the time of writing) I was trying to get a better sense of how Quarto built things. So, I have a sense of what it <em>should</em> look like, but no guarantee of understanding how the details work.</p>
+</section>
+</section>
+<section id="making-the-template" class="level2">
+<h2 class="anchored" data-anchor-id="making-the-template">Making the Template</h2>
+<p>First things first, we need to <a href="https://quarto.org/docs/journals/formats.html#quick-start">initialize the template</a>. We can do that in the terminal with:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> create extension journal</span></code></pre></div>
+<p>It’ll prompt you to give it a name. Names tend to be short and normally match a common journal abbrevation. Quarto has a list of <a href="https://quarto.org/docs/extensions/listing-journals.html">templates</a>, as does <a href="https://github.com/mcanouil/awesome-quarto#journals">Awesome Quarto</a>. Some names I’ve used:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>journal</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>APSR</td>
+<td><a href="https://github.com/christopherkenny/apsr">apsr</a></td>
+</tr>
+<tr class="even">
+<td>PNAS</td>
+<td><a href="https://github.com/christopherkenny/pnas">pnas</a></td>
+</tr>
+<tr class="odd">
+<td>PA, PSRM, BJPS, …</td>
+<td><a href="https://github.com/christopherkenny/cambridge-medium">cambridge-medium</a></td>
+</tr>
+<tr class="even">
+<td>Scientific Data</td>
+<td><a href="https://github.com/christopherkenny/scientific-data">scientific-data</a></td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, some are obvious. The Cambridge medium one tripped me up a bit, as it was intended for at least five journals. As such, I just named it for the template and added text to make it clear what journals it was for.</p>
+<p>Now, once you have a name, it creates a new R project named for the name you provided. You can open that and give the structure a look.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the rest of this post, I’ll use building a PNAS template as the example. <code>pnas</code> can be replaced with the name you chose above.</p>
+</div>
+</div>
+<p>On creation, the file structure should look something like this:</p>
+<pre><code>.
+├── bibliography.bib
+├── pnas.Rproj
+├── README.md
+├── template.qmd
+└── _extensions
+    └── pnas
+        ├── header.tex
+        ├── pnas.lua
+        ├── styles.css
+        └── _extension.yml</code></pre>
+<p>For a journal template, we’re going to have to augment the <code>_extensions/pnas</code> folder. For now some quick bits of information on included files:</p>
+<ul>
+<li><code>README.md</code> is the general readme for the whole template. It’ll hold installation instructions, option documentation, and anything else you need users to know.</li>
+<li><code>template.qmd</code>s is where our example template goes.</li>
+<li><code>bibliography.bib</code> is a placeholder bibtex file.</li>
+<li><code>_extensions/pnas/_extension.yml</code> will hold the metadata for the template. This tells Quarto which files to use and such.
+<ul>
+<li><code>_extensions/pnas/header.tex</code> is included in the default template and will be inserted in the <em>header</em> of the LaTeX template.</li>
+</ul></li>
+<li><code>_extensions/pnas/styles.css</code> can probably be deleted at this point, unless you want to make a website version of the template, but you probably aren’t if you’re making a journal template.</li>
+<li><code>_extensions/pnas/pnas.lua</code> is the default Lua filter. <a href="https://quarto.org/docs/extensions/lua.html">Lua is powerful</a>, but only necessary for more complicated features.</li>
+</ul>
+<section id="the-readme" class="level3">
+<h3 class="anchored" data-anchor-id="the-readme">The README</h3>
+<p>The first thing I edit is the README. It can’t be finished yet, but I find it helpful to organize right away.</p>
+<p>Using RStudio’s find+replace, I change the github organization placeholder to my GitHub account name (<code>christopherkenny</code>). Then, using the same tool, I replace the file name and title with template name from before. (If you now feeling anxious about the name, this is the right time to fix it before doing anything.) Then, I remove the (now complete) TODOs for those.</p>
+<p>In the “Example” section, I then start to add more info. First, I add some template code to include a screenshot.</p>
+<pre><code>&lt;!-- pdftools::pdf_convert('template.pdf',pages = 1) 
+![[template.qmd](template.qmd)](template_1.png) --&gt;</code></pre>
+<p>Once the template is finished, I’ll run the first line in R and uncomment the second. Including a screenshot is inspired by <a href="https://github.com/CoryMcCartan/cmc-article">Cory McCartan’s pre-print template</a>. I think it’s a nice touch.</p>
+<p>The options section is helpful for the end user, but may not be super clear right now. I think it is best to hold off on that and figure it out later.</p>
+<p>For now, the last thing I’ll do is add a bit of information on licensing. Odds are good that I’m working off of some official or officially endorsed template. Even if it isn’t official, you want to give credit to the LaTeX wizardry going on behind the scenes. My license section typically takes the form, using <code>{glue}</code> syntax for placeholders:</p>
+<pre><code>## License
+This modifies the {Owner} {What} Template, available at &lt;{some_link}&gt;.
+The original template is licensed under the [{license_name}]({license_link}).
+{any_other_required_notes_about_modifications}</code></pre>
+</section>
+</section>
+<section id="adding-latex-files-into-the-template" class="level2">
+<h2 class="anchored" data-anchor-id="adding-latex-files-into-the-template">Adding LaTeX Files into the Template</h2>
+<p>Before you dive into building the Quarto part of the template, I’ll next download any relevant files for the LaTeX part of the template. For the PNAS template, I downloaded the <a href="https://www.overleaf.com/latex/templates/pnas-latex-template-for-preparing-single-column-mathematics-articles-on-overleaf-2023/drfxwmkrtdhr">source files from Overleaf</a>.</p>
+<p>From the template, I extract all of the LaTeX-related files (<code>.bst</code>, <code>.sty</code>, <code>.cls</code>, and in this case <code>.ldf</code> files). Those files go into the <code>_extensions/pnas</code> folder. Any similar files that we want to be available to the template itself should go there.</p>
+<p>Any files that are necessary for demonstrating the template can go into a higher-level folder. For example, in the PNAS template, they use a frog as the placeholder image. I make a folder called <code>figs/</code> that can hold such things.</p>
+<p>At this point, my file structure looks like:</p>
+<pre><code>.
+├── bibliography.bib
+├── figs
+│   └── frog.pdf
+├── pnas.Rproj
+├── README.md
+├── template.qmd
+└── _extensions
+    └── pnas
+        ├── header.tex
+        ├── jabbrv-ltwa-all.ldf
+        ├── jabbrv-ltwa-en.ldf
+        ├── jabbrv.sty
+        ├── pnas-new.bst
+        ├── pnas-new.cls
+        ├── pnas.lua
+        ├── pnasresearcharticle.sty
+        ├── styles.css
+        └── _extension.yml</code></pre>
+<p>Putting the files here only does so much. We have to let the template know that we have them. This all happens in <code>_extensions/pnas/_extension.yml</code></p>
+<p>There are a pair of lines in the file telling it what to use for PDFs.</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pdf</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb6-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">include-in-header</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> header.tex</span></span></code></pre></div>
+<p>We’ll add some new instructions for the <code>format-resources</code> listing out the new files that we have.</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pdf</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb7-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">include-in-header</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> header.tex</span></span>
+<span id="cb7-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">format-resources</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb7-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnas-new.cls</span></span>
+<span id="cb7-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnas-new.bst</span></span>
+<span id="cb7-6"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnasresearcharticle.sty</span></span>
+<span id="cb7-7"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jabbrv.sty</span></span>
+<span id="cb7-8"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jabbrv-ltwa-all.ldf</span></span>
+<span id="cb7-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jabbrv-ltwa-en.ldf</span></span></code></pre></div>
+<section id="editing-template.qmd-part-1-the-yaml" class="level3">
+<h3 class="anchored" data-anchor-id="editing-template.qmd-part-1-the-yaml">Editing <code>template.qmd</code> (Part 1: The YAML)</h3>
+<p>Once we’ve got all the files in place, it’s time to make some edits to <code>template.qmd</code> so that we can render it and see how we’re doing.</p>
+<p>The first big part is setting up the Quarto YAML. This is where all of the information that we will later use in the template will go.</p>
+<p>The first few lines of the document are standard, but we’ll make two changes to the below:</p>
+<pre><code>title: Pnas Template
+format:
+  pnas-pdf:
+    keep-tex: true  
+  pnas-html: default</code></pre>
+<p>First, I’ll give it a more fun title, here “Quarto Template for PNAS Submissions”. Second, I’m focused on making the <code>pnas-pdf</code> class, so I’ll remove the <code>pnas-html: default</code> line from line 6 (or so) of the YAML. For journals that need PDFs for submission, the extra type doesn’t seem worth the effort.</p>
+<section id="authors-and-affiliations-yaml" class="level5">
+<h5 class="anchored" data-anchor-id="authors-and-affiliations-yaml">Authors and Affiliations YAML</h5>
+<p>Not all templates use all possible information about authors. But, there is a pretty extensive set of possible pieces of information.</p>
+<p>We need to include every relevant piece of information that the journal template will use. If we don’t include everything, there might be weird empty spaces. If we over include, that’s okay, but some things will get ignored.</p>
+<p>Unlike the <code>rticles</code> templates that RMarkdown used to use, Quarto has tried to build an exhaustive schema for people’s names and their affiliations. The schema are detailed extensively at <a href="https://quarto.org/docs/journals/authors.html" class="uri">https://quarto.org/docs/journals/authors.html</a>.</p>
+<p>If we peek at some recent PNAS articles, we can see what author and affiliation information are used.</p>
+<p>Authors look something like</p>
+<blockquote class="blockquote">
+<p>Author One<img src="https://latex.codecogs.com/png.latex?%5E%7Ba,%20c,%201%7D">, Author Two<img src="https://latex.codecogs.com/png.latex?%5E%7Bb,%201,%202%7D">, and Author Three^<img src="https://latex.codecogs.com/png.latex?a"></p>
+</blockquote>
+<p>which is kind of a mess.</p>
+<p>1 indicates that the authors contributed equally. 2 indicates the corresponding author. a,b,c are all affiliations.</p>
+<p>Affiliations themselves are pretty standard here. They should get printed to look like</p>
+<pre><code>University, Department, City, State ZIP</code></pre>
+<p>With that much information, we can assemble the YAML for an author. To make sure we can see the difference in these, I’ll do set up the affiliations as:</p>
+<ul>
+<li>a: Harvard University, Department of Government, Cambridge, MA 02138</li>
+<li>b: Yale University, Department of Political Science, New Haven, CT 06511</li>
+<li>c: Harvard University, Department of Statistics, Cambridge, MA 02138</li>
+</ul>
+<pre><code>author:
+  - name: Author One
+    affiliations:
+      - name: Harvard University
+        id: a
+        department: Department of Government
+        city: Cambridge
+        state: MA
+        postal-code: 02138
+      - name: Harvard University
+        id: c
+        department: Department of Statistics
+        city: Cambridge
+        state: MA
+        postal-code: 02138
+    attributes:
+      equal-contributor: true</code></pre>
+<p>Note here that Author One and Author Two contributed equally and Author Two is the corresponding author.</p>
+<p>With that, we can build out the other authors.</p>
+<pre><code>  - name: Author Two
+    affiliations:
+      - name: Yale University
+        id: b
+        department: Department of Political Science
+        city: New Haven
+        state: CT
+        postal-code: 06511
+    attributes:
+      equal-contributor: true
+      corresponding: true
+  - name: Author Three
+    affiliations:
+      - ref: a</code></pre>
+<p>Building out Author Two’s affiliation is very similar, we just add a <code>corresponding: true</code> under attributes along with their information. For Author Three, we can do a cool thing and reference affiliation <code>a</code>, since it’s the same.</p>
+<p>Now at this point, I know I’ll also need the email for the corresponding author, so I’ll add an <code>email: corresponding@email.com</code> line to the Author Two chunk.</p>
+</section>
+<section id="custom-yaml-components" class="level5">
+<h5 class="anchored" data-anchor-id="custom-yaml-components">Custom YAML Components</h5>
+<p>The rest of the YAML varies immensely by journal. To figure out what we need, we have to look back at the LaTeX template. We want to identify anything where we either need to tell the template about options to use or replace filler text. To that point, I’ve pulled out each thing that I see as something we need to be controllable in the YAML.</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\templatetype</span>{pnasresearcharticle} <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Choose template</span></span>
+<span id="cb12-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% {pnasresearcharticle} = Template for a two-column research article</span></span>
+<span id="cb12-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% {pnasmathematics} %= Template for a one-column mathematics article</span></span>
+<span id="cb12-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% {pnasinvited} %= Template for a PNAS invited submission</span></span></code></pre></div>
+<p>It looks like we need a <code>template_type</code> argument to the YAML. Later, we can then list the options in the README.</p>
+<ul>
+<li><code>pnasresearcharticle</code>: Template for a two-column research article</li>
+<li><code>pnasmathematics</code>: Template for a one-column mathematics article</li>
+<li><code>pnasinvited</code>: Template for a PNAS invited submission</li>
+</ul>
+<p>We should be aware though that these actually have different official templates. This gives an important choice:</p>
+<ol type="1">
+<li>try to support it</li>
+<li>let it be set but make it clear that the template is optimized for <code>pnasresearcharticle</code> types</li>
+<li>don’t make it settable and just always use <code>pnasresearcharticle</code></li>
+</ol>
+<p>I tend to go for (2) since it might work really easily without changing anything. Aiming for (1) is commendable, but may open a new can of worms. Option (3) is really safe and might actually be the best option, but if it at least mostly works, then someone else trying to do the other type now has to start from scratch when they didn’t have to. Part of how I’ll approach this is to make it the default in LaTeX if nothing is specified.</p>
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\leadauthor</span>{Lead author last name}</span></code></pre></div>
+<p>This is a pretty common request, as it’s used in the header of pages. To be consistent with other journal types, such as <a href="https://github.com/christopherkenny/apsr">apsr</a>, I’ll call this field <code>runningauthor</code>. It’s always better to be consistent, since it makes switching easier, but if I didn’t know about the other name, I probably would have called it <code>lead_author</code>.</p>
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb14-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\significancestatement</span>{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. The significance statement appears in the paper itself and is required for all research papers.}</span></code></pre></div>
+<p>For this, we can just give a new argument called <code>significance</code>, since it is just a bunch of text.</p>
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb15-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\authorcontributions</span>{Please provide details of author contributions here.}</span></code></pre></div>
+<p>For this, we can also make a new argument called <code>author_contributions</code>. It’s a bunch of text and readable is best.</p>
+<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\authordeclaration</span>{Please declare any competing interests here.}</span></code></pre></div>
+<p>I tend to call this <code>conflict_of_interest</code>, as I’ve seen it that way in the old <code>rticles</code> days.</p>
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\keywords</span>{Keyword 1 <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$|$</span> Keyword 2 <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$|$</span> Keyword 3 <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$|$</span> ...}</span></code></pre></div>
+<p>Keywords come up in many templates and are included by default in the automatically generated YAML as <code>keywords</code>.</p>
+<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb18-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\doi</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\url</span>{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}</span></code></pre></div>
+<p>This one looked like something that we might want to change, but is probably best to leave for now. With how publications and submissions work for PNAS, you won’t know the doi until after you’re done using the template.</p>
+<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\firstpage</span>{12}</span>
+<span id="cb19-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".</span></span></code></pre></div>
+<p>Now this one presents an interesting question. We could include a <code>first_page</code> argument. Though, the formatting is kinda tricky. We would need to support both <code>\firstpage{12}</code> and <code>\firstpage[4]{11}</code>. It seems to me that this would be a good thing to leave out of the YAML but use within the <code>template.qmd</code>, so that it’s obvious it should be used but doesn’t require multi-option handling. That is my preference and I can’t say for sure if this is best practice.</p>
+<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb20-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\acknow</span>{Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.}</span></code></pre></div>
+<p>We can give this a name like <code>acknowledgements</code>, again looking to other templates to see what they use as names, since this is a pretty common thing to have.</p>
+<p>Okay now that gives us pretty set of YAML option to add. They’ll look like:</p>
+<div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">runningauthor</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"One, Two, and Three"</span></span>
+<span id="cb21-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">significance</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">: </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span></span>
+<span id="cb21-3">  Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. The significance statement appears in the paper itself and is required for all research papers.</span>
+<span id="cb21-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">author_contributions</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Please provide details of author contributions here."</span></span>
+<span id="cb21-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">conflict_of_interest</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Please declare any competing interests here."</span></span>
+<span id="cb21-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">keywords</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">[</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">template</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> demo</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb21-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">acknowledgements</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">: </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span></span>
+<span id="cb21-8">  Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.</span></code></pre></div>
+<p>As you can see, where applicable, I’m using the instructions as the placeholder text where applicable. This has the benefit of keeping the end-user instructions near the end user without them having to deep dive into the original LaTeX template.</p>
+<p>The bad news: that was the easy part. The good news: the next part walks you through the hard part.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Use Git
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you aren’t already using Git at this point, now is a good time to run <code>usethis::use_git()</code>, initialize a repo, and commit what you’ve done. This is a good save point so that if you start playing with things for the next part, you can easily remove them if you break anything.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="using-the-yaml-in-latex" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-yaml-in-latex">Using the YAML in LaTeX</h3>
+<p>Adding the arguments to the YAML doesn’t automatically change anything about the output. It makes variables available to Pandoc’s processing as the name of the YAML set. So, for example, if our YAML looked like:</p>
+<div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">title</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> Quarto Template for PNAS Submissions</span></span></code></pre></div>
+<p>then a variable called <code>title</code> would be available for us to use. We can extract its value with <code>$title$</code>.</p>
+<p>Possibly the most common is to check if a value is set and then use it if it is. For something like <code>title</code>, where we want to pass it to the LaTeX function <code>\title{}</code>, we can do this with the following pattern.</p>
+<div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb23-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(title)$</span></span>
+<span id="cb23-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\title</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$title$</span>}</span>
+<span id="cb23-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>The first and third lines here are how <code>if</code> statements are done. So, if the title is set then in your YAML, then the outputted <code>.tex</code> file will say:</p>
+<div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb24-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\title</span>{Quarto Template for PNAS Submissions}</span></code></pre></div>
+<p>For more details on how these types of variables work, take a look at <a href="https://pandoc.org/MANUAL.html#template-syntax">Template syntax section of the Pandoc manual</a>.</p>
+<p>Most of the templating from here is going to be finding the correct place to evaluate a variable. To find those places, we have to introduce the idea of partials, which are short files that get injected into the bigger template.</p>
+<section id="latex-partials" class="level4">
+<h4 class="anchored" data-anchor-id="latex-partials">LaTeX Partials</h4>
+<p>Partials represent little snippets of LaTeX that get joined in a specific order. Quarto is built off of a series of default partials. If you’re rendering a regular document without any of this templating, it passing through those. The defaults are very good: they cover lots of cases and do them in a smart, efficient way. The ideal is that you only have to change a small number of partials. Journals have all sorts of format choices that you want to match, so we will have to replace some.</p>
+<p>As assumed before, you know some LaTeX. A familiar, stylized LaTeX document then looks something like:</p>
+<div class="sourceCode" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% first line is the *doc-class*</span></span>
+<span id="cb25-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">article</span>}</span>
+<span id="cb25-3"></span>
+<span id="cb25-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% then we have the header</span></span>
+<span id="cb25-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% like where we load packages with \usepackage{}</span></span>
+<span id="cb25-6"></span>
+<span id="cb25-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% This next group of lines are the *title*</span></span>
+<span id="cb25-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\title</span>{Some Latex Document}</span>
+<span id="cb25-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>{Christopher Kenny}</span>
+<span id="cb25-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\date</span>{July 2023}</span>
+<span id="cb25-11"></span>
+<span id="cb25-12"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">document</span>}</span>
+<span id="cb25-13"></span>
+<span id="cb25-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% then we have *before-body*</span></span>
+<span id="cb25-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\maketitle</span></span>
+<span id="cb25-16"></span>
+<span id="cb25-17">The body of the document</span>
+<span id="cb25-18"></span>
+<span id="cb25-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% then we have *after-body*</span></span>
+<span id="cb25-20"></span>
+<span id="cb25-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% then we have the *before-bib*</span></span>
+<span id="cb25-22"></span>
+<span id="cb25-23">The references</span>
+<span id="cb25-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% then we have *biblio* which makes the bibliography</span></span>
+<span id="cb25-25"></span>
+<span id="cb25-26"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">document</span>}</span></code></pre></div>
+<p>Each of the things in <code>*</code>s is a partial and the general place where it goes. There are more partials, like <code>toc</code>, a table of contents partial. There’s also a partial for <code>pandoc</code>, for some things that Pandoc needs for rendering from LaTeX. Odds are good that you don’t have to touch the Pandoc one!</p>
+<p>A full description of Quarto partials is available in the <a href="https://quarto.org/docs/journals/templates.html">Quarto documentation</a>. This lists out all of the partials and a short description of what they do. The source files for the partials <a href="https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/pdf/pandoc">are on GitHub</a>.</p>
+<p>Any partials that we need will live in a <code>partials</code> folder, below where the <code>_extension.yml</code> folder lives. Each partial will be a <code>.tex</code> file. So, they will all be something like: <code>_extensions/pnas/partials/*.tex</code>. Each file that we add to this folder has to be listed in <code>_extension.yml</code>, which I’ll show below.</p>
+<p>With the general idea of partials down, we can go in order from the top down and see what we need.</p>
+<section id="sec-docclass" class="level5">
+<h5 class="anchored" data-anchor-id="sec-docclass"><code>doc-class.tex</code></h5>
+<p>Okay, so first things first is the document class. In the template, it looks like this:</p>
+<div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb26-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>[9pt,twocolumn,twoside]{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pnas-new</span>}</span></code></pre></div>
+<p>Arguably, we don’t need to change this one out. This whole partial will evaluate to one line. The default looks like this:</p>
+<div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>[</span>
+<span id="cb27-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(fontsize)$</span></span>
+<span id="cb27-3">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$fontsize$</span>,</span>
+<span id="cb27-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb27-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(papersize)$</span></span>
+<span id="cb27-6">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$papersize$</span>paper,</span>
+<span id="cb27-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb27-8"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(beamer)$</span></span>
+<span id="cb27-9">  ignorenonframetext,</span>
+<span id="cb27-10"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(handout)$</span></span>
+<span id="cb27-11">  handout,</span>
+<span id="cb27-12"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb27-13"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(aspectratio)$</span></span>
+<span id="cb27-14">  aspectratio=<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$aspectratio$</span>,</span>
+<span id="cb27-15"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb27-16"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb27-17"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(classoption)$</span></span>
+<span id="cb27-18">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$classoption$$sep$</span>,</span>
+<span id="cb27-19"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb27-20">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$documentclass$</span>}</span></code></pre></div>
+<p>I say that we don’t need to necessarily change this one because we could pass the following to the YAML.</p>
+<div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fontsize</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"9pt"</span></span>
+<span id="cb28-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">classoption</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb28-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> twocolumn</span></span>
+<span id="cb28-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> twoside</span></span>
+<span id="cb28-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">documentclass</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pnas-new"</span></span></code></pre></div>
+<p>This would do the following:</p>
+<ul>
+<li><code>$if(fontsize)$</code> is true, so return the fontsize (<code>9pt</code>) and include the <code>,</code>.</li>
+<li><code>$if(papersize)$</code> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(beamer)$</code> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(handout)$</code> isn’t specified, so it’s false and nothing happens.</li>
+<li><code>$if(aspectratio)$</code> isn’t specified, so it’s false and nothing happens.</li>
+</ul>
+<p>Then we get a for loop. This works like the <code>if</code> syntax from before. It takes each element of classoption (a length two vector with <code>twocolumn</code> and <code>twoside</code>), returns them followed by the seperator. The <code>$sep$, $endfor$</code> syntax just says “hey this is the separator <code>,</code>, a comma followed by a space.”</p>
+<p>Finally, document class would be <code>pnas-new</code>. So that completes it as</p>
+<div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>[9pt,twocolumn,twoside]{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pnas-new</span>}</span></code></pre></div>
+<p>There are at least three advantages to implementing this simple partial as a custom partial. First, we can hard code the <code>documentclass</code> to be just the class we want to support. This avoids weird errors related to incorrect class specifications by downstream users. Second, if we decide that something is important enough to elevate to an additional YAML argument, we can then do so and add it with a little if syntax. For example, the APSR has a special <code>nonblind</code> argument that is really important for the submission. Knowing that, I could then make it a YAML option <a href="https://github.com/christopherkenny/apsr/blob/8fdb09082ee51447d3dc00f0f37c96de1a4105d4/template.qmd#L26">here</a>. Third, we can remove some of the arguments that aren’t relevant to our template, like <code>aspectratio</code>.</p>
+<p>With that in mind, I’ll first trim the options:</p>
+<div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>[</span>
+<span id="cb30-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(fontsize)$</span></span>
+<span id="cb30-3">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$fontsize$</span>,</span>
+<span id="cb30-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb30-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(classoption)$</span></span>
+<span id="cb30-6">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$classoption$$sep$</span>,</span>
+<span id="cb30-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb30-8">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$documentclass$</span>}</span></code></pre></div>
+<p>Then I’ll hard code the documentclass</p>
+<div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb31-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>[</span>
+<span id="cb31-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(fontsize)$</span></span>
+<span id="cb31-3">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$fontsize$</span>,</span>
+<span id="cb31-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb31-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(classoption)$</span></span>
+<span id="cb31-6">  <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$classoption$$sep$</span>,</span>
+<span id="cb31-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb31-8">]{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pnas-new</span>}</span></code></pre></div>
+<p>At this point, I’ll reopen the <code>template.qmd</code> file and add to the YAML the relevant options for what we were just looking at.</p>
+<div class="sourceCode" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fontsize</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"9pt"</span></span>
+<span id="cb32-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">classoption</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb32-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> twocolumn</span></span>
+<span id="cb32-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> twoside</span></span></code></pre></div>
+<p>That’s it for that file. Now we just have to let the <code>_extension.yml</code> file know we have it, like we did for the class files above.</p>
+<p>Look for the lines we edited before and below it we’ll add a <code>template-partials</code> section to indicate that we have this file.</p>
+<div class="sourceCode" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pdf</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb33-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">include-in-header</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> header.tex</span></span>
+<span id="cb33-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">format-resources</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb33-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnas-new.cls</span></span>
+<span id="cb33-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnas-new.bst</span></span>
+<span id="cb33-6"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnasresearcharticle.sty</span></span>
+<span id="cb33-7"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jabbrv.sty</span></span>
+<span id="cb33-8"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jabbrv-ltwa-all.ldf</span></span>
+<span id="cb33-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> jabbrv-ltwa-en.ldf</span></span>
+<span id="cb33-10"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">template-partials</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb33-11"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"partials/doc-class.tex"</span></span></code></pre></div>
+</section>
+<section id="title.tex" class="level5">
+<h5 class="anchored" data-anchor-id="title.tex"><code>title.tex</code></h5>
+<p>Now, the title block definitely needs work for this example and probably for the majority of cases. The title partial will tell the document how to create the title, identify the authors, and identify anything else important that needs to be specified at the start of the document. For the PNAS template, we need to tell it how to:</p>
+<ul>
+<li>Specify the <code>\templatetype{}</code></li>
+<li>Call <code>\title{}</code></li>
+<li>Identify the authors (this one is the hardest!)</li>
+<li>Call <code>\leadauthor{}</code></li>
+<li>Call <code>\significancestatement{}</code></li>
+<li>Call <code>\authorcontributions{}</code></li>
+<li>Call <code>\authordeclaration{}</code></li>
+<li>Identify equal authors</li>
+<li>Identify corresponding authors</li>
+<li>Specify the keywords</li>
+</ul>
+<p>For the template type, we want to use an if-else statement. This lets us specify the default option for the case where no type was set. So, since there is an else, we can put it all directly inside the call to <code>\templatetype{}</code>. This will look something like:</p>
+<div class="sourceCode" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb34-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\templatetype</span>{</span>
+<span id="cb34-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(template_type)$</span></span>
+<span id="cb34-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$template_type$</span></span>
+<span id="cb34-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$else$</span></span>
+<span id="cb34-5">pnasresearcharticle</span>
+<span id="cb34-6"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span>}</span></code></pre></div>
+<p>where <code>$else$</code> is how we specify the else part of the if-else.</p>
+<p>The next part of this is going to be familiar. If there’s a title, we want to write the title.</p>
+<div class="sourceCode" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb35-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(title)$</span></span>
+<span id="cb35-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\title</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$title$</span>}</span>
+<span id="cb35-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>If we hold onto the author pieces for a second, we can repeat that pattern for each of <code>\leadauthor{}</code>,<code>\significancestatement{}</code>,<code>\authorcontributions{}</code>, and <code>\authordeclaration{}</code>.</p>
+<div class="sourceCode" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb36-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(runningauthor)$</span></span>
+<span id="cb36-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\leadauthor</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$runningauthor$</span>}</span>
+<span id="cb36-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb36-4"></span>
+<span id="cb36-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(significance)$</span></span>
+<span id="cb36-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\significancestatement</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$significance$</span>}</span>
+<span id="cb36-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb36-8"></span>
+<span id="cb36-9"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(author_contributions)$</span></span>
+<span id="cb36-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\authorcontributions</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$author_contributions$</span>}</span>
+<span id="cb36-11"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb36-12"></span>
+<span id="cb36-13"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(conflict_of_interest)$</span></span>
+<span id="cb36-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\authordeclaration</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$conflict_of_interest$</span>}</span>
+<span id="cb36-15"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>Now back to the authors and affiliations. This is often the hardest part of making a Quarto template for journals. As a reminder, we want the output to look like:</p>
+<div class="sourceCode" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb37-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[a,c,1]{Author One}</span>
+<span id="cb37-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[b,1,2]{Author Two}</span>
+<span id="cb37-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[a]{Author Three}</span>
+<span id="cb37-4"></span>
+<span id="cb37-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[a]{Affiliation One}</span>
+<span id="cb37-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[b]{Affiliation Two}</span>
+<span id="cb37-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[c]{Affiliation Three}</span></code></pre></div>
+<p>Let’s break apart what we need for Author One.</p>
+<ul>
+<li>A name</li>
+<li>Affiliation with <code>a</code>
+<ul>
+<li>Need to make the <code>\affil</code> for <code>a</code></li>
+</ul></li>
+<li>Affiliation with <code>b</code>
+<ul>
+<li>Need to make that <code>\affil</code> for <code>b</code> too</li>
+</ul></li>
+<li>a <code>1</code> to indicate joint first authorship
+<ul>
+<li>We’ll fill that part out in a minute.</li>
+</ul></li>
+</ul>
+<p>If we look at the <a href="https://quarto.org/docs/journals/authors.html#author-schema">normalized schema for author</a> first, we can figure out how to access it. The relevant part of the YAML looks like:</p>
+<div class="sourceCode" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">author</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb38-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">id</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> string</span></span>
+<span id="cb38-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">number</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> number</span></span>
+<span id="cb38-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb38-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">given</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> string</span></span>
+<span id="cb38-6"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">family</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> string</span></span>
+<span id="cb38-7"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">literal</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> string</span></span></code></pre></div>
+<p>How do we get the value? We can build it like so</p>
+<ul>
+<li>it’s part of the author: <code>$author.</code>
+<ul>
+<li>it’s part of the name: <code>name.</code>
+<ul>
+<li>we want the full thing and that’s it <code>literal$</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>So going down the little tree, we get that it is <img src="https://latex.codecogs.com/png.latex?author.name.literal">. If we needed something like the first name, it would be <img src="https://latex.codecogs.com/png.latex?author.name.given">.</p>
+<p>So, we can throw that into:</p>
+<div class="sourceCode" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb39-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[...]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$author.name.literal$</span>}</span></code></pre></div>
+<p>leaving the <code>...</code> for this next step.</p>
+<p>We need to extract the IDs for the affiliations for each person, so we’ll need to iterate. To iterate over the affiliations of each author, we can use the <code>by-author</code> iterator. This will let us loop over each author and grab the relevant values.</p>
+<p>If we just needed the authors, then this would look like:</p>
+<div class="sourceCode" id="cb40" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb40-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb40-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.name.literal$</span>}</span>
+<span id="cb40-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>But, we need to fill in the <code>[...]</code> from above. To start, let’s do the affiliation ids. If they have affiliations, we want to loop over them.</p>
+<div class="sourceCode" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb41-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb41-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[</span>
+<span id="cb41-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.affiliations)$</span></span>
+<span id="cb41-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author.affiliations)$</span></span>
+<span id="cb41-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.id$</span></span>
+<span id="cb41-6"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$sep$</span>,</span>
+<span id="cb41-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb41-8"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb41-9">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.name.literal$</span>}</span>
+<span id="cb41-10"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>As you can see, I’ve introduced the special keyword <code>it</code>. It’s essentially a placeholder for the current iterator. Here, that’s each entry of <code>by-author.affiliations</code> and we are accessing the <code>.id</code> from them. We’re separating them with <code>,</code>s so that they evaluate nicely.</p>
+<p>The spacing that this outputs is a little funny, so we can collapse it to be</p>
+<div class="sourceCode" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb42-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb42-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb42-3">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.name.literal$</span>}</span>
+<span id="cb42-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>We can use the <code>%</code> just as in LaTeX for the normal end of line behavior.</p>
+<p>Now this all works beautifully for the affiliations, but we also need to think about the <img src="https://latex.codecogs.com/png.latex?1"> and <img src="https://latex.codecogs.com/png.latex?2">. <img src="https://latex.codecogs.com/png.latex?1"> means equal first authorship if there are multiple first authors. <img src="https://latex.codecogs.com/png.latex?2"> means corresponding author <em>assuming</em> that there are multiple first authors. So, <img src="https://latex.codecogs.com/png.latex?1"> isn’t always there but <img src="https://latex.codecogs.com/png.latex?2"> should be. Now, we can back out that if there are multiple first authors, then the author listed first will be a first author.</p>
+<p>This is good news! This means we can check if there is an equal contribution note. We can do this with our good friend LaTeX, by defining a new command for this. If there’s an equal contributor, it’ll always be 1. We can make the corresponding variable vary based on the equal contributor variable.</p>
+<div class="sourceCode" id="cb43" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb43-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\equalcont</span>}{1}</span>
+<span id="cb43-2"></span>
+<span id="cb43-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(equal-contributor)$</span></span>
+<span id="cb43-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\correspond</span>}{2}</span>
+<span id="cb43-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$else$</span></span>
+<span id="cb43-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\correspond</span>}{1}</span>
+<span id="cb43-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>We can then use that in our templating. If an author is listed as an equal author, we want to add a <code>,\equalcont</code> after the affiliations. So, we can do just that by adding in another line.</p>
+<div class="sourceCode" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb44-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb44-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb44-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.equal-contributor)$</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalcont</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb44-4">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.name.literal$</span>}</span>
+<span id="cb44-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>In the same way, we can add information about corresponding authors. If an author is listed as the corresponding author, we want to add a <code>,\correspond</code> after the affiliations.</p>
+<div class="sourceCode" id="cb45" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb45-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb45-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb45-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.equal-contributor)$</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalcont</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb45-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.corresponding)$</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspond</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb45-5">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.name.literal$</span>}</span>
+<span id="cb45-6"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>Now, we can turn to setting up the affiliation lines, with <code>\affil</code>. As with authors, there is a <code>by-affiliation</code> keyword that will let us iterate over the affiliations. For each affilition, we want something of the form:</p>
+<div class="sourceCode" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb46-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[a]{Affiliation One}</span></code></pre></div>
+<p>At the most basic level, if it was just a name (like “Harvard University”), we could use a loop and the <code>it</code> syntax again to make something like this:</p>
+<div class="sourceCode" id="cb47" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb47-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-affiliation)$</span></span>
+<span id="cb47-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.id$</span>]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.name$</span>}</span>
+<span id="cb47-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>We need it to do a teeny bit more though. We want something instead that uses all of the relevant pieces of the YAML to say:</p>
+<p><code>Harvard University, Department of Government, Cambridge, MA 02138</code></p>
+<p>The components of this are then:</p>
+<p><code>name, department, city, state, postal-code</code></p>
+<p>For each affiliation, we would want something like:</p>
+<div class="sourceCode" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb48-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.name)$$it.name$$endif$</span> </span>
+<span id="cb48-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.department)$</span>, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.department$$endif$</span> </span>
+<span id="cb48-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.city)$</span>, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.city$$endif$</span> </span>
+<span id="cb48-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.state)$</span>, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.state$$endif$</span> </span>
+<span id="cb48-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.postal-code)$</span>, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.postal-code$$endif$</span> </span>
+<span id="cb48-6"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.country)$</span>, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.country$$endif$</span></span></code></pre></div>
+<p>Note that we’re separating them with <code>,</code> at the start of each additional argument. This avoids weird spacing in the output. And we should probably add in country at the end, for if not all authors work in the US.</p>
+<div class="sourceCode" id="cb49" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb49-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(it.country)$</span>, <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.country$$endif$</span></span></code></pre></div>
+<p>We can put this all in its own file, called <code>_affiliation.tex</code> in the <code>partials/</code> directory. We don’t have to, but it seems to be common practice in existing templates. Then, we can call this chunk using <code>$_affiliation.tex()$</code>. The benefit of doing that is it keeps the template cleaner and easier to debug later.</p>
+<div class="sourceCode" id="cb50" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb50-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-affiliation)$</span></span>
+<span id="cb50-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.id$</span>]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$_affiliation.tex()$</span>}</span>
+<span id="cb50-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>Don’t forget to add the <code>partials/_affiliation.tex</code> line to the <code>_extension</code> file. That will now have a <code>template-partials</code> chunk like so:</p>
+<div class="sourceCode" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb51-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">template-partials</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb51-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"partials/doc-class.tex"</span></span>
+<span id="cb51-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"partials/_affiliation.tex"</span></span>
+<span id="cb51-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"partials/title.tex"</span></span></code></pre></div>
+<p>Now, a minute ago, we did the hard work for the equal contributors, so we can add in some code to indicate the equal authors too in the template:</p>
+<div class="sourceCode" id="cb52" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb52-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(equal-contributor)$</span></span>
+<span id="cb52-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalauthors</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\textsuperscript</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalcont</span>} <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$equal-contributor$</span>}</span>
+<span id="cb52-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>We add the superscript because we had just a raw number above.</p>
+<p>Now, we can do something similar for the corresponding author. This time we’ll iterate over the authors, again with <code>by-author</code> to find the corresponding one. If they’re the corresponding author, we’ll fill in the <code>...</code> below:</p>
+<div class="sourceCode" id="cb53" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb53-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb53-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.corresponding)$</span></span>
+<span id="cb53-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspondingauthor</span>{...}</span>
+<span id="cb53-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb53-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>Just as with the equal contributors, we want to start it with the identifier, <code>\textsuperscript{\correspond}</code>. Then we need the PNAS template text: “To whom correspondence should be addressed. E-mail:”. And last, we can get the email from the author with <code>$by-author.email$</code>.</p>
+<p>Put together, that looks like:</p>
+<div class="sourceCode" id="cb54" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb54-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb54-2"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.corresponding)$</span></span>
+<span id="cb54-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspondingauthor</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\textsuperscript</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspond</span>}To whom correspondence should be addressed. E-mail: <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.email$</span>}</span>
+<span id="cb54-4"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb54-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span></code></pre></div>
+<p>Finally, we can build out the keywords. Since there can be multiple, we’ll use a for loop with a separator, like in Section&nbsp;3.2.1.1. We want to iterate over each one and print them separated by a pipe, <code>|</code>.</p>
+<div class="sourceCode" id="cb55" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb55-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(keywords)$</span></span>
+<span id="cb55-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\keywords</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(keywords)$$keywords$$sep$</span> | <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span>}</span>
+<span id="cb55-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>All together, the file looks something like:</p>
+<div class="sourceCode" id="cb56" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb56-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\templatetype</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(template_type)$$template_type$$else$</span>pnasresearcharticle<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span>}</span>
+<span id="cb56-2"></span>
+<span id="cb56-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(title)$</span></span>
+<span id="cb56-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\title</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$title$</span>}</span>
+<span id="cb56-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-6"></span>
+<span id="cb56-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\equalcont</span>}{1}</span>
+<span id="cb56-8"></span>
+<span id="cb56-9"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(equal-contributor)$</span></span>
+<span id="cb56-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\correspond</span>}{2}</span>
+<span id="cb56-11"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$else$</span></span>
+<span id="cb56-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\newcommand</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">\correspond</span>}{1}</span>
+<span id="cb56-13"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-14"></span>
+<span id="cb56-15"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb56-16"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\author</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.affiliations)$$for(by-author.affiliations)$$it.id$$sep$</span>,<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb56-17"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.equal-contributor)$</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalcont</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb56-18"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.corresponding)$</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspond</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb56-19">]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.name.literal$</span>}</span>
+<span id="cb56-20"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb56-21"></span>
+<span id="cb56-22"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-affiliation)$</span></span>
+<span id="cb56-23"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\affil</span>[<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$it.id$</span>]{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$_affiliation.tex()$</span>}</span>
+<span id="cb56-24"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb56-25"></span>
+<span id="cb56-26"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(runningauthor)$</span></span>
+<span id="cb56-27"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\leadauthor</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$runningauthor$</span>}</span>
+<span id="cb56-28"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-29"></span>
+<span id="cb56-30"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(significance)$</span></span>
+<span id="cb56-31"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\significancestatement</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$significance$</span>}</span>
+<span id="cb56-32"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-33"></span>
+<span id="cb56-34"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(author_contributions)$</span></span>
+<span id="cb56-35"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\authorcontributions</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$author_contributions$</span>}</span>
+<span id="cb56-36"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-37"></span>
+<span id="cb56-38"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(conflict_of_interest)$</span></span>
+<span id="cb56-39"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\authordeclaration</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$conflict_of_interest$</span>}</span>
+<span id="cb56-40"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-41"></span>
+<span id="cb56-42"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(equal-contributor)$</span></span>
+<span id="cb56-43"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalauthors</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\textsuperscript</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\equalcont</span>} <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$equal-contributor$</span>}</span>
+<span id="cb56-44"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-45"></span>
+<span id="cb56-46"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(by-author)$</span></span>
+<span id="cb56-47"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(by-author.attributes.corresponding)$</span></span>
+<span id="cb56-48"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspondingauthor</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\textsuperscript</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\correspond</span>}To whom correspondence should be addressed. E-mail: <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$by-author.email$</span>}</span>
+<span id="cb56-49"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb56-50"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span></span>
+<span id="cb56-51"></span>
+<span id="cb56-52"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(keywords)$</span></span>
+<span id="cb56-53"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\keywords</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$for(keywords)$$keywords$$sep$</span> | <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endfor$</span>}</span>
+<span id="cb56-54"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>Note that it will eventually be processeed from top to bottom, so we have to define the LaTeX commands before we use them.</p>
+</section>
+<section id="before-body.tex" class="level5">
+<h5 class="anchored" data-anchor-id="before-body.tex"><code>before-body.tex</code></h5>
+<p>Okay, with the hardest part done, we can do this one without too much crazy stuff. This partial is all the stuff that comes after <code>\begin{document}</code> but before the writing. So, that normally includes making the title and the abstract. As you’ll see in a minute, there’s also some generic LaTeX from the template that we want here.</p>
+<p>First, if there’s a title we have to tell it to make it. This looks like much of how we built out the title section.</p>
+<div class="sourceCode" id="cb57" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb57-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(title)$</span></span>
+<span id="cb57-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\maketitle</span></span>
+<span id="cb57-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>Next, if there’s an abstract, we need to make that. We also need it to be in an <code>abstract</code> environment, so we can toss the whole thing into one <code>if</code> statement. For what it’s worth, this chunk goes in pretty much every template. I just copy the same chunk from old Quarto template to new Quarto template whenever I need it.</p>
+<div class="sourceCode" id="cb58" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb58-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(abstract)$</span></span>
+<span id="cb58-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">abstract</span>}</span>
+<span id="cb58-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$abstract$</span></span>
+<span id="cb58-4"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">abstract</span>}</span>
+<span id="cb58-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>And really both of these two things are handled by the <a href="https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/pdf/pandoc/before-body.tex">default partial</a>. I would have preferred to not change it, but we need some defaults to be set here that we see in the template itself. We can just straight up copy those into it. No edits necessary. If you go the route to allow setting the doi, perhaps with a YAML <code>doi:</code>, this is where you would insert that.</p>
+<div class="sourceCode" id="cb59" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb59-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dates</span>{This manuscript was compiled on <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\today</span>}</span>
+<span id="cb59-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\doi</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\url</span>{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}</span>
+<span id="cb59-3"></span>
+<span id="cb59-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\thispagestyle</span>{firststyle}</span>
+<span id="cb59-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ifthenelse</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\boolean</span>{shortarticle}}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ifthenelse</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\boolean</span>{singlecolumn}}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\abscontentformatted</span>}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\abscontent</span>}}{}</span></code></pre></div>
+<p>All together, the before-body partial looks something like:</p>
+<div class="sourceCode" id="cb60" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb60-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(title)$</span></span>
+<span id="cb60-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\maketitle</span></span>
+<span id="cb60-3"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb60-4"></span>
+<span id="cb60-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(abstract)$</span></span>
+<span id="cb60-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">abstract</span>}</span>
+<span id="cb60-7"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$abstract$</span></span>
+<span id="cb60-8"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">abstract</span>}</span>
+<span id="cb60-9"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span>
+<span id="cb60-10"></span>
+<span id="cb60-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\dates</span>{This manuscript was compiled on <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\today</span>}</span>
+<span id="cb60-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\doi</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\url</span>{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}</span>
+<span id="cb60-13"></span>
+<span id="cb60-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\thispagestyle</span>{firststyle}</span>
+<span id="cb60-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ifthenelse</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\boolean</span>{shortarticle}}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\ifthenelse</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\boolean</span>{singlecolumn}}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\abscontentformatted</span>}{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\abscontent</span>}}{}</span></code></pre></div>
+<p>This is about the “simplest” partial to make, once you’re comfortable with partials, since it is so close to the default. If it weren’t for setting the first page style, we could have omitted it. Don’t forget to add it to <code>_extension.yml</code>.</p>
+</section>
+<section id="before-bib.tex" class="level5">
+<h5 class="anchored" data-anchor-id="before-bib.tex"><code>before-bib.tex</code></h5>
+<p>In the PNAS template, just before the bibliography, we need to include the acknowledgements. We also need to make a call to a function, <code>\showacknow{}</code> to make them appear.</p>
+<p>The first part is the same as our usual pattern. Check if there are acknowledgements, and if there are, set them.</p>
+<div class="sourceCode" id="cb61" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb61-1"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$if(acknowledgements)$</span></span>
+<span id="cb61-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\acknow</span>{<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$acknowledgements$</span>}</span>
+<span id="cb61-3"></span>
+<span id="cb61-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\showacknow</span>{} <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Display the acknowledgments section</span></span>
+<span id="cb61-5"><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$endif$</span></span></code></pre></div>
+<p>Within the check, we’ll add the quick call to make sure they appear.</p>
+<p>As before, we to add it to <code>_extension.yml</code>. But now we’re done with most of the work!</p>
+</section>
+</section>
+</section>
+<section id="editing-template.qmd-part-2-the-body" class="level3">
+<h3 class="anchored" data-anchor-id="editing-template.qmd-part-2-the-body">Editing <code>template.qmd</code> (Part 2: The Body)</h3>
+<p>Okay, now we can test and run with the file. To do so, we want to add some text back from the other template that instructs the user how to fill out the template. I’ll start by copying in big chunks from the template and then converting things from LaTeX to the friendlier Quarto (or sometimes R) syntax.</p>
+<p>For example, if the LaTeX template has:</p>
+<pre><code>\subsection*{Author Affiliations}</code></pre>
+<p>I’ll make that into:</p>
+<pre><code>## Author Affiliations {.unnumbered}</code></pre>
+<p>We can replace things like sections or links with some find+replace regex in RStudio:</p>
+<ul>
+<li>Replace <code>(\\subsection\*{)(.+?)(})</code> with <code>## \2 {.unnumbered}</code> to fix subsection titles.</li>
+<li>Replace <code>(\\subsubsection\*{)(.+?)(})</code> with <code>### \2 {.unnumbered}</code> to fix subsubsection titles.</li>
+<li>Replace <code>(\\href{)(.+?)(})({)(.+?)(})</code> with <code>[\5](\2)</code> to move links from LaTeX to Quarto.</li>
+<li>Replace <code>(\\ref{fig:)(.+?)(})</code> with <code>@fig-\2</code> to move cross references to Quarto syntax.</li>
+<li>Replace <code>(\\verb\|)(.+?)(\|)</code> with <code>\</code>\2`` to move verbatim environments to Quarto ones.</li>
+</ul>
+<p>As I was doing this, I got a really weird error.</p>
+<pre><code>compilation failed- error
+LaTeX Error: Not in outer par mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H &lt;return&gt;  for immediate help.
+ ...                                              
+                                                  
+l.206 \end{document}
+                     
+
+see template.log for more information.</code></pre>
+<p>The obvious thing was that I probably had a mismatch in <code>}</code> or <code>{</code> somewhere. After a few minutes, that clearly wasn’t the case. They all seemed to match and match correctly.</p>
+<p>At this point, I looked at the template again and thought about the first page special formatting. The first page has a different column width, so it’s a little special. I added some more paragraphs from the LaTeX template and it rendered fine. Playing around and if there was anything short of a page, it would fail. Otherwise, it worked beautifully. As such, I added a warning to the template in the text, so any overzealous compilers would have a clue what broke.</p>
+<pre><code>A word of warning: This template will fail with a "Not in outer par mode" warning if you try to compile it with less than one page of text.
+The template relies on having a full first page which is styled separately.
+If you see a warning to the tune of "LaTeX Error: Not in outer par mode." or referencing `\end{document}`, try writing more or adding filler text and recompiling.</code></pre>
+<p>Next, I’ll replace figures. For the most basic figures, I’ll just use raw Quarto figure syntax.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb66" style="background: #f1f3f5;"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb66-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">figure</span>}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%[tbhp]</span></span>
+<span id="cb66-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\centering</span></span>
+<span id="cb66-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\includegraphics</span>[width=.8<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\linewidth</span>]{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">figs/frog.pdf</span>}</span>
+<span id="cb66-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\caption</span>{Placeholder image of a frog with a long example legend to show justification setting.}</span>
+<span id="cb66-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\label</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">fig:frog</span>}</span>
+<span id="cb66-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">figure</span>}</span></code></pre></div>
+<p>can be pretty well replicated with the shorter:</p>
+<pre><code>![Placeholder image of a frog with a long example legend to show justification setting.](figs/frog.pdf){#fig-frog}</code></pre>
+<p>Additional settings can be set within an R chunk (or other code chunk). I find it very helpful to mention the <code>fig-env</code> argument, such as below:</p>
+<blockquote class="blockquote">
+<p>In Quarto, we can do these by setting the <code>fig-env</code> command to <code>figure*</code> or <code>SCfigure*</code></p>
+</blockquote>
+<div class="sourceCode" id="cb68" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| label: fig-side</span></span>
+<span id="cb68-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| fig-cap: "This legend would be placed at the side of the figure, rather than below it."</span></span>
+<span id="cb68-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| fig-env: "SCfigure*"</span></span>
+<span id="cb68-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| echo: false</span></span>
+<span id="cb68-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># tell it the options as comments with a | and a space, as above.</span></span>
+<span id="cb68-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># set echo: false to avoid printing this text</span></span>
+<span id="cb68-7">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">include_graphics</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'figs/frog.pdf'</span>)</span></code></pre></div>
+<p>Two column journals need the <code>figure*</code> (often called a “star figure”, “figure star”, or “star” environment) for page wide columns. PNAS also has a side-caption version, which is included in the template as the above example. This gives a clear demo of a simpler approach to including figures, at least than with LaTeX.</p>
+<p>As for tables, I tend to leave them as-is in LaTeX. Many table environments need a little something else that doesn’t seem to translate super well into Markdown syntax. Of course, you could translate them into Markdown, especially if the LaTeX doesn’t need special options.</p>
+<p>Finally, I like to include anything about the bibliography in a References section, like below. I include the special <code>\bibsplit</code> command that needs to be set manually at the end with a comment explaining how to use it.</p>
+<pre><code># References
+\bibsplit[2]
+&lt;!-- Use \bibsplit to split the references from the body of the text. Value "[2]" represents the number of reference in the left column (Note: Please avoid single column figures &amp; tables on this page.) --&gt;
+
+:::{#refs}
+:::</code></pre>
+<p>This includes the special reference div (the <code>:::</code> things) to help make it easier to understand where those will be printed. Details on that div are available in <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html#bibliography-generation">the Quarto documentation</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Don’t forget to update the <code>bibliography.bib</code> default file to include any example references you use!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="cleaning-up" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-up">Cleaning up</h2>
+<section id="revising-the-readme" class="level3">
+<h3 class="anchored" data-anchor-id="revising-the-readme">Revising the README</h3>
+<p>With the Quarto and LaTeX stuff pretty much done, we want to include information for future users.</p>
+<p>First, we’ll fill out the <code>Options</code> section. In general, this should describe anything that isn’t default in the YAML or that should generally be set.</p>
+<p>For example, I want to explain a few things:</p>
+<ul>
+<li>classoption defaults</li>
+<li>setting a corresponding author</li>
+<li>affiliation IDs should be letters</li>
+</ul>
+<p>Words are useful here to refer</p>
+<p>For the PNAS template, I included the following:</p>
+<blockquote class="blockquote">
+<p>The default setting for class option generates a two column layout with:</p>
+</blockquote>
+<pre><code>classoption:
+ - twocolumn
+ - twoside</code></pre>
+<p>To set a corresponding author, ensure that the attribute “corresponding” is true and that they have an email listed. For proper formatting, each affiliation should be given a letter id (like <code>a</code>, <code>b</code>, …, <code>z</code>). This template is designed for <code>template_type: pnasresearcharticle</code> (the default). It can also take options <code>pnasmathematics</code> or <code>pnasinvited</code>, but these are not formally supported, as they have official alternative formats available on <a href="https://www.overleaf.com/gallery/tagged/pnas">Overleaf</a>.</p>
+<p>Now, we can run the png code from before.</p>
+<div class="sourceCode" id="cb71" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1">pdftools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pdf_convert</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'template.pdf'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pages =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div>
+<p>will generate a file <code>template_1.png</code>.</p>
+<p>To include that in the readme, we can use Markdown, like:</p>
+<pre><code>![[template.qmd](template.qmd)](template_1.png)</code></pre>
+<p>That gives people enough information to get started with your template.</p>
+</section>
+<section id="adding-a-.quartoignore" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-.quartoignore">Adding a <code>.quartoignore</code></h3>
+<p>Now, one last thing we want to do is make sure that people using the template won’t install extra files. Things like <code>template_1.png</code> from the last section are useful in the repo, but not to the end user. We can add a file <code>.quartoignore</code> in the root directory that functions like a <code>.gitignore</code> file.</p>
+<p>Mine looks like:</p>
+<pre><code>*.pdf
+*.png
+*.rproj
+*.Rproj
+!figs/*.png</code></pre>
+<p>This ignores all pdfs, pngs, and R project files. It then un-ignores the <code>figs/</code> folder where useful example files for the template live. It’s important to include those in the template because you want the file that gets downloaded to run when someone runs</p>
+<div class="sourceCode" id="cb74" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> use template christopherkenny/pnas</span></code></pre></div>
+<p>But, they can be deleted once people have made sure the template works. As such, they don’t need to be included in the <code>_extension.yml</code> file, but shouldn’t be <code>.quartoignore</code>d.</p>
+</section>
+<section id="deleting-unused-files" class="level3">
+<h3 class="anchored" data-anchor-id="deleting-unused-files">Deleting unused files</h3>
+<p>It’s probably over. There may be other changes, but it’s probably over. But it’s not an official template, so no one will contact you when they update it. But, one day, you might notice that it is different or someone will comment on GitHub. But for now, you’re free! Time to make another template for that other journal you were thinking about submitting to.</p>
+<p>More importantly, at this point, you should delete any files or code that you didn’t use. For this template, that means removing <code>styles.css</code> and <code>pnas.lua</code>. Also, remove them from the <code>_extension.yml</code> file. That is, delete:</p>
+<div class="sourceCode" id="cb75" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb75-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filters</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb75-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> pnas.lua</span></span></code></pre></div>
+<p>and</p>
+<div class="sourceCode" id="cb76" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb76-1"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">html</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb76-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">css</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> styles.css</span></span></code></pre></div>
+</section>
+</section>
+<section id="finishing-up" class="level2">
+<h2 class="anchored" data-anchor-id="finishing-up">Finishing up</h2>
+<p>Last things last.</p>
+<p>If your template now works, then it’s time to make it public. A seemingly ridiculous portion of research time is spent recreating resources that surely someone else has <em>somewhere</em>. A semi-functional template is better than starting from scratch.</p>
+<p>Add a topic to the GitHub repo for <code>quarto-template</code> and anything else relevant! Congrats, you have a template. Share it on Twitter or whatever is still useful. If it doesn’t work for someone, they’ll email you or open an issue. As a wise person once said &gt; all (feedback) is good (feedback)</p>
+<p>Even if it didn’t work for someone, a little information about why it didn’t work can help you a ton for when <em>you</em> have the same issue some day.</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>The template created within this post is available at <a href="https://github.com/christopherkenny/pnas"><code>christopherkenny/pnas</code></a>.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{t. kenny2023,
+  author = {T. Kenny, Christopher},
+  title = {Creating {Quarto} {Journal} {Article} {Templates}},
+  date = {2023-07-01},
+  url = {https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t. kenny2023" class="csl-entry quarto-appendix-citeas">
+T. Kenny, Christopher. 2023. <span>“Creating Quarto Journal Article
+Templates.”</span> July 1, 2023. <a href="https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles">https://christopherkenny/posts/2023-07-01-creating-quarto-journal-articles</a>.
+</div></div></section></div> ]]></description>
+  <category>quarto</category>
+  <guid>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</guid>
+  <pubDate>Sat, 01 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/pnas-template.png" medium="image" type="image/png" height="186" width="144"/>
+</item>
+</channel>
+</rss>
