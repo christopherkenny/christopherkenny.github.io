@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://christophertkenny.com/blog.html</loc>
-    <lastmod>2023-07-08T03:15:48.061Z</lastmod>
-  </url>
-  <url>
     <loc>https://christophertkenny.com/software.html</loc>
-    <lastmod>2023-07-07T17:07:12.993Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</loc>
-    <lastmod>2023-07-04T16:33:26.670Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/research.html</loc>
-    <lastmod>2023-07-04T03:29:49.896Z</lastmod>
+    <lastmod>2023-07-06T17:38:39.766Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</loc>
-    <lastmod>2023-07-08T03:04:48.435Z</lastmod>
+    <lastmod>2023-07-08T23:23:25.087Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/index.html</loc>
-    <lastmod>2023-07-04T03:29:49.883Z</lastmod>
+    <lastmod>2023-06-20T16:49:19.420Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/blog.html</loc>
+    <lastmod>2023-07-08T23:23:24.910Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/CV.html</loc>
-    <lastmod>2023-07-04T03:29:49.403Z</lastmod>
+    <lastmod>2023-06-20T16:44:34.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</loc>
+    <lastmod>2023-07-06T17:38:16.229Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/research.html</loc>
+    <lastmod>2023-06-20T16:24:27.736Z</lastmod>
   </url>
 </urlset>
