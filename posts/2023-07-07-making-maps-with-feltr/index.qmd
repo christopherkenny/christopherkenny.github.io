@@ -1,0 +1,92 @@
+---
+title: "Making Maps with `feltr`"
+date: "2023-07-07"
+description: |
+  A brief introduction to the `feltr` package.
+categories: [maps, r-pkg]
+image: "hex_feltr.png"
+image-alt: "A hexagonal logo for the R package Feltr with the word feltr in the foreground and a small map in the background."
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+I make a lot of maps, almost always in R. 
+Recently, I was introduced to [felt.com](https://felt.com).
+It's a clean interface for web maps, including some great features, like drawing directly on a map or adding text annotations.
+
+The new [`feltr` package](https://christophertkenny.com/feltr/) offers an interface to the [Felt API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa), so you can upload data to Felt directly from R.
+It also includes tools for reading data from Felt into R as [`sf`](https://r-spatial.github.io/sf/) objects.
+
+You can install [`feltr`](https://cran.r-project.org/web/packages/feltr/index.html) with:
+
+```r
+install.packages('feltr')
+```
+Below, I'll demo making a map with point locations of Dunkins in Cambridge, MA, from a `csv` file of Dunkin addresses.
+
+## Dunkins in Cambridge, MA
+
+First, we'll load a few packages.
+
+```{r}
+#| results: hide
+library(feltr)
+library(tidyverse)
+library(here)
+```
+One of the cool things with Felt is its ["Upload Anything"](https://felt.com/blog/upload-anything) feature, where we can upload *anything*.
+Here, we have a `csv` file of addresses for every Dunkin in Cambridge.
+It is simple, just text addresses separated into appropriate fields.
+
+```{r}
+path_dunkin_ma <- here('posts/2023-07-07-making-maps-with-feltr/dunkin_ma.csv')
+read_csv(path_dunkin_ma, show_col_types = FALSE)
+```
+
+To share this data with Felt, we first have to make a new map.
+We don't have to give it any information, it'll just make an empty map.
+We can pass it a title and some starting information, like where to center the map and how far to zoom.
+
+```{r}
+#| eval: false
+dunk <- felt_create_map(
+  title = 'Cambridge Dunkin Desert', 
+  zoom = 14.5, lat = 42.3799, lon = -71.10668
+)
+```
+
+Then once we have the map, we can upload the `csv` file directly to Felt.
+No local geocoding necessary, it'll handle that.
+We can label the layer with `name` or supply colors, like `fill_color` and `stroke_color`.
+
+```{r}
+#| eval: false
+layer_id <- felt_add_map_layers(
+  map_id = dunk$id, name = 'Dunkin', file_names = path_dunkin_ma, 
+  fill_color = '#FF671F', stroke_color = '#DA1884'
+)
+```
+
+Once we do that, after a couple of minutes, we have a map.
+Normally it's a few seconds if we uploaded a `geojson` or `shp` file, but geocoding takes a small bit of time.
+
+
+![Default Felt Layout](dunkin_default.png){fig-alt="A map of Cambridge, MA with the default Felt styling."}
+
+What I find great about this is that I can handle all of the data work in R and then adjust the map as needed after.
+For example, I can annotate where the Department of Government buildings are with a green star or highlight where Darwin's was (until recently) with a blue x.
+
+![Annotated Map](dunkin_adjusted.png){fig-alt="A map of Cambridge, MA from Felt with annotations added."}
+
+Clearly, Darwin's old location would be a great place for a new Dunkin, near the middle of an existing Dunkin desert.
+
+`feltr` has additional features, including:
+
+- deleting maps with `felt_delete_map()`
+- listing details of existing maps with `felt_get_map()` and `felt_get_map_layers()`
+- downloading shapes with `felt_get_map_sf()`, `felt_get_map_geojson()`, and `felt_get_map_elements()`
+- retrieving user details with `felt_get_user()`.
+
+All current features of the [Felt API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa) are supported in the CRAN version of `feltr`, as of July 2023.
+To offer feedback on `feltr` or ask questions, [open an issue on GitHub](https://github.com/christopherkenny/feltr/issues).
