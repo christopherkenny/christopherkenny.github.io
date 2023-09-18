@@ -10,7 +10,7 @@
 <atom:link href="https://christophertkenny.com/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Christopher T. Kenny&#39;s Personal Website</description>
 <generator>quarto-1.4.176</generator>
-<lastBuildDate>Fri, 07 Jul 2023 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 07 Jul 2023 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Making Maps with feltr</title>
   <dc:creator>Christopher T. Kenny</dc:creator>
@@ -189,7 +189,7 @@ July 7, 2023. <a href="https://christophertkenny.com/posts/2023-07-07-making-map
   <category>maps</category>
   <category>r-pkg</category>
   <guid>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</guid>
-  <pubDate>Fri, 07 Jul 2023 07:00:00 GMT</pubDate>
+  <pubDate>Fri, 07 Jul 2023 04:00:00 GMT</pubDate>
   <media:content url="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/hex_feltr.png" medium="image" type="image/png" height="167" width="144"/>
 </item>
 <item>
@@ -2139,7 +2139,7 @@ Templates.”</span> July 1, 2023. <a href="https://christopherkenny/posts/2023-
 </div></div></section></div> ]]></description>
   <category>quarto</category>
   <guid>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</guid>
-  <pubDate>Sat, 01 Jul 2023 07:00:00 GMT</pubDate>
+  <pubDate>Sat, 01 Jul 2023 04:00:00 GMT</pubDate>
   <media:content url="https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/pnas-template.png" medium="image" type="image/png" height="186" width="144"/>
 </item>
 </channel>
