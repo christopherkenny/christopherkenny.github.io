@@ -17,7 +17,7 @@ sidebar: false
 ::::{.column-page}
 ## About Me
 
-I am a PhD candidate in the Department of Government, studying American Politics and Political Methodology. I am currently teaching a course on redistricting entitled "Drawing Democracies," aimed at Harvard college sophomores. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am affiliated with the Center for American Political Studies at Harvard University, the Institute for Quantitative Social Science, and the Algorithm-Assisted Redistricting Methodology (ALARM) Project. In 2022, I was a fellow at the Election Law Clinic at Harvard Law School.
+I am a PhD candidate in the Department of Government, studying American Politics and Political Methodology. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am affiliated with the Center for American Political Studies at Harvard University, the Institute for Quantitative Social Science, and the Algorithm-Assisted Redistricting Methodology (ALARM) Project. In 2022, I was a fellow at the Election Law Clinic at Harvard Law School.
 
 ## Current Affiliations
 
