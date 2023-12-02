@@ -1,0 +1,24 @@
+name,logo,info,status,link
+redist,hexes/hex_redist.png,"redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)",CRAN,https://alarm-redist.org/redist/
+redistmetrics,hexes/hex_redistmetrics.png,"redistmetrics: Redistricting metrics (with Cory McCartan, Ben Fifield, and Kosuke Imai)",CRAN,https://alarm-redist.org/redistmetrics/
+geomander,hexes/hex_geomander.png,geomander: Geographic Tools for Studying Gerrymandering,CRAN,https://christophertkenny.com/geomander/
+PL94171,hexes/hex_PL94171.png,PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan),CRAN,https://corymccartan.com/PL94171/
+censable,hexes/hex_censable.png,censable: Making Census Data More Usable,CRAN,https://christophertkenny.com/censable/
+tinytiger,hexes/hex_tinytiger.png,tinytiger: Lightweight Interface to TIGER/Line Shapefiles (with Cory McCartan),CRAN,https://alarm-redist.org/tinytiger/
+dots,hexes/hex_dots.png,dots: Dot Density Maps,CRAN,https://christophertkenny.com/dots/
+cvap,hexes/hex_cvap.png,cvap: Citizen Voting Age Population,CRAN,https://christophertkenny.com/cvap/
+ppmf,hexes/hex_ppmf.png,ppmf: Read Census Privacy Protected Microdata Files,CRAN,https://christophertkenny.com/ppmf/
+divseg,hexes/hex_divseg.png,divseg: Compute Diversity and Segregation Indices,CRAN,https://christophertkenny.com/divseg/
+name,hexes/hex_name.png,name: Tools for Working with Names,CRAN,https://christophertkenny.com/name/
+jot,hexes/hex_jot.png,jot: Jot Down Notes for Later,CRAN,https://christophertkenny.com/jot/
+ei,hexes/hex_ei.png,"ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)",GitHub,https://iqss-research.github.io/ei/
+alarmdata,hexes/hex_alarmdata.png,"alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)",GitHub,https://alarm-redist.org/alarmdata/
+ggredist,hexes/hex_ggredist.png,"ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)",CRAN,https://alarm-redist.org/ggredist/
+congress,hexes/hex_congress.png,congress: Access the Congress.gov API,CRAN,https://christophertkenny.com/congress/
+feltr,hexes/hex_feltr.png,feltr: Access the Felt API,CRAN,https://christophertkenny.com/feltr
+planscorer,hexes/hex_planscorer.png,planscorer: Score Redistricting Plans with PlanScore,GitHub,https://christophertkenny.com/planscorer/
+redistverse,hexes/hex_redistverse.png,redistverse: Easily Install and Load Redistricting Software,GitHub,https://alarm-redist.org/redistverse/
+crayons,hexes/hex_crayons.png,crayons: Color Palettes from Crayon Boxes,CRAN,https://christophertkenny.com/crayons/
+apportion,hexes/hex_apportion.png,apportion: Apportion Seats,CRAN,https://christophertkenny.com/apportion/
+gptzeror,hexes/hex_gptzeror.png,gptzeror: Identify Text Written by Large Language Models using GPTZero,CRAN,https://christophertkenny.com/gptzeror
+bskyr,hexes/hex_bskyr.png,bskyr: Interact with Bluesky Social,CRAN,https://christophertkenny.com/bskyr/
