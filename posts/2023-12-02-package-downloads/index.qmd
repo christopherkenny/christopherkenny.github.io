@@ -56,7 +56,7 @@ hists <- hists |>
 ```{r} 
 counts_lst_yr  |> 
   select(logo, info, count) |>
-  mutate(rank = row_number()) |> 
+  mutate(rank = row_number(), .before = everything()) |> 
   gt()  |> 
   text_transform(
     locations = cells_body(columns = logo),
@@ -71,7 +71,13 @@ counts_lst_yr  |>
   ) |> 
   fmt_number(columns = count, decimals = 0) |> 
   cols_width(
-    logo ~ px(100)
-  ) 
+    logo ~ px(80)
+  ) |> 
+  cols_label(
+    rank = 'Rank',
+    logo = '',
+    info = 'Package',
+    count = 'Downloads'
+  )
 ```
 
