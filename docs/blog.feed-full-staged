@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Christopher T. Kenny</title>
+<link>https://christophertkenny.com/blog.html</link>
+<atom:link href="https://christophertkenny.com/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Christopher T. Kenny&#39;s Personal Website</description>
+<generator>quarto-1.4.176</generator>
+<lastBuildDate>Fri, 07 Jul 2023 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/2023-07-07-making-maps-with-feltr/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</link>
+  <description>{B4F502887207:/posts/2023-07-07-making-maps-with-feltr/index.html}</description>
+  <category>maps</category>
+  <category>r-pkg</category>
+  <guid>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</guid>
+  <pubDate>Fri, 07 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/hex_feltr.png" medium="image" type="image/png" height="167" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-12-02-package-downloads/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-12-02-package-downloads/index.html</link>
+  <description>{B4F502887207:/posts/2023-12-02-package-downloads/index.html}</description>
+  <category>r-pkg</category>
+  <guid>https://christophertkenny.com/posts/2023-12-02-package-downloads/index.html</guid>
+  <pubDate>Fri, 07 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-12-02-package-downloads/hex_feltr.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-07-01-creating-quarto-journal-articles/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</link>
+  <description>{B4F502887207:/posts/2023-07-01-creating-quarto-journal-articles/index.html}</description>
+  <category>quarto</category>
+  <guid>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</guid>
+  <pubDate>Sat, 01 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/pnas-template.png" medium="image" type="image/png" height="186" width="144"/>
+</item>
+</channel>
+</rss>
