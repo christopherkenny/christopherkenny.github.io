@@ -173,5 +173,33 @@
     "title": "Packages 2023 Wrapped",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nDear Spotify, please do something like this next year to account late releases like 1989 in October.↩︎\nContributions welcome!↩︎"
+  },
+  {
+    "objectID": "posts/2023-12-21-cran-wrapped/index.html",
+    "href": "posts/2023-12-21-cran-wrapped/index.html",
+    "title": "Packages 2023 Wrapped",
+    "section": "",
+    "text": "With CRAN closing its submission queue for the holiday break tomorrow, it seems the right time to look over the past year. I maintain and contribute to quite a few packages on CRAN, primarily focused on social science data and methods. This year included adding 5 new packages to CRAN, with a minor shift towards tidy interfaces for web-based APIs. Below, I talk about some of the new packages, updates to existing packages, and then look at the downloads for all of my packages."
+  },
+  {
+    "objectID": "posts/2023-12-21-cran-wrapped/index.html#new-packages",
+    "href": "posts/2023-12-21-cran-wrapped/index.html#new-packages",
+    "title": "Packages 2023 Wrapped",
+    "section": "New packages",
+    "text": "New packages\nI’ve added five new packages to CRAN this year.\n\napportion\n\n\n\napportion is a relatively simple package. It calculates apportionments, the allocation of seats to states based on population. It includes functions for the most common apportionment methods:\n\nthe Adams Method (app_adams())\nthe Balinski Young Method (app_balinski_young())\nthe Dean Method (app_dean())\nthe D’Hondt Method (app_dhondt())\nthe Hamilton-Vinton Method (app_hamilton_vinton())\nthe Huntington-Hill Method (app_huntington_hill())\nthe Jefferson Method (app_jefferson())\nthe Webster Method (app_webster())\n\n\n\ncrayons\n\n\n\ncrayons takes a few dozen packs of crayons and turns them into color palettes. The package itself is pretty thin, relying on scale_color_crayons() and scale_fill_crayons() to create the palettes.\n\nlibrary(ggplot2)\nlibrary(crayons)\n\nmpg |&gt;\n  ggplot() + \n  geom_point(aes(displ, hwy, colour = class)) + \n  scale_color_crayons(palette = 'original') + \n  theme_bw()\n\n\n\n\n\n\n\n\n\n\ngptzeror\n\n\n\nIn the peak of worries about students using ChatGPT, GPTZero offered an API for estimating if text was human or AI generated. I wrapped an R interface to this API in gptzeror. It seems to work somewhat well, but is far from perfect. The risk of false positives is really high, so I’m not using this without other substantial evidence.     \n\n\nfeltr\n\n\n\nfeltr is a package for working with the Felt. It covers all of the API endpoints, which lets you upload shapes from R directly to Felt. You can delete them, update them, extract comments, and more. I covered an application of this package in a prior blog post on loosely focused on Dunkin Donuts in Cambridge.      \n\n\nbskyr\n\n\n\nbskyr is a package for working with the Bluesky Social API. It’s focused largely on collecting tidy data from Bluesky. Given the decentralized nature of Bluesky, it seems like it has immense opportunity for social science research. You can design entire feeds as treatments, letting people push further in treatment arms without the same need for industry-academy partnerships as with Facebook or X/Twitter.\nOf course, it also contains all of the tools for posting and otherwise interacting with Bluesky. I even have a small bot going which tracks CRAN Updates that I’ll cover soon in a holiday-times blog post. It’s run entirely through bskyr, which has been working even better than expected."
+  },
+  {
+    "objectID": "posts/2023-12-21-cran-wrapped/index.html#updates-to-existing-packages",
+    "href": "posts/2023-12-21-cran-wrapped/index.html#updates-to-existing-packages",
+    "title": "Packages 2023 Wrapped",
+    "section": "Updates to existing packages",
+    "text": "Updates to existing packages\nMy CRAN updates have not all been new packages, I also maintain a handful of packages. This year, I’ve made 14 submissions across 10 packages. 7 of these are related to the 5 new packages above (5 first submission + 2 updates).\n\n\n\n\n\n\n\n\nName\nVersion\nDate\nTitle\n\n\n\n\ncvap\n0.1.3\n2023-03-17\nCitizen Voting Age Population\n\n\nredist\n4.1.0\n2023-03-19\nSimulation Methods for Legislative Redistricting\n\n\nredist\n4.1.1\n2023-04-03\nSimulation Methods for Legislative Redistricting\n\n\ngeomander\n2.2.1\n2023-04-16\nGeographic Tools for Studying Gerrymandering\n\n\ncvap\n0.1.4\n2023-07-01\nCitizen Voting Age Population\n\n\ntinytiger\n0.0.8\n2023-10-17\nLightweight Interface to TIGER/Line Shapefiles\n\n\nredistmetrics\n1.0.7\n2023-12-12\nRedistricting Metrics\n\n\n\n\n\n\n\nUpdates to cvap and tinytiger added support for new years of Census Bureau data. redist and redistmetrics each saw primarily bug fixes and performance improvements, without any major changes. geomander similar saw mostly bug fixes. Its one update also drastically cleaned up the dependencies to make the package easier to install."
+  },
+  {
+    "objectID": "posts/2023-12-21-cran-wrapped/index.html#footnotes",
+    "href": "posts/2023-12-21-cran-wrapped/index.html#footnotes",
+    "title": "Packages 2023 Wrapped",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nDear Spotify, please do something like this next year to account late releases like 1989 in October.↩︎\nContributions welcome!↩︎"
   }
 ]
