@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://christophertkenny.com/software.html</loc>
-    <lastmod>2023-10-24T22:16:27.949Z</lastmod>
+    <lastmod>2023-12-02T17:54:07.815Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</loc>
@@ -27,5 +27,17 @@
   <url>
     <loc>https://christophertkenny.com/research.html</loc>
     <lastmod>2023-06-20T16:24:27.736Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-12-02-package-downloads/index.html</loc>
+    <lastmod>2023-12-02T19:09:49.914Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-12-20-package-downloads/index.html</loc>
+    <lastmod>2023-12-21T18:43:14.122Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-12-21-package-downloads/index.html</loc>
+    <lastmod>2023-12-21T18:47:42.091Z</lastmod>
   </url>
 </urlset>
