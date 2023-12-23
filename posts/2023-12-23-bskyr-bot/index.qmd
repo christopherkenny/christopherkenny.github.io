@@ -1,0 +1,47 @@
+---
+title: "Making a Scheduled Bot for Bluesky Social in R"
+date: "2023-12-23"
+description: |
+  Explaining the mechanics behind my CRAN Updates bot for Bluesky Social.
+categories: [r-pkg, bskyr]
+image: "bsky profile.png"
+image-alt: "The Bluesky profile for the CRAN Updates bot."
+draft: true
+editor: 
+  markdown: 
+    wrap: sentence
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+This post walks through how I set up a simple bot in Bluesky Social.
+The bot, [@cranupdates.bsky.social](https://bsky.app/profile/cranupdates.bsky.social), posts every 4 hours with details about packages that have been updated, added, or removed from CRAN.
+Everything is run in R, primarily using the [bskyr](https://christophertkenny.com/bskyr/) package.
+It's run for free on GitHub Actions and data is stored between runs using Google Sheets.
+
+The basic mechanics of the bot are:
+
+- fetch currently available packages with `available.packages()`
+- load the last run's data from Google Sheets
+- compare the two and identify changes
+- make posts with `bs_post()` for new packages, updated packages, and removed packages
+- save the current data to Google Sheets
+
+This bot is entirely schedule based, so it doesn't need to interact with other Bluesky users.
+Below, I detail how I set up the bot, including how to authenticate with Google Sheets (using [`googlesheets4`](https://googlesheets4.tidyverse.org/)) and GitHub Actions.
+
+
+# Setting up the bot
+
+- Create github repo
+
+
+# Authenticating with Google for GitHub Actions
+
+	- Service account (link for details)
+	- Share sheet with service account
+	- x <- gargle::secret_make_key(); Sys.setenv(GARGLE_KEY = x)
+	- Add to gh actions
+	- run secret_encrypt_json('path/to/downloaded/key.json', 'where/to/save/it.json', key = 'GARGLE_KEY')
+	- update the workflow. see https://gargle.r-lib.org/articles/managing-tokens-securely.html#ci-configuration
