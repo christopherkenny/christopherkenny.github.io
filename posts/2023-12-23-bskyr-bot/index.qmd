@@ -36,8 +36,85 @@ Below, I detail how I set up the bot, including how to authenticate with Google 
 
 - Create github repo
 
+## Scheduling the run
 
-# Authenticating with Google for GitHub Actions
+To schedule the run, we need to tell it a few things:
+
+- when to run it
+- what to run
+  - what environment variables it needs
+  - what R version to use
+  - what R packages to install
+  - what script to run
+  
+Below, I explain these steps. But first, the completed workflow looks like:
+
+```yaml
+on:
+  push:
+    branches: main
+  schedule:
+    - cron: '0 1,5,9,13,17,21 * * *'
+
+name: Post
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
+      BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
+      GARGLE_KEY: ${{ secrets.GARGLE_KEY }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::here
+            any::dplyr
+            any::stringr
+            any::googlesheets4
+            github::christopherkenny/bskyr
+
+      - run: Rscript 'post.R'
+```
+
+This whole file lives in `.github/workflows/post.yml` in the [repo](https://github.com/christopherkenny/bskyr-cran-bot/blob/main/.github/workflows/post.yml).
+
+First, let's break down the when part:
+
+```yaml
+on:
+  push:
+    branches: main
+  schedule:
+    - cron: '0 1,5,9,13,17,21 * * *'
+
+```
+
+This tells GitHub Actions to run the workflow when there's a push to the `main` branch.
+It also says to schedule the workflow to run every 4 hours.
+CRON entries are `minute hour day month weekday`, so `0 1,5,9,13,17,21 * * *` means to run at 1am, 5am, 9am, 1pm, 5pm, and 9pm every day.
+As implied, setting the star says to run it every day, every month, and every weekday.
+More documentation for the `schedule` part can be found [here](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule).
+
+
+
+
+See {#sec-auth} for an explanation of the `env` variables.
+
+
+
+
+
+
+# Authenticating with Google for GitHub Actions {#sec-auth}
 
 	- Service account (link for details)
 	- Share sheet with service account
