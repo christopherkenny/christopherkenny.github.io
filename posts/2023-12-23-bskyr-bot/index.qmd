@@ -34,7 +34,11 @@ Below, I detail how I set up the bot, including how to authenticate with Google 
 
 # Setting up the bot
 
-- Create github repo
+To set up the bot, we first need a public GitHub repo.^[You could use something more private, but for a generic bot, public means GitHub Actions is free and can get the job done.]
+For my CRAN Update bot, I placed it in [`christopherkenny/bskyr-cran-bot`](https://github.com/christopherkenny/bskyr-cran-bot).
+
+
+- Create a script that does the work
 
 ## Scheduling the run
 
@@ -104,14 +108,72 @@ CRON entries are `minute hour day month weekday`, so `0 1,5,9,13,17,21 * * *` me
 As implied, setting the star says to run it every day, every month, and every weekday.
 More documentation for the `schedule` part can be found [here](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule).
 
+Then we give the job a name, "Post", with `name: Post`.
 
+The next section simply indicates we want the job to run on the latest version of Ubuntu:
 
-
+```yaml
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+```
+Next, we provide environment variables, that we set in the repo settings. 
 See {#sec-auth} for an explanation of the `env` variables.
 
+```yaml
+    env:
+      BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
+      BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
+      GARGLE_KEY: ${{ secrets.GARGLE_KEY }}
+```
+
+Now, we can give it the steps to use. 
 
 
+First, it needs to download the contents of the repo, so that it can access our `post.R` script.
 
+
+```yaml
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+```
+
+Then, we have to let it know to install R. 
+We can use one of the [`r-lib/actions`](https://github.com/r-lib/actions) actions, [`setup-r@v2`](https://github.com/r-lib/actions/tree/v2/setup-r).
+I'm using the released R version (4.3.2) at the time of writing this.
+You could pin a specific version, but for bots, I plan to do the minor maintenance necessary as R versions increment.
+
+```yaml
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+```
+
+And then we list the packages we need. 
+This uses the [`setup-r-dependencies@v2`](https://github.com/r-lib/actions/tree/v2/setup-r-dependencies) action, again from [`r-lib/actions`](https://github.com/r-lib/actions).
+Below, I make use of two prefixes: `any::` and `github::`.
+`any::` is used for packages on CRAN, generally, but will also run if you've installed it elsewhere through a prior dependency.
+`github::` is used for packages on GitHub and requires me to specify the user and repo.
+
+
+```yaml
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::here
+            any::dplyr
+            any::stringr
+            any::googlesheets4
+            github::christopherkenny/bskyr
+
+```
+If you already use `renv`, you could instead use that with the [`setup-renv`](https://github.com/r-lib/actions/tree/v2/setup-renv) action.
+
+Finally, we tell it to run `post.R` with:
+```yaml
+      - run: Rscript 'post.R'
+```
 
 
 # Authenticating with Google for GitHub Actions {#sec-auth}
