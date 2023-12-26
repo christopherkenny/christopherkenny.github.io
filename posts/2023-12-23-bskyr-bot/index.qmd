@@ -84,7 +84,7 @@ jobs:
             any::dplyr
             any::stringr
             any::googlesheets4
-            github::christopherkenny/bskyr
+            any::bskyr
 
       - run: Rscript 'post.R'
 ```
@@ -152,9 +152,19 @@ You could pin a specific version, but for bots, I plan to do the minor maintenan
 
 And then we list the packages we need. 
 This uses the [`setup-r-dependencies@v2`](https://github.com/r-lib/actions/tree/v2/setup-r-dependencies) action, again from [`r-lib/actions`](https://github.com/r-lib/actions).
-Below, I make use of two prefixes: `any::` and `github::`.
+Below, I make use of the  prefixes: `any::` and `github::`.
 `any::` is used for packages on CRAN, generally, but will also run if you've installed it elsewhere through a prior dependency.
-`github::` is used for packages on GitHub and requires me to specify the user and repo.
+
+:::{.callout-tip collapse="false"}
+
+## Using GitHub Packages
+
+You can use `github::` in place of `any::` for packages on GitHub. 
+You just need to specify the user and repo.
+So, if you want to use the dev version of a package, like `bskyr`, you could use the syntax:
+`github::christopherkenny/bskyr`.
+
+:::
 
 
 ```yaml
@@ -165,7 +175,7 @@ Below, I make use of two prefixes: `any::` and `github::`.
             any::dplyr
             any::stringr
             any::googlesheets4
-            github::christopherkenny/bskyr
+            any::bskyr
 
 ```
 If you already use `renv`, you could instead use that with the [`setup-renv`](https://github.com/r-lib/actions/tree/v2/setup-renv) action.
