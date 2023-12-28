@@ -13,32 +13,7 @@ make_url <- function(x, y) {
   paste0('<a href="', tb %>% filter(logo %in% x) %>% slice(match(logo, x)) %>% pull(link), '">', y, '</a>')
 }
 
-tb <- tribble(
-  ~name, ~info, ~status, ~link, 
-  'redist', 'redist: Simulation Methods for Legislative Redistricting (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN', 'https://alarm-redist.org/redist/',
-  'redistmetrics', 'redistmetrics: Redistricting metrics (with Cory McCartan, Ben Fifield, and Kosuke Imai)', 'CRAN', 'https://alarm-redist.org/redistmetrics/',
-  'geomander', 'geomander: Geographic Tools for Studying Gerrymandering', 'CRAN', 'https://christophertkenny.com/geomander/', 
-  'PL94171', 'PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files (with Cory McCartan)', 'CRAN', 'https://corymccartan.com/PL94171/',
-  'censable', 'censable: Making Census Data More Usable', 'CRAN', 'https://christophertkenny.com/censable/',
-  'tinytiger', 'tinytiger: Lightweight Interface to TIGER/Line Shapefiles (with Cory McCartan)', 'CRAN', 'https://alarm-redist.org/tinytiger/',
-  'dots', 'dots: Dot Density Maps', 'CRAN', 'https://christophertkenny.com/dots/',
-  'cvap', 'cvap: Citizen Voting Age Population', 'CRAN', 'https://christophertkenny.com/cvap/', 
-  'ppmf',   'ppmf: Read Census Privacy Protected Microdata Files', 'CRAN', 'https://christophertkenny.com/ppmf/',
-  'divseg', 'divseg: Compute Diversity and Segregation Indices', 'CRAN', 'https://christophertkenny.com/divseg/',
-  'name', 'name: Tools for Working with Names', 'CRAN', 'https://christophertkenny.com/name/',
-  'jot', 'jot: Jot Down Notes for Later', 'CRAN', 'https://christophertkenny.com/jot/',
-  'ei', 'ei: Ecological Inference (with Shusei Eshima, Gary King, and Molly Roberts)', 'GitHub', 'https://iqss-research.github.io/ei/',
-  'alarmdata', 'alarmdata: Download, Merge, and Process Redistricting Data (with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)', 'GitHub', 'https://alarm-redist.org/alarmdata/',
-  'ggredist', 'ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)', 'CRAN', 'https://alarm-redist.org/ggredist/',
-  'congress', 'congress: Access the Congress.gov API', 'CRAN', 'https://christophertkenny.com/congress/',
-  'feltr', 'feltr: Access the Felt API', 'CRAN', 'https://christophertkenny.com/feltr',
-  'planscorer', 'planscorer: Score Redistricting Plans with PlanScore', 'GitHub', 'https://christophertkenny.com/planscorer/',
-  'redistverse', 'redistverse: Easily Install and Load Redistricting Software', 'GitHub', 'https://alarm-redist.org/redistverse/',
-  'crayons', 'crayons: Color Palettes from Crayon Boxes', 'CRAN', 'https://christophertkenny.com/crayons/',
-  'apportion', 'apportion: Apportion Seats', 'CRAN', 'https://christophertkenny.com/apportion/',
-  'gptzeror', 'gptzeror: Identify Text Written by Large Language Models using GPTZero', 'CRAN', 'https://christophertkenny.com/gptzeror',
-  'bskyr', 'bskyr: Interact with Bluesky Social', 'CRAN', 'https://christophertkenny.com/bskyr/'
-) %>% 
+tb <- read_csv('pkgs.csv') %>% 
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
     .after = name
@@ -75,7 +50,7 @@ tb %>%
     column_labels.hidden = TRUE
   ) %>% 
   cols_width(
-    logo ~ px(100)
+    logo ~ px(125)
   ) %>% 
   tab_style(
     style = cell_text(weight = 'bold'),
@@ -106,7 +81,7 @@ tb %>%
      column_labels.hidden = TRUE
   ) %>% 
   cols_width(
-    logo ~ px(100)
+    logo ~ px(125)
   ) %>% 
   tab_style(
     style = cell_text(weight = 'bold'),

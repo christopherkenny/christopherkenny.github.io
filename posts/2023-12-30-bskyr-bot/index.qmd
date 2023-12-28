@@ -1,0 +1,216 @@
+---
+title: "Making a Scheduled Bot for Bluesky Social in R"
+date: "2023-12-30"
+description: |
+  Explaining the mechanics behind my CRAN Updates bot for Bluesky Social.
+categories: [r-pkg, bskyr]
+image: "bsky profile.png"
+image-alt: "The Bluesky profile for the CRAN Updates bot."
+draft: true
+editor: 
+  markdown: 
+    wrap: sentence
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+This post walks through how I set up a simple bot in Bluesky Social.
+The bot, [@cranupdates.bsky.social](https://bsky.app/profile/cranupdates.bsky.social), posts every 4 hours with details about packages that have been updated, added, or removed from CRAN.
+Everything is run in R, primarily using the [bskyr](https://christophertkenny.com/bskyr/) package.
+It's run for free on GitHub Actions and data is stored between runs using Google Sheets.
+
+The basic mechanics of the bot are:
+
+- fetch currently available packages with `available.packages()`
+- load the last run's data from Google Sheets
+- compare the two and identify changes
+- make posts with `bs_post()` for new packages, updated packages, and removed packages
+- save the current data to Google Sheets
+
+This bot is entirely schedule based, so it doesn't need to interact with other Bluesky users.
+Below, I detail how I set up the bot, including how to authenticate with Google Sheets (using [`googlesheets4`](https://googlesheets4.tidyverse.org/)) and GitHub Actions.
+
+
+# Setting up the bot
+
+To set up the bot, we first need a public GitHub repo.^[You could use something more private, but for a generic bot, public means GitHub Actions is free and can get the job done.]
+For my CRAN Update bot, I placed it in [`christopherkenny/bskyr-cran-bot`](https://github.com/christopherkenny/bskyr-cran-bot).
+
+Now, the basic file structure of the repo looks like:
+
+```
+.
+├── .github
+│   └── workflows
+│       └── post.yml
+├── bskyr-cran-bot.Rproj
+├── readme.md
+├── inst
+│   └── secret
+│       └── bskyr-cran-bot.json
+└── post.R
+```
+
+The `.github` folder contains the workflow file, `post.yml`, which tells GitHub Actions what to do and is discussed in @sec-schedule.
+You don't need a `bskyr-cran-bot.Rproj` or `readme.md` files, but they're nice to have.
+The `inst` folder contains the `secret` folder, which contains the `bskyr-cran-bot.json` file, which is used to authenticate with Google and is discussed in @sec-auth.
+Finally, `post.R` is the script that does the work.
+
+First, let's explain `post.R`.
+
+
+## Scheduling the run {#sec-schedule}
+
+To schedule the run, we need to tell it a few things:
+
+- when to run it
+- what to run
+  - what environment variables it needs
+  - what R version to use
+  - what R packages to install
+  - what script to run
+  
+Below, I explain these steps. But first, the completed workflow looks like:
+
+```yaml
+on:
+  push:
+    branches: main
+  schedule:
+    - cron: '0 1,5,9,13,17,21 * * *'
+
+name: Post
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
+      BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
+      GARGLE_KEY: ${{ secrets.GARGLE_KEY }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::here
+            any::dplyr
+            any::stringr
+            any::googlesheets4
+            any::bskyr
+
+      - run: Rscript 'post.R'
+```
+
+This whole file lives in `.github/workflows/post.yml` in the [repo](https://github.com/christopherkenny/bskyr-cran-bot/blob/main/.github/workflows/post.yml).
+
+First, let's break down the when part:
+
+```yaml
+on:
+  push:
+    branches: main
+  schedule:
+    - cron: '0 1,5,9,13,17,21 * * *'
+
+```
+
+This tells GitHub Actions to run the workflow when there's a push to the `main` branch.
+It also says to schedule the workflow to run every 4 hours.
+CRON entries are `minute hour day month weekday`, so `0 1,5,9,13,17,21 * * *` means to run at 1am, 5am, 9am, 1pm, 5pm, and 9pm every day.
+As implied, setting the star says to run it every day, every month, and every weekday.
+More documentation for the `schedule` part can be found [here](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule).
+
+Then we give the job a name, "Post", with `name: Post`.
+
+The next section simply indicates we want the job to run on the latest version of Ubuntu:
+
+```yaml
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+```
+Next, we provide environment variables, that we set in the repo settings. 
+See {#sec-auth} for an explanation of the `env` variables.
+
+```yaml
+    env:
+      BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
+      BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
+      GARGLE_KEY: ${{ secrets.GARGLE_KEY }}
+```
+
+Now, we can give it the steps to use. 
+
+
+First, it needs to download the contents of the repo, so that it can access our `post.R` script.
+
+
+```yaml
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+```
+
+Then, we have to let it know to install R. 
+We can use one of the [`r-lib/actions`](https://github.com/r-lib/actions) actions, [`setup-r@v2`](https://github.com/r-lib/actions/tree/v2/setup-r).
+I'm using the released R version (4.3.2) at the time of writing this.
+You could pin a specific version, but for bots, I plan to do the minor maintenance necessary as R versions increment.
+
+```yaml
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+```
+
+And then we list the packages we need. 
+This uses the [`setup-r-dependencies@v2`](https://github.com/r-lib/actions/tree/v2/setup-r-dependencies) action, again from [`r-lib/actions`](https://github.com/r-lib/actions).
+Below, I make use of the  prefixes: `any::` and `github::`.
+`any::` is used for packages on CRAN, generally, but will also run if you've installed it elsewhere through a prior dependency.
+
+:::{.callout-tip collapse="false"}
+
+## Using GitHub Packages
+
+You can use `github::` in place of `any::` for packages on GitHub. 
+You just need to specify the user and repo.
+So, if you want to use the dev version of a package, like `bskyr`, you could use the syntax:
+`github::christopherkenny/bskyr`.
+
+:::
+
+
+```yaml
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::here
+            any::dplyr
+            any::stringr
+            any::googlesheets4
+            any::bskyr
+
+```
+If you already use `renv`, you could instead use that with the [`setup-renv`](https://github.com/r-lib/actions/tree/v2/setup-renv) action.
+
+Finally, we tell it to run `post.R` with:
+```yaml
+      - run: Rscript 'post.R'
+```
+
+
+# Authenticating with Google for GitHub Actions {#sec-auth}
+
+	- Service account (link for details)
+	- Share sheet with service account
+	- x <- gargle::secret_make_key(); Sys.setenv(GARGLE_KEY = x)
+	- Add to gh actions
+	- run secret_encrypt_json('path/to/downloaded/key.json', 'where/to/save/it.json', key = 'GARGLE_KEY')
+	- update the workflow. see https://gargle.r-lib.org/articles/managing-tokens-securely.html#ci-configuration
