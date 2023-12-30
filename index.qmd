@@ -10,6 +10,8 @@ about:
       url: "https://twitter.com/Chris_T_Kenny"
     - text: GitHub
       url: "https://github.com/christopherkenny"
+    - text: Google Scholar
+      url: "https://scholar.google.com/citations?user=uVUhHXAAAAAJ"
     - text: Email
       url: "christopherkenny@fas.harvard.edu"
 sidebar: false
