@@ -20,8 +20,8 @@ website:
         href: https://github.com/christopherkenny
       - text: "{{< fa brands orcid >}}"
         href: https://orcid.org/0000-0002-9386-6860
-      - text: "{{< fa brands google-scholar >}}"
-        href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
+      # - text: "{{< fa brands google-scholar >}}"
+      #   href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
       - icon: rocket-takeoff-fill
         href: https://christopherkenny.r-universe.dev/builds
     background: "#B3001B"
