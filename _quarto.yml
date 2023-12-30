@@ -18,8 +18,12 @@ website:
         href: https://twitter.com/Chris_T_Kenny
       - icon: github
         href: https://github.com/christopherkenny
-      - icon: journals
+      - text: "{{< fa brands orcid >}}"
         href: https://orcid.org/0000-0002-9386-6860
+      - text: "{{< fa brands google-scholar >}}"
+        href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
+      - icon: rocket-takeoff-fill
+        href: https://christopherkenny.r-universe.dev/builds
     background: "#B3001B"
   google-analytics: "G-PBRM1BV0GG"
   site-url: https://christophertkenny.com
