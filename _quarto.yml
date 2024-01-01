@@ -16,12 +16,16 @@ website:
         href: blog.html
       - icon: twitter
         href: https://twitter.com/Chris_T_Kenny
+      - text: "{{< iconify fa6-brands square-threads >}}"
+        href: https://www.threads.net/@chris_t_kenny
+      - text: "{{< iconify simple-icons bluesky >}}"
+        href: https://bsky.app/profile/chriskenny.bsky.social
       - icon: github
         href: https://github.com/christopherkenny
-      - text: "{{< fa brands orcid >}}"
+      - text: "{{< iconify fa6-brands brands orcid >}}"
         href: https://orcid.org/0000-0002-9386-6860
-      # - text: "{{< fa brands google-scholar >}}"
-      #   href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
+      - text: "{{< iconify fa6-brands google-scholar >}}"
+        href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
       - icon: rocket-takeoff-fill
         href: https://christopherkenny.r-universe.dev/builds
     background: "#B3001B"
