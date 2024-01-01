@@ -22,7 +22,7 @@ website:
         href: https://bsky.app/profile/chriskenny.bsky.social
       - icon: github
         href: https://github.com/christopherkenny
-      - text: "{{< iconify fa6-brands brands orcid >}}"
+      - text: "{{< iconify fa6-brands orcid >}}"
         href: https://orcid.org/0000-0002-9386-6860
       - text: "{{< iconify fa6-brands google-scholar >}}"
         href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
