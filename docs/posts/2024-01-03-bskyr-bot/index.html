@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.530">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christopher T. Kenny">
+<meta name="dcterms.date" content="2024-01-03">
+<meta name="description" content="Explaining the mechanics behind my CRAN Updates bot for Bluesky Social.">
+
+<title>Christopher T. Kenny - Making a Scheduled Bot for Bluesky Social in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/iconify-1.0.8/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PBRM1BV0GG"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
+</script>
+
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Christopher T. Kenny</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../CV.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Chris_T_Kenny"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.threads.net/@chris_t_kenny"> 
+<span class="menu-text"><iconify-icon inline="" icon="fa6-brands:square-threads"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/chriskenny.bsky.social"> 
+<span class="menu-text"><iconify-icon inline="" icon="simple-icons:bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/christopherkenny"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-9386-6860"> 
+<span class="menu-text"><iconify-icon inline="" icon="fa6-brands:orcid"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=uVUhHXAAAAAJ"> 
+<span class="menu-text"><iconify-icon inline="" icon="fa6-brands:google-scholar"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://christopherkenny.r-universe.dev/builds"> <i class="bi bi-rocket-takeoff-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#setting-up-the-bot" id="toc-setting-up-the-bot" class="nav-link active" data-scroll-target="#setting-up-the-bot">Setting up the bot</a>
+  <ul class="collapse">
+  <li><a href="#sec-schedule" id="toc-sec-schedule" class="nav-link" data-scroll-target="#sec-schedule">Scheduling the run</a></li>
+  </ul></li>
+  <li><a href="#sec-auth" id="toc-sec-auth" class="nav-link" data-scroll-target="#sec-auth">Authenticating with Google for GitHub Actions</a>
+  <ul class="collapse">
+  <li><a href="#make-a-service-account" id="toc-make-a-service-account" class="nav-link" data-scroll-target="#make-a-service-account">Make a service account</a></li>
+  <li><a href="#share-the-google-sheet-with-the-service-account" id="toc-share-the-google-sheet-with-the-service-account" class="nav-link" data-scroll-target="#share-the-google-sheet-with-the-service-account">Share the Google Sheet with the service account</a></li>
+  <li><a href="#encrypt-the-service-account-key" id="toc-encrypt-the-service-account-key" class="nav-link" data-scroll-target="#encrypt-the-service-account-key">Encrypt the service account key</a></li>
+  <li><a href="#share-details-with-github-to-decrypt-the-key" id="toc-share-details-with-github-to-decrypt-the-key" class="nav-link" data-scroll-target="#share-details-with-github-to-decrypt-the-key">Share details with GitHub to decrypt the key</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Making a Scheduled Bot for Bluesky Social in R</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">r-pkg</div>
+    <div class="quarto-category">bskyr</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Explaining the mechanics behind my CRAN Updates bot for Bluesky Social.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://christophertkenny.com">Christopher T. Kenny</a> <a href="https://orcid.org/0000-0002-9386-6860" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 3, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This post walks through how I set up a simple bot in Bluesky Social. The bot, <a href="https://bsky.app/profile/cranupdates.bsky.social"><span class="citation" data-cites="cranupdates.bsky.social">@cranupdates.bsky.social</span></a>, posts every 2 hours with details about packages that have been updated, added, or removed from CRAN. Everything is run in R, primarily using the <a href="https://christophertkenny.com/bskyr/">bskyr</a> package. It’s run for free on GitHub Actions and data is stored between runs using Google Sheets.</p>
+<p><img src="bsky profile.png" class="img-fluid"></p>
+<p>The basic mechanics of the bot are:</p>
+<ul>
+<li>fetch currently available packages with <code>available.packages()</code></li>
+<li>load the last run’s data from Google Sheets</li>
+<li>compare the two and identify changes</li>
+<li>make posts with <code>bs_post()</code> for new packages, updated packages, and removed packages</li>
+<li>save the current data to Google Sheets</li>
+</ul>
+<p>This bot is entirely schedule based, so it doesn’t need to interact with other Bluesky users. Below, I detail how I set up the bot, including how to authenticate with Google Sheets (using <a href="https://googlesheets4.tidyverse.org/"><code>googlesheets4</code></a>) and GitHub Actions.</p>
+<section id="setting-up-the-bot" class="level1">
+<h1>Setting up the bot</h1>
+<p>To set up the bot, we first need a public GitHub repo.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> For my CRAN Update bot, I placed it in <a href="https://github.com/christopherkenny/bskyr-cran-bot"><code>christopherkenny/bskyr-cran-bot</code></a>.</p>
+<p>Now, the basic file structure of the repo looks like:</p>
+<pre><code>.
+├── .github
+│   └── workflows
+│       └── post.yml
+├── bskyr-cran-bot.Rproj
+├── readme.md
+├── inst
+│   └── secret
+│       └── bskyr-cran-bot.json
+└── post.R</code></pre>
+<p>The <code>.github</code> folder contains the workflow file, <code>post.yml</code>, which tells GitHub Actions what to do and is discussed in <a href="#sec-schedule" class="quarto-xref">Section&nbsp;1.1</a>. You don’t need a <code>bskyr-cran-bot.Rproj</code> or <code>readme.md</code> files, but they’re nice to have. The <code>inst</code> folder contains the <code>secret</code> folder, which contains the <code>bskyr-cran-bot.json</code> file, which is used to authenticate with Google and is discussed in <a href="#sec-auth" class="quarto-xref">Section&nbsp;2</a>. Finally, <code>post.R</code> is the script that does the work.</p>
+<p>First, let’s explain <code>post.R</code>. I’m assuming that readers have some familiarity with R so will keep this brief. With that in mind, first bit of code loads libraries and authenticates the user (here GitHub Actions):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bskyr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>auth <span class="ot">&lt;-</span> <span class="fu">bs_auth</span>(<span class="fu">bs_get_user</span>(), <span class="fu">bs_get_pass</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>bs_get_user()</code> and <code>bs_get_pass()</code> read from environmental variables. To set these, go to the repo’s “Settings” tab, then to “Secrets and variables” on the sidebar, and select “Actions”. Press the big green “New repository secret” button. We add two secrets: - <code>BLUESKY_APP_PASS</code>: the app password, created at <a href="https://bsky.app/settings/app-passwords" class="uri">https://bsky.app/settings/app-passwords</a> - <code>BLUESKY_APP_USER</code>: your username</p>
+<p>A discussion of authentication for Google is available in {#sec-auth}.</p>
+<p>Next, we load the current data along with the last run’s data from Google Sheets.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load available packages ----</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">available.packages</span>(<span class="at">filters =</span> <span class="fu">c</span>(<span class="st">'CRAN'</span>, <span class="st">'duplicates'</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Package, Version)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run first time to create a spreadsheet</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># gs4_auth()</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># gs4_create(name = 'bskyr-cran-bot', sheets = list(pkgs = pkgs))</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># get the old spreadsheet ----</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>old_pkgs <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="at">ss =</span> <span class="st">'135p8xqI3LGIyuvwSjav13tY10fRu8dUPFjVNVal18Tk'</span>, <span class="at">sheet =</span> <span class="st">'pkgs'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before making the bot live, I first created the spreadsheet, using the commented out code.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> This simplifies reading the data and updating it later, but may not be necessary for all bots of this type.</p>
+<p>Next, we compare the two sets of data to identify changes.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify changes ----</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>updates <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(pkgs, old_pkgs)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>new_pkgs <span class="ot">&lt;-</span> updates <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Package <span class="sc">%in%</span> old_pkgs<span class="sc">$</span>Package)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>updates <span class="ot">&lt;-</span> updates <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Package <span class="sc">%in%</span> new_pkgs<span class="sc">$</span>Package)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>removed <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(old_pkgs, pkgs) <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Package <span class="sc">%in%</span> pkgs<span class="sc">$</span>Package)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each of these is then a <code>tibble</code> with 2 columns: <code>Package</code> and <code>Version</code>. - New packages are those which do not appear in the old data. These <em>could</em> have been archived before and may not be completely new. - Updated packages are those which appear in both data, but differ by version. - Removed packages are those which disappear in the new data, but were in the old dat.</p>
+<p>Then, we make posts for new, updated, and removed packages. Th processes for updated and removed packages are identical, so I’ll go through posting about updates and new packages.</p>
+<p>First, for updating (and removed) packages, let’s look at the whole snippet. This is only run if there are updates (or removed packages), so it’s wrapped in an <code>if</code> statement.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(updates) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  update_txt <span class="ot">&lt;-</span> <span class="fu">vapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(updates)), <span class="cf">function</span>(i) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(updates<span class="sc">$</span>Package[i], <span class="st">' ('</span>, updates<span class="sc">$</span>Version[i], <span class="st">')'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  }, <span class="fu">character</span>(<span class="dv">1</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  n_char_update <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">nchar</span>(update_txt))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">max</span>(n_char_update) <span class="sc">&gt;</span> <span class="dv">260</span>) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># split into multiple posts</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    update_txt <span class="ot">&lt;-</span> update_txt <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">split</span>(<span class="fu">cut</span>(n_char_update, <span class="at">breaks =</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(n_char_update) <span class="sc">/</span> <span class="dv">260</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lapply</span>(paste0, <span class="at">collapse =</span> <span class="st">', '</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(update_txt, <span class="cf">function</span>(txt) {</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      bskyr<span class="sc">::</span><span class="fu">bs_post</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">'Updates on CRAN: '</span>, txt),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">auth =</span> auth</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># avoid immediate new posts</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    update_txt <span class="ot">&lt;-</span> update_txt <span class="sc">|&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">', '</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    bskyr<span class="sc">::</span><span class="fu">bs_post</span>(</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">'Updates on CRAN: '</span>, update_txt),</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">auth =</span> auth</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># avoid immediate new posts</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="dv">3</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'Updates:'</span>, <span class="fu">nrow</span>(updates), <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For each pacakge update, we create a string with the package name and version.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>update_txt <span class="ot">&lt;-</span> <span class="fu">vapply</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(updates)), <span class="cf">function</span>(i) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(updates<span class="sc">$</span>Package[i], <span class="st">' ('</span>, updates<span class="sc">$</span>Version[i], <span class="st">')'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}, <span class="fu">character</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, we calculate the cumulative number of characters in each string.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  n_char_update <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">nchar</span>(update_txt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is important, as <em>posts are limited to 300 characters</em>.</p>
+<p>If we only have to make one call, we can collapse the text into a single character entry.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>update_txt <span class="ot">&lt;-</span> update_txt <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">', '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we can just post it with one call to <code>bs_post()</code></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bskyr<span class="sc">::</span><span class="fu">bs_post</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">'Updates on CRAN: '</span>, update_txt),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">auth =</span> auth</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We authenticated before, so we don’t need to do it again, we just have to pass <code>auth = auth</code>. For several posts in a session, this is better practice, as it avoids potentially dozens of extra calls to the API in a short period.</p>
+<p>If it’s longer, we can split it like so:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>update_txt <span class="ot">&lt;-</span> update_txt <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="fu">cut</span>(n_char_update, <span class="at">breaks =</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(n_char_update) <span class="sc">/</span> <span class="dv">260</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(paste0, <span class="at">collapse =</span> <span class="st">', '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we loop over the elements of <code>update_txt</code> and post them.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(update_txt, <span class="cf">function</span>(txt) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> bskyr<span class="sc">::</span><span class="fu">bs_post</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">'Updates on CRAN: '</span>, txt),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">auth =</span> auth</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># avoid immediate new posts</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">Sys.sleep</span>(<span class="dv">3</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We also add a short sleep between calls, of 3 seconds. This isn’t necessary, but is a simple way to avoid spamming the API.</p>
+<p>The last line of this snippet prints the updates to the console, so that we can see what’s happening.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'Updates:'</span>, <span class="fu">nrow</span>(updates), <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This makes it easier to debug, as statements printed will show up in GitHub Actions, like below:</p>
+<p><img src="example_github_actions_output.png" class="img-fluid"></p>
+<p>Next, let’s look at the code for posting about new packages. This is slightly different, as we want to post about each package individually. Due to limits on the size of package names on CRAN, we then also know that we don’t need to check the character length of the post. For the <code>i</code>-th new package, it runs the following:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bskyr<span class="sc">::</span><span class="fu">bs_post</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">'New on CRAN: '</span>, new_pkgs<span class="sc">$</span>Package[i], <span class="st">' ('</span>, new_pkgs<span class="sc">$</span>Version[i], <span class="st">'). View at '</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">'https://CRAN.R-project.org/package='</span>, new_pkgs<span class="sc">$</span>Package[i]),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">auth =</span> auth</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a link to the new package (say NEWPACKAGE) as <code>https://CRAN.R-project.org/package=NEWPACKAGE</code> on CRAN. <code>bs_post()</code> will automatically process this and create linked text in the post.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Respectful Posting
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>You might note that the posts above don’t contain any hashtags like <code>#rstats</code>. Bluesky feeds are a bit different from Twitter and frequently are built by watching keywords. If you are creating a bot that posts many times in a day, you may want to avoid using these in every post, as they can easily overwhlem these feeds. Instead, please use them sparingly, as anyone who wants to follow the bot can do so directly.</p>
+</div>
+</div>
+</div>
+<p>Before exiting, we want to update the spreadsheet, so that we can use it again in future runs. Since Google Sheets is our “database”, we can just use <code>googlesheets4</code> to update it, just like how we read in the data.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update the spreadsheet ----</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sheet</span>(pkgs, <span class="at">ss =</span> <span class="st">'135p8xqI3LGIyuvwSjav13tY10fRu8dUPFjVNVal18Tk'</span>, <span class="at">sheet =</span> <span class="st">'pkgs'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That handles the process of posting. Below, I detail scheduling this script to run automatically.</p>
+<section id="sec-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="sec-schedule">Scheduling the run</h2>
+<p>To schedule the run, we need to tell it a few things:</p>
+<ul>
+<li>when to run it</li>
+<li>what to run
+<ul>
+<li>what environment variables it needs</li>
+<li>what R version to use</li>
+<li>what R packages to install</li>
+<li>what script to run</li>
+</ul></li>
+</ul>
+<p>Below, I explain these steps. But first, the completed workflow looks like:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> main</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">'0 1,5,9,13,17,21 * * *'</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Post</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build-deploy</span><span class="kw">:</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">BLUESKY_APP_USER</span><span class="kw">:</span><span class="at"> ${{ secrets.BLUESKY_APP_USER }}</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">BLUESKY_APP_PASS</span><span class="kw">:</span><span class="at"> ${{ secrets.BLUESKY_APP_PASS }}</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">GARGLE_KEY</span><span class="kw">:</span><span class="at"> ${{ secrets.GARGLE_KEY }}</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">r-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r-dependencies@v2</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">packages</span><span class="kw">:</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="at">            any::here</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="at">            any::dplyr</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="at">            any::stringr</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="at">            any::googlesheets4</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="at">            any::bskyr</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> Rscript 'post.R'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This whole file lives in <code>.github/workflows/post.yml</code> in the <a href="https://github.com/christopherkenny/bskyr-cran-bot/blob/main/.github/workflows/post.yml">repo</a>.</p>
+<p>First, let’s break down the when part:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> main</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">'0 1,5,9,13,17,21 * * *'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This tells GitHub Actions to run the workflow when there’s a push to the <code>main</code> branch. It also says to schedule the workflow to run every 4 hours. CRON entries are <code>minute hour day month weekday</code>, so <code>0 1,5,9,13,17,21 * * *</code> means to run at 1am, 5am, 9am, 1pm, 5pm, and 9pm every day. As implied, setting the star says to run it every day, every month, and every weekday. More documentation for the <code>schedule</code> part can be found <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">here</a>.</p>
+<p>Then we give the job a name, “Post”, with <code>name: Post</code>.</p>
+<p>The next section simply indicates we want the job to run on the latest version of Ubuntu:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build-deploy</span><span class="kw">:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, we provide environment variables, that we set in the repo settings. See {#sec-auth} for an explanation of the <code>env</code> GARGLE_KEY variable. This step is like setting an .Rprofile file locally, but for GitHub Actions.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">BLUESKY_APP_USER</span><span class="kw">:</span><span class="at"> ${{ secrets.BLUESKY_APP_USER }}</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">BLUESKY_APP_PASS</span><span class="kw">:</span><span class="at"> ${{ secrets.BLUESKY_APP_PASS }}</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">GARGLE_KEY</span><span class="kw">:</span><span class="at"> ${{ secrets.GARGLE_KEY }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we can give it the steps to use.</p>
+<p>First, it needs to download the contents of the repo, so that it can access our <code>post.R</code> script.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, we have to let it know to install R. We can use one of the <a href="https://github.com/r-lib/actions"><code>r-lib/actions</code></a> actions, <a href="https://github.com/r-lib/actions/tree/v2/setup-r"><code>setup-r@v2</code></a>. I’m using the released R version (4.3.2) at the time of writing this. You could pin a specific version, but for bots, I plan to do the minor maintenance necessary as R versions increment.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">r-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And then we list the packages we need. This uses the <a href="https://github.com/r-lib/actions/tree/v2/setup-r-dependencies"><code>setup-r-dependencies@v2</code></a> action, again from <a href="https://github.com/r-lib/actions"><code>r-lib/actions</code></a>. Below, I make use of the prefixes: <code>any::</code> and <code>github::</code>. <code>any::</code> is used for packages on CRAN, generally, but will also run if you’ve installed it elsewhere through a prior dependency.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Using GitHub Packages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>You can use <code>github::</code> in place of <code>any::</code> for packages on GitHub. You just need to specify the user and repo. So, if you want to use the dev version of a package, like <code>bskyr</code>, you could use the syntax: <code>github::christopherkenny/bskyr</code>.</p>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r-dependencies@v2</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">packages</span><span class="kw">:</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="at">            any::here</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="at">            any::dplyr</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="at">            any::stringr</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="at">            any::googlesheets4</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="at">            any::bskyr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you already use <code>renv</code>, you could instead use that with the <a href="https://github.com/r-lib/actions/tree/v2/setup-renv"><code>setup-renv</code></a> action.</p>
+<p>Finally, we tell it to run <code>post.R</code> with:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> Rscript 'post.R'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’s sufficient to tell GitHub Actions everything it needs to know to run the bot. Below, I describe how to set up the authentication with Google Sheets. This is only necessary if you’re using it, like I am, to store data about the prior bot run.</p>
+</section>
+</section>
+<section id="sec-auth" class="level1">
+<h1>Authenticating with Google for GitHub Actions</h1>
+<p>To authenticate with Google, we can use the <a href="https://gargle.r-lib.org/index.html"><code>gargle</code> R package</a>. <code>gargle</code> has a set of instructions for <a href="https://gargle.r-lib.org/articles/non-interactive-auth.html">Non-interactive auth</a> and for <a href="https://gargle.r-lib.org/articles/managing-tokens-securely.html">Managing tokens securely</a>. These provide a much more detailed explanation of the process, but I explain the important parts for our use case below.</p>
+<p>There are four steps here:</p>
+<ul>
+<li>Make a service account</li>
+<li>Share the Google Sheet with the service account</li>
+<li>Encrypt the service account key</li>
+<li>Share details with GitHub to decrypt the key</li>
+</ul>
+<section id="make-a-service-account" class="level3">
+<h3 class="anchored" data-anchor-id="make-a-service-account">Make a service account</h3>
+<p>To make a service account, we start at the <a href="https://console.cloud.google.com/">Google Cloud Console</a>. We first need to make a project to hold the service account. We can do this by clicking the project dropdown in the top left and clicking “New Project”. Then, we can navigate to “Service Accounts” under “IAM &amp; Admin” in the left sidebar. Click “Create Service Account” and give it a name. It doesn’t need any access to anything, so we can skip both “Grand this service account access to project” and “Grant users access to this service account”.</p>
+<p>Once we’ve created the service account, we can click on it in the list of service accounts. Under keys, we can click “Add Key” and select “Create new key”. Select “JSON” as the type of key. This downloads a file that we need for the next steps.</p>
+</section>
+<section id="share-the-google-sheet-with-the-service-account" class="level3">
+<h3 class="anchored" data-anchor-id="share-the-google-sheet-with-the-service-account">Share the Google Sheet with the service account</h3>
+<p>This may not really be a full step, but the first time I did this, I had no clue why it didn’t work. We have to give access to the Google Sheet from our new service account.</p>
+<p>Under the service account dashboard on console.cloud.google.com, where we just were, we can view the email account that our new account uses. Under the “Details” tab, there is an email, which will end with <code>.iam.gserviceaccount.com</code>. Copy this and open the Google Sheet.</p>
+<p>Simply share the Google Sheet with this email address, like you would any other email, and we’re good to go. When we later encrypt the <code>.json</code> file from above, it will prompt us to allow any other access.</p>
+</section>
+<section id="encrypt-the-service-account-key" class="level3">
+<h3 class="anchored" data-anchor-id="encrypt-the-service-account-key">Encrypt the service account key</h3>
+<p>Now, we need to encrypt the <code>.json</code> file we downloaded above. We can use the <a href="https://gargle.r-lib.org/reference/gargle_secret.html"><code>secret_encrypt_json()</code></a> function from <code>gargle</code> to do this. First, we make our secret key to encrypt and decrypt with. We can run:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gargle<span class="sc">::</span><span class="fu">secret_make_key</span>()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">GARGLE_KEY =</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This sets up the key in our environment, so we can use it in the next step.</p>
+<p>Now, we can run <code>secret_encrypt_json()</code> to encrypt the <code>.json</code> file.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">secret_encrypt_json</span>(<span class="st">'path/to/downloaded/key.json'</span>, <span class="st">'where/to/save/it.json'</span>, <span class="at">key =</span> <span class="st">'GARGLE_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For consistency with where the key gets saved in packages, I used <code>inst/secret/bskyr-cran-bot.json</code> as the path to save it. This file is encrpyted and needs to be pushed to GitHub.</p>
+<p>At this point, we should take our script and run the first part locally to make sure the service account has proper permissions. We can run:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_auth</span>(<span class="at">path =</span> gargle<span class="sc">::</span><span class="fu">secret_decrypt_json</span>(<span class="st">'inst/secret/bskyr-cran-bot.json'</span>, <span class="at">key =</span> <span class="st">'GARGLE_KEY'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This should prompt you to assign any permissions that it may need, primarily API access to Google Sheets. Once you’ve run that, wait 3-5 minutes. Then, you can rerun the <code>gs4_auth()</code> line and it should work without any new prompts.</p>
+</section>
+<section id="share-details-with-github-to-decrypt-the-key" class="level3">
+<h3 class="anchored" data-anchor-id="share-details-with-github-to-decrypt-the-key">Share details with GitHub to decrypt the key</h3>
+<p>Now that we know it works locally, we can share the details with GitHub.</p>
+<p>Open the repo in a browser. Go to the “Settings” tab, then to “Secrets and variables” on the sidebar, and select “Actions”. Press the big green “New repository secret” button. We add one more secret: - <code>GARGLE_KEY</code>: the value returned by <code>gargle::secret_make_key()</code> above, which should be the variable <code>x</code></p>
+<p>Finally, we have to let the GitHub Action know where to find the key when it runs.</p>
+<p>In the workflow file, we need to provide</p>
+<pre><code> env:
+   GARGLE_KEY: ${{ secrets.GARGLE_KEY }}</code></pre>
+<p>Now, for this, we also have two other environmental variables for the Bluesky authentication. So it should look more like:</p>
+<pre><code>env:
+   BLUESKY_APP_USER: ${{ secrets.BLUESKY_APP_USER }}
+   BLUESKY_APP_PASS: ${{ secrets.BLUESKY_APP_PASS }}
+   GARGLE_KEY: ${{ secrets.GARGLE_KEY }}</code></pre>
+<p><code>gargle</code> discusses this more in the <a href="https://gargle.r-lib.org/articles/managing-tokens-securely.html#ci-configuration">Managing tokens securely</a> article.</p>
+<p>With that, the app should authenticate without problems. Combined with the script and workflow file, we have all the pieces to run the bot on GitHub Actions.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>You could use something more private, but for a generic bot, public means GitHub Actions is free and can get the job done.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This created a small issue in the bot: Several of the first set of posts were about new packages that weren’t actually new. This was because the first run of the bot was on a Windows laptop, while the second was on a Linux server. By default, <code>available.packages()</code> returns packages available for the current OS, hence the setting of <code>filters = c('CRAN', 'duplicates')</code>, which overwrites the default that filters to OS-available too.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{t. kenny2024,
+  author = {T. Kenny, Christopher},
+  title = {Making a {Scheduled} {Bot} for {Bluesky} {Social} in {R}},
+  date = {2024-01-03},
+  url = {https://christophertkenny.com/posts/2024-01-03-bskyr-bot},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t. kenny2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+T. Kenny, Christopher. 2024. <span>“Making a Scheduled Bot for Bluesky
+Social in R.”</span> January 3, 2024. <a href="https://christophertkenny.com/posts/2024-01-03-bskyr-bot">https://christophertkenny.com/posts/2024-01-03-bskyr-bot</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
