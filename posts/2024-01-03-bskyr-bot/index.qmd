@@ -242,6 +242,8 @@ bskyr::bs_post(
 ```
 This creates a link to the new package (say NEWPACKAGE) as `https://CRAN.R-project.org/package=NEWPACKAGE` on CRAN.
 `bs_post()` will automatically process this and create linked text in the post.
+`bs_post()` can handle other inputs, including images and alt-text.
+See the [package reference](https://christophertkenny.com/bskyr/reference/bs_post.html) for more details, including how to quote or reply to posts. 
 
 :::{.callout-caution collapse="false"}
 
