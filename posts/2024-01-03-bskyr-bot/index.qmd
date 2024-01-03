@@ -19,7 +19,7 @@ The bot, [@cranupdates.bsky.social](https://bsky.app/profile/cranupdates.bsky.so
 Everything is run in R, primarily using the [bskyr](https://christophertkenny.com/bskyr/) package.
 It's run for free on GitHub Actions and data is stored between runs using Google Sheets.
 
-![](bsky profile.png)
+![](bsky profile.png){fig-align="center"}
 
 The basic mechanics of the bot are:
 
@@ -226,7 +226,7 @@ cat('Updates:', nrow(updates), '\n')
 
 This makes it easier to debug, as statements printed will show up in GitHub Actions, like below:
 
-![](example_github_actions_output.png)
+![](example_github_actions_output.png){fig-align="center"}
 
 Next, let's look at the code for posting about new packages.
 This is slightly different, as we want to post about each package individually.

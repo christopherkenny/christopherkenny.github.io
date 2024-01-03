@@ -258,7 +258,11 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 
 
 <p>This post walks through how I set up a simple bot in Bluesky Social. The bot, <a href="https://bsky.app/profile/cranupdates.bsky.social"><span class="citation" data-cites="cranupdates.bsky.social">@cranupdates.bsky.social</span></a>, posts every 2 hours with details about packages that have been updated, added, or removed from CRAN. Everything is run in R, primarily using the <a href="https://christophertkenny.com/bskyr/">bskyr</a> package. It’s run for free on GitHub Actions and data is stored between runs using Google Sheets.</p>
-<p><img src="bsky profile.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bsky profile.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 <p>The basic mechanics of the bot are:</p>
 <ul>
 <li>fetch currently available packages with <code>available.packages()</code></li>
@@ -387,7 +391,11 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 <p>The last line of this snippet prints the updates to the console, so that we can see what’s happening.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'Updates:'</span>, <span class="fu">nrow</span>(updates), <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This makes it easier to debug, as statements printed will show up in GitHub Actions, like below:</p>
-<p><img src="example_github_actions_output.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="example_github_actions_output.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 <p>Next, let’s look at the code for posting about new packages. This is slightly different, as we want to post about each package individually. Due to limits on the size of package names on CRAN, we then also know that we don’t need to check the character length of the post. For the <code>i</code>-th new package, it runs the following:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bskyr<span class="sc">::</span><span class="fu">bs_post</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">'New on CRAN: '</span>, new_pkgs<span class="sc">$</span>Package[i], <span class="st">' ('</span>, new_pkgs<span class="sc">$</span>Version[i], <span class="st">'). View at '</span>,</span>
