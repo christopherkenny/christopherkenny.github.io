@@ -10,31 +10,31 @@ library(tidyverse)
 library(gt)
 
 make_url <- function(x, y) {
-  paste0('<a href="', tb %>% filter(logo %in% x) %>% slice(match(logo, x)) %>% pull(link), '">', y, '</a>')
+  paste0('<a href="', pkgs |> filter(logo %in% x) |> slice(match(logo, x)) |> pull(link), '">', y, '</a>')
 }
 
-tb <- read_csv('pkgs.csv') %>% 
+pkgs <- read_csv('pkgs.csv') |> 
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
     .after = name
   )
 
-# counts <- tb %>%
-#   filter(status == 'CRAN') %>%
-#   pull(name) %>%
-#   cranlogs::cran_downloads(from = '2015-05-18') %>%
-#   group_by(package) %>%
-#   summarize(count = sum(count)) %>%
+# counts <- pkgs |>
+#   filter(status == 'CRAN') |>
+#   pull(name) |>
+#   cranlogs::cran_downloads(from = '2015-05-18') |>
+#   group_by(package) |>
+#   summarize(count = sum(count)) |>
 #   rename(name = package)
 ```
 
 # Packages on CRAN:
 
 ```{r cran}
-tb %>% 
-  filter(status == 'CRAN') %>% 
-  select(logo, info) %>% 
-  gt(id = 'crantable') %>% 
+pkgs |> 
+  filter(status == 'CRAN') |> 
+  select(logo, info) |> 
+  gt(id = 'crantable') |> 
   text_transform(
     locations = cells_body(columns = logo),
     fn = function(x) {
@@ -45,27 +45,27 @@ tb %>%
                  )
       )
     }
-  ) %>%
+  ) |>
   tab_options(
     column_labels.hidden = TRUE
-  ) %>% 
+  ) |> 
   cols_width(
     logo ~ px(125)
-  ) %>% 
+  ) |> 
   tab_style(
     style = cell_text(weight = 'bold'),
     locations = cells_body(columns = info)
-  ) #%>% 
+  ) #|> 
   #gt::gtsave(filename = 'tabs/cran.html')
 ```
 
 # Packages on GitHub:
 
 ```{r github}
-tb %>% 
-  filter(status == 'GitHub') %>% 
-  select(logo, info) %>% 
-  gt(id = 'githubtable') %>% 
+pkgs |> 
+  filter(status == 'GitHub') |> 
+  select(logo, info) |> 
+  gt(id = 'githubtable') |> 
   text_transform(
     locations = cells_body(columns = logo),
     fn = function(x) {
@@ -76,16 +76,16 @@ tb %>%
                )
       )
     }
-  ) %>%
+  ) |>
    tab_options(
      column_labels.hidden = TRUE
-  ) %>% 
+  ) |> 
   cols_width(
     logo ~ px(125)
-  ) %>% 
+  ) |> 
   tab_style(
     style = cell_text(weight = 'bold'),
     locations = cells_body(columns = info)
-  ) #%>% 
+  ) #|> 
   #gt::gtsave(filename = 'tabs/github.html')
 ```
