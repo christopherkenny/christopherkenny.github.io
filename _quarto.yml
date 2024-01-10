@@ -3,8 +3,10 @@ project:
   output-dir: "docs"
     
 website:
-  title: "Christopher T. Kenny"
+  title: 'Christopher T. Kenny'
+  favicon: "hexes/hex_ctk.png"
   navbar:
+    logo: "hexes/hex_ctk.png"
     right:
       - text: "Research"
         href: research.html
