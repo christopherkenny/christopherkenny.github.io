@@ -4,7 +4,7 @@ description: |
   Ph.D. Candidate, Department of Government, Harvard University
 about:
   template: trestles
-  image: "figs/ckenny.jpg"
+  image: "figs/ckenny_small.webp"
   links:
     - text: Twitter
       url: "https://twitter.com/Chris_T_Kenny"

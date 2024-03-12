@@ -6,6 +6,32 @@ date: last-modified
 ---
 # Publications
 
+### [Census Officials Must Constructively Engage with Independent Evaluations](https://www.pnas.org/doi/10.1073/pnas.2321196121)
+
+(with Cory McCartan, Tyler Simko, and Kosuke Imai). 2024. PNAS.
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@article{kenn:etal:24,
+  title={Census officials must constructively engage with independent evaluations},
+  author={Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Imai, Kosuke},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={121},
+  number={11},
+  pages={e2321196121},
+  year={2024},
+  publisher={National Acad Sciences}
+}
+```
+</details>
+
+<details>
+<summary>First paragraph</summary>
+Current and former Census Bureau officials [Jarmin et al.](https://www.pnas.org/doi/10.1073/pnas.2220558120) argue that differential privacy, which underlies the 2020 Census’s Disclosure Avoidance System (DAS), satisfies more desirable theoretical criteria than alternatives. They provide detailed criticisms of many published evaluations of the 2020 DAS, including our work. In this letter, we show that their criticisms are unfounded, grossly mischaracterize our research, and ignore critical issues that merit public discussion.
+</details>
+
 ### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://www.pnas.org/doi/10.1073/pnas.2217322120) 
 
 (with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai). 2023. PNAS.
