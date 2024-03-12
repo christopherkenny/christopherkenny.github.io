@@ -16,7 +16,7 @@ alarmdata,hexes/hex_alarmdata.png,"alarmdata: Download, Merge, and Process Redis
 ggredist,hexes/hex_ggredist.png,"ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting (with Cory McCartan)",CRAN,https://alarm-redist.org/ggredist/,#FED09E
 congress,hexes/hex_congress.png,congress: Access the Congress.gov API,CRAN,https://christophertkenny.com/congress/,#ABC0E4
 feltr,hexes/hex_feltr.png,feltr: Access the Felt API,CRAN,https://christophertkenny.com/feltr,#3D521E
-planscorer,hexes/hex_planscorer.png,planscorer: Score Redistricting Plans with PlanScore,GitHub,https://christophertkenny.com/planscorer/,#5D4F9C
+planscorer,hexes/hex_planscorer.png,planscorer: Score Redistricting Plans with PlanScore,CRAN,https://christophertkenny.com/planscorer/,#5D4F9C
 redistverse,hexes/hex_redistverse.png,redistverse: Easily Install and Load Redistricting Software,GitHub,https://alarm-redist.org/redistverse/,#91573A
 crayons,hexes/hex_crayons.png,crayons: Color Palettes from Crayon Boxes,CRAN,https://christophertkenny.com/crayons/,#FC73B4
 apportion,hexes/hex_apportion.png,apportion: Apportion Seats,CRAN,https://christophertkenny.com/apportion/,#0A1C30
