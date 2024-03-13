@@ -1,0 +1,104 @@
+---
+title: "Package relationships"
+---
+
+```{r, eval = FALSE, echo = FALSE}
+get_my_deps <- function(packages) {
+  lapply(packages, function(x) {
+    dfile <- desc::desc(package = x)
+    deps <- gsub(
+      " ?\\(.+\\)", "", 
+      c(
+        dfile$get_list("Depends", default = character(1)),
+        dfile$get_list("Imports", default = character(1)), 
+        dfile$get_list("LinkingTo", default = character(1))
+      )
+    )
+    intersect(deps, packages)
+  }) |> 
+    stats::setNames(packages)
+}
+
+connect_deps <- function(l) {
+  lapply(seq_along(l), function(i) {
+      if (length(l[[i]]) > 0) {
+        paste0(l[[i]], ' --> ' , names(l)[i])
+      }
+  }) |> 
+    unlist() |> 
+    unique()
+}
+
+embrace_deps <- function(packages, cran_packages) {
+  if (missing(cran_packages)) {
+    cran_packages <- tools::CRAN_package_db()$Package
+    cran_packages <- intersect(cran_packages, packages)
+  }
+  
+  ifelse(
+    packages %in% cran_packages, 
+    paste0(packages, '{{', packages, '}}'), 
+    paste0(packages, '((', packages, '))')
+  )
+}
+
+deps <- get_my_deps(pkgs$name)
+paste0('  ',
+       c(
+         embrace_deps(pkgs$name),
+         connect_deps(deps)
+       )) |> 
+  cat(sep = '\n')
+```
+
+```{mermaid}
+flowchart LR
+  redist{{redist}}
+  redistmetrics{{redistmetrics}}
+  geomander{{geomander}}
+  PL94171{{PL94171}}
+  censable{{censable}}
+  tinytiger{{tinytiger}}
+  dots{{dots}}
+  cvap{{cvap}}
+  ppmf{{ppmf}}
+  divseg{{divseg}}
+  name{{name}}
+  jot{{jot}}
+  ei{{ei}}
+  alarmdata{{alarmdata}}
+  ggredist{{ggredist}}
+  congress{{congress}}
+  feltr{{feltr}}
+  planscorer{{planscorer}}
+  redistverse((redistverse))
+  crayons{{crayons}}
+  apportion{{apportion}}
+  gptzeror{{gptzeror}}
+  bskyr{{bskyr}}
+  redistio((redistio))
+  palette((palette))
+  redistmetrics --> redist
+  censable --> geomander
+  tinytiger --> geomander
+  tinytiger --> PL94171
+  tinytiger --> censable
+  censable --> cvap
+  censable --> ppmf
+  censable --> alarmdata
+  geomander --> alarmdata
+  redist --> alarmdata
+  redistmetrics --> alarmdata
+  tinytiger --> alarmdata
+  redist --> redistverse
+  redistmetrics --> redistverse
+  geomander --> redistverse
+  ggredist --> redistverse
+  censable --> redistverse
+  tinytiger --> redistverse
+  PL94171 --> redistverse
+  alarmdata --> redistverse
+  geomander --> redistio
+  ggredist --> redistio
+  redistmetrics --> redistio
+```
