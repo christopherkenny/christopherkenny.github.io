@@ -1,7 +1,7 @@
 ---
 title: "Software"
 description: "R Packages"
-date: last-modified
+date: today
 ---
 
 ```{r setup, include=FALSE}
