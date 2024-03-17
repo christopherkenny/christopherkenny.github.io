@@ -20,8 +20,8 @@ planscorer,hexes/hex_planscorer.png,planscorer: Score Redistricting Plans with P
 redistverse,hexes/hex_redistverse.png,redistverse: Easily Install and Load Redistricting Software,GitHub,https://alarm-redist.org/redistverse/,#91573A
 crayons,hexes/hex_crayons.png,crayons: Color Palettes from Crayon Boxes,CRAN,https://christophertkenny.com/crayons/,#FC73B4
 apportion,hexes/hex_apportion.png,apportion: Apportion Seats,CRAN,https://christophertkenny.com/apportion/,#0A1C30
-gptzeror,hexes/hex_gptzeror.png,gptzeror: Identify Text Written by Large Language Models using GPTZero,CRAN,https://christophertkenny.com/gptzeror,#38547F
+gptzeror,hexes/hex_gptzeror.png,"gptzeror: Identify Text Written by Large Language Models using GPTZero",CRAN,https://christophertkenny.com/gptzeror,#38547F
 bskyr,hexes/hex_bskyr.png,bskyr: Interact with Bluesky Social,CRAN,https://christophertkenny.com/bskyr/,#0083FE
 redistio,hexes/hex_redistio.png,redistio: Interactive Redistricting,GitHub,https://christophertkenny.com/redistio/,#B6D7A8
 palette,hexes/hex_palette.png,palette: Color Scheme Helpers,CRAN,https://christophertkenny.com/palette/,#7C4700
-ThemePark,hexes/hex_themepark.png,"ThemePark: Themes for 'ggplot2' from Popular Culture,GitHub (with Matthew B. Jané and Luke C. Pilling)",https://matthewbjane.com/ThemePark/,#E86CB7
+ThemePark,hexes/hex_themepark.png,"ThemePark: Themes for 'ggplot2' from Popular Culture (with Matthew B. Jané and Luke C. Pilling)",GitHub,https://matthewbjane.com/ThemePark/,#E86CB7
