@@ -20,7 +20,7 @@ pkgs <- read_csv('pkgs.csv') |>
   )
 
 # counts <- pkgs |>
-#   filter(status == 'CRAN') |>
+#   filter(status == 'CRAN') |>  
 #   pull(name) |>
 #   cranlogs::cran_downloads(from = '2015-05-18') |>
 #   group_by(package) |>
