@@ -77,7 +77,8 @@ flowchart LR
   gptzeror{{gptzeror}}
   bskyr{{bskyr}}
   redistio((redistio))
-  palette((palette))
+  palette{{palette}}
+  ThemePark((ThemePark))
   redistmetrics --> redist
   censable --> geomander
   tinytiger --> geomander
@@ -98,6 +99,7 @@ flowchart LR
   tinytiger --> redistverse
   PL94171 --> redistverse
   alarmdata --> redistverse
+  palette --> crayons
   geomander --> redistio
   ggredist --> redistio
   redistmetrics --> redistio
