@@ -6,6 +6,31 @@ date: last-modified
 ---
 # Publications
 
+### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://arxiv.org/abs/2306.07521)
+
+(with Shiro Kuriwaki, Cory McCartan, Tyler Simko, and Kosuke Imai). Forthcoming. Science Advances.
+
+<details>
+<summary>BibTeX</summary>
+
+```
+@misc{kenn:etal:24b,
+      title={Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods}, 
+      author={Christopher T. Kenny and Shiro Kuriwaki and Cory McCartan and Tyler Simko and Kosuke Imai},
+      year={2023},
+      eprint={2306.07521},
+      archivePrefix={arXiv},
+      primaryClass={cs.CY}
+}
+```
+
+</details> 
+
+<details>
+<summary>Abstract</summary>
+The United States Census Bureau faces a difficult trade-off between the accuracy of Census statistics and the protection of individual information. We conduct the first independent evaluation of bias and noise induced by the Bureau's two main disclosure avoidance systems: the TopDown algorithm employed for the 2020 Census and the swapping algorithm implemented for the 1990, 2000, and 2010 Censuses. Our evaluation leverages the recent release of the Noisy Measure File (NMF) as well as the availability of two independent runs of the TopDown algorithm applied to the 2010 decennial Census. We find that the NMF contains too much noise to be directly useful alone, especially for Hispanic and multiracial populations. TopDown's post-processing dramatically reduces the NMF noise and produces similarly accurate data to swapping in terms of bias and noise. These patterns hold across census geographies with varying population sizes and racial diversity. While the estimated errors for both TopDown and swapping are generally no larger than other sources of Census error, they can be relatively substantial for geographies with small total populations.
+</details>
+
 ### [Census Officials Must Constructively Engage with Independent Evaluations](https://www.pnas.org/doi/10.1073/pnas.2321196121)
 
 (with Cory McCartan, Tyler Simko, and Kosuke Imai). 2024. PNAS.
@@ -14,7 +39,7 @@ date: last-modified
 <summary>BibTeX</summary>
 
 ```
-@article{kenn:etal:24,
+@article{kenn:etal:24a,
   title={Census officials must constructively engage with independent evaluations},
   author={Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Imai, Kosuke},
   journal={Proceedings of the National Academy of Sciences},
@@ -213,33 +238,6 @@ As granular data about elections and voters become available, redistricting simu
 <details>
 <summary>Abstract</summary>
 Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography.  Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.
-</details>
-
-### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://arxiv.org/abs/2306.07521)
-
-(with Shiro Kuriwaki, Cory McCartan, Tyler Simko, and Kosuke Imai)
-
-<details>
-<summary>BibTeX</summary>
-
-```
-@misc{kenn:etal:2023c,
-      title={Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods}, 
-      author={Christopher T. Kenny and Shiro Kuriwaki and Cory McCartan and Tyler Simko and Kosuke Imai},
-      year={2023},
-      eprint={2306.07521},
-      archivePrefix={arXiv},
-      primaryClass={cs.CY}
-}
-```
-
-</details> 
-
-</details>
-
-<details>
-<summary>Abstract</summary>
-The United States Census Bureau faces a difficult trade-off between the accuracy of Census statistics and the protection of individual information. We conduct the first independent evaluation of bias and noise induced by the Bureau's two main disclosure avoidance systems: the TopDown algorithm employed for the 2020 Census and the swapping algorithm implemented for the 1990, 2000, and 2010 Censuses. Our evaluation leverages the recent release of the Noisy Measure File (NMF) as well as the availability of two independent runs of the TopDown algorithm applied to the 2010 decennial Census. We find that the NMF contains too much noise to be directly useful alone, especially for Hispanic and multiracial populations. TopDown's post-processing dramatically reduces the NMF noise and produces similarly accurate data to swapping in terms of bias and noise. These patterns hold across census geographies with varying population sizes and racial diversity. While the estimated errors for both TopDown and swapping are generally no larger than other sources of Census error, they can be relatively substantial for geographies with small total populations.
 </details>
 
 
