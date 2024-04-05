@@ -1,5 +1,5 @@
 ---
-title: "Package relationships"
+title: 'Package relationships'
 ---
 
 ```{r, eval = FALSE, echo = FALSE}
@@ -7,11 +7,11 @@ get_my_deps <- function(packages) {
   lapply(packages, function(x) {
     dfile <- desc::desc(package = x)
     deps <- gsub(
-      " ?\\(.+\\)", "", 
+      ' ?\\(.+\\)', '', 
       c(
-        dfile$get_list("Depends", default = character(1)),
-        dfile$get_list("Imports", default = character(1)), 
-        dfile$get_list("LinkingTo", default = character(1))
+        dfile$get_list('Depends', default = character(1)),
+        dfile$get_list('Imports', default = character(1)), 
+        dfile$get_list('LinkingTo', default = character(1))
       )
     )
     intersect(deps, packages)
@@ -21,9 +21,9 @@ get_my_deps <- function(packages) {
 
 connect_deps <- function(l) {
   lapply(seq_along(l), function(i) {
-      if (length(l[[i]]) > 0) {
-        paste0(l[[i]], ' --> ' , names(l)[i])
-      }
+    if (length(l[[i]]) > 0) {
+      paste0(l[[i]], ' --> ' , names(l)[i])
+    }
   }) |> 
     unlist() |> 
     unique()
@@ -34,6 +34,12 @@ embrace_deps <- function(packages, cran_packages) {
     cran_packages <- tools::CRAN_package_db()$Package
     cran_packages <- intersect(cran_packages, packages)
   }
+  redistvese_packages <- c(
+    'redistverse',
+    'redist', 'redistmetrics', 'geomander', 'ggredist', 'censable', 
+    'tinytiger', 'PL94171', 'alarmdata'
+  )
+  packages <- c(packages[packages %in% redistvese_packages], packages[!packages %in% redistvese_packages])
   
   ifelse(
     packages %in% cran_packages, 
@@ -59,6 +65,9 @@ flowchart LR
   PL94171{{PL94171}}
   censable{{censable}}
   tinytiger{{tinytiger}}
+  alarmdata{{alarmdata}}
+  ggredist{{ggredist}}
+  redistverse((redistverse))
   dots{{dots}}
   cvap{{cvap}}
   ppmf{{ppmf}}
@@ -66,12 +75,9 @@ flowchart LR
   name{{name}}
   jot{{jot}}
   ei{{ei}}
-  alarmdata{{alarmdata}}
-  ggredist{{ggredist}}
   congress{{congress}}
   feltr{{feltr}}
   planscorer{{planscorer}}
-  redistverse((redistverse))
   crayons{{crayons}}
   apportion{{apportion}}
   gptzeror{{gptzeror}}
