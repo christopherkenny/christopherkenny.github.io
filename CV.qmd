@@ -1,8 +1,9 @@
 ---
 title: "Curriculum Vitae"
 description: |
-  Last Updated March 2024.
+  Last Updated April 2024.
 date: last-modified
+date-format: "MMMM YYYY"
 ---
 
 <embed src="cv/cv.pdf" height="1000" width="100%" type="application/pdf" />
