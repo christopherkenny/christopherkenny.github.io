@@ -6,21 +6,25 @@ date: last-modified
 ---
 # Publications
 
-### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://arxiv.org/abs/2306.07521)
+### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
 
-(with Shiro Kuriwaki, Cory McCartan, Tyler Simko, and Kosuke Imai). Forthcoming. Science Advances.
+(with Cory McCartan, Shiro Kuriwaki, Tyler Simko, and Kosuke Imai). 2024. Science Advances.
 
 <details>
 <summary>BibTeX</summary>
 
 ```
 @misc{kenn:etal:24b,
-      title={Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods}, 
-      author={Christopher T. Kenny and Shiro Kuriwaki and Cory McCartan and Tyler Simko and Kosuke Imai},
-      year={2023},
-      eprint={2306.07521},
-      archivePrefix={arXiv},
-      primaryClass={cs.CY}
+  author = {Christopher T. Kenny  and Cory McCartan  and Shiro Kuriwaki  and Tyler Simko  and Kosuke Imai },
+  title = {Evaluating bias and noise induced by the U.S. Census Bureau’s privacy protection methods},
+  journal = {Science Advances},
+  volume = {10},
+  number = {18},
+  pages = {eadl2524},
+  year = {2024},
+  doi = {10.1126/sciadv.adl2524},
+  URL = {https://www.science.org/doi/abs/10.1126/sciadv.adl2524},
+ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.adl2524},
 }
 ```
 
