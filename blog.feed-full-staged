@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Christopher T. Kenny</title>
+<link>https://christophertkenny.com/blog.html</link>
+<atom:link href="https://christophertkenny.com/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Christopher T. Kenny&#39;s Personal Website</description>
+<generator>quarto-1.4.533</generator>
+<lastBuildDate>Wed, 03 Jan 2024 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/2024-01-03-bskyr-bot/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2024-01-03-bskyr-bot/</link>
+  <description>{B4F502887207:/posts/2024-01-03-bskyr-bot/index.html}</description>
+  <category>r-pkg</category>
+  <category>bskyr</category>
+  <guid>https://christophertkenny.com/posts/2024-01-03-bskyr-bot/</guid>
+  <pubDate>Wed, 03 Jan 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2024-01-03-bskyr-bot/bsky profile.png" medium="image" type="image/png" height="113" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-12-21-cran-wrapped/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-12-21-cran-wrapped/</link>
+  <description>{B4F502887207:/posts/2023-12-21-cran-wrapped/index.html}</description>
+  <category>r-pkg</category>
+  <guid>https://christophertkenny.com/posts/2023-12-21-cran-wrapped/</guid>
+  <pubDate>Thu, 21 Dec 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-12-21-cran-wrapped/hexes_2023-12-20.png" medium="image" type="image/png" height="46" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-07-07-making-maps-with-feltr/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/</link>
+  <description>{B4F502887207:/posts/2023-07-07-making-maps-with-feltr/index.html}</description>
+  <category>maps</category>
+  <category>r-pkg</category>
+  <guid>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/</guid>
+  <pubDate>Fri, 07 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/hex_feltr.png" medium="image" type="image/png" height="167" width="144"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2023-07-01-creating-quarto-journal-articles/index.html}</title>
+  <dc:creator>Christopher T. Kenny</dc:creator>
+  <link>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/</link>
+  <description>{B4F502887207:/posts/2023-07-01-creating-quarto-journal-articles/index.html}</description>
+  <category>quarto</category>
+  <guid>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/</guid>
+  <pubDate>Sat, 01 Jul 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/pnas-template.png" medium="image" type="image/png" height="186" width="144"/>
+</item>
+</channel>
+</rss>
