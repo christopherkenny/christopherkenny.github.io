@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: "docs"
+  resources:
+    - "figs/tibblestable.png"
     
 website:
   title: 'Christopher T. Kenny'
