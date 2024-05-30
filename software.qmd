@@ -9,23 +9,59 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(gt)
 
+# helpers ----
 make_url <- function(x, y) {
   paste0('<a href="', pkgs |> filter(logo %in% x) |> slice(match(logo, x)) |> pull(link), '">', y, '</a>')
 }
 
+fmt_software_table <- function(tb, .id = NULL) {
+  tb |> 
+    mutate(
+      info = paste0(name, ': ', info)
+    ) |> 
+    select(logo, info) |> 
+    gt(id = .id) |> 
+    text_transform(
+      locations = cells_body(columns = logo),
+      fn = function(x) {
+        make_url(x,
+                 local_image(
+                   filename = x,
+                   height = '100px; object-fit: contain; width: 125px'
+                 )
+        )
+      }
+    ) |>
+    tab_options(
+      column_labels.hidden = TRUE
+    ) |> 
+    cols_width(
+      logo ~ px(125)
+    ) |> 
+    tab_style(
+      style = cell_text(weight = 'bold'),
+      locations = cells_body(columns = info)
+    )
+}
+
+# read data ----
 pkgs <- read_csv('pkgs.csv') |> 
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
     .after = name
   )
 
-# counts <- pkgs |>
-#   filter(status == 'CRAN') |>
-#   pull(name) |>
-#   cranlogs::cran_downloads(from = '2015-05-18') |>
-#   group_by(package) |>
-#   summarize(count = sum(count)) |>
-#   rename(name = package)
+if (FALSE) {
+  downloads <- pkgs |>
+    filter(status == 'CRAN') |>  
+    pull(name) |>
+    cranlogs::cran_downloads(from = '2015-05-18') |> 
+    as_tibble()
+  counts <- downloads |>
+    group_by(package) |>
+    summarize(count = sum(count)) |>
+    rename(name = package)
+}
 ```
 
 # Packages on CRAN:
@@ -33,30 +69,7 @@ pkgs <- read_csv('pkgs.csv') |>
 ```{r cran}
 pkgs |> 
   filter(status == 'CRAN') |> 
-  select(logo, info) |> 
-  gt(id = 'crantable') |> 
-  text_transform(
-    locations = cells_body(columns = logo),
-    fn = function(x) {
-      make_url(x, y = 
-                 local_image(
-                   filename = x,
-                   height = '100px; object-fit: contain; width: 125px'
-                 )
-      )
-    }
-  ) |>
-  tab_options(
-    column_labels.hidden = TRUE
-  ) |> 
-  cols_width(
-    logo ~ px(125)
-  ) |> 
-  tab_style(
-    style = cell_text(weight = 'bold'),
-    locations = cells_body(columns = info)
-  ) #|> 
-  #gt::gtsave(filename = 'tabs/cran.html')
+  fmt_software_table(.id = 'crantable')
 ```
 
 # Packages on GitHub:
@@ -64,28 +77,5 @@ pkgs |>
 ```{r github}
 pkgs |> 
   filter(status == 'GitHub') |> 
-  select(logo, info) |> 
-  gt(id = 'githubtable') |> 
-  text_transform(
-    locations = cells_body(columns = logo),
-    fn = function(x) {
-      make_url(x,
-               local_image(
-                 filename = x,
-                 height = '100px; object-fit: contain; width: 125px'
-               )
-      )
-    }
-  ) |>
-   tab_options(
-     column_labels.hidden = TRUE
-  ) |> 
-  cols_width(
-    logo ~ px(125)
-  ) |> 
-  tab_style(
-    style = cell_text(weight = 'bold'),
-    locations = cells_body(columns = info)
-  ) #|> 
-  #gt::gtsave(filename = 'tabs/github.html')
+  fmt_software_table()
 ```
