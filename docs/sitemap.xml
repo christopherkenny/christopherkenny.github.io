@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://christophertkenny.com/blog.html</loc>
-    <lastmod>2023-07-08T03:15:48.061Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/CV.html</loc>
-    <lastmod>2024-05-03T12:56:23.227Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/index.html</loc>
-    <lastmod>2024-03-27T15:20:35.478Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</loc>
-    <lastmod>2023-07-08T03:04:48.435Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</loc>
-    <lastmod>2023-07-04T16:33:26.670Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/research.html</loc>
-    <lastmod>2024-05-02T21:39:11.176Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-12-21-cran-wrapped/index.html</loc>
-    <lastmod>2023-12-30T03:27:11.026Z</lastmod>
+    <loc>https://christophertkenny.com/software.html</loc>
+    <lastmod>2024-05-30T15:52:01.674Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/posts/2024-01-03-bskyr-bot/index.html</loc>
-    <lastmod>2024-01-09T03:20:27.088Z</lastmod>
+    <lastmod>2024-01-03T20:28:00.448Z</lastmod>
   </url>
   <url>
-    <loc>https://christophertkenny.com/software.html</loc>
-    <lastmod>2024-04-15T23:06:30.217Z</lastmod>
+    <loc>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</loc>
+    <lastmod>2023-07-08T23:23:25.087Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/package-relationships.html</loc>
-    <lastmod>2024-04-05T14:22:16.285Z</lastmod>
+    <lastmod>2024-05-30T15:51:30.882Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/CV.html</loc>
+    <lastmod>2024-05-30T15:51:30.395Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/blog.html</loc>
+    <lastmod>2023-07-08T23:23:24.910Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/index.html</loc>
+    <lastmod>2024-03-12T20:01:52.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</loc>
+    <lastmod>2023-07-06T17:38:16.229Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-12-21-cran-wrapped/index.html</loc>
+    <lastmod>2023-12-21T18:55:00.251Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/research.html</loc>
+    <lastmod>2024-05-30T15:51:30.882Z</lastmod>
   </url>
 </urlset>
