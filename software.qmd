@@ -17,7 +17,8 @@ make_url <- function(x, y) {
 fmt_software_table <- function(tb, .id = NULL) {
   tb |> 
     mutate(
-      info = paste0(name, ': ', info)
+      info = paste0(name, ': ', info),
+      info = ifelse(is.na(coauthors), info, paste0(info, ' (with ', coauthors, ')'))
     ) |> 
     select(logo, info) |> 
     gt(id = .id) |> 
@@ -77,5 +78,5 @@ pkgs |>
 ```{r github}
 pkgs |> 
   filter(status == 'GitHub') |> 
-  fmt_software_table()
+  fmt_software_table(.id = 'githubtable')
 ```
