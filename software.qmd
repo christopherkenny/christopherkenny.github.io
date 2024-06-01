@@ -62,6 +62,31 @@ if (FALSE) {
     group_by(package) |>
     summarize(count = sum(count)) |>
     rename(name = package)
+  
+  downloads |> 
+  rename(name = package) |> 
+  left_join(pkgs, by = 'name') |> 
+  filter(date >= date('2024-01-01')) |> 
+  group_by(name) |> 
+  arrange(date) |> 
+  mutate(
+    cumulative_count = cumsum(count),
+    pkg_max = max(cumulative_count),
+    noise = rnorm(1, 0, 0.1)
+  ) |> 
+  ungroup() |> 
+  mutate(
+    ratio = pmin(pmax(pkg_max / max(pkg_max), 0.3), 0.95) + noise
+  ) |> 
+  filter(cumulative_count > 0) |>
+  ggplot() +
+  geomtextpath::geom_textpath(
+    aes(x = date, y = cumulative_count, label = name, color = color, hjust = ratio)
+  ) + 
+  scale_x_date(name = 'Date', date_breaks = '1 month', date_labels = '%b %Y') +
+  scale_y_continuous(name = 'Count', labels = scales::label_comma(), breaks = seq(0, 6000, by = 1000)) +
+  scale_color_identity() +
+  theme_bw()
 }
 ```
 
