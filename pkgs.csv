@@ -1,19 +1,19 @@
 name,logo,info,coauthors,status,link,color
-redist,hexes/hex_redist.png,Simulation Methods for Legislative Redistricting ,"Cory McCartan, Ben Fifield, and Kosuke Imai",CRAN,https://alarm-redist.org/redist/,#A61C00
-redistmetrics,hexes/hex_redistmetrics.png,Redistricting metrics ,"Cory McCartan, Ben Fifield, and Kosuke Imai",CRAN,https://alarm-redist.org/redistmetrics/,#93C47D
+redist,hexes/hex_redist.png,Simulation Methods for Legislative Redistricting,"Cory McCartan, Ben Fifield, and Kosuke Imai",CRAN,https://alarm-redist.org/redist/,#A61C00
+redistmetrics,hexes/hex_redistmetrics.png,Redistricting metrics,"Cory McCartan, Ben Fifield, and Kosuke Imai",CRAN,https://alarm-redist.org/redistmetrics/,#93C47D
 geomander,hexes/hex_geomander.png,Geographic Tools for Studying Gerrymandering,NA,CRAN,https://christophertkenny.com/geomander/,#BF9000
-PL94171,hexes/hex_PL94171.png,Tabulate P.L. 94-171 Redistricting Data Summary Files ,Cory McCartan,CRAN,https://corymccartan.com/PL94171/,#A06D54
+PL94171,hexes/hex_PL94171.png,Tabulate P.L. 94-171 Redistricting Data Summary Files,Cory McCartan,CRAN,https://corymccartan.com/PL94171/,#A06D54
 censable,hexes/hex_censable.png,Making Census Data More Usable,NA,CRAN,https://christophertkenny.com/censable/,#008FC4
-tinytiger,hexes/hex_tinytiger.png,Lightweight Interface to TIGER/Line Shapefiles ,Cory McCartan,CRAN,https://alarm-redist.org/tinytiger/,#E69138
+tinytiger,hexes/hex_tinytiger.png,Lightweight Interface to TIGER/Line Shapefiles,Cory McCartan,CRAN,https://alarm-redist.org/tinytiger/,#E69138
 dots,hexes/hex_dots.png,Dot Density Maps,NA,CRAN,https://christophertkenny.com/dots/,#020000
 cvap,hexes/hex_cvap.png,Citizen Voting Age Population,NA,CRAN,https://christophertkenny.com/cvap/,#CDEBE1
 ppmf,hexes/hex_ppmf.png,Read Census Privacy Protected Microdata Files,NA,CRAN,https://christophertkenny.com/ppmf/,#EFC519
 divseg,hexes/hex_divseg.png,Compute Diversity and Segregation Indices,NA,CRAN,https://christophertkenny.com/divseg/,#A020F0
 name,hexes/hex_name.png,Tools for Working with Names,NA,CRAN,https://christophertkenny.com/name/,#FF0000
 jot,hexes/hex_jot.png,Jot Down Notes for Later,NA,CRAN,https://christophertkenny.com/jot/,#3E885B
-ei,hexes/hex_ei.png,Ecological Inference ,"Shusei Eshima, Gary King, and Molly Roberts",GitHub,https://iqss-research.github.io/ei/,#E18751
-alarmdata,hexes/hex_alarmdata.png,"Download, Merge, and Process Redistricting Data ","Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai",CRAN,https://alarm-redist.org/alarmdata/,#87A293
-ggredist,hexes/hex_ggredist.png,"Scales, Palettes, and Extensions of ggplot2 for Redistricting ",Cory McCartan,CRAN,https://alarm-redist.org/ggredist/,#FED09E
+ei,hexes/hex_ei.png,Ecological Inference,"Shusei Eshima, Gary King, and Molly Roberts",GitHub,https://iqss-research.github.io/ei/,#E18751
+alarmdata,hexes/hex_alarmdata.png,"Download, Merge, and Process Redistricting Data","Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai",CRAN,https://alarm-redist.org/alarmdata/,#87A293
+ggredist,hexes/hex_ggredist.png,"Scales, Palettes, and Extensions of ggplot2 for Redistricting",Cory McCartan,CRAN,https://alarm-redist.org/ggredist/,#FED09E
 congress,hexes/hex_congress.png,Access the Congress.gov API,NA,CRAN,https://christophertkenny.com/congress/,#ABC0E4
 feltr,hexes/hex_feltr.png,Access the Felt API,NA,CRAN,https://christophertkenny.com/feltr,#3D521E
 planscorer,hexes/hex_planscorer.png,Score Redistricting Plans with PlanScore,NA,CRAN,https://christophertkenny.com/planscorer/,#5D4F9C
@@ -24,4 +24,5 @@ gptzeror,hexes/hex_gptzeror.png,Identify Text Written by Large Language Models u
 bskyr,hexes/hex_bskyr.png,Interact with Bluesky Social,NA,CRAN,https://christophertkenny.com/bskyr/,#0083FE
 redistio,hexes/hex_redistio.png,Interactive Redistricting,NA,GitHub,https://christophertkenny.com/redistio/,#B6D7A8
 palette,hexes/hex_palette.png,Color Scheme Helpers,NA,CRAN,https://christophertkenny.com/palette/,#7C4700
-ThemePark,hexes/hex_themepark.png,Themes for 'ggplot2' from Popular Culture ,Matthew B. Jané and Luke C. Pilling,GitHub,https://matthewbjane.com/ThemePark/,#E86CB7
+ThemePark,hexes/hex_ThemePark.png,Themes for 'ggplot2' from Popular Culture,Matthew B. Jané and Luke C. Pilling,GitHub,https://matthewbjane.com/ThemePark/,#E86CB7
+BAF,hexes/hex_baf.png,Block Assignment Files,NA,GitHub,https://christophertkenny.com/baf,#787878
