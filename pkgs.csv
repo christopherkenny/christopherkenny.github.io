@@ -25,4 +25,4 @@ bskyr,hexes/hex_bskyr.png,Interact with Bluesky Social,NA,CRAN,https://christoph
 redistio,hexes/hex_redistio.png,Interactive Redistricting,NA,GitHub,https://christophertkenny.com/redistio/,#B6D7A8
 palette,hexes/hex_palette.png,Color Scheme Helpers,NA,CRAN,https://christophertkenny.com/palette/,#7C4700
 ThemePark,hexes/hex_ThemePark.png,Themes for 'ggplot2' from Popular Culture,Matthew B. Jané and Luke C. Pilling,GitHub,https://matthewbjane.com/ThemePark/,#E86CB7
-BAF,hexes/hex_baf.png,Block Assignment Files,NA,GitHub,https://christophertkenny.com/baf,#787878
+baf,hexes/hex_baf.png,Block Assignment Files,NA,CRAN,https://christophertkenny.com/baf,#787878
