@@ -34,12 +34,12 @@ embrace_deps <- function(packages, cran_packages) {
     cran_packages <- tools::CRAN_package_db()$Package
     cran_packages <- intersect(cran_packages, packages)
   }
-  redistvese_packages <- c(
+  redistverse_packages <- c(
     'redistverse',
     'redist', 'redistmetrics', 'geomander', 'ggredist', 'censable', 
     'tinytiger', 'PL94171', 'alarmdata'
   )
-  packages <- c(packages[packages %in% redistvese_packages], packages[!packages %in% redistvese_packages])
+  packages <- c(packages[packages %in% redistverse_packages], packages[!packages %in% redistverse_packages])
   
   ifelse(
     packages %in% cran_packages, 
@@ -85,6 +85,7 @@ flowchart LR
   redistio((redistio))
   palette{{palette}}
   ThemePark((ThemePark))
+  baf{{baf}}
   redistmetrics --> redist
   censable --> geomander
   tinytiger --> geomander
