@@ -245,12 +245,27 @@ Social scientists have developed dozens of measures for assessing partisan bias 
 </details>
 
 
-# Works-in-Progress
-
-### Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation
+### [Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation](https://judgelord.github.io/finreg/participatory-inequality.pdf)
 (with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)
 
 Awarded the 2021 Herbert Kaufman Award.
+
+<details>
+<summary>Abstract</summary>
+Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under
+pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over
+260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities
+of over 6,000 organizations. Leveraging measures of organizations’ wealth, participation in administrative
+politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based
+inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in
+rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not
+explained by membership differentials. More profit-driven organizations are also more likely to participate
+and enjoy more success in shifting the content of federal agency rules. Wealthier organizations’ ability to
+marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying
+success.
+</details>
+
+# Works-in-Progress
 
 ### Algorithm-Assisted Redistricting Methodology
 
