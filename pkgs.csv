@@ -17,7 +17,7 @@ ggredist,hexes/hex_ggredist.png,"Scales, Palettes, and Extensions of ggplot2 for
 congress,hexes/hex_congress.png,Access the Congress.gov API,NA,CRAN,https://christophertkenny.com/congress/,#ABC0E4
 feltr,hexes/hex_feltr.png,Access the Felt API,NA,CRAN,https://christophertkenny.com/feltr,#3D521E
 planscorer,hexes/hex_planscorer.png,Score Redistricting Plans with PlanScore,NA,CRAN,https://christophertkenny.com/planscorer/,#5D4F9C
-redistverse,hexes/hex_redistverse.png,Easily Install and Load Redistricting Software,NA,GitHub,https://alarm-redist.org/redistverse/,#91573A
+redistverse,hexes/hex_redistverse.png,Easily Install and Load Redistricting Software,"Cory McCartan",CRAN,https://alarm-redist.org/redistverse/,#91573A
 crayons,hexes/hex_crayons.png,Color Palettes from Crayon Boxes,NA,CRAN,https://christophertkenny.com/crayons/,#FC73B4
 apportion,hexes/hex_apportion.png,Apportion Seats,NA,CRAN,https://christophertkenny.com/apportion/,#0A1C30
 gptzeror,hexes/hex_gptzeror.png,Identify Text Written by Large Language Models using GPTZero,NA,CRAN,https://christophertkenny.com/gptzeror,#38547F
