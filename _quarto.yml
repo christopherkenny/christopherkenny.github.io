@@ -40,5 +40,7 @@ website:
 
 format:
   html:
-    theme: yeti
+    theme: 
+    - yeti
+    - custom.scss
     sidebar: false
