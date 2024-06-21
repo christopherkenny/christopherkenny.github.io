@@ -2,7 +2,14 @@
 title: 'Package relationships'
 ---
 
-```{r, eval = FALSE, echo = FALSE}
+```{r, echo = FALSE, results = 'hide', warning=FALSE, message=FALSE}
+library(tidyverse)
+pkgs <- read_csv('pkgs.csv') |> 
+  mutate(
+    logo = paste0('hexes/hex_', name, '.png'),
+    .after = name
+  )
+
 get_my_deps <- function(packages) {
   lapply(packages, function(x) {
     dfile <- desc::desc(package = x)
@@ -112,3 +119,43 @@ flowchart LR
   ggredist --> redistio
   redistmetrics --> redistio
 ```
+
+
+```{r, echo = FALSE}
+library(DiagrammeR)
+
+tb_node <- tibble(
+  name = names(deps), 
+  deps = unname(deps),
+  type = pkgs$status
+)
+
+tb_edge <- tb_node |> 
+  unnest_longer(deps)
+
+
+nodes <- create_node_df(
+  n = nrow(tb_node), 
+  label = tb_node$name, 
+  type = tb_node$type
+) 
+edges <- create_edge_df(
+  to = match(tb_edge$name, tb_node$name), 
+  from = match(tb_edge$deps, tb_node$name)
+)
+
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges
+) |> 
+  select_nodes(conditions = type == 'CRAN') |> 
+  set_node_attrs_ws(node_attr = shape, value = 'rect') |>
+  invert_selection() |>
+  set_node_attrs_ws(node_attr = shape, value = 'ellipse') |>
+  clear_selection() |>
+  colorize_node_attrs(node_attr_from = type, node_attr_to = fillcolor,
+                      palette = c('#e07a5f', '#81b29a')) |>
+  set_node_attrs(node_attr = fontcolor, values = 'black') |> 
+  render_graph(layout = 'kk')
+```
+
