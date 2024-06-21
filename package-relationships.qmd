@@ -67,7 +67,7 @@ flowchart LR
   tinytiger{{tinytiger}}
   alarmdata{{alarmdata}}
   ggredist{{ggredist}}
-  redistverse((redistverse))
+  redistverse{{redistverse}}
   dots{{dots}}
   cvap{{cvap}}
   ppmf{{ppmf}}
@@ -98,6 +98,7 @@ flowchart LR
   redist --> alarmdata
   redistmetrics --> alarmdata
   tinytiger --> alarmdata
+  palette --> ggredist
   redist --> redistverse
   redistmetrics --> redistverse
   geomander --> redistverse
