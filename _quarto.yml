@@ -9,7 +9,7 @@ website:
   favicon: "hexes/hex_ctk.png"
   navbar:
     logo: "hexes/hex_ctk.png"
-    right:
+    left:
       - text: "Research"
         href: research.html
       - text: "Software"
@@ -18,6 +18,7 @@ website:
         href: CV.html
       - text: "Blog"
         href: blog.html
+    right:
       - icon: twitter
         href: https://twitter.com/Chris_T_Kenny
       - text: "{{< iconify fa6-brands square-threads >}}"
@@ -34,8 +35,13 @@ website:
         href: https://christopherkenny.r-universe.dev/builds
     background: "#B31B1B"
   google-analytics: "G-PBRM1BV0GG"
+  twitter-card: 
+    site: "@Chris_T_Kenny"
+    creator: "@Chris_T_Kenny"
+  open-graph: true
   site-url: https://christophertkenny.com
-  description: "Christopher T. Kenny's Personal Website"
+  repo-url: "https://github.com/christopherkenny/christopherkenny.github.io"
+  description: "Christopher T. Kenny's is a PhD candidate in Government at Harvard University."
 
 
 format:
@@ -44,3 +50,5 @@ format:
     - yeti
     - custom.scss
     sidebar: false
+    code-overflow: wrap
+    code-copy: true
