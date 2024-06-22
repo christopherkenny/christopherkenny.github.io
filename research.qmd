@@ -4,7 +4,7 @@ description: |
   Research in American Politics and Political Methodology
 date: last-modified
 ---
-# Publications
+## Publications
 
 #### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
 
@@ -212,7 +212,7 @@ As granular data about elections and voters become available, redistricting simu
 </details>
 
 
-# Working Papers
+## Working Papers
 
 #### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7/)
 
@@ -253,7 +253,7 @@ Awarded the 2021 Herbert Kaufman Award.
 Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations’ wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations’ ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success.
 </details>
 
-# Works-in-Progress
+## Works-in-Progress
 
 #### Algorithm-Assisted Redistricting Methodology
 
