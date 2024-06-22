@@ -3,6 +3,7 @@ project:
   output-dir: "docs"
   resources:
     - "figs/tibblestable.png"
+    - "files/ctkenny-gov97-syllabus-public.pdf"
     
 website:
   title: 'Christopher T. Kenny'
