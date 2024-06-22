@@ -1,27 +1,41 @@
 ---
-title: "Christopher T. Kenny"
-description: |
-  Ph.D. Candidate, Department of Government, Harvard University
-about:
-  template: trestles
-  image: "figs/ckenny_small.webp"
-  links:
-    - icon: twitter
-      url: "https://twitter.com/Chris_T_Kenny"
-    - icon: github
-      url: "https://github.com/christopherkenny"
-    - text: "{{< iconify fa6-brands google-scholar >}}"
-      url: "https://scholar.google.com/citations?user=uVUhHXAAAAAJ"
-    - icon: envelope-at
-      url: "christopherkenny@fas.harvard.edu"
 sidebar: false
+html:
+  page-layout: full
+include-in-header:
+  text: |
+    <style type="text/css">
+      h2, .h2 {
+        border-bottom: none;
+      }
+    </style>
 ---
-::::{.column-page}
-## About Me
+:::::{.column-screen-inset}
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+:::::: {.text-center}
+
+![](figs/ckenny_small.webp){width=20em}
+
+# Christopher T. Kenny
+
+Ph.D. Candidate, Department of Government, Harvard University
+
+[{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"}
+
+::::::
+
+:::
+::: {.column width="60%"}
+
+# About Me
 
 I am a PhD candidate in the Department of Government, studying American Politics and Political Methodology. My substantive focus is on redistricting and gerrymandering. I work on open source R tools for analyzing redistricting and voting rights in context. I am affiliated with the Center for American Political Studies at Harvard University, the Institute for Quantitative Social Science, and the Algorithm-Assisted Redistricting Methodology (ALARM) Project. In 2022, I was a fellow at the Election Law Clinic at Harvard Law School.
 
-## Current Affiliations
+# Current Affiliations
 
 [ALARM Project](https://alarm-redist.github.io/)
 
@@ -30,7 +44,7 @@ I am a PhD candidate in the Department of Government, studying American Politics
 [Center for American Political Studies](https://caps.gov.harvard.edu/)
 
 
-## Education
+# Education
 
 **Harvard University** | Cambridge, MA
 
@@ -41,4 +55,9 @@ M.A. in Government | August 2019 - May 2021
 **Cornell University** | Ithaca, NY
 
 B.A. in Mathematics and Government | August 2015 - May 2019
+
+:::
+
 ::::
+
+:::::
