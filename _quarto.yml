@@ -41,7 +41,7 @@ website:
   open-graph: true
   site-url: https://christophertkenny.com
   repo-url: "https://github.com/christopherkenny/christopherkenny.github.io"
-  description: "Christopher T. Kenny's is a PhD candidate in Government at Harvard University."
+  description: "Christopher T. Kenny is a PhD candidate in Government at Harvard University."
 
 
 format:
@@ -49,6 +49,5 @@ format:
     theme: 
     - yeti
     - custom.scss
-    sidebar: false
     code-overflow: wrap
     code-copy: true
