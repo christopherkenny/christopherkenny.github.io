@@ -13,6 +13,8 @@ website:
     left:
       - text: "Research"
         href: research.html
+      - text: "Teaching"
+        href: teaching.html
       - text: "Software"
         href: software.html
       - text: "CV"
