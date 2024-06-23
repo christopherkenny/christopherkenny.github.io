@@ -143,7 +143,7 @@ edges <- create_edge_df(
   to = match(tb_edge$name, tb_node$name), 
   from = match(tb_edge$deps, tb_node$name)
 )
-
+htmlwidgets::setWidgetIdSeed(seed = 1)
 create_graph(
   nodes_df = nodes,
   edges_df = edges
@@ -156,6 +156,6 @@ create_graph(
   colorize_node_attrs(node_attr_from = type, node_attr_to = fillcolor,
                       palette = c('#e07a5f', '#81b29a')) |>
   set_node_attrs(node_attr = fontcolor, values = 'black') |> 
-  render_graph(layout = 'kk')
+  render_graph(layout = 'kk', )
 ```
 
