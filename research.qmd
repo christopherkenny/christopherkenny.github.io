@@ -4,6 +4,7 @@ description: |
   Research in American Politics and Political Methodology
 date: last-modified
 ---
+
 ## Publications
 
 #### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
@@ -184,8 +185,19 @@ The US Census Bureau plans to protect the privacy of 2020 Census respondents thr
 
 (with Benjamin Fifield, Kosuke Imai, and Jun Kawahara). 2020. Statistics and Public Policy.
 
-<details>
-<summary>BibTeX</summary>
+```{=html}
+<p>
+<button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#fifield2020essentialAbs" aria-expanded="false" aria-controls="collapseExample">
+    Abstract
+  </button>
+<button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#fifield2020essentialBib" aria-expanded="false" aria-controls="collapseExample">
+    BibTeX
+  </button>
+</p>
+```
+
+<div class="collapse" id="fifield2020essentialBib">
+  <div class="card card-body">
 
 ```{.bibtex .code-overflow-wrap}
 @article{fife:etal:20,
@@ -203,13 +215,15 @@ The US Census Bureau plans to protect the privacy of 2020 Census respondents thr
 }
 ```
 
-</details> 
+  </div>
+</div>
 
 
-<details>
-<summary>Abstract</summary>
+<div class="collapse" id="fifield2020essentialAbs">
+  <div class="card card-body">
 As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.
-</details>
+  </div>
+</div>
 
 
 ## Working Papers
