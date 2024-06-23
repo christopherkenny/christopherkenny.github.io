@@ -26,6 +26,10 @@ Course readings draw on legal authorities, law review articles, expert reports, 
 
 ### Gov 2001: Quantitative Research Methods I
 
+::: {.column-margin}
+![](figs/gov2k1.webp)
+:::
+
 Harvard University and Harvard Extension School, **Fall 2021**. 
 
 Teaching Fellow with [Gary King](https://garyking.org).
@@ -46,6 +50,10 @@ Received the Certificate of Distinction in Teaching from the [Derek Bok Center f
 
 ### lawyR:  R Basics for Lawyers
 
+::: {.column-margin}
+![](figs/hex_lawyR.png)
+:::
+
 Election Law Clinic at Harvard Law School, **Fall 2022**.
 
 Instructor.
@@ -54,11 +62,15 @@ An 8 week workshop on basics of R for the social sciences, focusing on relevant 
 
 ### Math Prefresher for Political Scientists
 
+::: {.column-margin}
+![](figs/hex_mathcamp.png)
+:::
+
 Harvard University, **Summer 2022**. 
 
 Instructor.
 
-A PhD-level refresher on math (linear algebra, calculus, and probability theory) and introduction to R for incoming graduate students in the Department of Government.
+A PhD-level refresher (often called "math camp") on math (linear algebra, calculus, and probability theory) and introduction to R for incoming graduate students in the Department of Government.
 
 <details>
 <summary>Full Course Description</summary>
