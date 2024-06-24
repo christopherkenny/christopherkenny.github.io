@@ -6,6 +6,6 @@ date: last-modified
 date-format: "MMMM YYYY"
 ---
 
-<embed src="cv/cv.pdf" height="1000" width="100%" type="application/pdf" />
+<embed src="cv/kenny_cv.pdf" height="1000" width="100%" type="application/pdf" />
 
 --- 
