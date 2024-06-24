@@ -24,7 +24,7 @@ include-in-header:
 
 Ph.D. Candidate, Department of Government, Harvard University
 
-[{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"}
+[{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
 ::::::
 
