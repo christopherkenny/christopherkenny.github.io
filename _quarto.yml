@@ -18,7 +18,7 @@ website:
       - text: "Software"
         href: software.html
       - text: "CV"
-        href: CV.html
+        href: cv/kenny_cv.pdf
       - text: "Blog"
         href: blog.html
     right:
