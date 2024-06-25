@@ -41,7 +41,8 @@ make_carousel(
   id = 'homeCarousel', 
   items = c('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redist.png', 'https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistio.png'), 
   alt = c('redist', 'redistio'),
-  style = 'width: 300px; height: 300px; margin: 0 auto;'
+  style = 'width: 300px; height: 300px; margin: 0 auto;',
+  class_opts = 'carousel-fade'
 )
 ```
 
