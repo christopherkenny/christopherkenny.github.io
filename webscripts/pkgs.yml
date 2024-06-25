@@ -1,148 +1,148 @@
 - category: CRAN
   packages:
-    - name: redist
-      logo: hexes/hex_redist.png
-      info: Simulation Methods for Legislative Redistricting
-      coauthors: Cory McCartan, Ben Fifield, and Kosuke Imai
-      link: https://alarm-redist.org/redist/
-      color: '#A61C00'
-    - name: redistmetrics
-      logo: hexes/hex_redistmetrics.png
-      info: Redistricting metrics
-      coauthors: Cory McCartan, Ben Fifield, and Kosuke Imai
-      link: https://alarm-redist.org/redistmetrics/
-      color: '#93C47D'
-    - name: geomander
-      logo: hexes/hex_geomander.png
-      info: Geographic Tools for Studying Gerrymandering
-      link: https://christophertkenny.com/geomander/
-      color: '#BF9000'
-    - name: PL94171
-      logo: hexes/hex_PL94171.png
-      info: Tabulate P.L. 94-171 Redistricting Data Summary Files
-      coauthors: Cory McCartan
-      link: https://corymccartan.com/PL94171/
-      color: '#A06D54'
-    - name: censable
-      logo: hexes/hex_censable.png
-      info: Making Census Data More Usable
-      link: https://christophertkenny.com/censable/
-      color: '#008FC4'
-    - name: tinytiger
-      logo: hexes/hex_tinytiger.png
-      info: Lightweight Interface to TIGER/Line Shapefiles
-      coauthors: Cory McCartan
-      link: https://alarm-redist.org/tinytiger/
-      color: '#E69138'
-    - name: dots
-      logo: hexes/hex_dots.png
-      info: Dot Density Maps
-      link: https://christophertkenny.com/dots/
-      color: '#020000'
-    - name: cvap
-      logo: hexes/hex_cvap.png
-      info: Citizen Voting Age Population
-      link: https://christophertkenny.com/cvap/
-      color: '#CDEBE1'
-    - name: ppmf
-      logo: hexes/hex_ppmf.png
-      info: Read Census Privacy Protected Microdata Files
-      link: https://christophertkenny.com/ppmf/
-      color: '#EFC519'
-    - name: divseg
-      logo: hexes/hex_divseg.png
-      info: Compute Diversity and Segregation Indices
-      link: https://christophertkenny.com/divseg/
-      color: '#A020F0'
-    - name: name
-      logo: hexes/hex_name.png
-      info: Tools for Working with Names
-      link: https://christophertkenny.com/name/
-      color: '#FF0000'
-    - name: jot
-      logo: hexes/hex_jot.png
-      info: Jot Down Notes for Later
-      link: https://christophertkenny.com/jot/
-      color: '#3E885B'
-    - name: alarmdata
-      logo: hexes/hex_alarmdata.png
-      info: Download, Merge, and Process Redistricting Data
-      coauthors: Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai
-      link: https://alarm-redist.org/alarmdata/
-      color: '#87A293'
-    - name: ggredist
-      logo: hexes/hex_ggredist.png
-      info: Scales, Palettes, and Extensions of ggplot2 for Redistricting
-      coauthors: Cory McCartan
-      link: https://alarm-redist.org/ggredist/
-      color: '#FED09E'
-    - name: congress
-      logo: hexes/hex_congress.png
-      info: Access the Congress.gov API
-      link: https://christophertkenny.com/congress/
-      color: '#ABC0E4'
-    - name: feltr
-      logo: hexes/hex_feltr.png
-      info: Access the Felt API
-      link: https://christophertkenny.com/feltr
-      color: '#3D521E'
-    - name: planscorer
-      logo: hexes/hex_planscorer.png
-      info: Score Redistricting Plans with PlanScore
-      link: https://christophertkenny.com/planscorer/
-      color: '#5D4F9C'
-    - name: redistverse
-      logo: hexes/hex_redistverse.png
-      info: Easily Install and Load Redistricting Software
-      coauthors: Cory McCartan
-      link: https://alarm-redist.org/redistverse/
-      color: '#91573A'
-    - name: crayons
-      logo: hexes/hex_crayons.png
-      info: Color Palettes from Crayon Boxes
-      link: https://christophertkenny.com/crayons/
-      color: '#FC73B4'
-    - name: apportion
-      logo: hexes/hex_apportion.png
-      info: Apportion Seats
-      link: https://christophertkenny.com/apportion/
-      color: '#0A1C30'
-    - name: gptzeror
-      logo: hexes/hex_gptzeror.png
-      info: Identify Text Written by Large Language Models using GPTZero
-      link: https://christophertkenny.com/gptzeror
-      color: '#38547F'
-    - name: bskyr
-      logo: hexes/hex_bskyr.png
-      info: Interact with Bluesky Social
-      link: https://christophertkenny.com/bskyr/
-      color: '#0083FE'
-    - name: palette
-      logo: hexes/hex_palette.png
-      info: Color Scheme Helpers
-      link: https://christophertkenny.com/palette/
-      color: '#7C4700'
-    - name: baf
-      logo: hexes/hex_baf.png
-      info: Block Assignment Files
-      link: https://christophertkenny.com/baf
-      color: '#787878'
+  - name: redist
+    logo: hexes/hex_redist.png
+    info: Simulation Methods for Legislative Redistricting
+    coauthors: Cory McCartan, Ben Fifield, and Kosuke Imai
+    link: https://alarm-redist.org/redist/
+    color: '#A61C00'
+  - name: redistmetrics
+    logo: hexes/hex_redistmetrics.png
+    info: Redistricting metrics
+    coauthors: Cory McCartan, Ben Fifield, and Kosuke Imai
+    link: https://alarm-redist.org/redistmetrics/
+    color: '#93C47D'
+  - name: geomander
+    logo: hexes/hex_geomander.png
+    info: Geographic Tools for Studying Gerrymandering
+    link: https://christophertkenny.com/geomander/
+    color: '#BF9000'
+  - name: PL94171
+    logo: hexes/hex_PL94171.png
+    info: Tabulate P.L. 94-171 Redistricting Data Summary Files
+    coauthors: Cory McCartan
+    link: https://corymccartan.com/PL94171/
+    color: '#A06D54'
+  - name: censable
+    logo: hexes/hex_censable.png
+    info: Making Census Data More Usable
+    link: https://christophertkenny.com/censable/
+    color: '#008FC4'
+  - name: tinytiger
+    logo: hexes/hex_tinytiger.png
+    info: Lightweight Interface to TIGER/Line Shapefiles
+    coauthors: Cory McCartan
+    link: https://alarm-redist.org/tinytiger/
+    color: '#E69138'
+  - name: dots
+    logo: hexes/hex_dots.png
+    info: Dot Density Maps
+    link: https://christophertkenny.com/dots/
+    color: '#020000'
+  - name: cvap
+    logo: hexes/hex_cvap.png
+    info: Citizen Voting Age Population
+    link: https://christophertkenny.com/cvap/
+    color: '#CDEBE1'
+  - name: ppmf
+    logo: hexes/hex_ppmf.png
+    info: Read Census Privacy Protected Microdata Files
+    link: https://christophertkenny.com/ppmf/
+    color: '#EFC519'
+  - name: divseg
+    logo: hexes/hex_divseg.png
+    info: Compute Diversity and Segregation Indices
+    link: https://christophertkenny.com/divseg/
+    color: '#A020F0'
+  - name: name
+    logo: hexes/hex_name.png
+    info: Tools for Working with Names
+    link: https://christophertkenny.com/name/
+    color: '#FF0000'
+  - name: jot
+    logo: hexes/hex_jot.png
+    info: Jot Down Notes for Later
+    link: https://christophertkenny.com/jot/
+    color: '#3E885B'
+  - name: alarmdata
+    logo: hexes/hex_alarmdata.png
+    info: Download, Merge, and Process Redistricting Data
+    coauthors: Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai
+    link: https://alarm-redist.org/alarmdata/
+    color: '#87A293'
+  - name: ggredist
+    logo: hexes/hex_ggredist.png
+    info: Scales, Palettes, and Extensions of ggplot2 for Redistricting
+    coauthors: Cory McCartan
+    link: https://alarm-redist.org/ggredist/
+    color: '#FED09E'
+  - name: congress
+    logo: hexes/hex_congress.png
+    info: Access the Congress.gov API
+    link: https://christophertkenny.com/congress/
+    color: '#ABC0E4'
+  - name: feltr
+    logo: hexes/hex_feltr.png
+    info: Access the Felt API
+    link: https://christophertkenny.com/feltr
+    color: '#3D521E'
+  - name: planscorer
+    logo: hexes/hex_planscorer.png
+    info: Score Redistricting Plans with PlanScore
+    link: https://christophertkenny.com/planscorer/
+    color: '#5D4F9C'
+  - name: redistverse
+    logo: hexes/hex_redistverse.png
+    info: Easily Install and Load Redistricting Software
+    coauthors: Cory McCartan
+    link: https://alarm-redist.org/redistverse/
+    color: '#91573A'
+  - name: crayons
+    logo: hexes/hex_crayons.png
+    info: Color Palettes from Crayon Boxes
+    link: https://christophertkenny.com/crayons/
+    color: '#FC73B4'
+  - name: apportion
+    logo: hexes/hex_apportion.png
+    info: Apportion Seats
+    link: https://christophertkenny.com/apportion/
+    color: '#0A1C30'
+  - name: gptzeror
+    logo: hexes/hex_gptzeror.png
+    info: Identify Text Written by Large Language Models using GPTZero
+    link: https://christophertkenny.com/gptzeror
+    color: '#38547F'
+  - name: bskyr
+    logo: hexes/hex_bskyr.png
+    info: Interact with Bluesky Social
+    link: https://christophertkenny.com/bskyr/
+    color: '#0083FE'
+  - name: palette
+    logo: hexes/hex_palette.png
+    info: Color Scheme Helpers
+    link: https://christophertkenny.com/palette/
+    color: '#7C4700'
+  - name: baf
+    logo: hexes/hex_baf.png
+    info: Block Assignment Files
+    link: https://christophertkenny.com/baf
+    color: '#787878'
 - category: GitHub
   packages:
-    - name: ei
-      logo: hexes/hex_ei.png
-      info: Ecological Inference
-      coauthors: Shusei Eshima, Gary King, and Molly Roberts
-      link: https://iqss-research.github.io/ei/
-      color: '#E18751'
-    - name: redistio
-      logo: hexes/hex_redistio.png
-      info: Interactive Redistricting
-      link: https://christophertkenny.com/redistio/
-      color: '#B6D7A8'
-    - name: ThemePark
-      logo: hexes/hex_ThemePark.png
-      info: Themes for 'ggplot2' from Popular Culture
-      coauthors: Matthew B. Jané and Luke C. Pilling
-      link: https://matthewbjane.com/ThemePark/
-      color: '#E86CB7'
+  - name: ei
+    logo: hexes/hex_ei.png
+    info: Ecological Inference
+    coauthors: Shusei Eshima, Gary King, and Molly Roberts
+    link: https://iqss-research.github.io/ei/
+    color: '#E18751'
+  - name: redistio
+    logo: hexes/hex_redistio.png
+    info: Interactive Redistricting
+    link: https://christophertkenny.com/redistio/
+    color: '#B6D7A8'
+  - name: ThemePark
+    logo: hexes/hex_ThemePark.png
+    info: Themes for 'ggplot2' from Popular Culture
+    coauthors: Matthew B. Jané and Luke C. Pilling
+    link: https://matthewbjane.com/ThemePark/
+    color: '#E86CB7'
