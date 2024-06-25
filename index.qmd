@@ -10,6 +10,12 @@ include-in-header:
       }
     </style>
 ---
+
+```{r, include = FALSE}
+source('bootstrap.R')
+```
+
+
 :::::{.column-screen-inset}
 
 :::: {.columns}
@@ -27,6 +33,15 @@ Ph.D. Candidate, Department of Government, Harvard University
 [{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
 ::::::
+
+```{r, echo = FALSE, results = 'asis', eval = FALSE}
+make_carousel(
+  id = 'homeCarousel', 
+  items = c('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redist.png', 'https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistio.png'), 
+  alt = c('redist', 'redistio')
+)
+```
+
 
 :::
 ::: {.column width="60%"}

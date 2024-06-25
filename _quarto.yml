@@ -54,3 +54,4 @@ format:
     - custom.scss
     code-overflow: wrap
     code-copy: true
+    linkcolor: "#006699"
