@@ -354,9 +354,9 @@ make_collapse_card(
 
 ## Public Writing
 
-#### [Expert Report in Sakhnovsky, et al v. City of Daytona Beach, Case No. 2024 10140 CICI](https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf) 
+#### [Expert Report in Sakhnovsky, et al v. City of Daytona Beach](https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf) 
 
-Expert report on census data and map drawing for Daytona Beach. 2024.
+Case No. 2024 10140 CICI. Expert report on census data and map drawing for Daytona Beach. 2024.
 
 #### [Redistricting Process Reform](https://effectivegov.uchicago.edu/primers/redistricting-process-reform)
 
