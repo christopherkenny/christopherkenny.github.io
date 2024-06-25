@@ -33,14 +33,20 @@ Ph.D. Candidate, Department of Government, Harvard University
 [{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
 
-
 ```{r}
 #| echo: false
 #| results: asis
+
+pkgs <- c(
+  'redist', 'redistmetrics', 'geomander', 'PL94171', 'censable',
+  'tinytiger','cvap', 
+  'alarmdata', 'ggredist', 'congress', 'feltr', 'planscorer', 'redistverse',
+  'crayons', 'bskyr', 'palette', 'baf'
+)
 make_carousel(
-  id = 'homeCarousel', 
-  items = c('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redist.png', 'https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistio.png'), 
-  alt = c('redist', 'redistio'),
+  id = 'homeCarousel',
+  items = paste0('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_', pkgs, '.png'),
+  alt = paste0(pkgs, ' hex logo'),
   style = 'width: 300px; height: 300px; margin: 0 auto;',
   class_opts = 'carousel-fade'
 )

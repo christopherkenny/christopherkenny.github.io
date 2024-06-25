@@ -1,14 +1,20 @@
 library(htmltools)
 
-make_carousel <- function(id, items, alt, class_opts = '', ...) {
+make_carousel <- function(id, items, alt, titles, captions, class_opts = '', ...) {
   
   if (missing(alt) || length(alt) < length(items)) {
     alt <- paste0('Slide ', seq_along(items))
   }
+  if (missing(titles) || length(titles) < length(items)) {
+    titles <- rep(NA_character_, length(items))
+  }
+  if (missing(captions) || length(captions) < length(items)) {
+    captions <- rep(NA_character_, length(items))
+  }
 
   indicators <- make_carousel_indicators(id, items)
   
-  items <- make_carousel_items(id, items, alt)
+  items <- make_carousel_items(id, items, alt, titles, captions)
   
   prev_button <- tags$button(
     class = 'carousel-control-prev',
@@ -68,10 +74,11 @@ make_carousel_indicators <- function(id, items) {
   )
 }
 
-make_carousel_items <- function(id, items, alt) {
+make_carousel_items <- function(id, items, alt, captions, titles) {
   items <- lapply(seq_along(items), function(i) {
+
     if (i == 1) {
-      tags$div(
+      out_div <- tags$div(
         class = 'carousel-item active',
         tags$img(
           src = items[i],
@@ -80,7 +87,7 @@ make_carousel_items <- function(id, items, alt) {
         )
       )
     } else {
-      tags$div(
+      out_div <- tags$div(
         class = 'carousel-item',
         tags$img(
           src = items[i],
@@ -89,10 +96,19 @@ make_carousel_items <- function(id, items, alt) {
         )
       )
     }
+    if (!is.na(captions[i]) || !is.na(titles[i])) {
+      out_div <- tagAppendChild(out_div, tags$div(
+        class = 'carousel-caption d-none d-md-block',
+        h5(if (is.na(titles[i])) NULL else titles[i]),
+        p(if (is.na(captions[i])) NULL else captions[i])
+      ))
+    }
+    
+    out_div
   })
   
   div(
-    class = 'carousel',
+    class = 'carousel-inner',
     tagList(items)
   )
 }
