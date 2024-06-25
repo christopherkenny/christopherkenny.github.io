@@ -10,8 +10,9 @@
 <% for (const package of item.packages) { %>
 
   <div class="card-borderless g-col-2">
+    <a href="<%- package.link %>">
       <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
-      <a href="<%- package.link %>" class="stretched-link"></a>
+    </a>
   </div>
   <div class="card-borderless g-col-10">
     <div class="card-body">
@@ -19,6 +20,7 @@
         <% if(package.coauthors){ %> 
           <p class="card-text">(with <%- package.coauthors %>)</p>
         <% } %>
+        <p class="card-text"><small class="text-muted"><%- package.description %></small></p>
     </div>
   </div>
   

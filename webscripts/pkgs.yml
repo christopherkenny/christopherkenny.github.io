@@ -12,12 +12,11 @@
       in the redistricting process such as geographic compactness and population parity
       requirements. Tools for analysis such as computation of various summary statistics
       and plotting functionality are also included. The package implements the SMC
-      algorithm of [McCartan and Imai (2023)](https://doi.org/10.1214/23-AOAS1763),
-      the enumeration algorithm of [Fifield, Imai, Kawahara, and Kenny (2020)](https://doi.org/10.1080/2330443X.2020.1791773),
-      the Flip MCMC algorithm of [Fifield, Higgins, Imai and Tarr (2020)](https://doi.org/10.1080/10618600.2020.1739532),
-      the Merge-split/Recombination algorithms of [Carter et al. (2019)](https://arxiv.org/abs/1911.01503)
-      and [DeFord et al. (2021)](https://doi.org/10.1162/99608f92.eb30390f), and the
-      Short-burst optimization algorithm of [Cannon et al. (2020)](https://doi.org/10.1007/s11009-023-09994-1).
+      algorithm of McCartan and Imai (2023), the enumeration algorithm of Fifield,
+      Imai, Kawahara, and Kenny (2020), the Flip MCMC algorithm of Fifield, Higgins,
+      Imai and Tarr (2020), the Merge-split/Recombination algorithms of Carter et
+      al. (2019) and DeFord et al. (2021), and the Short-burst optimization algorithm
+      of Cannon et al. (2020).
   - name: redistmetrics
     logo: hexes/hex_redistmetrics.png
     info: Redistricting metrics
@@ -91,15 +90,15 @@
     info: Read Census Privacy Protected Microdata Files
     link: https://christophertkenny.com/ppmf/
     color: '#EFC519'
-    description: Implements data processing described in [Kenny et al (2021)](https://doi.org/10.1126/sciadv.abk3283)
-      to align modern differentially private data with formatting of older US Census
-      data releases. The primary goal is to read in Census Privacy Protected Microdata
-      Files data in a reproducible way. This includes tools for aggregating to relevant
-      levels of geography by creating geographic identifiers which match the US Census
-      Bureau's numbering. Additionally, there are tools for grouping race numeric
-      identifiers into categories, consistent with OMB (Office of Management and Budget)
-      classifications. Functions exist for downloading and linking to existing sources
-      of privacy protected microdata.
+    description: Implements data processing described in Kenny et al (2021) to align
+      modern differentially private data with formatting of older US Census data releases.
+      The primary goal is to read in Census Privacy Protected Microdata Files data
+      in a reproducible way. This includes tools for aggregating to relevant levels
+      of geography by creating geographic identifiers which match the US Census Bureau's
+      numbering. Additionally, there are tools for grouping race numeric identifiers
+      into categories, consistent with OMB (Office of Management and Budget) classifications.
+      Functions exist for downloading and linking to existing sources of privacy protected
+      microdata.
   - name: divseg
     logo: hexes/hex_divseg.png
     info: Compute Diversity and Segregation Indices
@@ -107,9 +106,9 @@
     color: '#A020F0'
     description: Implements common measures of diversity and spatial segregation.
       This package has tools to compute the majority of measures are reviewed in Massey
-      and Denton (1988) <doi:10.2307/2579183>. Multiple common measures of within-geography
-      diversity are implemented as well. All functions operate on data frames with
-      a 'tidyselect' based workflow.
+      and Denton (1988). Multiple common measures of within-geography diversity are
+      implemented as well. All functions operate on data frames with a 'tidyselect'
+      based workflow.
   - name: name
     logo: hexes/hex_name.png
     info: Tools for Working with Names
@@ -138,11 +137,10 @@
     color: '#87A293'
     description: Utility functions to download and process data produced by the ALARM
       Project, including 2020 redistricting files Kenny and McCartan (2021) <https://alarm-redist.org/posts/2021-08-10-census-2020/>
-      and the 50-State Redistricting Simulations of [McCartan, Kenny, Simko, Garcia,
-      Wang, Wu, Kuriwaki, and Imai (2022)](https://doi.org/10.7910/DVN/SLCD3E). The
-      package extends the data introduced in [McCartan, Kenny, Simko, Garcia, Wang,
-      Wu, Kuriwaki, and Imai (2022)](https://doi.org/10.1038/s41597-022-01808-2) to
-      also include states with only a single district.
+      and the 50-State Redistricting Simulations of McCartan, Kenny, Simko, Garcia,
+      Wang, Wu, Kuriwaki, and Imai (2022). The package extends the data introduced
+      in McCartan, Kenny, Simko, Garcia, Wang, Wu, Kuriwaki, and Imai (2022) to also
+      include states with only a single district.
   - name: ggredist
     logo: hexes/hex_ggredist.png
     info: Scales, Palettes, and Extensions of ggplot2 for Redistricting
