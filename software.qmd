@@ -2,6 +2,10 @@
 title: "Software"
 description: "R Packages"
 date: today
+listing:
+  - id: packages
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
 ---
 
 ```{r setup, include=FALSE}
@@ -90,18 +94,5 @@ if (FALSE) {
 }
 ```
 
-# Packages on CRAN:
-
-```{r cran}
-pkgs |> 
-  filter(status == 'CRAN') |> 
-  fmt_software_table(.id = 'crantable')
-```
-
-# Packages on GitHub:
-
-```{r github}
-pkgs |> 
-  filter(status == 'GitHub') |> 
-  fmt_software_table(.id = 'githubtable')
-```
+::: {#packages}
+:::
