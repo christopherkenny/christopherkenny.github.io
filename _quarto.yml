@@ -55,3 +55,4 @@ format:
     code-overflow: wrap
     code-copy: true
     linkcolor: "#006699"
+    page-layout: full
