@@ -12,6 +12,7 @@ pkgs |>
   group_split() |> 
   lapply(function(x) {
     list(
+      category = x$status[1],
       packages = lapply(seq_len(nrow(x)), function(i) {
         x |> 
           select(-status) |> 
@@ -21,6 +22,4 @@ pkgs |>
       })
     )
   }) |> 
-  setNames(c('CRAN', 'GitHub')) |> 
-  list(category = _) |> 
   yaml::write_yaml('webscripts/pkgs.yml')
