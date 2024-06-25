@@ -5,21 +5,25 @@
 
 <h2>Packages on <%- item.category %></h2>
 
-<div class="container">
+<div class="list grid">
 
 <% for (const package of item.packages) { %>
-  <div class="row">
-    <div class="card g-col-3" style="background-color: red">
-      <a href="<%- package.link %>">
-      <img src="<%- package.logo %>" alt="<%- package.name %> hex logo" style="height: 100px; object-fit: contain; width: 125px">
-      </a>
-    </div>
-    <div class="card g-col-9">
-      <%- package.name %>: <%- package.info %>
-        <% if(package.coauthors){ %> (with <%- package.coauthors %>) <% } %>
+
+  <div class="card-borderless g-col-2">
+      <img src="<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
+      <a href="<%- package.link %>" class="stretched-link"></a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title"><%- package.name %>: <%- package.info %></h5>
+        <% if(package.coauthors){ %> 
+          <p class="card-text">(with <%- package.coauthors %>)</p>
+        <% } %>
     </div>
   </div>
+  
 <% } %>
+
 </div>
 
 <% } %>
