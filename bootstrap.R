@@ -83,7 +83,8 @@ make_carousel_items <- function(id, items, alt, captions, titles) {
         tags$img(
           src = items[i],
           class = 'd-block w-100',
-          alt = alt[i]
+          alt = alt[i],
+          style = 'object-fit:contain; width: 250px; height: 250px;'
         )
       )
     } else {
@@ -92,7 +93,8 @@ make_carousel_items <- function(id, items, alt, captions, titles) {
         tags$img(
           src = items[i],
           class = 'd-block w-100',
-          alt = alt[i]
+          alt = alt[i],
+          style = 'object-fit:contain; width: 250px; height: 250px;'
         )
       )
     }

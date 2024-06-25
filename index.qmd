@@ -47,8 +47,8 @@ make_carousel(
   id = 'homeCarousel',
   items = paste0('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_', pkgs, '.png'),
   alt = paste0(pkgs, ' hex logo'),
-  style = 'width: 40%; height: 300px; margin: 0 auto;',
-  class_opts = 'carousel-fade'
+  style = 'width: 95%; height: 300px; margin: 0 auto;',
+  class_opts = 'carousel-dark carousel-fade'
 )
 ```
 
