@@ -1,0 +1,30 @@
+
+```{=html}
+
+<% for (const item of items) { %>
+
+<h2>Packages on <%- item.category %></h2>
+
+<div class="list grid">
+
+<% for (const package of item.packages) { %>
+  <div class="card g-col-12 g-col-sm-4 g-col-md-3">
+    <img src="<%- package.logo %>" class="card-image-top" alt="<%- package.name %> hex logo">
+    <div class="card-body">
+      <h5 class="card-title"><%- package.name %></h5>
+        <p class="card-text">
+        <%- package.info %>
+          <% if(package.coauthors){ %>
+            (with <%- package.coauthors %>)
+          <% } %>
+        </p>
+      <a  href="<%- package.link %>" class="stretched-link"></a>
+    </div>
+  </div>
+
+<% } %>
+</div>
+
+<% } %>
+
+```

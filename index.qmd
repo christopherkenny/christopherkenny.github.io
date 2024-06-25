@@ -12,7 +12,7 @@ include-in-header:
 ---
 
 ```{r, include = FALSE}
-source('bootstrap.R')
+source('webscripts/bootstrap.R')
 ```
 
 
