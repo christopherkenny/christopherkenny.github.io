@@ -38,7 +38,7 @@ Ph.D. Candidate, Department of Government, Harvard University
 #| results: asis
 
 pkgs <- c(
-  'redist', 'redistmetrics', 'geomander', 'PL94171', 'censable',
+  'redist', 'redistmetrics', 'geomander', 'pl94171', 'censable',
   'tinytiger','cvap', 
   'alarmdata', 'ggredist', 'congress', 'feltr', 'planscorer', 'redistverse',
   'crayons', 'bskyr', 'palette', 'baf'
@@ -47,8 +47,8 @@ make_carousel(
   id = 'homeCarousel',
   items = paste0('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_', pkgs, '.png'),
   alt = paste0(pkgs, ' hex logo'),
-  style = 'width: 300px; height: 300px; margin: 0 auto;',
-  class_opts = 'carousel-fade'
+  style = 'width: 40%; height: 300px; margin: 0 auto;',
+  class_opts = 'carousel-dark carousel-fade'
 )
 ```
 
