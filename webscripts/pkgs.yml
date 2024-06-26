@@ -284,3 +284,13 @@
       and fonts. Each theme (e.g., 'theme_barbie') generates a unique color scheme
       and font for a 'ggplot2' object that matches the color scheme and font found
       in the movie, TV show, or video game.
+  - name: causaltbl
+    logo: hexes/hex_causaltbl.png
+    info: Tidy Causal Data Frames and Tools
+    coauthors: Cory McCartan
+    link: https://corymccartan.com/causaltbl
+    color: '#98B2B6'
+    description: Provides a 'causal_tbl' class for causal inference. A 'causal_tbl'
+      keeps track of information on the roles of variables like treatment and outcome,
+      and provides functionality to store models and their fitted values as columns
+      in a data frame.
