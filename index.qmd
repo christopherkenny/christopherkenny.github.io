@@ -38,7 +38,7 @@ Ph.D. Candidate, Department of Government, Harvard University
 #| results: asis
 
 pkgs <- c(
-  'redist', 'redistmetrics', 'geomander', 'pl94171', 'censable',
+  'redist', 'redistmetrics', 'geomander', 'PL94171', 'censable',
   'tinytiger','cvap', 
   'alarmdata', 'ggredist', 'congress', 'feltr', 'planscorer', 'redistverse',
   'crayons', 'bskyr', 'palette', 'baf'
