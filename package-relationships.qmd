@@ -121,7 +121,7 @@ flowchart LR
 ```
 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 library(DiagrammeR)
 
 tb_node <- tibble(
