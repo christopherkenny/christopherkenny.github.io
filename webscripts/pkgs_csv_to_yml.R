@@ -6,9 +6,8 @@ if (FALSE) {
   
   descs <- lapply(pkgs$name, \(x) desc::desc(package = x))
   descs <- sapply(descs, \(x) x$get_field('Description'))
-  pkgs$description <- descs
 
-  pkgs$description <- pkgs$description |> 
+  pkgs$description <- descs |> 
     sapply(
       function(x) {
         x |> 
@@ -17,8 +16,8 @@ if (FALSE) {
       }) |> 
     stringr::str_replace_all(pattern = '‘', replacement = "'") |> 
     stringr::str_replace_all(pattern = '’', replacement = "'") |> 
-    stringr::str_remove_all('<a[^>]*?doi[^>]*?>.*?</a>') |> 
-    stringr::str_remove_all('<a[^>]*?arXiv[^>]*?>.*?</a>')
+    stringr::str_remove_all(' <a[^>]*?doi[^>]*?>.*?</a>') |> 
+    stringr::str_remove_all(' <a[^>]*?arXiv[^>]*?>.*?</a>')
   
   pkgs |> 
     write_csv('pkgs.csv')
