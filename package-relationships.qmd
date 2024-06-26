@@ -2,7 +2,7 @@
 title: 'Package relationships'
 ---
 
-```{r, echo = FALSE, results = 'hide', warning=FALSE, message=FALSE}
+```{r, echo = FALSE, results = 'hide', warning=FALSE, message=FALSE, eval = FALSE}
 library(tidyverse)
 pkgs <- read_csv('pkgs.csv') |> 
   mutate(
