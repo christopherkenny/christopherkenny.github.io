@@ -6,6 +6,7 @@ listing:
   - id: packages
     template: webscripts/software.ejs
     contents: webscripts/pkgs.yml
+page-layout: full
 ---
 
 ```{r setup, include=FALSE, eval = FALSE}
