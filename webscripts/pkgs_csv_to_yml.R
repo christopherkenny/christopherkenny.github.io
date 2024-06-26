@@ -14,6 +14,7 @@ if (FALSE) {
           markdown::markdownToHTML(fragment.only = TRUE) |> 
           stringr::str_remove_all(pattern = '<p>|</p>|\n')
       }) |> 
+    unname() |> 
     stringr::str_replace_all(pattern = '‘', replacement = "'") |> 
     stringr::str_replace_all(pattern = '’', replacement = "'") |> 
     stringr::str_remove_all(' <a[^>]*?doi[^>]*?>.*?</a>') |> 
