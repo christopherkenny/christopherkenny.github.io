@@ -16,7 +16,9 @@ if (FALSE) {
           stringr::str_remove_all(pattern = '<p>|</p>|\n')
       }) |> 
     stringr::str_replace_all(pattern = '‘', replacement = "'") |> 
-    stringr::str_replace_all(pattern = '’', replacement = "'")
+    stringr::str_replace_all(pattern = '’', replacement = "'") |> 
+    stringr::str_remove_all('<a[^>]*?doi[^>]*?>.*?</a>') |> 
+    stringr::str_remove_all('<a[^>]*?arXiv[^>]*?>.*?</a>')
   
   pkgs |> 
     write_csv('pkgs.csv')
