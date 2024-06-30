@@ -8,7 +8,7 @@ date: last-modified
 ```{r, include=FALSE, echo=FALSE}
 make_button <- function(label, id) {
   out <- '<p>'
-  
+
   for (i in seq_along(label)) {
     out <- c(
       out,
@@ -16,12 +16,12 @@ make_button <- function(label, id) {
         '<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#', id[i], '" aria-expanded="false" aria-controls="', id[i], '">',
         label[i],
         '</button>'
-      ) 
+      )
     )
   }
-  
+
   out <- c(out, '</p>')
-  
+
   cat(out, sep = '\n')
 }
 
@@ -33,7 +33,7 @@ make_collapse_card <- function(id, txt) {
     '  </div>',
     '</div>'
   )
-  
+
   cat(out, sep = '\n')
 }
 ```
@@ -109,7 +109,7 @@ make_collapse_card(
 ```
 
 
-#### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://www.pnas.org/doi/10.1073/pnas.2217322120) 
+#### [Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition](https://www.pnas.org/doi/10.1073/pnas.2217322120)
 
 (with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai). 2023. PNAS.
 
@@ -299,7 +299,7 @@ make_collapse_card(
 
 #### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7/)
 
-(with Cory McCartan). Current version: 2022-06-24. 
+(with Cory McCartan). Current version: 2022-06-24.
 
 ```{r, echo = FALSE, results='asis'}
 make_button(c('Abstract', 'BibTeX'),  c('mccartan2022individualAbs', 'mccartan2022individualBib'))
@@ -354,7 +354,7 @@ make_collapse_card(
 
 ## Public Writing
 
-#### [Expert Report in Sakhnovsky, et al v. City of Daytona Beach](https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf) 
+#### [Expert Report in Sakhnovsky, et al v. City of Daytona Beach](https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf)
 
 Case No. 2024 10140 CICI. Expert report on census data and map drawing for Daytona Beach. 2024.
 
