@@ -1,0 +1,30 @@
+- category: Quarto
+  templates:
+    - name: Annual Reviews
+      link: https://github.com/christopherkenny/annual-reviews
+      image: https://raw.githubusercontent.com/christopherkenny/annual-reviews/main/template_1.png
+    - name: APSR
+      link: https://github.com/christopherkenny/apsr
+      image: https://raw.githubusercontent.com/christopherkenny/apsr/main/template_1.png
+    - name: Cambridge Medium
+      link: https://github.com/christopherkenny/cambridge-medium
+      image: https://raw.githubusercontent.com/christopherkenny/cambridge-medium/main/template_1.png
+    - name: Nature
+      link: https://github.com/christopherkenny/nature
+      image: https://raw.githubusercontent.com/christopherkenny/nature/main/template_1.png
+    - name: PNAS
+      link: https://github.com/christopherkenny/pnas
+      image: https://raw.githubusercontent.com/christopherkenny/pnas/main/template_1.png
+    - name: PNAS Supporting Information
+      link: https://github.com/christopherkenny/pnas-si
+      image: https://raw.githubusercontent.com/christopherkenny/pnas-si/main/template_1.png
+    - name: Scientific Data
+      link: https://github.com/christopherkenny/scientific-data
+      image: https://raw.githubusercontent.com/christopherkenny/scientific-data/main/template_1.png
+    - name: Perspectives
+      link: https://github.com/christopherkenny/perspectives
+      image: https://raw.githubusercontent.com/christopherkenny/perspectives/main/template_1.png
+- category: rticles
+  templates:
+    - name: Science
+      link: https://github.com/christopherkenny/rticles
