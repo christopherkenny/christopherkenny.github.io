@@ -4,6 +4,7 @@ project:
   resources:
     - "figs/tibblestable.png"
     - "files/"
+    - "KennyPolMeth2024Poster.pdf"
     
 website:
   title: 'Christopher T. Kenny'
