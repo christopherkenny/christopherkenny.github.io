@@ -48,7 +48,7 @@ website:
   description: "Christopher T. Kenny is a PhD candidate in Government at Harvard University."
   announcement:
     icon: exclamation-circle
-    content: "**New working paper!**: [*Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors*](https://arxiv.org/abs/2407.11336)"
+    content: "**New working paper**: [*Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors*](https://arxiv.org/abs/2407.11336)"
     type: info
     position: below-navbar
 
