@@ -38,6 +38,90 @@ make_collapse_card <- function(id, txt) {
 }
 ```
 
+
+## Selected Working Papers
+
+#### [Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors](https://arxiv.org/abs/2407.11336)
+
+(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai). 2024. PNAS.
+
+```{r, echo = FALSE, results='asis'}
+make_button(c('First paragraph', 'BibTeX'),  c('mccartan2024reformsAbs', 'mccartan2024reformsBib'))
+```
+
+```{r, echo = FALSE, results='asis'}
+make_collapse_card(
+  'mccartan2024reformsAbs',
+  txt = 'Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York.'
+)
+
+make_collapse_card(
+  'mccartan2024reformsBib',
+  txt = '
+```{.bibtex .code-overflow-wrap}
+@article{mcca:etal:24a,
+  title={Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors},
+  author={McCartan, Cory and Kenny, Christopher T. and  Simko, Tyler and Ebowe, Emma and Zhao, Michael Y. and Imai, Kosuke},
+      year={2024},
+      eprint={2407.11336},
+      archivePrefix={arXiv},
+      primaryClass={stat.AP},
+      url={https://arxiv.org/abs/2407.11336}, 
+}
+```'
+)
+
+```
+
+#### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7/)
+
+(with Cory McCartan). Current version: 2022-06-24.
+
+```{r, echo = FALSE, results='asis'}
+make_button(c('Abstract', 'BibTeX'),  c('mccartan2022individualAbs', 'mccartan2022individualBib'))
+```
+
+```{r, echo = FALSE, results='asis'}
+make_collapse_card(
+  'mccartan2022individualAbs',
+  txt = 'Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography.  Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.'
+)
+
+make_collapse_card(
+  'mccartan2022individualBib',
+  txt = '
+```{.bibtex .code-overflow-wrap}
+@misc{mcca:kenn:22,
+  doi = {10.31235/osf.io/nc2x7},
+  url = {https://osf.io/preprints/socarxiv/nc2x7/},
+  author = {McCartan, Cory and Kenny, Christopher T.},
+  keywords = {representation, redistricting, voting rights, individual harm},
+  title = {Individual and Differential Harm in Redistricting},
+  publisher = {SocArXiv},
+  year = {2022}
+}
+
+```'
+)
+
+```
+
+#### [Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation](https://judgelord.github.io/finreg/participatory-inequality.pdf)
+(with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)
+
+Awarded the 2021 Herbert Kaufman Award.
+
+```{r, echo = FALSE, results='asis'}
+make_button(c('Abstract'),  c('carpenter2024inequalityAbs'))
+```
+
+```{r, echo = FALSE, results='asis'}
+make_collapse_card(
+  'carpenter2024inequalityAbs',
+  txt = 'Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations’ wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations’ ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success.'
+)
+```
+
 ## Publications
 
 #### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
@@ -289,90 +373,6 @@ make_collapse_card(
   eprint = {https://doi.org/10.1080/2330443X.2020.1791773},
 }
 
-```'
-)
-
-```
-
-
-## Working Papers
-
-#### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7/)
-
-(with Cory McCartan). Current version: 2022-06-24.
-
-```{r, echo = FALSE, results='asis'}
-make_button(c('Abstract', 'BibTeX'),  c('mccartan2022individualAbs', 'mccartan2022individualBib'))
-```
-
-```{r, echo = FALSE, results='asis'}
-make_collapse_card(
-  'mccartan2022individualAbs',
-  txt = 'Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography.  Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.'
-)
-
-make_collapse_card(
-  'mccartan2022individualBib',
-  txt = '
-```{.bibtex .code-overflow-wrap}
-@misc{mcca:kenn:22,
-  doi = {10.31235/osf.io/nc2x7},
-  url = {https://osf.io/preprints/socarxiv/nc2x7/},
-  author = {McCartan, Cory and Kenny, Christopher T.},
-  keywords = {representation, redistricting, voting rights, individual harm},
-  title = {Individual and Differential Harm in Redistricting},
-  publisher = {SocArXiv},
-  year = {2022}
-}
-
-```'
-)
-
-```
-
-#### [Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation](https://judgelord.github.io/finreg/participatory-inequality.pdf)
-(with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)
-
-Awarded the 2021 Herbert Kaufman Award.
-
-```{r, echo = FALSE, results='asis'}
-make_button(c('Abstract'),  c('carpenter2024inequalityAbs'))
-```
-
-```{r, echo = FALSE, results='asis'}
-make_collapse_card(
-  'carpenter2024inequalityAbs',
-  txt = 'Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations’ wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations’ ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success.'
-)
-```
-
-#### [Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors](https://arxiv.org/abs/2407.11336)
-
-(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai). 2024. PNAS.
-
-```{r, echo = FALSE, results='asis'}
-make_button(c('First paragraph', 'BibTeX'),  c('mccartan2024reformsAbs', 'mccartan2024reformsBib'))
-```
-
-```{r, echo = FALSE, results='asis'}
-make_collapse_card(
-  'mccartan2024reformsAbs',
-  txt = 'Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York.'
-)
-
-make_collapse_card(
-  'mccartan2024reformsBib',
-  txt = '
-```{.bibtex .code-overflow-wrap}
-@article{mcca:etal:24a,
-  title={Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors},
-  author={McCartan, Cory and Kenny, Christopher T. and  Simko, Tyler and Ebowe, Emma and Zhao, Michael Y. and Imai, Kosuke},
-      year={2024},
-      eprint={2407.11336},
-      archivePrefix={arXiv},
-      primaryClass={stat.AP},
-      url={https://arxiv.org/abs/2407.11336}, 
-}
 ```'
 )
 
