@@ -43,7 +43,9 @@ make_collapse_card <- function(id, txt) {
 
 #### [Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors](https://arxiv.org/abs/2407.11336)
 
-(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai). 2024. PNAS.
+(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai).
+
+[Slides from PolMeth 2024](files/polmeth2024_slides.pdf)
 
 ```{r, echo = FALSE, results='asis'}
 make_button(c('First paragraph', 'BibTeX'),  c('mccartan2024reformsAbs', 'mccartan2024reformsBib'))
