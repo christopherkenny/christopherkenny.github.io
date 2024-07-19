@@ -48,7 +48,7 @@ make_collapse_card <- function(id, txt) {
 [Slides from PolMeth 2024](files/polmeth2024_slides.pdf)
 
 ```{r, echo = FALSE, results='asis'}
-make_button(c('First paragraph', 'BibTeX'),  c('mccartan2024reformsAbs', 'mccartan2024reformsBib'))
+make_button(c('Abstract', 'BibTeX'),  c('mccartan2024reformsAbs', 'mccartan2024reformsBib'))
 ```
 
 ```{r, echo = FALSE, results='asis'}
@@ -77,7 +77,7 @@ make_collapse_card(
 
 #### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7/)
 
-(with Cory McCartan). Current version: 2022-06-24.
+(with Cory McCartan).
 
 ```{r, echo = FALSE, results='asis'}
 make_button(c('Abstract', 'BibTeX'),  c('mccartan2022individualAbs', 'mccartan2022individualBib'))
