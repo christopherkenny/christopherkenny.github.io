@@ -11,6 +11,12 @@ include-in-header:
     </style>
 ---
 
+```{css, echo = FALSE}
+.justify {
+  text-align: justify !important
+}
+```
+
 ```{r, include = FALSE}
 source('webscripts/bootstrap.R')
 ```
@@ -19,8 +25,9 @@ source('webscripts/bootstrap.R')
 :::::{.column-screen-inset}
 
 :::: {.columns}
-
-::: {.column width="37%"}
+::: {.column width="3%"}
+:::
+::: {.column width="34%"}
 
 :::::: {.text-center}
 
@@ -30,7 +37,8 @@ source('webscripts/bootstrap.R')
 
 
 
-Ph.D. Candidate, Department of Government, Harvard University
+Ph.D. Candidate<br>
+Department of Government, Harvard University
 
 [{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
@@ -56,9 +64,11 @@ make_carousel(
 
 ::::::
 :::
+
 ::: {.column width="3%"}
 :::
-::: {.column width="60%"}
+
+::: {.column .justify width="56%"}
 
 # About Me
 
@@ -77,6 +87,9 @@ To support my research, I have developed over two dozen R packages, including [`
 I expect to receive a PhD in Government from Harvard University in May 2025. 
 I received a B.A. in Mathematics and Government from Cornell University in May 2019 and an M.A. in Government from Harvard University in May 2021.
 
+:::
+
+::: {.column width="4%"}
 :::
 
 ::::
