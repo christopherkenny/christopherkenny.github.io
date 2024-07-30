@@ -5,7 +5,7 @@ format:
     grid:
       sidebar-width: 10px
       body-width: 1280px
-      margin-width: 10px
+      margin-width: 20px
       gutter-width: 3rem
 include-in-header:
   text: |
