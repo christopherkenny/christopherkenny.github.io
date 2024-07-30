@@ -26,12 +26,11 @@ include-in-header:
 source('webscripts/bootstrap.R')
 ```
 
-
 :::::: {.column-screen-inset}
 
 ::::: {.grid}
 
-:::: {.g-col-4 .g-col-xs-12}
+:::: {.g-col-12 .g-col-sm-4}
 
 ::: {.text-center}
 
@@ -70,7 +69,7 @@ make_carousel(
 
 ::::
 
-:::: {.g-col-8 .g-col-xs-12}
+:::: {.g-col-12 .g-col-sm-8}
 
 ::: {.justify}
 
