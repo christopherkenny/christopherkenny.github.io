@@ -5,9 +5,16 @@
 
 <h2>Packages on <%- item.category %></h2>
 
+<% /* Redistricting */ %>
+<% if (item.category == "CRAN") { %>
+<h4>Packages for redistricting </h4>
+<% } %>
+
 <div class="list grid">
 
 <% for (const package of item.packages) { %>
+
+<% if (package.topic == "redistricting") { %>
 
   <div class="card-borderless g-col-2">
     <a href="<%- package.link %>">
@@ -25,8 +32,139 @@
   </div>
   
 <% } %>
+  
+<% } %>
 
 </div>
+
+<% /* Census */ %>
+<% if (item.category == "CRAN") { %>
+<h4>Packages for working with Census Bureau data  </h4>
+<% } %>
+
+<div class="list grid">
+
+<% for (const package of item.packages) { %>
+
+<% if (package.topic == "census") { %>
+
+  <div class="card-borderless g-col-2">
+    <a href="<%- package.link %>">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title"><%- package.name %>: <%- package.info %></h5>
+        <% if(package.coauthors){ %> 
+          <p class="card-text">(with <%- package.coauthors %>)</p>
+        <% } %>
+        <p class="card-text"><small class="text-muted"><%= package.description %></small></p>
+    </div>
+  </div>
+  
+<% } %>
+  
+<% } %>
+
+</div>
+
+<% /* Plotting */ %>
+<% if (item.category == "CRAN") { %>
+<h4>Packages for plotting data  </h4>
+<% } %>
+
+<div class="list grid">
+
+<% for (const package of item.packages) { %>
+
+<% if (package.topic == "plotting") { %>
+
+  <div class="card-borderless g-col-2">
+    <a href="<%- package.link %>">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title"><%- package.name %>: <%- package.info %></h5>
+        <% if(package.coauthors){ %> 
+          <p class="card-text">(with <%- package.coauthors %>)</p>
+        <% } %>
+        <p class="card-text"><small class="text-muted"><%= package.description %></small></p>
+    </div>
+  </div>
+  
+<% } %>
+  
+<% } %>
+
+</div>
+
+<% /* API */ %>
+<% if (item.category == "CRAN") { %>
+<h4>Packages interfacing with API services </h4>
+<% } %>
+
+<div class="list grid">
+
+<% for (const package of item.packages) { %>
+
+<% if (package.topic == "api") { %>
+
+  <div class="card-borderless g-col-2">
+    <a href="<%- package.link %>">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title"><%- package.name %>: <%- package.info %></h5>
+        <% if(package.coauthors){ %> 
+          <p class="card-text">(with <%- package.coauthors %>)</p>
+        <% } %>
+        <p class="card-text"><small class="text-muted"><%= package.description %></small></p>
+    </div>
+  </div>
+  
+<% } %>
+  
+<% } %>
+
+</div>
+
+<% /* Other */ %>
+<% if (item.category == "CRAN") { %>
+<h4>Other packages  </h4>
+<% } %>
+
+<div class="list grid">
+
+<% for (const package of item.packages) { %>
+
+<% if (package.topic == "other") { %>
+
+  <div class="card-borderless g-col-2">
+    <a href="<%- package.link %>">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title"><%- package.name %>: <%- package.info %></h5>
+        <% if(package.coauthors){ %> 
+          <p class="card-text">(with <%- package.coauthors %>)</p>
+        <% } %>
+        <p class="card-text"><small class="text-muted"><%= package.description %></small></p>
+    </div>
+  </div>
+  
+<% } %>
+  
+<% } %>
+
+</div>
+
 
 <% } %>
 
