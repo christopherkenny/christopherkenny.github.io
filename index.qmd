@@ -1,5 +1,12 @@
 ---
 sidebar: false
+format: 
+  html:
+    grid:
+      sidebar-width: 10px
+      body-width: 1280px
+      margin-width: 10px
+      gutter-width: 3rem
 include-in-header:
   text: |
     <style type="text/css">
@@ -22,7 +29,9 @@ source('webscripts/bootstrap.R')
 
 :::::: {.column-screen-inset}
 
-:::: {.column width="39%"}
+::::: {.grid}
+
+:::: {.g-col-4}
 
 ::: {.text-center}
 
@@ -61,7 +70,7 @@ make_carousel(
 
 ::::
 
-:::: {.column width="59%"}
+:::: {.g-col-8}
 
 ::: {.justify}
 
@@ -85,5 +94,7 @@ I received a B.A. in Mathematics and Government from Cornell University in May 2
 :::
 
 ::::
+
+:::::
 
 ::::::
