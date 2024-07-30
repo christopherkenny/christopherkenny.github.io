@@ -1,7 +1,5 @@
 ---
 sidebar: false
-html:
-  page-layout: full
 include-in-header:
   text: |
     <style type="text/css">
@@ -22,16 +20,13 @@ source('webscripts/bootstrap.R')
 ```
 
 
-:::::{.column-screen-inset}
+:::::: {.column-screen-inset}
 
-:::: {.columns}
-::: {.column width="3%"}
-:::
-::: {.column width="34%"}
+:::: {.column width="39%"}
 
-:::::: {.text-center}
+::: {.text-center}
 
-# Christopher T. Kenny    
+# Christopher T. Kenny
 
 ![](figs/ckenny_small.webp){width=20em}
 
@@ -62,13 +57,13 @@ make_carousel(
 )
 ```
 
-::::::
 :::
 
-::: {.column width="3%"}
-:::
+::::
 
-::: {.column .justify width="56%"}
+:::: {.column width="59%"}
+
+::: {.justify}
 
 # About Me
 
@@ -89,9 +84,6 @@ I received a B.A. in Mathematics and Government from Cornell University in May 2
 
 :::
 
-::: {.column width="4%"}
-:::
-
 ::::
 
-:::::
+::::::
