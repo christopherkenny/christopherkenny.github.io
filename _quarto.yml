@@ -5,7 +5,7 @@ project:
     - "figs/tibblestable.png"
     - "files/"
     - "KennyPolMeth2024Poster.pdf"
-    
+
 website:
   title: 'Christopher T. Kenny'
   favicon: "hexes/hex_ctk.png"
@@ -39,13 +39,20 @@ website:
         href: https://christopherkenny.r-universe.dev/builds
     background: "#B31B1B"
   google-analytics: "G-PBRM1BV0GG"
-  twitter-card: 
+  twitter-card:
     site: "@Chris_T_Kenny"
     creator: "@Chris_T_Kenny"
   open-graph: true
   site-url: https://christophertkenny.com
   repo-url: "https://github.com/christopherkenny/christopherkenny.github.io"
   description: "Christopher T. Kenny is a PhD candidate in Government at Harvard University."
+  page-footer:
+    left: |
+      © Copyright 2021-2024 Christopher T. Kenny.<br>
+      All rights reserved.
+    right: |
+      Built with [Quarto](https://quarto.org/).<br>
+      Source available on [GitHub](https://github.com/christopherkenny/christopherkenny.github.io).
   announcement:
     icon: exclamation-circle
     content: "**New working paper**: [*Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors*](https://arxiv.org/abs/2407.11336)"
@@ -54,7 +61,7 @@ website:
 
 format:
   html:
-    theme: 
+    theme:
     - yeti
     - custom.scss
     code-overflow: wrap
