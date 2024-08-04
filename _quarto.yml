@@ -20,6 +20,8 @@ website:
         href: software.html
       - text: "CV"
         href: cv/kenny_cv.pdf
+      - text: "Quarto"
+        href: quarto.html
       - text: "Blog"
         href: blog.html
     right:
