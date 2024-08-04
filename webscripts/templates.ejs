@@ -1,0 +1,33 @@
+```{=html}
+
+<% for (const item of items) { %>
+
+    <h2><%- item.category %></h2>
+
+    <p><%- item.description %></p>
+
+    <div class="list grid">
+
+        <% for (const ext of item.extensions) { %>
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                <% if(ext.image){ %>
+                    <a href="<%- ext.link %>">
+                        <img src="<%- ext.image %>"
+                        class="card-img-top img-fluid rounded-start" alt="<%- ext.name %> first page">
+                    </a>
+                <% } %>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="<%- ext.link %>"><%- ext.name %></a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            <%= ext.description %>
+                        </small></p>
+                    </div>
+            </div>
+
+        <% } %>
+
+    </div>
+
+<% } %>
+```
