@@ -19,6 +19,11 @@
                 <% } %>
                     <div class="card-body">
                         <h5 class="card-title"><a href="<%- ext.link %>"><%- ext.name %></a></h5>
+                            <% if(ext.badges){ %>
+                                <% for (const badge of ext.badges) { %>
+                                    <span class="badge rounded-pill bg-dark"><%- badge %></span>
+                                <% } %>
+                            <% } %>
                         <p class="card-text"><small class="text-muted">
                             <%= ext.description %>
                         </small></p>
