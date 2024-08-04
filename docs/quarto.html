@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Christopher T. Kenny">
+<meta name="dcterms.date" content="2024-08-04">
+<meta name="description" content="Templates and filters for reproducible reports made (mostly) for Quarto">
 
-<title>Blog Posts – Christopher T. Kenny</title>
+<title>Quarto Extensions – Christopher T. Kenny</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,20 +75,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-templates .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-category','listing-description','listing-extensions',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-category","listing-description","listing-extensions"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-templates'] = new List('listing-templates', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -140,9 +141,11 @@ window.Quarto = {
 };
 </script>
 
-<link rel="alternate" type="application/rss+xml" title="Christopher T. Kenny" href="blog.xml" data-external="1"><meta property="og:title" content="Blog Posts – Christopher T. Kenny">
+<meta property="og:title" content="Quarto Extensions – Christopher T. Kenny">
+<meta property="og:description" content="Templates and filters for reproducible reports made (mostly) for Quarto">
 <meta property="og:site_name" content="Christopher T. Kenny">
-<meta name="twitter:title" content="Blog Posts – Christopher T. Kenny">
+<meta name="twitter:title" content="Quarto Extensions – Christopher T. Kenny">
+<meta name="twitter:description" content="Templates and filters for reproducible reports made (mostly) for Quarto">
 <meta name="twitter:creator" content="@Chris_T_Kenny">
 <meta name="twitter:site" content="@Chris_T_Kenny">
 <meta name="twitter:card" content="summary">
@@ -185,7 +188,7 @@ window.Quarto = {
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -232,31 +235,34 @@ window.Quarto = {
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bskyr">bskyr <span class="quarto-category-count">(2)</span></div><div class="category" data-category="maps">maps <span class="quarto-category-count">(1)</span></div><div class="category" data-category="quarto">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="r-pkg">r-pkg <span class="quarto-category-count">(4)</span></div></div></div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog Posts</h1>
+<h1 class="title">Quarto Extensions</h1>
+</div>
+
+<div>
+  <div class="description">
+    Templates and filters for reproducible reports made (mostly) for Quarto
+  </div>
 </div>
 
 
+<div class="quarto-title-meta column-page">
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Christopher T. Kenny </p>
-          </div>
-  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 4, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -266,191 +272,227 @@ window.Quarto = {
 </header>
 
 
+<div id="listing-templates" class="quarto-listing quarto-listing-container-custom">
 
+    <h2 class="anchored">Journal templates</h2>
 
+    <p>Templates for general science and social science journals.</p>
 
+    <div class="list grid">
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="r-pkg,bskyr" data-listing-date-sort="1719633600000" data-listing-file-modified-sort="1722471788659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1623">
-<div class="thumbnail">
-<p><a href="./posts/2024-06-29-positron-settings/index.html" class="no-external"></a></p><a href="./posts/2024-06-29-positron-settings/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/2024-06-29-positron-settings/positron-view.png" class="thumbnail-image" alt="The view from inside Positron, full of purples."></p>
-</a><p><a href="./posts/2024-06-29-positron-settings/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-06-29-positron-settings/index.html" class="no-external">Settings, Keybindings, and Extensions for Positron</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-06-29-positron-settings/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('r-pkg'); return false;">
-r-pkg
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('bskyr'); return false;">
-bskyr
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-06-29-positron-settings/index.html" class="no-external">My initial keybindings, settings, and extensions for Positron, Posit’s new IDE built on “Code - OSS” (aka Visual Studio Code aka VS Code). </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-06-29-positron-settings/index.html" class="no-external">
-<div class="listing-date">
-Jun 29, 2024
-</div>
-<div class="listing-author">
-Christopher T. Kenny
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="r-pkg,bskyr" data-listing-date-sort="1704258000000" data-listing-file-modified-sort="1722471788658" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2915">
-<div class="thumbnail">
-<p><a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external"></a></p><a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/2024-01-03-bskyr-bot/bsky profile.png" class="thumbnail-image" alt="The Bluesky profile for the CRAN Updates bot."></p>
-</a><p><a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external">Making a Scheduled Bot for Bluesky Social in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('r-pkg'); return false;">
-r-pkg
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('bskyr'); return false;">
-bskyr
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external">Explaining the mechanics behind my CRAN Updates bot for Bluesky Social. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-01-03-bskyr-bot/index.html" class="no-external">
-<div class="listing-date">
-Jan 3, 2024
-</div>
-<div class="listing-author">
-Christopher T. Kenny
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="r-pkg" data-listing-date-sort="1703134800000" data-listing-file-modified-sort="1722471788656" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1779">
-<div class="thumbnail">
-<p><a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external"></a></p><a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/2023-12-21-cran-wrapped/hexes_2023-12-20.png" class="thumbnail-image" alt="An array of hexagonal logos for discussed R packages."></p>
-</a><p><a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external">Packages 2023 Wrapped</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('r-pkg'); return false;">
-r-pkg
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external">A quick look at my R package updates this year. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-12-21-cran-wrapped/index.html" class="no-external">
-<div class="listing-date">
-Dec 21, 2023
-</div>
-<div class="listing-author">
-Christopher T. Kenny
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="maps,r-pkg" data-listing-date-sort="1688702400000" data-listing-file-modified-sort="1722471788630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="447">
-<div class="thumbnail">
-<p><a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external"></a></p><a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/2023-07-07-making-maps-with-feltr/hex_feltr.png" class="thumbnail-image" alt="A hexagonal logo for the R package Feltr with the word feltr in the foreground and a small map in the background."></p>
-</a><p><a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external">Making Maps with <code>feltr</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('maps'); return false;">
-maps
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('r-pkg'); return false;">
-r-pkg
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external">A brief introduction to the <code>feltr</code> package. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-07-07-making-maps-with-feltr/index.html" class="no-external">
-<div class="listing-date">
-Jul 7, 2023
-</div>
-<div class="listing-author">
-Christopher T. Kenny
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="quarto" data-listing-date-sort="1688184000000" data-listing-file-modified-sort="1722471788591" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6984">
-<div class="thumbnail">
-<p><a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external"></a></p><a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/2023-07-01-creating-quarto-journal-articles/pnas-template.png" class="thumbnail-image" alt="The first page of a templated article for PNAS."></p>
-</a><p><a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external">Creating Quarto Journal Article Templates</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('quarto'); return false;">
-quarto
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external">A long walk through creating Quarto templates for journal articles. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-07-01-creating-quarto-journal-articles/index.html" class="no-external">
-<div class="listing-date">
-Jul 1, 2023
-</div>
-<div class="listing-author">
-Christopher T. Kenny
-</div>
-</a>
-</div>
-</div>
-</div>
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/annual-reviews">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/annual-reviews/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Annual Reviews first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/annual-reviews">Annual Reviews</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Annual Reviews drafts.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/apsr">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/apsr/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="APSR first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/apsr">APSR</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For the American Political Science Review submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/cambridge-medium">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/cambridge-medium/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Cambridge Medium first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/cambridge-medium">Cambridge Medium</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Cambridge Medium journal submissions, including PA, BJPS, and PSRM.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/nature">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/nature/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Nature first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/nature">Nature</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Springer Nature journal submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/pnas">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/pnas/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="PNAS first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/pnas">PNAS</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For PNAS submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/pnas-si">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/pnas-si/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="PNAS Supporting Information first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/pnas-si">PNAS Supporting Information</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For PNAS SI (appendices) submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/scientific-data">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/scientific-data/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Scientific Data first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/scientific-data">Scientific Data</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Scientific Data "Data Descriptors" submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/perspectives">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/perspectives/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Perspectives first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/perspectives">Perspectives</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Perspectives on Politics submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/rticles">Science</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Science and Science Advances submissions.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+    </div>
+
+    <h2 class="anchored">Quarto filters</h2>
+
+    <p>Quarto extensions which provide additional document functions.</p>
+
+    <div class="list grid">
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/wordcount">wordcount</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            Insert word counts into the body of a document.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/typst-function">typst-function</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            Add Typst functions to Quarto documents using div and span syntax.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+    </div>
+
+    <h2 class="anchored">Other templates</h2>
+
+    <p>Formats for non-journal documents.</p>
+
+    <div class="list grid">
+
+        
+
+            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
+                
+                    <a href="https://github.com/christopherkenny/tufte">
+                        <img src="https://raw.githubusercontent.com/christopherkenny/tufte/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="tufte first page">
+                    </a>
+                
+                    <div class="card-body">
+                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/tufte">tufte</a></h5>
+                        <p class="card-text"><small class="text-muted">
+                            For Tufte-style documents in Quarto with a Typst backend.
+                        </small></p>
+                    </div>
+            </div>
+
+        
+
+    </div>
+
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

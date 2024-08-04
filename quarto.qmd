@@ -1,0 +1,13 @@
+---
+title: "Quarto Extensions"
+description: "Templates and filters for reproducible reports made (mostly) for Quarto"
+date: today
+listing:
+  - id: templates
+    template: webscripts/templates.ejs
+    contents: webscripts/templates.yml
+page-layout: full
+---
+
+::: {#templates}
+:::

@@ -1,30 +1,87 @@
-- category: Quarto
-  templates:
+- category: Journal templates
+  description: Templates for general science and social science journals.
+  extensions:
     - name: Annual Reviews
       link: https://github.com/christopherkenny/annual-reviews
       image: https://raw.githubusercontent.com/christopherkenny/annual-reviews/main/template_1.png
+      type: Quarto
+      description: For Annual Reviews drafts.
     - name: APSR
       link: https://github.com/christopherkenny/apsr
       image: https://raw.githubusercontent.com/christopherkenny/apsr/main/template_1.png
+      type: Quarto
+      description: For the American Political Science Review submissions.
     - name: Cambridge Medium
       link: https://github.com/christopherkenny/cambridge-medium
       image: https://raw.githubusercontent.com/christopherkenny/cambridge-medium/main/template_1.png
+      type: Quarto
+      description: For Cambridge Medium journal submissions, including PA, BJPS, and PSRM.
     - name: Nature
       link: https://github.com/christopherkenny/nature
       image: https://raw.githubusercontent.com/christopherkenny/nature/main/template_1.png
+      type: Quarto
+      description: For Springer Nature journal submissions.
     - name: PNAS
       link: https://github.com/christopherkenny/pnas
       image: https://raw.githubusercontent.com/christopherkenny/pnas/main/template_1.png
+      type: Quarto
+      description: For PNAS submissions.
     - name: PNAS Supporting Information
       link: https://github.com/christopherkenny/pnas-si
       image: https://raw.githubusercontent.com/christopherkenny/pnas-si/main/template_1.png
+      type: Quarto
+      description: For PNAS SI (appendices) submissions.
     - name: Scientific Data
       link: https://github.com/christopherkenny/scientific-data
       image: https://raw.githubusercontent.com/christopherkenny/scientific-data/main/template_1.png
+      type: Quarto
+      description: For Scientific Data "Data Descriptors" submissions.
     - name: Perspectives
       link: https://github.com/christopherkenny/perspectives
       image: https://raw.githubusercontent.com/christopherkenny/perspectives/main/template_1.png
-- category: rticles
-  templates:
+      type: Quarto
+      description: For Perspectives on Politics submissions.
     - name: Science
       link: https://github.com/christopherkenny/rticles
+      type: RMarkdown (rticles)
+      description: For Science and Science Advances submissions.
+- category: Quarto filters
+  description: Quarto extensions which provide additional document functions.
+  extensions:
+    - name: wordcount
+      link: https://github.com/christopherkenny/wordcount
+      # image: https://raw.githubusercontent.com/christopherkenny/wordcount/main/example_1.png
+      type: Quarto
+      description: Insert word counts into the body of a document.
+    - name: typst-function
+      link: https://github.com/christopherkenny/typst-function
+      type: Quarto
+      description: Add Typst functions to Quarto documents using div and span syntax.
+- category: Other templates
+  description: Formats for non-journal documents.
+  extensions:
+    - name: tufte
+      link: https://github.com/christopherkenny/tufte
+      image: https://raw.githubusercontent.com/christopherkenny/tufte/main/template_1.png
+      type: Quarto
+      description: For Tufte-style documents in Quarto with a Typst backend.
+    # - name: ctk-article
+    #   link: https://github.com/christopherkenny/ctk-article
+    #   image: https://raw.githubusercontent.com/christopherkenny/ctk-article/main/template_1.png
+    #   type: Quarto
+    #   description: For preprints in Quarto with a Typst backend.
+    # - name: ctk-letter
+    #   link: https://github.com/christopherkenny/ctk-letter
+    #   image: https://raw.githubusercontent.com/christopherkenny/ctk-letter/main/template_1.png
+    #   type: Quarto
+    #   description: For letters in Quarto with a Typst backend.
+    # - name: ctk-memo
+    #   link: https://github.com/christopherkenny/ctk-memo
+    #   image: https://raw.githubusercontent.com/christopherkenny/ctk-memo/main/template_1.png
+    #   type: Quarto
+    #   description: For memos in Quarto with a Typst backend.
+    # - name: ctk-syllabus
+    #   link: https://github.com/christopherkenny/ctk-syllabus
+    #   image: https://raw.githubusercontent.com/christopherkenny/ctk-syllabus/main/template_1.png
+    #   type: Quarto
+    #   description: For syllabi in Quarto with a Typst backend.
