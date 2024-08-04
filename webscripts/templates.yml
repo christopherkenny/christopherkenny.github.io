@@ -77,12 +77,12 @@
       type: Quarto
       description: For Tufte-style documents in Quarto with a Typst backend.
       badges: ["Quarto", "Typst"]
-    # - name: ctk-article
-    #   link: https://github.com/christopherkenny/ctk-article
-    #   image: https://raw.githubusercontent.com/christopherkenny/ctk-article/main/template_1.png
-    #   type: Quarto
-    #   description: For preprints in Quarto with a Typst backend.
-    #   badges: ["Quarto", "Typst"]
+    - name: ctk-article
+      link: https://github.com/christopherkenny/ctk-article
+      image: https://raw.githubusercontent.com/christopherkenny/ctk-article/main/template_1.png
+      type: Quarto
+      description: A general purpose template for preprints and submissions using Quarto and Typst.
+      badges: ["Quarto", "Typst"]
     # - name: ctk-letter
     #   link: https://github.com/christopherkenny/ctk-letter
     #   image: https://raw.githubusercontent.com/christopherkenny/ctk-letter/main/template_1.png
