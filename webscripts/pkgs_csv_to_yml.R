@@ -1,5 +1,4 @@
-library(dplyr)
-library(readr)
+library(tidyverse)
 
 if (FALSE) {
   pkgs <- read_csv('pkgs.csv')
@@ -23,6 +22,15 @@ if (FALSE) {
   pkgs |>
     write_csv('pkgs.csv')
 }
+
+descs <- tribble(
+  ~topic, ~topic_title,
+  'redistricting', 'Packages for redistricting',
+  'census', 'Packages for working with Census Bureau data',
+  'plotting', 'Packages for plotting data',
+  'api', 'Packages interfacing with API services',
+  'other', 'Other R packages',
+)
 
 pkgs <- read_csv('pkgs.csv') |>
   mutate(
