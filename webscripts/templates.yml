@@ -68,6 +68,11 @@
       type: Quarto
       description: Add Typst functions to Quarto documents using div and span syntax.
       badges: ["Quarto", "Typst"]
+    - name: spellcheck
+      link: https://github.com/christopherkenny/spellcheck
+      type: Quarto
+      description: Print misspelled words to the console using Hunspell.
+      badges: ["Quarto", "LaTeX", "Typst", "HTML"]
 - category: Other templates
   description: Formats for non-journal documents.
   extensions:
