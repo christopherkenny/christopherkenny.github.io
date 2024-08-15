@@ -36,7 +36,9 @@ pkgs <- read_csv('pkgs.csv') |>
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
     .after = name
-  )
+  ) |>
+  left_join(descs, by = "topic") |>
+  mutate(topic = factor(topic, levels = unique(descs$topic)))
 
 pkgs |>
   group_by(status) |>
@@ -44,13 +46,22 @@ pkgs |>
   lapply(function(x) {
     list(
       category = x$status[1],
-      packages = lapply(seq_len(nrow(x)), function(i) {
-        x |>
-          select(-status) |>
-          slice(i) |>
-          as.list() |>
-          purrr::discard(is.na)
-      })
+      topics = x |>
+        group_by(topic) |>
+        group_split() |>
+        lapply(function(y) {
+          list(
+            name = y$topic[1],
+            description = y$topic_title[1],
+            packages = lapply(seq_len(nrow(y)), function(i) {
+              y |>
+                select(-status, -topic) |>
+                slice(i) |>
+                as.list() |>
+                purrr::discard(is.na)
+            })
+          )
+        })
     )
   }) |>
   yaml::write_yaml('webscripts/pkgs.yml')
