@@ -124,6 +124,23 @@ make_collapse_card(
 )
 ```
 
+#### Official Statistics Moderately Overestimate Residential Segregation in the United States
+
+(with Jacob R. Brown and Tyler Simko)
+
+[Send me an email](mailto:christopherkenny@fas.harvard.edu) for a current draft.
+
+```{r, echo = FALSE, results='asis'}
+make_button(c('Abstract'),  c('brown2024segregationAbs'))
+```
+
+```{r, echo = FALSE, results='asis'}
+make_collapse_card(
+  'brown2024segregationAbs',
+  txt = 'Residential segregation in the United States is widespread, has persisted over time, and threatens fair economic opportunity and social cohesion. Most commonly used measures of segregation rely on aggregate data that impose arbitrary definitions of local geography. Previous work demonstrates that segregation measures are sensitive to the particular aggregation. Using recent advances in redistricting software, we evaluate the bias and uncertainty created by these measurement choices. We sample alternative Census tract maps that follow Census guidelines, ensuring that maps are contiguous and meet certain population bounds. We then calculate segregation metrics for each map to construct probabilistic distributions of segregation indices. With these data we provide bias-corrected estimates of racial segregation across U.S. cities and quantify the uncertainty induced by aggregation measurement error. The data demonstrate that official Census Tract definitions overstate the degree of racial segregation in the United States. This measurement error is most pronounced in small and medium sized cities and is most severe for two-group, rather than multi-group, segregation measures. We offer these new data as a tool for researchers and demonstrate their potential by re-examining contemporary and over-time segregation.'
+)
+```
+
 ## Publications
 
 #### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
