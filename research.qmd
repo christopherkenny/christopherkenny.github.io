@@ -419,6 +419,10 @@ make_collapse_card(
 
 (with Kosuke Imai, Cory McCartan, and Tyler Simko). Book project.
 
+#### An Individual Causal Framework for Evaluating Electoral Systems
+
+(with Cory McCartan)
+
 ## Public Writing
 
 #### [Expert Report in Sakhnovsky, et al v. City of Daytona Beach](https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf)
