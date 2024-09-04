@@ -141,6 +141,21 @@ make_collapse_card(
 )
 ```
 
+#### Principles and Politics: Explicit Rules Bind Lawmakers and Courts
+
+[Send me an email](mailto:christopherkenny@fas.harvard.edu) for a current draft.
+
+```{r, echo = FALSE, results='asis'}
+make_button(c('Abstract'),  c('kenny2024principlesAbs'))
+```
+
+```{r, echo = FALSE, results='asis'}
+make_collapse_card(
+  'kenny2024principlesAbs',
+  txt = 'Policymakers in America often hold power over democratic institutions, especially electoral institutions. Their decisions can place principled decision-making at odds with partisan goals, especially in polarized times. How do policymakers balance these competing interests? I argue that policymakers are more likely to side against partisan interests when the law is more explicit. I apply this to partisan gerrymandering in the United States, where map drawers can manipulate district boundaries to favor one party. This provides a hard test, where partisan interests are directly at odds with democratic principles and the stakes of any decision are high. Using new data on the 2020 redistricting cycle combined with redistricting simulations, I find that map drawers typically follow rules that protect partisan fairness. Further, if a partisan gerrymandering case is brought against a redistricting plan, courts are more likely to rule against a plan when there is an explicit law against partisan gerrymandering. When courts intervene, they consistently, but only moderately, decrease the partisan bias of the plan. I then demonstrate that compliance with other, nonpartisan redistricting rules is highest when it is easiest to measure violations. This contributes optimistic evidence that rules effectively bind partisans.'
+)
+```
+
 ## Publications
 
 #### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
