@@ -141,9 +141,7 @@ make_collapse_card(
 )
 ```
 
-#### Principles and Politics: Explicit Rules Bind Lawmakers and Courts
-
-[Send me an email](mailto:christopherkenny@fas.harvard.edu) for a current draft.
+#### [Principles and Politics: Explicit Rules Bind Lawmakers and Courts](https://christophertkenny.com/drafts/principles-and-partisanship.pdf)
 
 ```{r, echo = FALSE, results='asis'}
 make_button(c('Abstract'),  c('kenny2024principlesAbs'))
