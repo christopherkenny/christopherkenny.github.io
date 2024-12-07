@@ -352,3 +352,14 @@
         and provides functionality to store models and their fitted values as columns
         in a data frame.
       topic_title: Other R packages
+    - name: opengraph
+      logo: hexes/hex_opengraph.png
+      info: Process Metadata from the Open Graph Protocol
+      link: https://christophertkenny.com/opengraph/
+      color: '#833B0C'
+      description: Social media sites often embed cards when links are shared, based
+        on metadata in the Open Graph Protocol (<a href="https://ogp.me/">https://ogp.me/</a>).
+        This supports extracting that metadata from a website. It further allows for
+        the creation of tags to add to a website to support the Open Graph Protocol
+        and provides a list of the standard tags and their required properties.
+      topic_title: Other R packages
