@@ -55,11 +55,6 @@ website:
     right: |
       Built with [Quarto](https://quarto.org/).<br>
       Source available on [GitHub](https://github.com/christopherkenny/christopherkenny.github.io).
-  announcement:
-    icon: exclamation-circle
-    content: "**New working paper**: [*Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors*](https://arxiv.org/abs/2407.11336)"
-    type: info
-    position: below-navbar
 
 format:
   html:
