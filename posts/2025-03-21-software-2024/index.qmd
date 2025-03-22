@@ -1,0 +1,376 @@
+---
+title: "Packages 2024 Wrapped"
+date: "2025-03-21"
+description: |
+  A late look at my R package updates from 2024.
+categories: [r-pkg]
+image: "hexes_2024-03-21.png"
+image-alt: "An array of hexagonal logos for discussed R packages."
+editor: 
+  markdown: 
+    wrap: sentence
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+![](hexes_2025-03-21.png)
+
+It's tax season, so I'm thinking about the past year.
+I never wrote a wrap up for 2024 on packages like [I had done for 2023](https://christophertkenny.com/posts/2023-12-21-cran-wrapped/).
+So, here's a late look at my R package updates from 2024.
+
+```{r}
+#| label: libs
+suppressPackageStartupMessages(library(tidyverse))
+library(gt)
+library(geomtextpath)
+```
+
+
+```{r}
+#| label: data
+pkgs <- read_csv('../../pkgs.csv', show_col_types = FALSE) |> 
+  mutate(logo = paste0('../../', logo)) # set to higher level directory
+
+counts_daily <- pkgs |>
+  filter(status == 'CRAN') |>
+  pull(name) |>
+  cranlogs::cran_downloads(from = '2024-01-01', to = '2024-12-31') |> 
+  rename(name = package)
+counts_lst_yr <- counts_daily |>
+  group_by(name) |>
+  summarize(count = sum(count)) |>
+  arrange(desc(count)) |> 
+  left_join(pkgs, by = 'name')
+
+hists <- pkgs |> 
+  filter(status == 'CRAN') |> 
+  pull(name) |> 
+  map(pkgsearch::cran_package_history) |> 
+  list_rbind() |> 
+  mutate(
+    year = year(date),
+    date2 = date(date)
+  ) |> 
+  group_by(Package) |> 
+  mutate(first_year = min(year)) |> 
+  ungroup()
+
+first_release <- hists |> 
+  group_by(name = Package) |> 
+  summarize(first_release = min(date2))
+```
+
+# Updates on CRAN
+
+## New packages
+
+I've added six new package to CRAN this year, up from five in 2023.
+My hope is that this is going to settle down a bit in 2025, but there's quite a bit of work in progress already...
+
+### `alarmdata`
+
+::: {.column-margin}
+![](../../hexes/hex_alarmdata.png)
+:::
+
+[`alarmdata`](https://alarm-redist.org/alarmdata/) provides an interface to data from the [ALARM Project](https://alarm-redist.org/).
+This gives a simple way to download data on things like congressional districts or precinct election results.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### `planscorer`
+
+::: {.column-margin}
+![](../../hexes/hex_planscorer.png)
+:::
+
+[`planscorer`](https://christophertkenny.com/planscorer/) is an R port (plus a little extra) of the python package for [PlanScore](https://planscore.org/).
+PlanScore is a tool for evaluating redistricting plans, particularly for partisan fairness.
+`planscorer` allows you to upload a plan to PlanScore and get back a report on the plan's partisan fairness.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### `redistverse`
+
+::: {.column-margin}
+![](../../hexes/hex_redistverse.png)
+:::
+
+The [`redistverse`](https://alarm-redist.org/redistverse/) is a collection of packages for redistricting, centered on the award-winning R package, [`redist`](https://alarm-redist.org/redist/).
+This combines many of our packages for redistricting, like `redist`, `redistmetrics`, `geomander`, `ggredist`, `censable`, `tinytiger`, `PL94171`, and `alarmdata` into one easy-to-install bundle.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### `palette`
+
+::: {.column-margin}
+![](../../hexes/hex_palette.png)
+:::
+
+[`palette`](https://christophertkenny.com/palette/) is a package for creating color palettes.
+It's based on the [`vctrs`](https://vctrs.r-lib.org/) package, so it's easy to use with the tidyverse.
+My hope is that this will be a useful tool for creating consistent color schemes across projects by providing basic methods for creating palettes.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### `baf`
+
+::: {.column-margin}
+![](../../hexes/hex_baf.png)
+:::
+
+[`baf`](https://christophertkenny.com/baf/) is a package for accessing Block Assignment Files (BAFs) from the US Census Bureau.
+These files crosswalk blocks from the decennial census to other geographies, like congressional districts or state legislative districts.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### `opengraph`
+
+::: {.column-margin}
+![](../../hexes/hex_opengraph.png)
+:::
+
+[`opengraph`](https://christophertkenny.com/opengraph/) is a package for reading metadata from web pages.
+With the Open Graph Protocol, many websites provide structured data about their pages.
+This allows packages like [`bskyr`](https://christophertkenny.com/bskyr/) to provide a preview of a web page within posts.
+To see this in action, check out [`bskyr` PR #18](https://github.com/christopherkenny/bskyr/pull/18).
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Updates to existing packages
+
+One of the good parts of package development is that packages eventually reach a stable point.
+There will be bugs to fix or enhancements to make, but the bulk of the work is done.
+Among the 19 packages on CRAN going into 2024, 7 of them recieved a single update this past year.
+
+
+```{r}
+hists |> 
+  filter(year == 2024) |> 
+  filter(!Package %in% c('alarmdata', 'planscorer', 'redisttverse', 'palette', 'baf', 'opengraph')) |> 
+  select(Name = Package, Version, Date = date2, Title) |> 
+  arrange(Date) |> 
+  gt()
+```
+
+# Package Downloads
+
+```{r} 
+#| label: ranks
+
+make_url <- function(x, y) {
+  paste0('<a href="', pkgs |> filter(logo %in% x) |> slice(match(logo, x)) |> pull(link), '">', y, '</a>')
+}
+
+counts_lst_yr  |> 
+  select(logo, info, count) |>
+  mutate(rank = row_number(), .before = everything()) |> 
+  gt(id = 'pkgs') |> 
+  fmt_image(
+    columns = logo,
+    height = 100
+  ) |>
+  fmt_number(columns = count, decimals = 0) |> 
+  cols_width(
+    rank ~ px(100),
+    logo ~ px(100),
+    count ~ px(150),
+  ) |> 
+  cols_label(
+    rank = 'Rank',
+    logo = '',
+    info = 'Package',
+    count = 'Downloads'
+  ) |> 
+  opt_interactive()
+```
+
+
+Below are the cumulative downloads for each package over the last year by day.
+
+```{r}
+#| label: "daily"
+hj <- tribble(
+  ~name, ~hj,
+         "redist", 1.0,
+  "redistmetrics", 1.0,
+      "geomander", 1.0,
+        "PL94171", 1.0,
+       "censable", 0.85,
+      "tinytiger", 0.7,
+           "dots", 1.0,
+           "cvap", 1.0,
+           "ppmf", 0.85,
+         "divseg", 1.0,
+           "name", 0.6,
+            "jot", 0.75,
+       "ggredist", 1.0,
+       "congress", 0.95,
+          "feltr", 1.0,
+        "crayons", 0.7,
+      "apportion", 0.9,
+       "gptzeror", 0.7,
+          "bskyr", 1.0,
+      "alarmdata", 0.5,
+     "planscorer", 1.0,
+    "redistverse", 1.0,
+        "palette", 0.6,
+            "baf", 1.0,
+      "opengraph", 0.5,
+) |> 
+  mutate(hj = hj - 0.03)
+counts_daily |> 
+  left_join(pkgs, by = 'name') |> 
+  group_by(name) |> 
+  arrange(date) |> 
+  mutate(
+    cumulative_count = cumsum(count),
+    pkg_max = max(cumulative_count)
+  ) |> 
+  ungroup() |> 
+  left_join(first_release, by = 'name') |>
+  filter(date >= first_release) |>
+  left_join(hj, by = 'name') |>
+  ggplot() +
+  geom_textpath(aes(x = date, y = cumulative_count, label = name, hjust = hj, color = color)) + 
+  scale_x_date(name = 'Date', date_breaks = '2 month', date_labels = '%b %Y') +
+  scale_y_continuous(name = 'Count', labels = scales::label_comma(), breaks = scales::pretty_breaks()) +
+  scale_color_identity() +
+  theme_bw()
+```
+
+As with last year's post, a single summary of total downloads misses that some packages have been available for longer than others.
+One (simple) way to account for this is to adjust the downloads by the number of days the package has been available.
+Of course, this doesn't account for potential trends where a brand new package is less likely to be downloaded than a package that has been around for at least a few weeks.
+
+```{r}
+counts_daily |> 
+  left_join(first_release, by = 'name') |> 
+  filter(
+    name %in% c('alarmdata', 'planscorer', 'redistverse', 'palette', 'baf', 'opengraph'),
+    date >= first_release
+  ) |>
+  group_by(name) |>
+  summarize(
+        days = n(),
+    downloads = sum(count)
+  ) |>
+  mutate(
+    downloads_adjusted = downloads * (365 / days)
+  ) |> 
+  arrange(desc(downloads_adjusted)) |>
+  gt() |> 
+  cols_label(
+    name = 'Package',
+    days = 'Days',
+    downloads = 'Raw',
+    downloads_adjusted = 'Adjusted'
+  ) |> 
+  tab_spanner(
+    label = 'Downloads',
+    columns = c(downloads, downloads_adjusted)
+  ) |> 
+  fmt_number(
+    columns = c(downloads, downloads_adjusted),
+    decimals = 0
+  )
+```
+
+
+# Comparison in growth
+
+Now that there's a fair bit of packages that have been around for at least two years, we can compare the growth in downloads.
+
+```{r}
+#| label: growth
+counts_daily_lst_lst <- pkgs %>%
+  filter(status == 'CRAN') %>%
+  pull(name) %>%
+  cranlogs::cran_downloads(from = '2023-01-01', to = '2023-12-31') |> 
+  rename(name = package)
+counts_lst_lst_yr <- counts_daily_lst_lst %>%
+  group_by(name) %>%
+  summarize(count = sum(count)) %>%
+  arrange(desc(count)) |> 
+  left_join(pkgs, by = 'name')
+
+
+counts_lst_yr |> 
+  filter(!name %in% c(
+    'apportion', 'crayons', 'gptzeror', 'feltr', 'bskyr',
+    'alarmdata', 'planscorer', 'redistverse', 'palette', 'baf', 'opengraph'
+  )) |> 
+  select(name, county_2024 = count, logo) |> 
+  left_join(counts_lst_lst_yr |> select(name, county_2023 = count), by = 'name') |> 
+  mutate(
+    growth = (county_2024 - county_2023) / county_2023 + 1
+  ) |>
+  arrange(desc(growth)) |>
+  gt() |> 
+  cols_label(
+    name = 'Package',
+    county_2023 = '2023',
+    county_2024 = '2024',
+    growth = 'Growth'
+  ) |>
+  fmt_number(
+    columns = c(county_2023, county_2024),
+    decimals = 0
+  ) |>
+  fmt_percent(
+    columns = growth,
+    decimals = 2
+  ) |> 
+  tab_spanner(
+    label = 'Downloads',
+    columns = c(county_2023, county_2024)
+  ) |> 
+  text_transform(
+    locations = cells_body(columns = logo),
+    fn = function(x) {
+      make_url(x, y = 
+                 local_image(
+                   filename = x,
+                   height = 100
+                 )
+      )
+    }
+  ) |> 
+  cols_label(
+    logo = ''
+  )
+```
+
+# (Ongoing) Development in 2025
+
+There's always more to do.
+This year, I'm working on getting [`redistio`](https://github.com/christopherkenny/redistio) into research shape, with a lot of interest in using Kyle Walker's new [mapgl](https://walker-data.com/mapgl/) as a modern alternative to leaflet.
+With a dissertation to finalize in the next few weeks and a postdoc in the fall, there's a fair bit of focus on building out typesetting tools for academic writing, likely leading to some new packages related to Quarto and Typst in the near future.
+

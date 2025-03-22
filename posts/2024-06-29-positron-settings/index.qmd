@@ -3,7 +3,7 @@ title: "Settings, Keybindings, and Extensions for Positron"
 date: "2024-06-29"
 description: |
   My initial keybindings, settings, and extensions for Positron, Posit's new IDE built on "Code - OSS" (aka Visual Studio Code aka VS Code).
-categories: [r-pkg, bskyr]
+categories: [ide, positron]
 image: "positron-view.png"
 image-alt: "The view from inside Positron, full of purples."
 editor: 
