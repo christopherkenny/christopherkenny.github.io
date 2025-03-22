@@ -4,7 +4,7 @@ date: "2025-03-21"
 description: |
   A late look at my R package updates from 2024.
 categories: [r-pkg]
-image: "hexes_2024-03-21.png"
+image: "hexes_2025-03-21.png"
 image-alt: "An array of hexagonal logos for discussed R packages."
 editor: 
   markdown: 
