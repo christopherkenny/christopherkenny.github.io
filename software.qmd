@@ -89,7 +89,7 @@ if (FALSE) {
       aes(x = date, y = cumulative_count, label = name, color = color, hjust = ratio)
     ) + 
     scale_x_date(name = 'Date', date_breaks = '1 month', date_labels = '%b %Y') +
-    scale_y_continuous(name = 'Count', labels = scales::label_comma(), breaks = seq(0, 6000, by = 1000)) +
+    scale_y_continuous(name = 'Count', labels = scales::label_comma(), breaks = scales::pretty_breaks()) +
     scale_color_identity() +
     theme_bw()
 }
