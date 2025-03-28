@@ -112,3 +112,9 @@
       type: Quarto
       description: For a shortcode + BibTeX powered CV in Quarto with a Typst backend.
       badges: ["Quarto", "Typst"]
+    - name: projector
+      link: https://github.com/christopherkenny/projector
+      image: https://raw.githubusercontent.com/christopherkenny/projector/main/example.gif
+      type: Quarto
+      description: Make slides in Quarto powered by Typst's Polylux.
+      badges: ["Quarto", "Typst"]
