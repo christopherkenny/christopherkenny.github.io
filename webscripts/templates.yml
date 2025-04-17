@@ -118,3 +118,9 @@
       type: Quarto
       description: Make slides in Quarto powered by Typst's Polylux.
       badges: ["Quarto", "Typst"]
+    - name: harvard-diss
+      link: https://github.com/christopherkenny/harvard-diss
+      image: https://raw.githubusercontent.com/christopherkenny/harvard-diss/main/template_1.png
+      type: Quarto
+      description: Write a Harvard GSAS Dissertation in Quarto with a Typst backend.
+      badges: ["Quarto", "Typst"]
