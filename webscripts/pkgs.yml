@@ -200,6 +200,17 @@
         corresponding character representations. Palette extensions also are provided
         for data frames using 'pillar'.
       topic_title: Packages for plotting data
+    - name: flexoki
+      logo: hexes/hex_flexoki.png
+      info: Inky Color Schemes
+      link: https://christophertkenny.com/flexoki/
+      color: '#FFFCF0'
+      description: Provides color palettes designed to be reminiscent of text on paper.
+        The color schemes were taken from <a href="https://stephango.com/flexoki">https://stephango.com/flexoki</a>.
+        Includes discrete, continuous, and binned scales that are not necessarily
+        color-blind friendly. Simple scale and theme functions are available for use
+        with 'ggplot2'.
+      topic_title: Packages for plotting data
   - name: api
     description: Packages interfacing with API services
     packages:
