@@ -374,3 +374,14 @@
         and provides functionality to store models and their fitted values as columns
         in a data frame.
       topic_title: Other R packages
+    - name: typr
+      logo: hexes/hex_typr.png
+      info: Write and Render Typst Documents
+      link: https://christophertkenny.com/typr/
+      color: '#239dad'
+      description: Compile Typst files using the typst-cli (<a href=""https://typst.app"">https://typst.app</a>)
+        command line tool. Automatically falls back to rendering via embedded Typst
+        from Quarto (<a href=""https://quarto.org"">https://quarto.org</a>) if Typst
+        is not installed. Includes utilities to check for typst-cli availability and
+        run Typst commands.
+      topic_title: Other R packages
