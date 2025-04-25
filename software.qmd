@@ -71,7 +71,7 @@ if (FALSE) {
   downloads |>
     rename(name = package) |>
     left_join(pkgs, by = 'name') |>
-    filter(date >= date('2024-01-01')) |>
+    filter(date >= date('2025-01-01')) |>
     group_by(name) |>
     arrange(date) |>
     mutate(
