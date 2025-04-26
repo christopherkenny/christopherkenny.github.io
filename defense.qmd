@@ -1,8 +1,0 @@
----
-title: "Dissertation Defense"
-format: html
----
-
-```{=html}
-<iframe width="780" height="1000" src="https://christophertkenny.com/drafts/kenny-dissertation.pdf" title="Dissertation"></iframe>
-```
