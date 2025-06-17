@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.22">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christopher T. Kenny">
+<meta name="dcterms.date" content="2025-06-17">
+<meta name="description" content="A look at the data and empirical claims in a local election fraud case brought by an unsuccessful third party candidate and SMART Legislation in Rockland County, NY.">
+
+<title>Thinking SMARTer about election fraud in Rockland County, NY – Christopher T. Kenny</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../hexes/hex_ctk.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9e451724eebbf18c9d514fbd885a7143.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PBRM1BV0GG"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Thinking SMARTer about election fraud in Rockland County, NY – Christopher T. Kenny">
+<meta property="og:description" content="A look at the data and empirical claims in a local election fraud case brought by an unsuccessful third party candidate and SMART Legislation in Rockland County, NY.">
+<meta property="og:image" content="https://christophertkenny.com/posts/2025-06-17-rockland-sare/replication_24_senate_dropoff.png">
+<meta property="og:site_name" content="Christopher T. Kenny">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:alt" content="A replication of a figure on within-party dropoff, where many voters voted for Gillibrand but not Harris">
+<meta name="twitter:title" content="Thinking SMARTer about election fraud in Rockland County, NY – Christopher T. Kenny">
+<meta name="twitter:description" content="A look at the data and empirical claims in a local election fraud case brought by an unsuccessful third party candidate and SMART Legislation in Rockland County, NY.">
+<meta name="twitter:image" content="https://christophertkenny.com/posts/2025-06-17-rockland-sare/replication_24_senate_dropoff.png">
+<meta name="twitter:creator" content="@Chris_T_Kenny">
+<meta name="twitter:site" content="@Chris_T_Kenny">
+<meta name="twitter:image-height" content="1800">
+<meta name="twitter:image-width" content="2400">
+<meta name="twitter:image:alt" content="A replication of a figure on within-party dropoff, where many voters voted for Gillibrand but not Harris">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../hexes/hex_ctk.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Christopher T. Kenny</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html">
+<span class="menu-text">Research</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+<span class="menu-text">Teaching</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html">
+<span class="menu-text">Software</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/kenny_cv.pdf">
+<span class="menu-text">CV</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../quarto.html">
+<span class="menu-text">Quarto</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+<span class="menu-text">Blog</span></a>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Chris_T_Kenny"> <i class="bi bi-twitter" role="img">
+</i>
+<span class="menu-text"></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.threads.net/@chris_t_kenny">
+<span class="menu-text"><iconify-icon inline="true" role="img" icon="fa6-brands:square-threads" aria-label="Icon square-threads from fa6-brands Iconify.design set." title="Icon square-threads from fa6-brands Iconify.design set."></iconify-icon></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/chriskenny.bsky.social">
+<span class="menu-text"><iconify-icon inline="true" role="img" icon="simple-icons:bluesky" aria-label="Icon bluesky from simple-icons Iconify.design set." title="Icon bluesky from simple-icons Iconify.design set."></iconify-icon></span></a>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/christopherkenny"> <i class="bi bi-github" role="img">
+</i>
+<span class="menu-text"></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0002-9386-6860">
+<span class="menu-text"><iconify-icon inline="true" role="img" icon="fa6-brands:orcid" aria-label="Icon orcid from fa6-brands Iconify.design set." title="Icon orcid from fa6-brands Iconify.design set."></iconify-icon></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=uVUhHXAAAAAJ">
+<span class="menu-text"><iconify-icon inline="true" role="img" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Icon google-scholar from fa6-brands Iconify.design set."></iconify-icon></span></a>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://christopherkenny.r-universe.dev/builds"> <i class="bi bi-rocket-takeoff-fill" role="img">
+</i>
+<span class="menu-text"></span></a>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+
+  <ul>
+  <li><a href="#sare-v.-rockland-county-board-of-elections-background" id="toc-sare-v.-rockland-county-board-of-elections-background" class="nav-link active" data-scroll-target="#sare-v.-rockland-county-board-of-elections-background"><em>Sare v. Rockland County Board of Elections</em> Background</a></li>
+  <li><a href="#ballot-rolloff" id="toc-ballot-rolloff" class="nav-link" data-scroll-target="#ballot-rolloff">Ballot rolloff</a></li>
+  <li><a href="#no-votes-for-harris-but-votes-for-gillibrand-in-the-monsey-area" id="toc-no-votes-for-harris-but-votes-for-gillibrand-in-the-monsey-area" class="nav-link" data-scroll-target="#no-votes-for-harris-but-votes-for-gillibrand-in-the-monsey-area">No votes for Harris, but votes for Gillibrand in the Monsey area</a></li>
+  <li><a href="#voter-affidavits-for-sare-than-recorded-votes-for-sare" id="toc-voter-affidavits-for-sare-than-recorded-votes-for-sare" class="nav-link" data-scroll-target="#voter-affidavits-for-sare-than-recorded-votes-for-sare">Voter affidavits for Sare than recorded votes for Sare</a></li>
+  <li><a href="#concluding-thoughts" id="toc-concluding-thoughts" class="nav-link" data-scroll-target="#concluding-thoughts">Concluding thoughts</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Thinking <em>SMART</em>er about election fraud in Rockland County, NY</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">elections</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>A look at the data and empirical claims in a local election fraud case brought by an unsuccessful third party candidate and SMART Legislation in Rockland County, NY.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://christophertkenny.com">Christopher T. Kenny</a> <a href="https://orcid.org/0000-0002-9386-6860" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 17, 2025</p>
+    </div>
+  </div>
+
+
+  </div>
+
+
+
+</header>
+
+
+<p>An <a href="https://www.lohud.com/story/news/local/rockland/2025/06/14/lawsuit-claims-rockland-votes-miscounted-in-2024-election-were-they/84186259007/">election fraud case</a> was recently allowed to go forward in Rockland County, NY. The case is centered around the idea that ballot machines were not correctly counting the ballots and <a href="https://iapps.courts.state.ny.us/nyscef/ViewDocument?docIndex=hb1xlglkbKUN3cAUlCAspQ==">includes at least one huge ask</a>:</p>
+<blockquote class="blockquote">
+<p>Invalidate the races for President and U.S. Senator in the November 2024 General Election in Rockland County.</p>
+</blockquote>
+<p>It’s an interesting case and all of the filings are on the <a href="https://iapps.courts.state.ny.us/nyscef/DocumentList?docketId=8m9vd/TuVGcRxztbi5BQMw==&amp;display=all&amp;courtType=Rockland%20County%20Supreme%20Court&amp;resultsPageNum=1">NYSCEF website</a>. The case is brought by a candidate for a small third party (Diane Sare), two voters, and SMART Legislation, an electoral reform group.</p>
+<p>Since I’m in a short quiet period between finishing a PhD in political science at Harvard and starting a postdoc at Princeton, I thought I’d take a look at the data and major claims. I also grew up in Rockland and spend a lot of my time here, so will opine a bit on the quirks of the area. <em>This is a blog post focused on the data and mechanisms for the claims for my own interest, has not been paid for by any party to the lawsuit, and should not be interpreted as expert evidence.</em> As it is a blog post and not my normal academic or expert writing, I include some personal reactions and opinions.</p>
+<p>Below, I start by giving a brief overview of the case. Then, I explain some thoughts on three pieces of evidence:</p>
+<ol type="1">
+<li>Ballot rolloff: how many votes are cast in down-ballot races (US Senate or US House) compared to US President</li>
+<li>Precincts with 0 votes for Harris: two precincts in Ramapo have votes for Gillibrand but 0 for Harris</li>
+<li>Precincts with more voter affidavits for Sare than votes for Sare</li>
+</ol>
+<p><strong>The short of it is that I’m quite skeptical of the evidence presented in the case thus far.</strong> The evidence presented doesn’t really ring any alarm bells, despite the extravagant claims made with it. Pushing very lightly on the obscure statistics chosen makes most of the claims fall apart. Further, the petitioners misrepresent the academic literature that they cite to. Despite lots of discussion online, everyone should be cautious in considering this case as a big win for election deniers.</p>
+<section id="sare-v.-rockland-county-board-of-elections-background" class="level2">
+<h2 class="anchored" data-anchor-id="sare-v.-rockland-county-board-of-elections-background"><em>Sare v. Rockland County Board of Elections</em> Background</h2>
+<p>Diane Sare ran for the US Senate in NY in November 2024. Less than a month later, she sued the Rockland County Board of Elections. The suit is joined by SMART Legislation, an advocacy group affiliated with SMART Elections. There are also two voters on the case who claim to have voted for Sare and want to ensure that their votes, along with other voters for Sare, had their votes counted correctly.</p>
+<p>Now, in June 2025, the case is picking up again after a state Supreme Court judge ruled that it should continue to discovery. As a quick reminder, the Supreme Court in NY is the <em>lowest</em> court in the state, not the court of last resort. A <a href="https://apnews.com/press-release/access-newswire/diane-sare-kamala-harris-kamala-harris-es-kirsten-gillibrand-new-hampshire-225173eaaf66b420844508516b365caf">boisterous press release</a> has increased the following for the case. In the release, Lulu Friesdat of SMART Legislation says the following:</p>
+<blockquote class="blockquote">
+<p>There is clear evidence that the Senate results are incorrect, and there are statistical indications that the presidential results are highly unlikely.</p>
+</blockquote>
+<p>In support of these claims, the suit includes sworn affidavits from several voters, primarily neighbors of Sare, who swear that they voted for her. Further, they link to a <a href="https://img1.wsimg.com/blobby/go/5275a097-faa2-4d46-8f25-54b36ea675b1/Statistical%20Analysis%20of%20Rockland%20County%20NY%20Ele.pdf">slide deck</a> by a physicist and astronomer. The summary of the slide deck is:</p>
+<ol type="1">
+<li>Harris underperformed Gillibrand</li>
+<li>Trump outperformed Sapraicone</li>
+<li>Harris’s underperformance is “STATISTICALLY SIGNIFICANT[ly]” different compared to how Biden performed against Mondaire Jones in 2020</li>
+</ol>
+<p>The press release further links to a <a href="https://bsky.app/profile/did:plc:d77gsmi7rgodgiijbrkv3cwc/post/3lgyxoc3pik2z">Bluesky thread</a> that posts images from an online election site for Rockland County. These point to a small number of precincts where Kamala Harris received a small number of votes, while Kirsten Gillibrand received hundreds. Further, in two precincts Harris received 0 and 2 votes, while Gillibrand received 331 and 909 votes.</p>
+<p>These are superficially weird, I admit. However, none of this is surprising when you consider the underlying data generating process. First, the statistics used are relatively weak and don’t necessarily replicate (where there is sufficient information to attempt replication). Second, much of the drop-off (aka rolloff) would be consistent with saying that “winning candidates get more votes than losing candidates”. This is because the petitioners and slide deck author use inappropriate statistics. Third, the precincts with weird patterns are in the heart of an Orthodox Jewish community that has a history of similar bloc voting, which <em>would</em> likely explain large swings between candidates.</p>
+</section>
+<section id="ballot-rolloff" class="level2">
+<h2 class="anchored" data-anchor-id="ballot-rolloff">Ballot rolloff</h2>
+<p>One of the main allegations in the <a href="siapps.courts.state.ny.us/nyscef/ViewDocument?docIndex=5E1/Fc_PLUS_rWASPlhLKP7dKOQ==">petition</a> is that there is ballot rolloff at unusual rates. A good summary of their approach is listed here:</p>
+<blockquote class="blockquote">
+<ol start="13" type="1">
+<li>Petitioner SMART Legislation conducted an analysis of the results of the votes cast in Rockland County. Petitioner found that 23% of the voters who voted for the Republican Presidential Candidate Donald Trump did not vote for the Republican Senate Candidate, Michael D. Sapraicone. At the state level, 9% of voters cast their ballot for the Republican Presidential candidate but abstained from recording a vote for the Republican Senate candidate. This occurrence is referred to as the “drop-off rate” which describes a ballot cast by a voter for, in this case, the candidate at the top of the ballot, but does not submit a selection in a race for a lower-level office (here, US Senate) of the same party or who makes no selection at all among the candidates for that lower-level office.</li>
+</ol>
+</blockquote>
+<p>This definition of rolloff (aka drop-off) is pretty close to what you might expect. The key idea is that voters who vote for the office of US President may not vote for the lower office, such as the Senate. The difference in number of votes for the higher office and the lower office form the rolloff. Generally, rolloff is going to be positive, where more people vote for higher offices than lower offices. This occurs across scales, where big contests like the Senate may see more rolloff by the time the voter reaches a municipal or town race. In general, we expect the number of votes to decrease as you get from the biggest contests to the smallest ones. There may be exceptions, such as if a local race is hotly contested.</p>
+<p>The petition alleges that Harris sees a bunch of negative rolloff. Specifically, the US Senate race Democratic candidate got more votes than the US presidential race Democratic candidate. That sounds bad, right? Not really, because the petition makes a dubious switch here.</p>
+<p>What differs here from the normal idea of rolloff to the one used in the petition? The petition indicates that there is rolloff <em>within parties</em>! This means that any candidate who splits their ticket is counted as rolling off. What happens if you prefer Harris (D) to Trump (R), but you prefer say Lawler (R) to Jones (D) in the House race? That would be counted in this new special type of rolloff, because you voted for a Democrat in the higher office, but not in the lower office. Clearly, within-party rolloff is conceptually <em>very different</em> and should not be conflated with actual rolloff.</p>
+<p>For a moment, take this one step further: if the rolloff within parties shouldn’t be negative, then we would expect only rare cases where a lower candidate outperforms a candidate for higher office. When there’s a blowout against a higher office candidate, their party would be expected to lose every lower race. Yet, the lower office candidates do win quite <em>a lot</em>, and this is often a sign of a good candidate. For example, in the 2024 election, <a href="https://abcnews.go.com/538/strongest-senate-house-candidates-2024/story?id=117522803">538’s Nathaniel Rakich</a> shows 12 US Senate candidates outperformed their party’s president by at least 5 points. <strong>125</strong> US House candidates did the same! That’s nearly 30% of all US House races, not something rare.</p>
+<p>Putting the conceptual concerns aside, we can also look at the data and think about the empirical side. Recent press releases from SMART include a few slides from Max Bonamente, a physicist and astronomer, which can be found <a href="https://img1.wsimg.com/blobby/go/5275a097-faa2-4d46-8f25-54b36ea675b1/Statistical%20Analysis%20of%20Rockland%20County%20NY%20Ele.pdf">here</a>. To the best of my ability, I believe the author is doing the following:</p>
+<ol type="1">
+<li>Collecting precinct returns by ward for the 2024 presidential and senatorial races</li>
+<li>Computing a within-party rolloff by precinct</li>
+</ol>
+<p><span class="math display">\[\frac{\textrm{Votes}_{i,p,r=P} - \textrm{Votes}_{i,p,r=S}}{\textrm{Votes}_{i,p,r=P}} \]</span></p>
+<p>For precinct <span class="math inline">\(i\)</span>, party <span class="math inline">\(p\)</span>, and race <span class="math inline">\(r\)</span> = <span class="math inline">\(P\)</span>residential or <span class="math inline">\(S\)</span>enatorial.</p>
+<ol start="3" type="1">
+<li>Computing an average rolloff by town by summing over the <span class="math inline">\(i\)</span>s above.</li>
+<li>Computing an average rolloff by town by summing for the 2020 races as well, with race <span class="math inline">\(r\)</span> = <span class="math inline">\(P\)</span>residential or <span class="math inline">\(H\)</span>ouse</li>
+</ol>
+<p>The author repeats this for four of the five towns in Rockland, leaving out Ramapo, where much of the other pieces of evidence are focused.</p>
+<p>Below, I’ve tried to replicate the first three steps to the best of my ability. (I’ll get back to the fourth in a bit.) I downloaded the election data for 2024 from the <a href="https://www.rocklandcountyny.gov/departments/board-of-elections/election-results">Rockland County Board of Elections</a> and cleaned the data. All code for this is available publicly on my <a href="https://github.com/christopherkenny/rockland-sare-lawsuit">GitHub</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="replication_24_senate_dropoff.png" class="img-fluid figure-img"></p>
+<figcaption>Replication of Bonamente’s slide’s 4 town analyses</figcaption>
+</figure>
+</div>
+<p>To read this, consider the following. Each of the four facets shows a town, as labeled above. The x-axis (horizontal) shows the election district number within the town. These numbers don’t particularly matter, but nearby numbers are <em>typically</em> geographically close to each other. The y-axis shows the estimate of the within-party rolloff across races. Each dot shows the estimate for that precinct. A dot at +10 would indicate that the presidential candidate outperformed the Senate candidate by 10 percentage points in that precinct. The horizontal lines show the town average for the within-party rolloff. Note that the town average may not be the same as the average of the dots, as each precinct can have a different number of total votes.</p>
+<p>Unfortunately, the results are close but do not perfectly replicate. Without more information than a slide deck, I can only guess why they are different, but they are similar. With this in mind, I see the same pattern, but with different point estimates:</p>
+<ol type="1">
+<li>Harris underperformed Gillibrand</li>
+<li>Trump outperformed Sapraicone</li>
+</ol>
+<p>I disagree with the conclusion of the slides, however. To illustrate why, let’s make a similar comparison: the choice of comparison with the US Senate candidates is arbitrary. Let’s make the same graph, but benchmark against the US House instead.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="replication_24_house_dropoff.png" class="img-fluid figure-img"></p>
+<figcaption>Replication of Bonamente’s slide’s 4 town analyses, using House instead of Senate</figcaption>
+</figure>
+</div>
+<p><em>Woah!</em> Trump now underperforms the US House Republican incumbent Mike Lawler in two towns. This is getting heated: by the petitioner’s logic, we just uncovered huge additional fraud against Trump. So the fraud isn’t just against Harris, it’s also against Trump… <em>woah</em>.</p>
+<p>Or more realistically, this is a poor measure of fraud because it is extremely sensitive! The choice of a single candidate as a baseline is ill-advised as the <em>candidates</em> matter. And that’s actually a good sign for democracy, not evidence of fraud undermining it. People aren’t just blindly voting for one party, but are exercising their ability to choose between candidates.</p>
+<p>Further, in a recent working paper by <a href="https://gking.harvard.edu/sites/scholar.harvard.edu/files/gking/files/acc.pdf">Ebanks, Katz, and King</a>, they estimate an incumbency advantage that varies from around 2-10 percentage points across the last 70ish years of politics (in Figure 9 (d)). A small, dip like 2% in these four towns would well be in the range for an incumbent like Gillibrand and a not-really incumbent like Harris. That seems like a very plausible difference, yet it isn’t discussed in the analyses of the slides or the petition itself.</p>
+<p>For the sake of completeness, I’ve also created a similar plot for the 2020 election. As there was no senate race in NY in 2020, I use the US House election as the baseline. As before, I’ve collected all of this data from the Rockland County Board of Elections.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extension_20_house_dropoff.png" class="img-fluid figure-img"></p>
+<figcaption>Extension of Bonamente’s slide’s 4 town analyses to 2020, using House votes</figcaption>
+</figure>
+</div>
+<p>And since I downloaded the 2016 data years ago, we can do the same, though this data is no longer on the Rockland County Board of Elections.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="extension_16_senate_dropoff.png" class="img-fluid figure-img"></p>
+<figcaption>Extension of Bonamente’s slide’s 4 town analyses to 2020, using Senate votes</figcaption>
+</figure>
+</div>
+<p>Taken together, everyone should see that these measures are very volatile. They are sensitive to the choice of candidates and bounce around a lot. The 2016 example makes this very clear, as in 2016, Schumer (D) was running against Wendy Long (R). Long’s campaign was not long for life and she lost handedly to the incumbent Schumer. As such, Hillary Clinton trailed far behind Schumer, because of the differences in the campaigns and candidates.</p>
+<p>All in all, this type of evidence is more indicative of winning candidates getting more votes than losing candidates. Across the board, these large shifts are typically related to comparing within-party winners to losers.</p>
+<p>Now, back to the slides. I won’t address the specific p-values cited here, as it is unclear to me (1) what hypothesis we are testing and (2) how we are supposed to test it. If the difference represented in the slides is supposed to represent how Harris underperformed Gillibrand while Biden outperformed Mondaire Jones, then that’s not really interesting in the first place. There was no US Senate candidate in 2020, so my assumption is that the down-ballot here represents the US House candidate (or perhaps other down-ballot offices). There are so many other things going on there that we need substantially more information before putting time into addressing the underspecified, yet quite forceful claim being made.</p>
+<p>Finally, on the issue of dropoff, I want to take a final look at the normal way that we might analyze this. As a reminder, dropoff is typically looking at how voters leave blank votes for lower offices but vote for higher offices at high rates. With the election data that we have, we also have the total number of ballots cast in each precinct. For each of the three 2024 races, how many people who took a ballot voted for them?</p>
+<p>First, we look to the presidential race. These look fairly normal, with the average being 99% of votes being cast for president county-wide.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dropoff_pre_24.png" class="img-fluid figure-img"></p>
+<figcaption>Percentage of ballots voting for US President</figcaption>
+</figure>
+</div>
+<p>Looking at the US Senate, we see an increased rolloff. On average, 89% of people cast a vote for the US Senate county-wide. This seems reasonable and is in line with voters voting, just not voting straight ticket (ie casting all votes for one party).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dropoff_uss_24.png" class="img-fluid figure-img"></p>
+<figcaption>Percentage of ballots voting for US Senate</figcaption>
+</figure>
+</div>
+<p>Finally, we can repeat this for the US House. As this was a more competitive race than the other two, this race had more rolloff than the presidential race but less than the senatorial race. On average, 96% of people cast a vote for the US House county-wide.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dropoff_ush_24.png" class="img-fluid figure-img"></p>
+<figcaption>Percentage of ballots voting for US House</figcaption>
+</figure>
+</div>
+<p>Next, we can also think a bit about whether this level of ticket-splitting is normal or not based on other academic literature. <a href="siapps.courts.state.ny.us/nyscef/ViewDocument?docIndex=5E1/Fc_PLUS_rWASPlhLKP7dKOQ==">In the petition</a>, petitioners also claim the following:</p>
+<blockquote class="blockquote">
+<ol start="17" type="1">
+<li>A study conducted by researchers at Yale, Harvard, MIT, and Columbia Universities found that split-ticket voting averaged between 1-2 percent in the 2020 election. Therefore, split-ticket voting seems a very unlikely explanation of the Rockland BOE data.</li>
+</ol>
+</blockquote>
+<p>Having read <a href="https://www.nature.com/articles/s41597-024-04017-1">Kuriwaki et al 2024 (the article cited)</a> and seen the authors of this study present related work, I was surprised by this claim. The claims that match those numbers in the article are focused on (1) a small set of battleground states and (2) conditioning on voters already being strong partisan voters. To say the second part differently, if you condition on a voter voting for the same party for <em>every</em> contested down-ballot race, then they are very unlikely to switch parties for their presidential vote. This is <em>nowhere</em> near the claim being made in the petition and is so excruciatingly incorrect that it should be amended for the benefit of honesty in the courtroom.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The 1-2% figure in the petition is not a valid comparison
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This equates: 1. Voters voting for Democrats (or Republicans) in <em>every</em> down-ballot race but the president (ie, something unlikely) to 2. Voters voting for different parties for the offices of president and senate regardless of their other down-ballot votes</p>
+</div>
+</div>
+<p>The measure discussed in the petition is simply asking: do people vote for the same party in the presidential and senate races? As stated, we can download the CVR data from <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PQQ3KV">Kuriwaki et al 2024</a>. Starting from the authors’ code in the paper, I replicate the setup with two key differences:</p>
+<ol type="1">
+<li>I subset to states where there was a US Senate race and US Presidential race on the ballot</li>
+<li>I drop Georgia, which had 2 Senate races in 2020</li>
+</ol>
+<p>The rest of it is very similar. I take the set of counties where both a Republican and a Democrat were on the ballot. This gives us data from 12 states (Arizona, Colorado, Delaware, Illinois, Iowa, Michigan, New Jersey, Oregon, Rhode Island, Tennessee, Texas, and West Virginia). We have a total of 12,374,210 ballots.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="dqiqvaymnu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dqiqvaymnu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dqiqvaymnu thead, #dqiqvaymnu tbody, #dqiqvaymnu tfoot, #dqiqvaymnu tr, #dqiqvaymnu td, #dqiqvaymnu th {
+  border-style: none;
+}
+
+#dqiqvaymnu p {
+  margin: 0;
+  padding: 0;
+}
+
+#dqiqvaymnu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dqiqvaymnu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dqiqvaymnu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dqiqvaymnu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dqiqvaymnu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dqiqvaymnu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dqiqvaymnu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dqiqvaymnu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dqiqvaymnu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dqiqvaymnu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dqiqvaymnu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dqiqvaymnu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dqiqvaymnu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dqiqvaymnu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dqiqvaymnu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqiqvaymnu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dqiqvaymnu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dqiqvaymnu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dqiqvaymnu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqiqvaymnu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dqiqvaymnu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqiqvaymnu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dqiqvaymnu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqiqvaymnu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dqiqvaymnu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dqiqvaymnu .gt_left {
+  text-align: left;
+}
+
+#dqiqvaymnu .gt_center {
+  text-align: center;
+}
+
+#dqiqvaymnu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dqiqvaymnu .gt_font_normal {
+  font-weight: normal;
+}
+
+#dqiqvaymnu .gt_font_bold {
+  font-weight: bold;
+}
+
+#dqiqvaymnu .gt_font_italic {
+  font-style: italic;
+}
+
+#dqiqvaymnu .gt_super {
+  font-size: 65%;
+}
+
+#dqiqvaymnu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dqiqvaymnu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dqiqvaymnu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dqiqvaymnu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dqiqvaymnu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dqiqvaymnu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dqiqvaymnu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dqiqvaymnu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dqiqvaymnu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="Senate" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Senate</th>
+<th colspan="3" id="President" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+President
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Democratic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Democratic</th>
+<th id="Republican" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Republican</th>
+<th id="Other" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Other</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Senate">Democratic</td>
+<td class="gt_row gt_right" headers="Democratic">5,891,251</td>
+<td class="gt_row gt_right" headers="Republican">282,086</td>
+<td class="gt_row gt_right" headers="Other">62,684</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Senate">Republican</td>
+<td class="gt_row gt_right" headers="Democratic">276,155</td>
+<td class="gt_row gt_right" headers="Republican">5,145,739</td>
+<td class="gt_row gt_right" headers="Other">87,282</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Senate">Other</td>
+<td class="gt_row gt_right" headers="Democratic">91,359</td>
+<td class="gt_row gt_right" headers="Republican">62,043</td>
+<td class="gt_row gt_right" headers="Other">475,611</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>This shows the total number of votes cast by party by choice for each race. Other represents votes for third parties, write-ins, overvotes, and undervotes.</p>
+<p>We can also look at this as a percentage of the total ballots.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="siuqwxjnwg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#siuqwxjnwg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#siuqwxjnwg thead, #siuqwxjnwg tbody, #siuqwxjnwg tfoot, #siuqwxjnwg tr, #siuqwxjnwg td, #siuqwxjnwg th {
+  border-style: none;
+}
+
+#siuqwxjnwg p {
+  margin: 0;
+  padding: 0;
+}
+
+#siuqwxjnwg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#siuqwxjnwg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#siuqwxjnwg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#siuqwxjnwg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#siuqwxjnwg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#siuqwxjnwg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#siuqwxjnwg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#siuqwxjnwg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#siuqwxjnwg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#siuqwxjnwg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#siuqwxjnwg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#siuqwxjnwg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#siuqwxjnwg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#siuqwxjnwg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#siuqwxjnwg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#siuqwxjnwg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#siuqwxjnwg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#siuqwxjnwg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#siuqwxjnwg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#siuqwxjnwg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#siuqwxjnwg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#siuqwxjnwg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#siuqwxjnwg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#siuqwxjnwg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#siuqwxjnwg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#siuqwxjnwg .gt_left {
+  text-align: left;
+}
+
+#siuqwxjnwg .gt_center {
+  text-align: center;
+}
+
+#siuqwxjnwg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#siuqwxjnwg .gt_font_normal {
+  font-weight: normal;
+}
+
+#siuqwxjnwg .gt_font_bold {
+  font-weight: bold;
+}
+
+#siuqwxjnwg .gt_font_italic {
+  font-style: italic;
+}
+
+#siuqwxjnwg .gt_super {
+  font-size: 65%;
+}
+
+#siuqwxjnwg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#siuqwxjnwg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#siuqwxjnwg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#siuqwxjnwg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#siuqwxjnwg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#siuqwxjnwg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#siuqwxjnwg .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#siuqwxjnwg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#siuqwxjnwg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="Senate" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Senate</th>
+<th colspan="3" id="President" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+President
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Democratic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Democratic</th>
+<th id="Republican" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Republican</th>
+<th id="Other" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Other</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Senate">Democratic</td>
+<td class="gt_row gt_right" headers="Democratic">47.6%</td>
+<td class="gt_row gt_right" headers="Republican">2.3%</td>
+<td class="gt_row gt_right" headers="Other">0.5%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Senate">Republican</td>
+<td class="gt_row gt_right" headers="Democratic">2.2%</td>
+<td class="gt_row gt_right" headers="Republican">41.6%</td>
+<td class="gt_row gt_right" headers="Other">0.7%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Senate">Other</td>
+<td class="gt_row gt_right" headers="Democratic">0.7%</td>
+<td class="gt_row gt_right" headers="Republican">0.5%</td>
+<td class="gt_row gt_right" headers="Other">3.8%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>So, around 7% of voters split their vote (by summing the off-diagonal boxes).</p>
+<p>Note that this isn’t a perfect comparison, as NY does not make cast vote records available. This means that you can’t employ the same approach as the Kuriwaki et al article to make an exact comparison. Notably, there is a lot of variation in this and the 7% throws away interesting variation.</p>
+<p>Consider for example that we’re comparing 12 states to a county or 4 towns. The towns and counties will likely have more variation because they’re small. As such, below we can see a histogram of the percentage of ballots split by county.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cvrs_split_vote.png" class="img-fluid figure-img"></p>
+<figcaption>Percent of ballots with different party votes for Senate and President by county</figcaption>
+</figure>
+</div>
+<p>Further, let’s use this data to also see the variation in within-party rolloff by county. Below, I’ve computed this for each county in the 2020 CVR data. I’ve then overlaid the estimate for the average rolloff in Rockland County in 2024. Note that these are not exact comparisons, as we do not have individual ballot records, so this is likely an <em>underestimate</em> for the county-level lines.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cvrs_rolloff.png" class="img-fluid figure-img"></p>
+<figcaption>Within-party rolloff for Rockland 2024 compared to estimates from Cast Vote Records</figcaption>
+</figure>
+</div>
+<p>Here, Harris performs similarly to how Biden did relative to US Senate races by county. Trump in 2024 outperforms his past 2020 within-party rolloff based on US Senate votes. Again though, it is worth cautioning that these are not exact comparisons, as they are not computed from cast vote records. Further, they are comparing the data for different races and candidates. Since Trump won in 2024 but lost in 2020, it does not shock me that his performance looks better here.</p>
+</section>
+<section id="no-votes-for-harris-but-votes-for-gillibrand-in-the-monsey-area" class="level2">
+<h2 class="anchored" data-anchor-id="no-votes-for-harris-but-votes-for-gillibrand-in-the-monsey-area">No votes for Harris, but votes for Gillibrand in the Monsey area</h2>
+<p>There are a few precincts that have facially surprising results insofar as there is a big difference in how Harris and Gillibrand performed in them. These precincts are primarily around <a href="https://en.wikipedia.org/wiki/Monsey,_New_York">Monsey</a> within the town of Ramapo. Understanding what’s going on requires a bit of background on the area, especially as to its unique demographics.</p>
+<p>Monsey and its surrounding hamlets are the center of a massive, growing Orthodox Jewish population. Without going into too much detail, the communities that live in Monsey have lifestyles that differ from much of the US. For example, most of the people in the communities refrain from the use of electricity and walk to their synagogues during the weekly Sabbath. As such, there are over 100 synagogues in the area and the many rebbes are also leaders of these tight-knit communities. Further, m.</p>
+<p>Monsey and the surrounding hamlets also overlap with the East Ramapo Central School District. This school district is notable for the <a href="https://en.wikipedia.org/wiki/East_Ramapo_Central_School_District">many lawsuits</a> against it for not providing for the basic needs of the students. There was <a href="https://www.nyclu.org/court-cases/naacp-spring-valley-v-east-ramapo-central-school-district">recently a lawsuit against the school district</a> which cited to bloc voting by members of the communities to elect members of the school board who acted against the wishes of the Hispanic and Black students who attend the public school.</p>
+<p>That said, this is an atypical region in many ways, including politically. While the petitioners contend that the existence of precincts with many, many fewer votes for Harris than Gillibrand, an alternative is that this is due to bloc voting. The idea would be that the local leaders, who are often close to families in the area due to their committed practice of their Orthodox Jewish faith, give strong suggestions of who to vote for. If this is the case, we would expect to see the precincts that are odd exhibit the following characteristics:</p>
+<ul>
+<li>Be entirely within the Orthodox Jewish neighborhoods, where there are no outsiders to add noise to the bloc.</li>
+<li>Be geographically located together, where drops in one election district are similar to the drops in the nearby districts.</li>
+</ul>
+<p>As an important note, there are other groups in the US that vote in blocs. Yet, only in cases such as these do we have true geographic separation that could allow it to be seen. To detect such bloc voting, we would need something similar to these two characteristics above.</p>
+<p>Alternatively, if this was due to errors in voting machines, I would expect to see a pattern that’s somewhat random. Specifically, we should expect that random precincts, equally geographically dispersed have these large dropoffs.</p>
+<p>Below, we can see a map of these dropoffs in raw votes. A score of -200 here means that Harris received 200 fewer votes than Gillibrand received. White lines and black text show the boundaries of the major villages within Ramapo. A small number of precincts that have (1) less than 10 votes for Harris, but (2) more than 100 votes for Gillibrand are labeled with white text.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ramapo_24_dem_dropoff.png" class="img-fluid figure-img"></p>
+<figcaption>Map of Ramapo showing within-party dropoff in raw votes for Harris with Gillibrand as the baseline</figcaption>
+</figure>
+</div>
+<p>Here, we see a light pink through much of the town of Ramapo, consistent with only a small within-party dropoff. Darker colors indicate large amounts of within-party dropoff. The most extreme precincts in this regard are found within New Square and Kaser. To a local, this is unsurprising, as they are dense villages with large amounts of Orthodox Jewish people.</p>
+<p>Wikipedia describes the two villages as follows:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Kaser,_New_York">Kaiser</a>: “a village with a population consisting almost entirely of Hasidic Jews”</li>
+<li><a href="https://en.wikipedia.org/wiki/New_Square,_New_York">New Square</a>: “Its inhabitants are predominantly members of the Skverer Hasidic movement who seek to maintain a Hasidic lifestyle disconnected from the secular world”</li>
+</ul>
+<p>Given this, it seems likely that the surprising drop for Harris is due to bloc voting, based on how it geographically concentrates, rather than some widespread evidence of fraud.</p>
+<p>Finally, here is the same plot made looking at the within-party dropoff for Biden compared to Mondaire Jones in the US House race in 2020.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ramapo_20_dem_dropoff.png" class="img-fluid figure-img"></p>
+<figcaption>Map of Ramapo showing within-party dropoff in raw votes for Biden with Jones as the baseline</figcaption>
+</figure>
+</div>
+<p>Again, unsurprisingly, with a bit of knowledge about the local area, this makes sense with a bloc voting theory. The pattern replicates nearly <em>identically</em> in 2020 as the pattern in 2024. Just because a group of voters votes systematically does not mean that there is fraud. Simple, readily available information on the areas and their voting patterns shows that this is <em>normal</em> for where we are looking.</p>
+</section>
+<section id="voter-affidavits-for-sare-than-recorded-votes-for-sare" class="level2">
+<h2 class="anchored" data-anchor-id="voter-affidavits-for-sare-than-recorded-votes-for-sare">Voter affidavits for Sare than recorded votes for Sare</h2>
+<p>Nearly all of this post has focused on the broader empirical claims and why they are not indicative of fraud. The last empirical piece is a series of affidavits claiming to have voted for Sare in the US Senate race. These are sworn and notarized, and as such provide evidence to the court.</p>
+<p>To me, this seems analogous to eyewitness testimony. It may be the best you have, but it has to be taken with a grain of salt because recall is imperfect. Scholars have <a href="https://link.springer.com/article/10.1007/BF00988434">long studied</a> the ability of voters to accurately recall when they made political decisions. To quote an abstract of a more recent paper, <a href="https://surveyinsights.org/?p=3543">Durand, Deslauriers, and Valois (2015)</a>, “voting is not a salient, memorable behaviour for all voters.” Confusion about vote choice goes as far as the <a href="https://cces.gov.harvard.edu/frequently-asked-questions">Cooperative Election Survey</a> providing information on if they could validate that a voter even voted! This is to say that it would not be atypical for there to be recall issues.</p>
+<p>With that in mind, we can look a bit at what data we can see about these sworn voters. The voter file in NY is publicly available. Using a copy dated 2025-06-16, I can locate all 16 sworn voters across the precincts. Each of them did vote in the 2024 general election (as expected). However, three of the 16 appear to have moved, as their sworn addresses do not match their current voter file addresses. Those three do not live in the reported precincts in my version of the voter file. If they did not move, then a simple error of matching voters to precincts could help mollify the differences between sworn and reported votes.</p>
+<p>There are three affidavits featuring sworn Sare voters. Each of these is for voters in Ramapo, but I will focus on Ramapo 39 and Ramapo 62, where district-level affidavits were filed. Zooming into that area, we are in the midst of Sloatsburg and Montebello, with an unnamed region in between. These precincts are located below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sloatsburg_area_affidavit.png" class="img-fluid figure-img"></p>
+<figcaption>Map of affidavit precincts around Sloatsburg and Montebello</figcaption>
+</figure>
+</div>
+<p>The precincts shown in orange each have affidavits that at least 8 voters voted for Sare in Ramapo 39 and <a href="https://iapps.courts.state.ny.us/nyscef/ViewDocument?docIndex=dTqYG90u7gtqDAfDT4j5nA==">4 voters</a> voted for Sare in Ramapo 62. (A <a href="https://iapps.courts.state.ny.us/nyscef/ViewDocument?docIndex=6mZp4j6jnlypZmRKjMVBxw==">different filing</a> indicates that there should be 5 affidavits for Sare in Ramapo 62, but I only see 4 filed and the map shows 4, so for now I’ll say 4. Across documents, one of the election district 62 affidavits is filed twice, which may explain this.)</p>
+<p>What do the election returns show? In Ramapo 39, there are 5 votes for Sare, 3 votes short. In Ramapo 62, there are 3 votes for Sare, 1 vote short.</p>
+<p>These returns are fairly typical in the area, with Sare receiving only up to 5 votes per precinct in the area around her residence. The most votes she received in any precinct in Rockland was 8, with a total of 397 votes in her home county.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sloatsburg_area_affidavit.png" class="img-fluid figure-img"></p>
+<figcaption>Map of votes for Sare by precinct around Sloatsburg and Montebello</figcaption>
+</figure>
+</div>
+<p>Could there be an innocuous explanation? One idea would be that people voting for third-party candidates might mismark their ballots and unintentionally overvote if they are otherwise voting for a straight party line. Below, we see the overvotes, but these are rare and unlikely to be involved.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sloatsburg_area_overvotes.png" class="img-fluid figure-img"></p>
+<figcaption>Map of overvotes for Sare around Sloatsburg and Montebello</figcaption>
+</figure>
+</div>
+<p>Undervotes are quite common in this area. An undervote is simply leaving the line for that race blank. The median precinct had 23 undervotes. That’s to say that <em>not</em> voting for any candidate was much more popular than voting for Sare. Below, we can see a corresponding map of undervotes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sloatsburg_area_undervotes.png" class="img-fluid figure-img"></p>
+<figcaption>Map of undervotes around Sloatsburg and Montebello</figcaption>
+</figure>
+</div>
+<p><a href="siapps.courts.state.ny.us/nyscef/ViewDocument?docIndex=5E1/Fc_PLUS_rWASPlhLKP7dKOQ==">Also from the petition</a>, there is a bit of description of how the sworn voters were found.</p>
+<blockquote class="blockquote">
+<ol start="11" type="1">
+<li>Upon information and belief, Candidate Diane Sare is confident that she will find many more voters who voted for her, than were recorded by the Rockland County Board of Elections, as she found these voters, simply by going down her block and asking a few neighbors.</li>
+</ol>
+</blockquote>
+<p>Less as a political scientist and more as a person, I can sympathize with this. Imagine that your neighbor is running for the US Senate (or any other office for that matter). You get asked repeatedly to vote for them after years of hearing about their political beliefs. Eventually, you just say “sure, sure” knowing that the ballot is private. The election comes and you vote for someone else. Then, the candidate comes around and asks if you voted for them. You say “Yes, of course!” when you should have said “No, sorry…” because you gave up the fight a while ago already. Eventually, the candidate comes back to ask you to sign on paper that you voted for her, while you live that lie. Next thing you know it’s in a court case. That feels a bit like an episode of a sitcom.</p>
+<p>I do not mean to malign the sworn voters nor to expressly question any of their honesty, but it is just a human thing worth considering. They did swear that they did vote for Sare and that should not be thrown away lightly, but instead cautiously considered.</p>
+</section>
+<section id="concluding-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-thoughts">Concluding thoughts</h2>
+<p>Social science is actually quite hard. Election cases are especially difficult, largely by design. We have a secret ballot that ensures that you can go to the ballot box and profess your true intentions. This makes it so that we are almost always working on second-best data.</p>
+<p>Here, that second-best data is a collection of election returns and information from neighbors of a candidate who claim to have voted for her. Ideally, for data, we could have cast vote records. Instead, assessing the claims requires that we think calmly and carefully about the set of possible data generating processes. We should be open to credible evidence of election fraud, but should also expect that there is a bar of reasonable evidence necessary to reopen detailed election records and force recounts.</p>
+<p>That said, the security of elections is <em>very</em> important. If there is <em>credible</em> evidence of fraud or other issues, we should absolutely investigate each and every case. Unfortunately, the evidence presented thus far from within the case is not very careful, nor very credible.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All of the data and code necessary for the production of this post are on <a href="https://github.com/christopherkenny/rockland-sare-lawsuit">GitHub</a>.</p>
+</div>
+</div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{christophertkenny2025,
+  author = {Christopher T. Kenny},
+  title = {Thinking {SMARTer} about Election Fraud in {Rockland}
+    {County,} {NY}},
+  date = {2025-06-17},
+  url = {https://christophertkenny.com/posts/2025-06-17-rockland-sare/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t._kenny2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+T. Kenny, Christopher. 2025. <span>“Thinking *SMART*er about Election
+Fraud in Rockland County, NY.”</span> June 17, 2025. <a href="https://christophertkenny.com/posts/2025-06-17-rockland-sare/">https://christophertkenny.com/posts/2025-06-17-rockland-sare/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christophertkenny\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined;
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              }
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            }
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2021-2024 Christopher T. Kenny.<br> All rights reserved.</p>
+</div>
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a>.<br> Source available on <a href="https://github.com/christopherkenny/christopherkenny.github.io">GitHub</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
