@@ -100,12 +100,12 @@
       type: Quarto
       description: For memos in Quarto with a Typst backend.
       badges: ["Quarto", "Typst"]
-    # - name: ctk-syllabus
-    #   link: https://github.com/christopherkenny/ctk-syllabus
-    #   image: https://raw.githubusercontent.com/christopherkenny/ctk-syllabus/main/template_1.png
-    #   type: Quarto
-    #   description: For syllabi in Quarto with a Typst backend.
-    #   badges: ["Quarto", "Typst"]
+    - name: ctk-syllabus
+      link: https://github.com/christopherkenny/ctk-syllabus
+      image: https://raw.githubusercontent.com/christopherkenny/ctk-syllabus/main/template_1.png
+      type: Quarto
+      description: For syllabi in Quarto with a Typst backend.
+      badges: ["Quarto", "Typst"]
     - name: cv
       link: https://github.com/christopherkenny/quarto-cv
       image: https://raw.githubusercontent.com/christopherkenny/quarto-cv/main/template_1.png
