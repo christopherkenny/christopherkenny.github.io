@@ -54,6 +54,18 @@
       type: RMarkdown (rticles)
       description: For Science and Science Advances submissions.
       badges: ["rticles", "LaTeX"]
+    - name: Oxford University Press
+      link: https://github.com/christopherkenny/oup
+      image: https://raw.githubusercontent.com/christopherkenny/oup/main/template_1.png
+      type: Quarto
+      description: For submissions to OUP journals.
+      badges: ["Quarto", "LaTeX"]
+    - name: now Publishers
+      link: https://github.com/christopherkenny/now
+      image: https://raw.githubusercontent.com/christopherkenny/now/main/template_1.png
+      type: Quarto
+      description: For submissions to now Publishers journals, including QJPS.
+      badges: ["Quarto", "LaTeX"]
 - category: Quarto filters
   description: Quarto extensions which provide additional document functions.
   extensions:
