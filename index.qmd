@@ -40,7 +40,7 @@ source('webscripts/bootstrap.R')
 
 
 
-Ph.D., Department of Government, Harvard University
+Ph.D., Data-Driven Social Sciences, Princeton University
 
 [{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
@@ -74,8 +74,12 @@ make_carousel(
 
 # About Me
 
+I am a Postdoctoral Research Associate at [Princeton Data-Driven Social Sciences](https://ddss.princeton.edu/).
+I received my PhD in Government from Harvard University in 2025.
+I received a B.A. in Mathematics and Government from Cornell University in 2019 and an M.A. in Government from Harvard University in 2021.
+
 My research focuses on American politics and political methodology, with a specialization in redistricting. 
-I am a founding member of the [Algorithm-Assisted Redistricting Methodology (ALARM) Project](https://alarm-redist.github.io/). 
+I am a founding member and Co-PI of the [Algorithm-Assisted Redistricting Methodology (ALARM) Project](https://alarm-redist.github.io/). 
 I am affiliated with the [Center for American Political Studies](https://caps.gov.harvard.edu/) at Harvard University and the [Institute for Quantitative Social Science](https://www.iq.harvard.edu/). 
 In 2022, I was a fellow at the [Election Law Clinic at Harvard Law School](https://www.hlselectionlaw.org/).
 
@@ -92,10 +96,6 @@ It further characterizes how certain communities, including Hispanic and multi-r
 To support my own research and the research of others, I have developed over two dozen R packages, including [`redist`](https://alarm-redist.org/redist/), [`geomander`](https://christophertkenny.com/geomander/), and [`censable`](https://christophertkenny.com/censable/). 
 In 2024, my packages were downloaded over 100,000 times from CRAN. 
 For more information on the full suite of packages that I've developed, see my [software page](software.html).
-
-In Summer 2025, I will join [Princeton DDSS](https://ddss.princeton.edu/) as a Postdoctoral Research Associate.
-I received a PhD in Government from Harvard University in May 2025.
-I received a B.A. in Mathematics and Government from Cornell University in May 2019 and an M.A. in Government from Harvard University in May 2021.
 
 :::
 
