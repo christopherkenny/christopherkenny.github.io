@@ -385,3 +385,13 @@
         and provides functionality to store models and their fitted values as columns
         in a data frame.
       topic_title: Other R packages
+    - name: manifesto
+      logo: hexes/hex_manifesto.png
+      info: Create Project Manifest Files
+      link: https://christophertkenny.com/manifesto/
+      color: '#FDF6E3'
+      description: Provides TOML representations of packages needed that must be installed
+        to run a project. Includes functions to specify detailed installation functions,
+        validate files, and to use a given file as the requirements for a project.
+        Handles package installations, when necessary, via pak.
+      topic_title: Other R packages
