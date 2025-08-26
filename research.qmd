@@ -73,7 +73,7 @@ make_collapse_card(
 
 ```
 
-#### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7/)
+#### [Individual and Differential Harm in Redistricting](https://osf.io/preprints/socarxiv/nc2x7_v2)
 
 (with Cory McCartan).
 
