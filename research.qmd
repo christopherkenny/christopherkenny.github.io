@@ -122,11 +122,9 @@ make_collapse_card(
 )
 ```
 
-#### Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias
+#### [Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias](https://osf.io/preprints/socarxiv/nv5up_v2)
 
 (with Jacob R. Brown and Tyler Simko)
-
-[Send me an email](mailto:christopherkenny@fas.harvard.edu) for a current draft.
 
 ```{r, echo = FALSE, results='asis'}
 make_button(c('Abstract'),  c('brown2025segregationAbs'))
