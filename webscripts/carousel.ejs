@@ -1,0 +1,58 @@
+```{=html}
+
+<style>
+.carousel-item {
+  transition-duration: 0.1s !important;
+}
+.carousel-fade .carousel-item {
+  transition-duration: 0.1s !important;
+}
+</style>
+
+<div id="homeCarousel" class="carousel slide carousel-dark carousel-fade" data-bs-ride="carousel" style="width: 95%; height: 300px; margin: 0 auto;">
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <% for (let i = 0; i < items.length; i++) { %>
+      <button type="button"
+              data-bs-target="#homeCarousel"
+              data-bs-slide-to="<%= i %>"
+              <% if (i === 0) { %>class="active" aria-current="true"<% } %>
+              aria-label="Slide <%= i + 1 %>">
+      </button>
+    <% } %>
+  </div>
+
+  <!-- Slides -->
+  <div class="carousel-inner">
+    <% for (let i = 0; i < items.length; i++) { %>
+      <div class="carousel-item<% if (i === 0) { %> active<% } %>">
+        <img src="<%= items[i].image %>"
+             class="d-block w-100"
+             alt="<%= items[i].alt %>"
+             style="object-fit: contain; width: 250px; height: 250px;">
+        <% if (items[i].title || items[i].caption) { %>
+          <div class="carousel-caption d-none d-md-block">
+            <% if (items[i].title) { %>
+              <h5><%= items[i].title %></h5>
+            <% } %>
+            <% if (items[i].caption) { %>
+              <p><%= items[i].caption %></p>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+```

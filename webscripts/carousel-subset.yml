@@ -1,0 +1,67 @@
+- name: redist
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redist.png
+  alt: redist hex logo
+
+- name: redistmetrics
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistmetrics.png
+  alt: redistmetrics hex logo
+
+- name: geomander
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_geomander.png
+  alt: geomander hex logo
+
+- name: PL94171
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_PL94171.png
+  alt: PL94171 hex logo
+
+- name: censable
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_censable.png
+  alt: censable hex logo
+
+- name: tinytiger
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_tinytiger.png
+  alt: tinytiger hex logo
+
+- name: cvap
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_cvap.png
+  alt: cvap hex logo
+
+- name: alarmdata
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_alarmdata.png
+  alt: alarmdata hex logo
+
+- name: ggredist
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ggredist.png
+  alt: ggredist hex logo
+
+- name: congress
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_congress.png
+  alt: congress hex logo
+
+- name: feltr
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_feltr.png
+  alt: feltr hex logo
+
+- name: planscorer
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_planscorer.png
+  alt: planscorer hex logo
+
+- name: redistverse
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistverse.png
+  alt: redistverse hex logo
+
+- name: crayons
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_crayons.png
+  alt: crayons hex logo
+
+- name: bskyr
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_bskyr.png
+  alt: bskyr hex logo
+
+- name: palette
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_palette.png
+  alt: palette hex logo
+
+- name: baf
+  image: https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_baf.png
+  alt: baf hex logo

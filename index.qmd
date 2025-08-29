@@ -14,16 +14,17 @@ include-in-header:
         border-bottom: none;
       }
     </style>
+listing:
+  - id: package-carousel
+    contents: webscripts/carousel-subset.yml
+    template: webscripts/carousel.ejs
+    type: custom
 ---
 
-```{css, echo = FALSE}
+```{=css}
 .justify {
   text-align: justify !important
 }
-```
-
-```{r, include = FALSE}
-source('webscripts/bootstrap.R')
 ```
 
 :::::: {.column-screen-inset}
@@ -40,30 +41,13 @@ source('webscripts/bootstrap.R')
 
 
 
-Ph.D., Data-Driven Social Sciences, Princeton University
+Postdoctoral Research Associate, Data-Driven Social Science, Princeton University
 
 [{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
+:::
 
-```{r}
-#| echo: false
-#| results: asis
-
-pkgs <- c(
-  'redist', 'redistmetrics', 'geomander', 'PL94171', 'censable',
-  'tinytiger','cvap', 
-  'alarmdata', 'ggredist', 'congress', 'feltr', 'planscorer', 'redistverse',
-  'crayons', 'bskyr', 'palette', 'baf'
-)
-make_carousel(
-  id = 'homeCarousel',
-  items = paste0('https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_', pkgs, '.png'),
-  alt = paste0(pkgs, ' hex logo'),
-  style = 'width: 95%; height: 300px; margin: 0 auto;',
-  class_opts = 'carousel-dark carousel-fade'
-)
-```
-
+::: {#package-carousel}
 :::
 
 ::::
