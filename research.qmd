@@ -165,6 +165,20 @@ make_collapse_card(
 )
 ```
 
+#### [bskyr: An R Package to Interact with Bluesky Social](https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf)
+
+
+```{r, echo = FALSE, results='asis'}
+make_button(c('Summary'),  c('kenny2025bskyrAbs'))
+```
+
+```{r, echo = FALSE, results='asis'}
+make_collapse_card(
+  'kenny2025bskyrAbs',
+  txt = 'Bluesky Social is an offshoot of Twitter, designed to provide a decentralized alternative to traditional social media platforms. bskyr is an R package that provides programmatic access to Bluesky Social. The package wraps the official Bluesky Social API, enabling users to retrieve posts, threads, user profiles, social graphs (e.g., follows, mutes, blocks), curated lists, and starter packs. It also supports content creation and interaction so that users can post, reply, like, repost, and follow directly from R. All data is returned in tidy data frames, making it compatible with standard R workflows for analysis and visualization. This allows users of bskyr to not only collect data for observational studies but also to engage with the platform programmatically, such as posting updates or interacting with other users.'
+)
+```
+
 ## Publications
 
 #### [Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods](https://www.science.org/doi/10.1126/sciadv.adl2524)
@@ -433,6 +447,10 @@ make_collapse_card(
 (with Cory McCartan)
 
 ## Public Writing
+
+#### [Trump’s proposed snap Census won’t get him the seats he wants](https://thehill.com/opinion/campaign/5471013-trump-census-undocumented-immigrants/)
+
+Opinion piece in The Hill. 2025. With Tyler Simko.
 
 #### [Expert Report in Sakhnovsky, et al v. City of Daytona Beach](https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf)
 

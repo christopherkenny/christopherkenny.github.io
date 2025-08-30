@@ -57,7 +57,7 @@ website:
       Source available on [GitHub](https://github.com/christopherkenny/christopherkenny.github.io).
   announcement:
     icon: exclamation-circle
-    content: "**New working paper**: [*Gerrymandering and geographic polarization have reduced electoral competition*](https://arxiv.org/abs/2508.15885)"
+    content: "**New working papers**: [*Gerrymandering and geographic polarization have reduced electoral competition*](https://arxiv.org/abs/2508.15885) and [*Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias*](https://osf.io/preprints/socarxiv/nv5up_v2)"
     type: info
     position: below-navbar
 
