@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -68,6 +33,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./hexes/hex_ctk.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,6 +74,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-papers .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-category','listing-papers',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-category","listing-papers"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-papers'] = new List('listing-papers', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PBRM1BV0GG"></script>
 
 <script type="text/javascript">
@@ -117,6 +113,35 @@ gtag('js', new Date());
 gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Research – Christopher T. Kenny">
 <meta property="og:description" content="Research in American Politics and Political Methodology">
@@ -254,407 +279,1108 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 </header>
 
 
-<section id="selected-working-papers" class="level2">
-<h2 class="anchored" data-anchor-id="selected-working-papers">Selected Working Papers</h2>
-<section id="redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors" class="level4">
-<h4 class="anchored" data-anchor-id="redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors"><a href="https://arxiv.org/abs/2407.11336">Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors</a></h4>
-<p>(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai).</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#mccartan2024reformsAbs" aria-expanded="false" aria-controls="mccartan2024reformsAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#mccartan2024reformsBib" aria-expanded="false" aria-controls="mccartan2024reformsBib">
-BibTeX
-</button>
-</p>
-<div id="mccartan2024reformsAbs" class="collapse">
-<div class="card card-body">
-Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York.
+<div id="listing-papers" class="quarto-listing quarto-listing-container-custom">
+
+    <h2 class="anchored">Selected Working Papers</h2>
+
+    <div class="list">
+
+      
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://arxiv.org/abs/2407.11336" target="_blank">Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai)</p>
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">
+                          <div class="alert alert-light">
+                              Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">
+                          <pre class="bg-light p-3 rounded">@article{mccartan2024redistricting,
+  title={Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors},
+  author={McCartan, Cory and Kenny, Christopher T. and  Simko, Tyler and Ebowe, Emma and Zhao, Michael Y. and Imai, Kosuke},
+      year={2024},
+      eprint={2407.11336},
+      archivePrefix={arXiv},
+      primaryClass={stat.AP},
+      url={https://arxiv.org/abs/2407.11336},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://osf.io/preprints/socarxiv/nc2x7_v2" target="_blank">Individual and Differential Harm in Redistricting</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan)</p>
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-individual-and-differential-harm-in-redistricting">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-individual-and-differential-harm-in-redistricting">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-individual-and-differential-harm-in-redistricting">
+                          <div class="alert alert-light">
+                              Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography.  Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-individual-and-differential-harm-in-redistricting">
+                          <pre class="bg-light p-3 rounded">@misc{mccartan2025individual,
+  doi = {10.31235/osf.io/nc2x7_v2},
+  url = {https://osf.io/preprints/socarxiv/nc2x7/},
+  author = {McCartan, Cory and Kenny, Christopher T.},
+  keywords = {representation, redistricting, voting rights, individual harm},
+  title = {Individual and Differential Harm in Redistricting},
+  publisher = {SocArXiv},
+  year = {2025}
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://judgelord.github.io/finreg/participatory-inequality.pdf" target="_blank">Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)</p>
+              
+
+              
+
+              
+                  <p><strong>Awarded the 2021 Herbert Kaufman Award</strong></p>
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-inequality-in-administrative-democracy-large-sample-evidence-from-american-financial-regulation">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-inequality-in-administrative-democracy-large-sample-evidence-from-american-financial-regulation">
+                          <div class="alert alert-light">
+                              Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations' wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations' ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://osf.io/preprints/socarxiv/nv5up_v2" target="_blank">Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Jacob R. Brown and Tyler Simko)</p>
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-any-way-you-slice-it-racial-segregation-statistics-are-robust-to-aggregation-bias">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-any-way-you-slice-it-racial-segregation-statistics-are-robust-to-aggregation-bias">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-any-way-you-slice-it-racial-segregation-statistics-are-robust-to-aggregation-bias">
+                          <div class="alert alert-light">
+                              Residential segregation in the United States is widespread, persistent, and threatens economic opportunity and social cohesion. Most segregation metrics, however, rely on aggregate data with arbitrary spatial boundaries. Sensitivity to those boundaries is well theorized but rarely measured. Leveraging modern redistricting software, we simulate millions of alternative Census tract maps that satisfy Census guidelines, compute segregation for each, and recover the full probabilistic distribution of common indices. These simulations yield new estimates of racial segregation across U.S. cities and, crucially, measure the aggregation‚induced variability hidden in conventional estimates. Encouragingly, values calculated with official tract definitions closely track the mean of the simulated distribution, exhibiting only a slight upward bias, and segregation metrics shift modestly across maps -- though variability grows in smaller cities. While our findings confirm the practical robustness of Census tracts, our data and software provide a general framework for diagnosing and correcting spatial‚aggregation error in other contexts.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-any-way-you-slice-it-racial-segregation-statistics-are-robust-to-aggregation-bias">
+                          <pre class="bg-light p-3 rounded">@misc{brown2025any,
+  doi = {10.31235/osf.io/nv5up_v2}},
+  url = {https://osf.io/preprints/socarxiv/nv5up_v2},
+  author = {Brown, Jacob and Kenny, Christopher T. and Simko, Tyler},
+  keywords = {segregation, measurement, simulation, Census data, measurement error},
+  title = {Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias},
+  publisher = {SocArXiv},
+  year = {2025}
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://christophertkenny.com/drafts/principles-and-partisanship.pdf" target="_blank">Principles and Politics: Explicit Rules Bind Lawmakers and Courts</a>
+                  
+              </h5>
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-principles-and-politics-explicit-rules-bind-lawmakers-and-courts">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-principles-and-politics-explicit-rules-bind-lawmakers-and-courts">
+                          <div class="alert alert-light">
+                              Policymakers in America often hold power over democratic institutions, especially electoral institutions. Their decisions can place principled decision-making at odds with partisan goals, especially in polarized times. How do policymakers balance these competing interests? I argue that policymakers are more likely to side against partisan interests when the law is more explicit. I apply this to partisan gerrymandering in the United States, where map drawers can manipulate district boundaries to favor one party. This provides a hard test, where partisan interests are directly at odds with democratic principles and the stakes of any decision are high. Using new data on the 2020 redistricting cycle combined with redistricting simulations, I find that map drawers typically follow rules that protect partisan fairness. Further, if a partisan gerrymandering case is brought against a redistricting plan, courts are more likely to rule against a plan when there is an explicit law against partisan gerrymandering. When courts intervene, they consistently, but only moderately, decrease the partisan bias of the plan. I then demonstrate that compliance with other, nonpartisan redistricting rules is highest when it is easiest to measure violations. This contributes optimistic evidence that rules effectively bind partisans.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://www.arxiv.org/abs/2508.15885" target="_blank">Gerrymandering and geographic polarization have reduced electoral competition</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Ethan Jasny, Cory McCartan, Tyler Simko, Melissa Wu, Michael Y. Zhao, Aneetej Arora, Emma Ebowe, Philip O'Sullivan, Taran Samarth, and Kosuke Imai)</p>
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-gerrymandering-and-geographic-polarization-have-reduced-electoral-competition">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-gerrymandering-and-geographic-polarization-have-reduced-electoral-competition">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-gerrymandering-and-geographic-polarization-have-reduced-electoral-competition">
+                          <div class="alert alert-light">
+                              Changes in political geography and electoral district boundaries shape representation in the United States Congress. To disentangle the effects of geography and gerrymandering, we generate a large ensemble of alternative redistricting plans that follow each state's legal criteria. Comparing enacted plans to these simulations reveals partisan bias, while changes in the simulated plans over time identify shifts in political geography. Our analysis shows that geographic polarization has intensified between 2010 and 2020: Republicans improved their standing in rural and rural-suburban areas, while Democrats further gained in urban districts. These shifts offset nationally, reducing the Republican geographic advantage from 14 to 10 seats. Additionally, pro-Democratic gerrymandering in 2020 counteracted earlier Republican efforts, reducing the GOP redistricting advantage by two seats. In total, the pro-Republican bias declined from 16 to 10 seats. Crucially, shifts in political geography and gerrymandering reduced the number of highly competitive districts by over 25%, with geographic polarization driving most of the decline.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-gerrymandering-and-geographic-polarization-have-reduced-electoral-competition">
+                          <pre class="bg-light p-3 rounded">@misc{jasny2025gerrymandering,
+  title = {Gerrymandering and geographic polarization have reduced electoral competition},
+  author = {Ethan Jasny and Christopher T. Kenny and Cory McCartan and Tyler Simko and Melissa Wu and Michael Y. Zhao and Aneetej Arora and Emma Ebowe and Philip O'Sullivan and Taran Samarth and Kosuke Imai},
+  year = {2025},
+  eprint = {2508.15885},
+  archivePrefix = {arXiv},
+  primaryClass = {stat.AP},
+  url = {https://arxiv.org/abs/2508.15885},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf" target="_blank">bskyr: An R Package to Interact with Bluesky Social</a>
+                  
+              </h5>
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#summary-bskyr-an-r-package-to-interact-with-bluesky-social">
+                              Summary
+                          </button>
+                      
+                      
+                      
+                  </div>
+
+                  
+                  
+                      <div class="collapse" id="summary-bskyr-an-r-package-to-interact-with-bluesky-social">
+                          <div class="alert alert-light">
+                              Bluesky Social is an offshoot of Twitter, designed to provide a decentralized alternative to traditional social media platforms. bskyr is an R package that provides programmatic access to Bluesky Social. The package wraps the official Bluesky Social API, enabling users to retrieve posts, threads, user profiles, social graphs (e.g., follows, mutes, blocks), curated lists, and starter packs. It also supports content creation and interaction so that users can post, reply, like, repost, and follow directly from R. All data is returned in tidy data frames, making it compatible with standard R workflows for analysis and visualization. This allows users of bskyr to not only collect data for observational studies but also to engage with the platform programmatically, such as posting updates or interacting with other users.
+                          </div>
+                      </div>
+                  
+                  
+                  
+              
+          </div>
+      </div>
+
+        
+    </div>
+
+    <h2 class="anchored">Publications</h2>
+
+    <div class="list">
+
+      
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://www.science.org/doi/10.1126/sciadv.adl2524" target="_blank">Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan, Shiro Kuriwaki, Tyler Simko, and Kosuke Imai)</p>
+              
+
+              
+                  <p><strong>2024. Science Advances.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-evaluating-bias-and-noise-induced-by-the-us-census-bureaus-privacy-protection-methods">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-evaluating-bias-and-noise-induced-by-the-us-census-bureaus-privacy-protection-methods">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-evaluating-bias-and-noise-induced-by-the-us-census-bureaus-privacy-protection-methods">
+                          <div class="alert alert-light">
+                              The United States Census Bureau faces a difficult trade-off between the accuracy of Census statistics and the protection of individual information. We conduct the first independent evaluation of bias and noise induced by the Bureau's two main disclosure avoidance systems: the TopDown algorithm employed for the 2020 Census and the swapping algorithm implemented for the 1990, 2000, and 2010 Censuses. Our evaluation leverages the recent release of the Noisy Measure File (NMF) as well as the availability of two independent runs of the TopDown algorithm applied to the 2010 decennial Census. We find that the NMF contains too much noise to be directly useful alone, especially for Hispanic and multiracial populations. TopDown's post-processing dramatically reduces the NMF noise and produces similarly accurate data to swapping in terms of bias and noise. These patterns hold across census geographies with varying population sizes and racial diversity. While the estimated errors for both TopDown and swapping are generally no larger than other sources of Census error, they can be relatively substantial for geographies with small total populations.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-evaluating-bias-and-noise-induced-by-the-us-census-bureaus-privacy-protection-methods">
+                          <pre class="bg-light p-3 rounded">@misc{kenn:etal:24b,
+  author = {Christopher T. Kenny and Cory McCartan and Shiro Kuriwaki and Tyler Simko and Kosuke Imai},
+  title = {Evaluating bias and noise induced by the U.S. Census Bureau's privacy protection methods},
+  journal = {Science Advances},
+  volume = {10},
+  number = {18},
+  pages = {eadl2524},
+  year = {2024},
+  doi = {10.1126/sciadv.adl2524},
+  URL = {https://www.science.org/doi/abs/10.1126/sciadv.adl2524},
+ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.adl2524},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://www.pnas.org/doi/10.1073/pnas.2321196121" target="_blank">Census Officials Must Constructively Engage with Independent Evaluations</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan, Tyler Simko, and Kosuke Imai)</p>
+              
+
+              
+                  <p><strong>2024. PNAS.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#first-paragraph-census-officials-must-constructively-engage-with-independent-evaluations">
+                              First paragraph
+                          </button>
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-census-officials-must-constructively-engage-with-independent-evaluations">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                  
+                  
+                      <div class="collapse" id="first-paragraph-census-officials-must-constructively-engage-with-independent-evaluations">
+                          <div class="alert alert-light">
+                              Current and former Census Bureau officials [Jarmin et al.](https://www.pnas.org/doi/10.1073/pnas.2220558120) argue that differential privacy, which underlies the 2020 Census's Disclosure Avoidance System (DAS), satisfies more desirable theoretical criteria than alternatives. They provide detailed criticisms of many published evaluations of the 2020 DAS, including our work. In this letter, we show that their criticisms are unfounded, grossly mischaracterize our research, and ignore critical issues that merit public discussion.
+                          </div>
+                      </div>
+                  
+                  
+                      <div class="collapse" id="bibtex-census-officials-must-constructively-engage-with-independent-evaluations">
+                          <pre class="bg-light p-3 rounded">@article{kenn:etal:24a,
+  title={Census officials must constructively engage with independent evaluations},
+  author={Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Imai, Kosuke},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={121},
+  number={11},
+  pages={e2321196121},
+  year={2024},
+  publisher={National Acad Sciences}
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://www.pnas.org/doi/10.1073/pnas.2217322120" target="_blank">Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai)</p>
+              
+
+              
+                  <p><strong>2023. PNAS.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition">
+                          <div class="alert alert-light">
+                              Congressional district lines in many U.S. states are drawn by partisan actors, raising concerns about gerrymandering. To isolate the electoral impact of gerrymandering from the effects of other factors including geography and redistricting rules, we compare predicted election outcomes under the enacted plan with those under a large sample of non-partisan, simulated alternative plans for all states. We find that partisan gerrymandering is widespread in the 2020 redistricting cycle, but most of the bias it creates cancels at the national level, giving Republicans two additional seats, on average. In contrast, moderate pro-Republican bias due to geography and redistricting rules remains. Finally, we find that partisan gerrymandering reduces electoral competition and makes the House's partisan composition less responsive to shifts in the national vote.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition">
+                          <pre class="bg-light p-3 rounded">@article{kenn:etal:23b,
+author = {Christopher T. Kenny and Cory McCartan and Tyler Simko and Shiro Kuriwaki and Kosuke Imai},
+title = {Widespread partisan gerrymandering mostly cancels nationally, but reduces electoral competition},
+journal = {Proceedings of the National Academy of Sciences},
+volume = {120},
+number = {25},
+pages = {e2217322120},
+year = {2023},
+doi = {10.1073/pnas.2217322120},
+URL = {https://www.pnas.org/doi/abs/10.1073/pnas.2217322120},
+eprint = {https://www.pnas.org/doi/pdf/10.1073/pnas.2217322120},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1" target="_blank">Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko)</p>
+              
+
+              
+                  <p><strong>2023. Harvard Data Science Review.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system">
+                          <div class="alert alert-light">
+                              In ["Differential Perspectives: Epistemic Disconnects Surrounding the US Census Bureau's Use of Differential Privacy,"](https://doi.org/10.1162/99608f92.66882f0e) boyd and Sarathy argue that empirical evaluations of the Census Disclosure Avoidance System (DAS), including our published analysis, failed to recognize how the benchmark data against which the 2020 DAS was evaluated is never a ground truth of population counts. In this commentary, we explain why policy evaluation, which was the main goal of our analysis, is still meaningful without access to a perfect ground truth. We also point out that our evaluation leveraged features specific to the decennial Census and redistricting data, such as block-level population invariance under swapping and voter file racial identification, better approximating a comparison with the ground truth. Lastly, we show that accurate statistical predictions of individual race based on the Bayesian Improved Surname Geocoding, while not a violation of differential privacy, substantially increases the disclosure risk of private information the Census Bureau sought to protect. We conclude by arguing that policy makers must confront a key trade-off between data utility and privacy protection, and an epistemic disconnect alone is insufficient to explain disagreements between policy choices.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system">
+                          <pre class="bg-light p-3 rounded">@article{kenn:etal:23,
+  author = {Kenny, Christopher T. and Kuriwaki, Shiro and McCartan, Cory and Rosenman, Evan T. R. and Simko, Tyler and Imai, Kosuke},
+  journal = {Harvard Data Science Review},
+  number = {Special Issue 2},
+  year = {2023},
+  month = {jan 31},
+  note = {https://hdsr.mitpress.mit.edu/pub/6ffzuq19},
+  publisher = {},
+  title = {Comment: The {Essential} {Role} of {Policy} {Evaluation} for the 2020 {Census} {DisclosureAvoidance} {System}},
+  volume = { },
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://www.nature.com/articles/s41597-022-01808-2" target="_blank">Simulated redistricting plans for the analysis and evaluation of redistricting in the United States</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai)</p>
+              
+
+              
+                  <p><strong>2022. Scientific Data.</strong></p>
+              
+
+              
+
+              
+                  <p>Covered by <a href="https://www.nytimes.com/interactive/2025/08/21/upshot/up-massachusetts-redistricting.html">The New York Times</a>.</p>
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states">
+                          <div class="alert alert-light">
+                              This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states">
+                          <pre class="bg-light p-3 rounded">@article{50statesSimulations,
+  title = {Simulated Redistricting Plans for the Analysis and Evaluation of Redistricting in the {{United States}}},
+  author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
+  year = {2022},
+  month = nov,
+  journal = {Scientific Data},
+  volume = {9},
+  number = {1},
+  pages = {689},
+  issn = {2052-4463},
+  doi = {10.1038/s41597-022-01808-2},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://www.science.org/doi/10.1126/sciadv.abk3283" target="_blank">The use of differential privacy for census data and its impact on redistricting: The case of the 2020 U.S. Census</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko)</p>
+              
+
+              
+                  <p><strong>2021. Science Advances.</strong></p>
+              
+
+              
+
+              
+                  <p>Covered by <a href="https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html">The Washington Post</a>, <a href="https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49">Associated Press</a>, <a href="http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/">NC Policy Watch</a>, and <a href="https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/">The Harvard Crimson</a></p>
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-us-census">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-us-census">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-us-census">
+                          <div class="alert alert-light">
+                              The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-us-census">
+                          <pre class="bg-light p-3 rounded">@article{kenn:etal:21,
+author = {Christopher T. Kenny  and Shiro Kuriwaki  and Cory McCartan  and Evan T. R. Rosenman  and Tyler Simko  and Kosuke Imai },
+title = {The Use of Differential Privacy for Census Data and its Impact on Redistricting: The Case of the 2020 U.S. Census},
+journal = {Science Advances},
+volume = {7},
+number = {41},
+pages = {eabk3283},
+year = {2021},
+doi = {10.1126/sciadv.abk3283},
+URL = {https://www.science.org/doi/abs/10.1126/sciadv.abk3283},
+eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://doi.org/10.1080/2330443X.2020.1791773" target="_blank">The Essential Role of Empirical Validation in Legislative Redistricting Simulation</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Benjamin Fifield, Kosuke Imai, and Jun Kawahara)</p>
+              
+
+              
+                  <p><strong>2020. Statistics and Public Policy.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+                  <div class="mb-3">
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation">
+                              Abstract
+                          </button>
+                      
+                      
+                      
+                      
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation">
+                              BibTeX
+                          </button>
+                      
+                  </div>
+
+                  
+                      <div class="collapse" id="abstract-the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation">
+                          <div class="alert alert-light">
+                              As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.
+                          </div>
+                      </div>
+                  
+                  
+                  
+                  
+                      <div class="collapse" id="bibtex-the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation">
+                          <pre class="bg-light p-3 rounded">@article{fife:etal:20,
+  author = {Benjamin Fifield and Kosuke Imai and Jun Kawahara and Christopher T. Kenny},
+  title = {The Essential Role of Empirical Validation in Legislative Redistricting Simulation},
+  journal = {Statistics and Public Policy},
+  volume = {7},
+  number = {1},
+  pages = {52-68},
+  year  = {2020},
+  publisher = {Taylor &amp; Francis},
+  doi = {10.1080/2330443X.2020.1791773},
+  URL = {https://doi.org/10.1080/2330443X.2020.1791773},
+  eprint = {https://doi.org/10.1080/2330443X.2020.1791773},
+}
+</pre>
+                      </div>
+                  
+              
+          </div>
+      </div>
+
+        
+    </div>
+
+    <h2 class="anchored">Works-in-progress</h2>
+
+    <div class="list">
+
+      
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      Algorithm-Assisted Redistricting Methodology
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Kosuke Imai, Cory McCartan, and Tyler Simko)</p>
+              
+
+              
+
+              
+
+              
+
+              
+                  <p>Book project</p>
+              
+
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      An Individual Causal Framework for Evaluating Electoral Systems
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(with Cory McCartan)</p>
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+          </div>
+      </div>
+
+        
+    </div>
+
+    <h2 class="anchored">Public Writing</h2>
+
+    <div class="list">
+
+      
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://thehill.com/opinion/campaign/5471013-trump-census-undocumented-immigrants/" target="_blank">Trump's proposed snap Census won't get him the seats he wants</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(With Tyler Simko)</p>
+              
+
+              
+                  <p><strong>Opinion piece in The Hill. 2025.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf" target="_blank">Expert Report in Sakhnovsky, et al v. City of Daytona Beach</a>
+                  
+              </h5>
+
+              
+
+              
+                  <p><strong>Case No. 2024 10140 CICI. 2024.</strong></p>
+              
+
+              
+
+              
+
+              
+                  <p>Expert report on census data and map drawing for Daytona Beach</p>
+              
+
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://effectivegov.uchicago.edu/primers/redistricting-process-reform" target="_blank">Redistricting Process Reform</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(With Steve Ansolabehere)</p>
+              
+
+              
+                  <p><strong>The University of Chicago Center for Effective Government's Democracy Reform Primer Series. 2024.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://static1.squarespace.com/static/60a559b59cfc63389f67f892/t/61fdadc3ff205a1aa1bd0ca7/1644015064277/Alpha+Phi+Alpha+Fraternity+v.+Raffensperger+Brief" target="_blank">Amici Curiae Brief of Fair Districts Georgia and Election Law Clinic in Support of Plaintiffs</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(With the Election Law Clinic at Harvard Law School)</p>
+              
+
+              
+                  <p><strong>Alpha Phi Alpha Fraternity, Inc. et al. v. Brad Raffensperger. 2021.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+          </div>
+      </div>
+
+        
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title anchored">
+                  
+                      <a href="https://redistricting.maryland.gov/Documents/Library/mcrc-drafts-2021-0913/2021-0913-memo-algorithms-produced-by-Professor-Rodden.pdf" target="_blank">Maryland Congressional District Memo</a>
+                  
+              </h5>
+
+              
+                  <p class="text-muted">(With Jonathan Rodden)</p>
+              
+
+              
+                  <p><strong>Memo to the Maryland Redistricting Commission. 2021.</strong></p>
+              
+
+              
+
+              
+
+              
+
+              
+          </div>
+      </div>
+
+        
+    </div>
+
+<div class="listing-no-matching d-none">No matching items</div>
 </div>
-</div>
-<div id="mccartan2024reformsBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">mcca:etal:24a</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={McCartan, Cory and Kenny, Christopher T. and  Simko, Tyler and Ebowe, Emma and Zhao, Michael Y. and Imai, Kosuke},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">year</span>={2024},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">eprint</span>={2407.11336},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">archivePrefix</span>={arXiv},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">primaryClass</span>={stat.AP},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">url</span>={https://arxiv.org/abs/2407.11336}, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="individual-and-differential-harm-in-redistricting" class="level4">
-<h4 class="anchored" data-anchor-id="individual-and-differential-harm-in-redistricting"><a href="https://osf.io/preprints/socarxiv/nc2x7_v2">Individual and Differential Harm in Redistricting</a></h4>
-<p>(with Cory McCartan).</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#mccartan2022individualAbs" aria-expanded="false" aria-controls="mccartan2022individualAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#mccartan2022individualBib" aria-expanded="false" aria-controls="mccartan2022individualBib">
-BibTeX
-</button>
-</p>
-<div id="mccartan2022individualAbs" class="collapse">
-<div class="card card-body">
-Social scientists have developed dozens of measures for assessing partisan bias in redistricting.But these measures cannot be easily adapted to other groups, including those defined by race, class, or geography. Nor are they applicable to single- or no-party contexts such as local redistricting. To overcome these limitations, we propose a unified framework of harm for evaluating the impacts of a districting plan on individual voters and the groups to which they belong. We consider a voter harmed if their chosen candidate is not elected under the current plan, but would be under a different plan. Harm improves on existing measures by both focusing on the choices of individual voters and directly incorporating counterfactual plans. We discuss strategies for estimating harm, and demonstrate the utility of our framework through analyses of partisan gerrymandering in New Jersey, voting rights litigation in Alabama, and racial dynamics of Boston City Council elections.
-</div>
-</div>
-<div id="mccartan2022individualBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">mcca:kenn:22</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.31235/osf.io/nc2x7},</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span> = {https://osf.io/preprints/socarxiv/nc2x7/},</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {McCartan, Cory and Kenny, Christopher T.},</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">keywords</span> = {representation, redistricting, voting rights, individual harm},</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Individual and Differential Harm in Redistricting},</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {SocArXiv},</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2022}</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="inequality-in-administrative-democracy-large-sample-evidence-from-american-financial-regulation" class="level4">
-<h4 class="anchored" data-anchor-id="inequality-in-administrative-democracy-large-sample-evidence-from-american-financial-regulation"><a href="https://judgelord.github.io/finreg/participatory-inequality.pdf">Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation</a></h4>
-<p>(with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)</p>
-<p>Awarded the 2021 Herbert Kaufman Award.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#carpenter2024inequalityAbs" aria-expanded="false" aria-controls="carpenter2024inequalityAbs">
-Abstract
-</button>
-</p>
-<div id="carpenter2024inequalityAbs" class="collapse">
-<div class="card card-body">
-Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations’ wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations’ ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success.
-</div>
-</div>
-</section>
-<section id="any-way-you-slice-it-racial-segregation-statistics-are-robust-to-aggregation-bias" class="level4">
-<h4 class="anchored" data-anchor-id="any-way-you-slice-it-racial-segregation-statistics-are-robust-to-aggregation-bias"><a href="https://osf.io/preprints/socarxiv/nv5up_v2">Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias</a></h4>
-<p>(with Jacob R. Brown and Tyler Simko)</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#brown2025segregationAbs" aria-expanded="false" aria-controls="brown2025segregationAbs">
-Abstract
-</button>
-</p>
-<div id="brown2025segregationAbs" class="collapse">
-<div class="card card-body">
-Residential segregation in the United States is widespread, persistent, and threatens economic opportunity and social cohesion. Most segregation metrics, however, rely on aggregate data with arbitrary spatial boundaries. Sensitivity to those boundaries is well theorized but rarely measured. Leveraging modern redistricting software, we simulate millions of alternative Census tract maps that satisfy Census guidelines, compute segregation for each, and recover the full probabilistic distribution of common indices. These simulations yield new estimates of racial segregation across U.S. cities and, crucially, measure the aggregation‑induced variability hidden in conventional estimates. Encouragingly, values calculated with official tract definitions closely track the mean of the simulated distribution, exhibiting only a slight upward bias, and segregation metrics shift modestly across maps – though variability grows in smaller cities. While our findings confirm the practical robustness of Census tracts, our data and software provide a general framework for diagnosing and correcting spatial‑aggregation error in other contexts.
-</div>
-</div>
-</section>
-<section id="principles-and-politics-explicit-rules-bind-lawmakers-and-courts" class="level4">
-<h4 class="anchored" data-anchor-id="principles-and-politics-explicit-rules-bind-lawmakers-and-courts"><a href="https://christophertkenny.com/drafts/principles-and-partisanship.pdf">Principles and Politics: Explicit Rules Bind Lawmakers and Courts</a></h4>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2024principlesAbs" aria-expanded="false" aria-controls="kenny2024principlesAbs">
-Abstract
-</button>
-</p>
-<div id="kenny2024principlesAbs" class="collapse">
-<div class="card card-body">
-Policymakers in America often hold power over democratic institutions, especially electoral institutions. Their decisions can place principled decision-making at odds with partisan goals, especially in polarized times. How do policymakers balance these competing interests? I argue that policymakers are more likely to side against partisan interests when the law is more explicit. I apply this to partisan gerrymandering in the United States, where map drawers can manipulate district boundaries to favor one party. This provides a hard test, where partisan interests are directly at odds with democratic principles and the stakes of any decision are high. Using new data on the 2020 redistricting cycle combined with redistricting simulations, I find that map drawers typically follow rules that protect partisan fairness. Further, if a partisan gerrymandering case is brought against a redistricting plan, courts are more likely to rule against a plan when there is an explicit law against partisan gerrymandering. When courts intervene, they consistently, but only moderately, decrease the partisan bias of the plan. I then demonstrate that compliance with other, nonpartisan redistricting rules is highest when it is easiest to measure violations. This contributes optimistic evidence that rules effectively bind partisans.
-</div>
-</div>
-</section>
-<section id="gerrymandering-and-geographic-polarization-have-reduced-electoral-competition" class="level4">
-<h4 class="anchored" data-anchor-id="gerrymandering-and-geographic-polarization-have-reduced-electoral-competition"><a href="https://www.arxiv.org/abs/2508.15885">Gerrymandering and geographic polarization have reduced electoral competition</a></h4>
-<p>(with Ethan Jasny, Cory McCartan, Tyler Simko, Melissa Wu, Michael Y. Zhao, Aneetej Arora, Emma Ebowe, Philip O’Sullivan, Taran Samarth, and Kosuke Imai).</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#jasny2025gerrymanderingAbs" aria-expanded="false" aria-controls="jasny2025gerrymanderingAbs">
-Abstract
-</button>
-</p>
-<div id="jasny2025gerrymanderingAbs" class="collapse">
-<div class="card card-body">
-Changes in political geography and electoral district boundaries shape representation in the United States Congress. To disentangle the effects of geography and gerrymandering, we generate a large ensemble of alternative redistricting plans that follow each state’s legal criteria. Comparing enacted plans to these simulations reveals partisan bias, while changes in the simulated plans over time identify shifts in political geography. Our analysis shows that geographic polarization has intensified between 2010 and 2020: Republicans improved their standing in rural and rural-suburban areas, while Democrats further gained in urban districts. These shifts offset nationally, reducing the Republican geographic advantage from 14 to 10 seats. Additionally, pro-Democratic gerrymandering in 2020 counteracted earlier Republican efforts, reducing the GOP redistricting advantage by two seats. In total, the pro-Republican bias declined from 16 to 10 seats. Crucially, shifts in political geography and gerrymandering reduced the number of highly competitive districts by over 25%, with geographic polarization driving most of the decline.
-</div>
-</div>
-</section>
-<section id="bskyr-an-r-package-to-interact-with-bluesky-social" class="level4">
-<h4 class="anchored" data-anchor-id="bskyr-an-r-package-to-interact-with-bluesky-social"><a href="https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf">bskyr: An R Package to Interact with Bluesky Social</a></h4>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2025bskyrAbs" aria-expanded="false" aria-controls="kenny2025bskyrAbs">
-Summary
-</button>
-</p>
-<div id="kenny2025bskyrAbs" class="collapse">
-<div class="card card-body">
-Bluesky Social is an offshoot of Twitter, designed to provide a decentralized alternative to traditional social media platforms. bskyr is an R package that provides programmatic access to Bluesky Social. The package wraps the official Bluesky Social API, enabling users to retrieve posts, threads, user profiles, social graphs (e.g., follows, mutes, blocks), curated lists, and starter packs. It also supports content creation and interaction so that users can post, reply, like, repost, and follow directly from R. All data is returned in tidy data frames, making it compatible with standard R workflows for analysis and visualization. This allows users of bskyr to not only collect data for observational studies but also to engage with the platform programmatically, such as posting updates or interacting with other users.
-</div>
-</div>
-</section>
-</section>
-<section id="publications" class="level2">
-<h2 class="anchored" data-anchor-id="publications">Publications</h2>
-<section id="evaluating-bias-and-noise-induced-by-the-u.s.-census-bureaus-privacy-protection-methods" class="level4">
-<h4 class="anchored" data-anchor-id="evaluating-bias-and-noise-induced-by-the-u.s.-census-bureaus-privacy-protection-methods"><a href="https://www.science.org/doi/10.1126/sciadv.adl2524">Evaluating Bias and Noise Induced by the U.S. Census Bureau’s Privacy Protection Methods</a></h4>
-<p>(with Cory McCartan, Shiro Kuriwaki, Tyler Simko, and Kosuke Imai). 2024. Science Advances.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2024evaluatingAbs" aria-expanded="false" aria-controls="kenny2024evaluatingAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2024evaluatingBib" aria-expanded="false" aria-controls="kenny2024evaluatingBib">
-BibTeX
-</button>
-</p>
-<div id="kenny2024evaluatingAbs" class="collapse">
-<div class="card card-body">
-The United States Census Bureau faces a difficult trade-off between the accuracy of Census statistics and the protection of individual information. We conduct the first independent evaluation of bias and noise induced by the Bureau’s two main disclosure avoidance systems: the TopDown algorithm employed for the 2020 Census and the swapping algorithm implemented for the 1990, 2000, and 2010 Censuses. Our evaluation leverages the recent release of the Noisy Measure File (NMF) as well as the availability of two independent runs of the TopDown algorithm applied to the 2010 decennial Census. We find that the NMF contains too much noise to be directly useful alone, especially for Hispanic and multiracial populations. TopDown’s post-processing dramatically reduces the NMF noise and produces similarly accurate data to swapping in terms of bias and noise. These patterns hold across census geographies with varying population sizes and racial diversity. While the estimated errors for both TopDown and swapping are generally no larger than other sources of Census error, they can be relatively substantial for geographies with small total populations.
-</div>
-</div>
-<div id="kenny2024evaluatingBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">kenn:etal:24b</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Christopher T. Kenny and Cory McCartan and Shiro Kuriwaki and Tyler Simko and Kosuke Imai},</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Evaluating bias and noise induced by the U.S. Census Bureau’s privacy protection methods},</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Science Advances},</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {10},</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {18},</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {eadl2524},</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2024},</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.1126/sciadv.adl2524},</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">URL</span> = {https://www.science.org/doi/abs/10.1126/sciadv.adl2524},</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a> <span class="dt">eprint</span> = {https://www.science.org/doi/pdf/10.1126/sciadv.adl2524},</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="census-officials-must-constructively-engage-with-independent-evaluations" class="level4">
-<h4 class="anchored" data-anchor-id="census-officials-must-constructively-engage-with-independent-evaluations"><a href="https://www.pnas.org/doi/10.1073/pnas.2321196121">Census Officials Must Constructively Engage with Independent Evaluations</a></h4>
-<p>(with Cory McCartan, Tyler Simko, and Kosuke Imai). 2024. PNAS.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2024constructiveAbs" aria-expanded="false" aria-controls="kenny2024constructiveAbs">
-First paragraph
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2024constructiveBib" aria-expanded="false" aria-controls="kenny2024constructiveBib">
-BibTeX
-</button>
-</p>
-<div id="kenny2024constructiveAbs" class="collapse">
-<div class="card card-body">
-Current and former Census Bureau officials <a href="https://www.pnas.org/doi/10.1073/pnas.2220558120">Jarmin et al.</a> argue that differential privacy, which underlies the 2020 Census’s Disclosure Avoidance System (DAS), satisfies more desirable theoretical criteria than alternatives. They provide detailed criticisms of many published evaluations of the 2020 DAS, including our work. In this letter, we show that their criticisms are unfounded, grossly mischaracterize our research, and ignore critical issues that merit public discussion.
-</div>
-</div>
-<div id="kenny2024constructiveBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">kenn:etal:24a</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Census officials must constructively engage with independent evaluations},</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Imai, Kosuke},</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Proceedings of the National Academy of Sciences},</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={121},</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span>={11},</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={e2321196121},</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2024},</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={National Acad Sciences}</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition" class="level4">
-<h4 class="anchored" data-anchor-id="widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition"><a href="https://www.pnas.org/doi/10.1073/pnas.2217322120">Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition</a></h4>
-<p>(with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai). 2023. PNAS.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2023widespreadAbs" aria-expanded="false" aria-controls="kenny2023widespreadAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2023widespreadBib" aria-expanded="false" aria-controls="kenny2023widespreadBib">
-BibTeX
-</button>
-</p>
-<div id="kenny2023widespreadAbs" class="collapse">
-<div class="card card-body">
-Congressional district lines in many U.S. states are drawn by partisan actors, raising concerns about gerrymandering. To isolate the electoral impact of gerrymandering from the effects of other factors including geography and redistricting rules, we compare predicted election outcomes under the enacted plan with those under a large sample of non-partisan, simulated alternative plans for all states. We find that partisan gerrymandering is widespread in the 2020 redistricting cycle, but most of the bias it creates cancels at the national level, giving Republicans two additional seats, on average. In contrast, moderate pro-Republican bias due to geography and redistricting rules remains. Finally, we find that partisan gerrymandering reduces electoral competition and makes the House’s partisan composition less responsive to shifts in the national vote.
-</div>
-</div>
-<div id="kenny2023widespreadBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">kenn:etal:23b</span>,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">author</span> = {Christopher T. Kenny and Cory McCartan and Tyler Simko and Shiro Kuriwaki and Kosuke Imai},</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">title</span> = {Widespread partisan gerrymandering mostly cancels nationally, but reduces electoral competition},</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">journal</span> = {Proceedings of the National Academy of Sciences},</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">volume</span> = {120},</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">number</span> = {25},</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dt">pages</span> = {e2217322120},</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span> = {2023},</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">doi</span> = {10.1073/pnas.2217322120},</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="dt">URL</span> = {https://www.pnas.org/doi/abs/10.1073/pnas.2217322120},</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dt">eprint</span> = {https://www.pnas.org/doi/pdf/10.1073/pnas.2217322120},</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system" class="level4">
-<h4 class="anchored" data-anchor-id="comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system"><a href="https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1">Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System</a></h4>
-<p>(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko). 2023. Harvard Data Science Review.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2023commentAbs" aria-expanded="false" aria-controls="kenny2023commentAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2023commentBib" aria-expanded="false" aria-controls="kenny2023commentBib">
-BibTeX
-</button>
-</p>
-<div id="kenny2023commentAbs" class="collapse">
-<div class="card card-body">
-In <a href="https://doi.org/10.1162/99608f92.66882f0e">“Differential Perspectives: Epistemic Disconnects Surrounding the US Census Bureau’s Use of Differential Privacy,”</a> boyd and Sarathy argue that empirical evaluations of the Census Disclosure Avoidance System (DAS), including our published analysis, failed to recognize how the benchmark data against which the 2020 DAS was evaluated is never a ground truth of population counts. In this commentary, we explain why policy evaluation, which was the main goal of our analysis, is still meaningful without access to a perfect ground truth. We also point out that our evaluation leveraged features specific to the decennial Census and redistricting data, such as block-level population invariance under swapping and voter file racial identification, better approximating a comparison with the ground truth. Lastly, we show that accurate statistical predictions of individual race based on the Bayesian Improved Surname Geocoding, while not a violation of differential privacy, substantially increases the disclosure risk of private information the Census Bureau sought to protect. We conclude by arguing that policy makers must confront a key trade-off between data utility and privacy protection, and an epistemic disconnect alone is insufficient to explain disagreements between policy choices.
-</div>
-</div>
-<div id="kenny2023commentBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">kenn:etal:23</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">author</span> = {Kenny, Christopher T. and Kuriwaki, Shiro and McCartan, Cory and Rosenman, Evan T. R. and Simko, Tyler and Imai, Kosuke},</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">journal</span> = {Harvard Data Science Review},</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">number</span> = {Special Issue 2},</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span> = {2023},</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">month</span> = {jan 31},</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">note</span> = {https://hdsr.mitpress.mit.edu/pub/6ffzuq19},</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">publisher</span> = {},</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span> = {Comment: The {Essential} {Role} of {Policy} {Evaluation} for the 2020 {Census} {DisclosureAvoidance} {System}},</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">volume</span> = { },</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states" class="level4">
-<h4 class="anchored" data-anchor-id="simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states"><a href="https://www.nature.com/articles/s41597-022-01808-2">Simulated redistricting plans for the analysis and evaluation of redistricting in the United States</a></h4>
-<p>(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai). 2022. Scientific Data.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#50statesSimulationsAbs" aria-expanded="false" aria-controls="50statesSimulationsAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#50statesSimulationsBib" aria-expanded="false" aria-controls="50statesSimulationsBib">
-BibTeX
-</button>
-</p>
-<div id="50statesSimulationsAbs" class="collapse">
-<div class="card card-body">
-This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data.
-</div>
-</div>
-<div id="50statesSimulationsBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">50statesSimulations</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Simulated Redistricting Plans for the Analysis and Evaluation of Redistricting in the {{United States}}},</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2022},</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span> = <span class="st">nov</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Scientific Data},</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {9},</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {1},</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {689},</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">issn</span> = {2052-4463},</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.1038/s41597-022-01808-2},</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-u.s.-census" class="level4">
-<h4 class="anchored" data-anchor-id="the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-u.s.-census"><a href="https://www.science.org/doi/10.1126/sciadv.abk3283">The use of differential privacy for census data and its impact on redistricting: The case of the 2020 U.S. Census</a></h4>
-<p>(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko). 2021. Science Advances.</p>
-<p>Covered by <a href="https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html">The Washington Post</a>, <a href="https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49">Associated Press</a>, <a href="http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/">NC Policy Watch</a>, and <a href="https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/">The Harvard Crimson</a>.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2021differentialAbs" aria-expanded="false" aria-controls="kenny2021differentialAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#kenny2021differentialBib" aria-expanded="false" aria-controls="kenny2021differentialBib">
-BibTeX
-</button>
-</p>
-<div id="kenny2021differentialAbs" class="collapse">
-<div class="card card-body">
-The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census.
-</div>
-</div>
-<div id="kenny2021differentialBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">kenn:etal:21</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">author</span> = {Christopher T. Kenny  and Shiro Kuriwaki  and Cory McCartan  and Evan T. R. Rosenman  and Tyler Simko  and Kosuke Imai },</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">title</span> = {The Use of Differential Privacy for Census Data and its Impact on Redistricting: The Case of the 2020 U.S. Census},</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">journal</span> = {Science Advances},</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">volume</span> = {7},</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">number</span> = {41},</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dt">pages</span> = {eabk3283},</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span> = {2021},</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="dt">doi</span> = {10.1126/sciadv.abk3283},</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="dt">URL</span> = {https://www.science.org/doi/abs/10.1126/sciadv.abk3283},</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="dt">eprint</span> = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation" class="level4">
-<h4 class="anchored" data-anchor-id="the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation"><a href="https://doi.org/10.1080/2330443X.2020.1791773">The Essential Role of Empirical Validation in Legislative Redistricting Simulation</a></h4>
-<p>(with Benjamin Fifield, Kosuke Imai, and Jun Kawahara). 2020. Statistics and Public Policy.</p>
-<p>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#fifield2020essentialAbs" aria-expanded="false" aria-controls="fifield2020essentialAbs">
-Abstract
-</button>
-<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#fifield2020essentialBib" aria-expanded="false" aria-controls="fifield2020essentialBib">
-BibTeX
-</button>
-</p>
-<div id="fifield2020essentialAbs" class="collapse">
-<div class="card card-body">
-As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets.
-</div>
-</div>
-<div id="fifield2020essentialBib" class="collapse">
-<div class="card card-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bibtex code-overflow-wrap code-with-copy"><code class="sourceCode bibtex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">fife:etal:20</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Benjamin Fifield and Kosuke Imai and Jun Kawahara and Christopher T. Kenny},</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {The Essential Role of Empirical Validation in Legislative Redistricting Simulation},</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Statistics and Public Policy},</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {7},</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {1},</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {52-68},</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>  = {2020},</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {Taylor &amp; Francis},</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.1080/2330443X.2020.1791773},</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">URL</span> = {https://doi.org/10.1080/2330443X.2020.1791773},</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eprint</span> = {https://doi.org/10.1080/2330443X.2020.1791773},</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-</section>
-<section id="works-in-progress" class="level2">
-<h2 class="anchored" data-anchor-id="works-in-progress">Works-in-Progress</h2>
-<section id="algorithm-assisted-redistricting-methodology" class="level4">
-<h4 class="anchored" data-anchor-id="algorithm-assisted-redistricting-methodology">Algorithm-Assisted Redistricting Methodology</h4>
-<p>(with Kosuke Imai, Cory McCartan, and Tyler Simko). Book project.</p>
-</section>
-<section id="an-individual-causal-framework-for-evaluating-electoral-systems" class="level4">
-<h4 class="anchored" data-anchor-id="an-individual-causal-framework-for-evaluating-electoral-systems">An Individual Causal Framework for Evaluating Electoral Systems</h4>
-<p>(with Cory McCartan)</p>
-</section>
-</section>
-<section id="public-writing" class="level2">
-<h2 class="anchored" data-anchor-id="public-writing">Public Writing</h2>
-<section id="trumps-proposed-snap-census-wont-get-him-the-seats-he-wants" class="level4">
-<h4 class="anchored" data-anchor-id="trumps-proposed-snap-census-wont-get-him-the-seats-he-wants"><a href="https://thehill.com/opinion/campaign/5471013-trump-census-undocumented-immigrants/">Trump’s proposed snap Census won’t get him the seats he wants</a></h4>
-<p>Opinion piece in The Hill. 2025. With Tyler Simko.</p>
-</section>
-<section id="expert-report-in-sakhnovsky-et-al-v.-city-of-daytona-beach" class="level4">
-<h4 class="anchored" data-anchor-id="expert-report-in-sakhnovsky-et-al-v.-city-of-daytona-beach"><a href="https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf">Expert Report in Sakhnovsky, et al v. City of Daytona Beach</a></h4>
-<p>Case No.&nbsp;2024 10140 CICI. Expert report on census data and map drawing for Daytona Beach. 2024.</p>
-</section>
-<section id="redistricting-process-reform" class="level4">
-<h4 class="anchored" data-anchor-id="redistricting-process-reform"><a href="https://effectivegov.uchicago.edu/primers/redistricting-process-reform">Redistricting Process Reform</a></h4>
-<p>The University of Chicago Center for Effective Government’s Democracy Reform Primer Series. 2024. With Steve Ansolabehere.</p>
-</section>
-<section id="amici-curiae-brief-of-fair-districts-georgia-and-election-law-clinic-in-support-of-plaintiffs" class="level4">
-<h4 class="anchored" data-anchor-id="amici-curiae-brief-of-fair-districts-georgia-and-election-law-clinic-in-support-of-plaintiffs"><a href="https://static1.squarespace.com/static/60a559b59cfc63389f67f892/t/61fdadc3ff205a1aa1bd0ca7/1644015064277/Alpha+Phi+Alpha+Fraternity+v.+Raffensperger+Brief">Amici Curiae Brief of Fair Districts Georgia and Election Law Clinic in Support of Plaintiffs</a></h4>
-<p>Alpha Phi Alpha Fraternity, Inc.&nbsp;et al.&nbsp;v. Brad Raffensperger. 2021. With the Election Law Clinic at Harvard Law School.</p>
-</section>
-<section id="maryland-congressional-district-memo" class="level4">
-<h4 class="anchored" data-anchor-id="maryland-congressional-district-memo"><a href="https://redistricting.maryland.gov/Documents/Library/mcrc-drafts-2021-0913/2021-0913-memo-algorithms-produced-by-Professor-Rodden.pdf">Maryland Congressional District Memo</a></h4>
-<p>Memo to the Maryland Redistricting Commission. 2021. With Jonathan Rodden.</p>
 
 
-</section>
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

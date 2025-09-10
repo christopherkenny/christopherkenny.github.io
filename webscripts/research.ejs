@@ -1,0 +1,109 @@
+```{=html}
+
+<%
+// Function to convert markdown links to HTML
+function renderMarkdownLinks(text) {
+  if (!text) return text;
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+%>
+
+<% for (const item of items) { %>
+
+    <h2><%- item.category %></h2>
+
+    <div class="list">
+
+      <% for (const paper of item.papers) { %>
+      <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title">
+                  <% if (paper.url) { %>
+                      <a href="<%- paper.url %>" target="_blank"><%- paper.title %></a>
+                  <% } else { %>
+                      <%- paper.title %>
+                  <% } %>
+              </h5>
+
+              <% if (paper.authors) { %>
+                  <p class="text-muted">(<%- paper.authors %>)</p>
+              <% } %>
+
+              <% if (paper.journal && paper.year) { %>
+                  <p><strong><%- paper.year %>. <%- paper.journal %>.</strong></p>
+              <% } else if (paper.type && paper.year) { %>
+                  <p><strong><%- paper.type %>. <%- paper.year %>.</strong></p>
+              <% } else if (paper.type) { %>
+                  <p><strong><%- paper.type %>.</strong></p>
+              <% } %>
+
+              <% if (paper.award) { %>
+                  <p><strong><%- paper.award %></strong></p>
+              <% } %>
+
+              <% if (paper.coverage) { %>
+                  <p><%= renderMarkdownLinks(paper.coverage) %></p>
+              <% } %>
+
+              <% if (paper.description) { %>
+                  <p><%- paper.description %></p>
+              <% } %>
+
+              <% if (paper.abstract || paper.summary || paper.first_paragraph || paper.bibtex) { %>
+                  <div class="mb-3">
+                      <% if (paper.abstract) { %>
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                              Abstract
+                          </button>
+                      <% } %>
+                      <% if (paper.summary) { %>
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#summary-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                              Summary
+                          </button>
+                      <% } %>
+                      <% if (paper.first_paragraph) { %>
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#first-paragraph-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                              First paragraph
+                          </button>
+                      <% } %>
+                      <% if (paper.bibtex) { %>
+                          <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                              BibTeX
+                          </button>
+                      <% } %>
+                  </div>
+
+                  <% if (paper.abstract) { %>
+                      <div class="collapse" id="abstract-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                          <div class="alert alert-light">
+                              <%- paper.abstract %>
+                          </div>
+                      </div>
+                  <% } %>
+                  <% if (paper.summary) { %>
+                      <div class="collapse" id="summary-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                          <div class="alert alert-light">
+                              <%- paper.summary %>
+                          </div>
+                      </div>
+                  <% } %>
+                  <% if (paper.first_paragraph) { %>
+                      <div class="collapse" id="first-paragraph-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                          <div class="alert alert-light">
+                              <%- paper.first_paragraph %>
+                          </div>
+                      </div>
+                  <% } %>
+                  <% if (paper.bibtex) { %>
+                      <div class="collapse" id="bibtex-<%- paper.title.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '') %>">
+                          <pre class="bg-light p-3 rounded"><%- paper.bibtex %></pre>
+                      </div>
+                  <% } %>
+              <% } %>
+          </div>
+      </div>
+
+        <% } %>
+    </div>
+<% } %>
+```
