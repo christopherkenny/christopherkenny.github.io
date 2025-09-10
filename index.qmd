@@ -43,7 +43,7 @@ listing:
 
 Postdoctoral Research Associate, Data-Driven Social Science, Princeton University
 
-[{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:christopherkenny@fas.harvard.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
+[{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:ctkenny@princeton.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
 
 :::
 
@@ -71,10 +71,12 @@ My research focuses on primarily on American democratic institutions, with a par
 My prior work has examined the net effect of gerrymandering in the US House in the 2020 cycle ([*PNAS 2023*](research.html#widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition)).
 With the ALARM Project, I've contributed to the creation of simulated redistricting plans for all congressional redistricting plans in the 2020 cycle ([*Nature: Scientific Data 2022*](research.html#simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states)) with ongoing work to extend this to the 2010 cycle.
 My research further includes a working paper with Cory McCartan, ["Individual and Differential Harm in Redistricting"](research.html#individual-and-differential-harm-in-redistricting), which proposes an individual approach to fairness in redistricting.
-In a new working paper with the ALARM Project, ["Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors"](research.html#redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors), we demonstrate that restrictive reforms improve partisan fairness of redistricting plans.
+In a working paper with the ALARM Project, ["Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors"](research.html#redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors), we demonstrate that restrictive reforms improve partisan fairness of redistricting plans.
+In a related working paper with the ALARM Project, ["Gerrymandering and geographic polarization have reduced electoral competition"](https://www.arxiv.org/abs/2508.15885), we show that reductions in competitiveness across time are driven more by geographic polarization than by gerrymandering.
 
-My work on census data relates to how the construction and privacy protection of census data impacts end users. 
-My work on census data includes a policy evaluation paper which details the negative impact of differential privacy in the 2020 Census on redistricting and voting rights enforcement ([*Science Advances 2021*](research.html#the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-u.s.-census)). 
+My work on census data relates to how the construction and privacy protection of census data impacts end users.
+My work with Jake Brown and Tyler Simko demonstrates that estimates of racial segregation using Census tracts are robust to the modifiable areal unit problem (["Any Way You Slice It"](https://osf.io/preprints/socarxiv/nv5up_v2)).
+My work on census data privacy includes a policy evaluation paper which details the negative impact of differential privacy in the 2020 Census on redistricting and voting rights enforcement ([*Science Advances 2021*](research.html#the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-u.s.-census)). 
 It further characterizes how certain communities, including Hispanic and multi-racial populations, are disproportionately impacted by the privacy noise in the 2020 Census ([*Science Advances 2024*](research.html#evaluating-bias-and-noise-induced-by-the-u.s.-census-bureaus-privacy-protection-methods)).
 
 To support my own research and the research of others, I have developed over two dozen R packages, including [`redist`](https://alarm-redist.org/redist/), [`geomander`](https://christophertkenny.com/geomander/), and [`censable`](https://christophertkenny.com/censable/). 
