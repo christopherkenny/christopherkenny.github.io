@@ -4,7 +4,7 @@ title: 'Package relationships'
 
 ```{r, echo = FALSE, results = 'hide', warning=FALSE, message=FALSE, eval = FALSE}
 library(tidyverse)
-pkgs <- read_csv('pkgs.csv') |> 
+pkgs <- read_csv('pkgs.csv') |>
   mutate(
     logo = paste0('hexes/hex_', name, '.png'),
     .after = name
@@ -14,15 +14,15 @@ get_my_deps <- function(packages) {
   lapply(packages, function(x) {
     dfile <- desc::desc(package = x)
     deps <- gsub(
-      ' ?\\(.+\\)', '', 
+      ' ?\\(.+\\)', '',
       c(
         dfile$get_list('Depends', default = character(1)),
-        dfile$get_list('Imports', default = character(1)), 
+        dfile$get_list('Imports', default = character(1)),
         dfile$get_list('LinkingTo', default = character(1))
       )
     )
     intersect(deps, packages)
-  }) |> 
+  }) |>
     stats::setNames(packages)
 }
 
@@ -31,8 +31,8 @@ connect_deps <- function(l) {
     if (length(l[[i]]) > 0) {
       paste0(l[[i]], ' --> ' , names(l)[i])
     }
-  }) |> 
-    unlist() |> 
+  }) |>
+    unlist() |>
     unique()
 }
 
@@ -43,14 +43,14 @@ embrace_deps <- function(packages, cran_packages) {
   }
   redistverse_packages <- c(
     'redistverse',
-    'redist', 'redistmetrics', 'geomander', 'ggredist', 'censable', 
+    'redist', 'redistmetrics', 'geomander', 'ggredist', 'censable',
     'tinytiger', 'PL94171', 'alarmdata'
   )
   packages <- c(packages[packages %in% redistverse_packages], packages[!packages %in% redistverse_packages])
-  
+
   ifelse(
-    packages %in% cran_packages, 
-    paste0(packages, '{{', packages, '}}'), 
+    packages %in% cran_packages,
+    paste0(packages, '{{', packages, '}}'),
     paste0(packages, '((', packages, '))')
   )
 }
@@ -60,7 +60,7 @@ paste0('  ',
        c(
          embrace_deps(pkgs$name),
          connect_deps(deps)
-       )) |> 
+       )) |>
   cat(sep = '\n')
 ```
 
@@ -93,6 +93,11 @@ flowchart LR
   palette{{palette}}
   ThemePark((ThemePark))
   baf{{baf}}
+  causaltbl((causaltbl))
+  opengraph{{opengraph}}
+  flexoki{{flexoki}}
+  typr{{typr}}
+  manifesto((manifesto))
   redistmetrics --> redist
   censable --> geomander
   tinytiger --> geomander
@@ -105,7 +110,6 @@ flowchart LR
   redist --> alarmdata
   redistmetrics --> alarmdata
   tinytiger --> alarmdata
-  palette --> ggredist
   redist --> redistverse
   redistmetrics --> redistverse
   geomander --> redistverse
@@ -115,9 +119,11 @@ flowchart LR
   PL94171 --> redistverse
   alarmdata --> redistverse
   palette --> crayons
+  opengraph --> bskyr
   geomander --> redistio
   ggredist --> redistio
   redistmetrics --> redistio
+  palette --> flexoki
 ```
 
 
@@ -125,37 +131,36 @@ flowchart LR
 library(DiagrammeR)
 
 tb_node <- tibble(
-  name = names(deps), 
+  name = names(deps),
   deps = unname(deps),
   type = pkgs$status
 )
 
-tb_edge <- tb_node |> 
+tb_edge <- tb_node |>
   unnest_longer(deps)
 
 
 nodes <- create_node_df(
-  n = nrow(tb_node), 
-  label = tb_node$name, 
+  n = nrow(tb_node),
+  label = tb_node$name,
   type = tb_node$type
-) 
+)
 edges <- create_edge_df(
-  to = match(tb_edge$name, tb_node$name), 
+  to = match(tb_edge$name, tb_node$name),
   from = match(tb_edge$deps, tb_node$name)
 )
 htmlwidgets::setWidgetIdSeed(seed = 1)
 create_graph(
   nodes_df = nodes,
   edges_df = edges
-) |> 
-  select_nodes(conditions = type == 'CRAN') |> 
+) |>
+  select_nodes(conditions = type == 'CRAN') |>
   set_node_attrs_ws(node_attr = shape, value = 'rect') |>
   invert_selection() |>
   set_node_attrs_ws(node_attr = shape, value = 'ellipse') |>
   clear_selection() |>
   colorize_node_attrs(node_attr_from = type, node_attr_to = fillcolor,
                       palette = c('#e07a5f', '#81b29a')) |>
-  set_node_attrs(node_attr = fontcolor, values = 'black') |> 
+  set_node_attrs(node_attr = fontcolor, values = 'black') |>
   render_graph(layout = 'kk', )
 ```
-
