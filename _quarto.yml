@@ -47,19 +47,14 @@ website:
   open-graph: true
   site-url: https://christophertkenny.com
   repo-url: "https://github.com/christopherkenny/christopherkenny.github.io"
-  description: "Christopher T. Kenny is a PhD candidate in Government at Harvard University."
+  description: "Christopher T. Kenny is a Postdoctoral Research Associate at Princeton University."
   page-footer:
     left: |
-      © Copyright 2021-2024 Christopher T. Kenny.<br>
+      © Copyright 2021-2025 Christopher T. Kenny.<br>
       All rights reserved.
     right: |
       Built with [Quarto](https://quarto.org/).<br>
       Source available on [GitHub](https://github.com/christopherkenny/christopherkenny.github.io).
-  announcement:
-    icon: exclamation-circle
-    content: "**New working papers**: [*Gerrymandering and geographic polarization have reduced electoral competition*](https://arxiv.org/abs/2508.15885) and [*Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias*](https://osf.io/preprints/socarxiv/nv5up_v2)"
-    type: info
-    position: below-navbar
 
 format:
   html:
