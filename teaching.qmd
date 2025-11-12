@@ -1,6 +1,6 @@
 ---
 title: "Teaching"
-date: "2024-06-01"
+date: "2025-11-12"
 date-format: "[As of] MMMM YYYY"
 format:
   html:
@@ -50,6 +50,20 @@ Received the Certificate of Distinction in Teaching from the [Derek Bok Center f
 
 
 ## Short courses and workshops
+
+### Writing Reproducible Reports and Articles with Quarto
+
+Princeton University, **Fall 2025**.
+
+Instructor.
+
+An introductory workshop to using Quarto for reproducible articles and creating academic websites. Materials for the workshop are [available on GitHub](https://github.com/christopherkenny/quarto-workshop-fall2025).
+
+<details>
+<summary>Full Workshop Description</summary>
+This workshop introduces researchers to Quarto as a tool for writing reproducible reports in a combination of text and code. Quarto is an open-source tool which provides a syntax for writing prose in Markdown format, combined with native code support to include Julia, Python, and R. A single Quarto file can output to several publishing types, including LaTeX, Typst, HTML, and Word. We will demonstrate using this for writing journal-style articles and preprints, with a short demonstration of its website capabilities. By the end, attendees will be able to write documents in default Quarto outputs and comfortable exploring Quarto extensions and templates for customized output styles.
+</details>
+
 
 ### lawyR:  R Basics for Lawyers
 
