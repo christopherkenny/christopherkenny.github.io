@@ -406,3 +406,23 @@
         validate files, and to use a given file as the requirements for a project.
         Handles package installations, when necessary, via pak.
       topic_title: Other R packages
+    - name: lobby
+      logo: hexes/hex_lobby.png
+      info: Interact with the US Senate Lobbying Disclosure API
+      link: https://christophertkenny.com/lobby/
+      color: '#b99258'
+      description: Download and read data on lobbying in the United States Congress.
+        Data is queried from the Senate's Application Programming Interface (<a href=""https://lda.senate.gov/api/"">https://lda.senate.gov/api/</a>).
+        This supports filings since 2008. Functions exist for all primary data endpoints,
+        including queries by filings, contributions, registrations, clients, and lobbyists.
+      topic_title: Other R packages
+    - name: pr
+      logo: hexes/hex_pr.png
+      info: Classes for Probabilities
+      link: https://christophertkenny.com/pr/
+      color: '#2e4b43'
+      description: Provides S3 classes to represent probability vectors and matrices
+        using 'vctrs'. Allows for creation, validation, and pretty printing of each
+        class. Includes a special probability matrix type with counts to allow for
+        cases with limited possible values.
+      topic_title: Other R packages
