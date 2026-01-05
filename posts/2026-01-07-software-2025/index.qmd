@@ -1,0 +1,374 @@
+---
+title: "Packages 2025 Wrapped"
+date: "2026-01-07"
+description: |
+  A look at my R package updates from 2025
+categories: [r-pkg]
+image: "hexes_2026-01-07.png"
+image-alt: "An array of hexagonal logos for discussed R packages."
+editor: 
+  markdown: 
+    wrap: sentence
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+![](hexes_2026-01-07.png)
+
+Happy New Year!
+With CRAN opening for 2026 today, I've written up a reflection on my R package development in 2025.
+This follows my [2024 updates](https://christophertkenny.com/posts/2025-03-21-software-2024/) and [2023 updates](https://christophertkenny.com/posts/2023-12-21-cran-wrapped/).
+
+```{r}
+#| label: libs
+suppressPackageStartupMessages(library(tidyverse))
+library(gt)
+library(geomtextpath)
+```
+
+
+```{r}
+#| label: data
+pkgs <- read_csv('../../pkgs.csv', show_col_types = FALSE) |> 
+  mutate(logo = paste0('../../', logo)) # set to higher level directory
+
+counts_daily <- pkgs |>
+  filter(status == 'CRAN') |>
+  pull(name) |>
+  cranlogs::cran_downloads(from = '2025-01-01', to = '2025-12-31') |> 
+  rename(name = package)
+counts_lst_yr <- counts_daily |>
+  group_by(name) |>
+  summarize(count = sum(count)) |>
+  arrange(desc(count)) |> 
+  left_join(pkgs, by = 'name')
+
+hists <- pkgs |> 
+  filter(status == 'CRAN') |> 
+  pull(name) |> 
+  map(pkgsearch::cran_package_history) |> 
+  list_rbind() |> 
+  mutate(
+    year = year(date),
+    date2 = date(date)
+  ) |> 
+  group_by(Package) |> 
+  mutate(first_year = min(year)) |> 
+  ungroup()
+
+first_release <- hists |> 
+  group_by(name = Package) |> 
+  summarize(first_release = min(date2))
+
+new_packages <- first_release |> 
+  filter(year(first_release) == 2025) |> 
+  pull(name)
+```
+
+# Updates on CRAN
+
+## New packages
+
+I've added two new packages to CRAN this year, down from six in 2025 and five in 2024.
+Things seemed to have stabilized and most of my development energy is going into new features in existing packages.
+
+### `flexoki`
+
+::: {.column-margin}
+![](../../hexes/hex_flexoki.png)
+:::
+
+[`flexoki`](https://github.com/christopherkenny/flexoki) implements `ggplot2` scales and themes for working with [Steph Ango's Flexoki](https://stephango.com/flexoki) color palettes.
+The exact goal of this package is not yet fully transparent, but it demonstrates building a color palette based on my [`palette` package](https://christophertkenny.com/palette/).
+By next year, this package will have a slightly clearer purpose with an ongoing (but not yet public) side project that uses it with the `typr` package introduced below.
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+::: {.column-margin}
+![](../../hexes/hex_typr.png)
+:::
+
+[`typr`](https://github.com/christopherkenny/typr) provides a way to use the [Typst](https://typst.app/) cli from within R.
+Typst is modern approach to scientific documents and articles which will hopefully replace LaTeX in the near future.
+With `typr`, you can compile existing documents, query any feature from the cli, and compile documents from character vectors.
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Updates to existing packages
+
+During 2025, I completed my PhD at Harvard and needed to update my email address on CRAN, as I will lose access to my Harvard email in May 2026.
+As such, every package received at least one update to reflect this change.
+In total, my existing packages receieved *35* CRAN submissions in 2025.
+(Special thanks to Uwe Ligges who handled the manual check for each of the package email updates!)
+
+```{r}
+hists |> 
+  filter(year == 2025) |> 
+  filter(!Package %in% new_packages) |> 
+  select(Name = Package, Version, Date = date2, Title) |> 
+  arrange(Date) |> 
+  gt()
+```
+
+Some notable updates this year include:
+
+* `bskyr` 0.2.0, 0.3.0, and 0.4.0: these massively expanded support for using Bluesky from R. Now you can post videos, send messages, work with lists, delete all sorts of records (e.g., unlike a post), embed link cards in posts, include tenor gifs in posts, and more. I also added 3 vignettes to cover more detailed aspects of the package.
+* `tinytiger` 0.0.10, 0.0.11: these add support for 2024 and 2025 census shapes ( "TIGER Lines")
+* `PL94171` 1.1.3: this adds support for 1990 PL 94-171 redistricting files
+
+Finally, you might note that `geomander` and its dependents had some extra submissions this year in December.
+As with many R bad experiences, Brian Ripley caused this one.
+`geomander` was due for an update to address a CRAN note and, *prior to the deadline*, he yanked the package from CRAN and archived its dependents.
+This led to a flurry of submissions to get everything back on CRAN before the holiday break.
+Once again, special thanks to Uwe Ligges and to the [R-pkg-devel list](https://stat.ethz.ch/pipermail/r-package-devel/2025q4/012137.html) for advice and help on getting the packages back on CRAN quickly.
+
+# Package Downloads
+
+```{r} 
+#| label: ranks
+
+make_url <- function(x, y) {
+  paste0('<a href="', pkgs |> filter(logo %in% x) |> slice(match(logo, x)) |> pull(link), '">', y, '</a>')
+}
+
+counts_lst_yr  |> 
+  select(logo, info, count) |>
+  mutate(rank = row_number(), .before = everything()) |> 
+  gt(id = 'pkgs') |> 
+  fmt_image(
+    columns = logo,
+    height = 100
+  ) |>
+  fmt_number(columns = count, decimals = 0) |> 
+  cols_width(
+    rank ~ px(100),
+    logo ~ px(100),
+    count ~ px(150),
+  ) |> 
+  cols_label(
+    rank = 'Rank',
+    logo = '',
+    info = 'Package',
+    count = 'Downloads'
+  ) |> 
+  opt_interactive()
+```
+
+
+Below are the cumulative downloads for each package over the last year by day.
+
+```{r}
+#| label: "daily"
+hj <- tribble(
+  ~name, ~hj,
+         "redist", 1.0,
+  "redistmetrics", 1.0,
+      "geomander", 1.0,
+        "PL94171", 1.0,
+       "censable", 0.85,
+      "tinytiger", 0.7,
+           "dots", 1.0,
+           "cvap", 1.0,
+           "ppmf", 0.85,
+         "divseg", 1.0,
+           "name", 0.6,
+            "jot", 0.75,
+       "ggredist", 1.0,
+       "congress", 0.95,
+          "feltr", 1.0,
+        "crayons", 0.7,
+      "apportion", 0.9,
+       "gptzeror", 0.7,
+          "bskyr", 1.0,
+      "alarmdata", 0.5,
+     "planscorer", 1.0,
+    "redistverse", 1.0,
+        "palette", 0.6,
+            "baf", 1.0,
+      "opengraph", 0.5,
+           "typr", 1.0,
+        "flexoki", 1.0
+) |> 
+  mutate(hj = hj - 0.03)
+counts_daily |> 
+  left_join(pkgs, by = 'name') |> 
+  group_by(name) |> 
+  arrange(date) |> 
+  mutate(
+    cumulative_count = cumsum(count),
+    pkg_max = max(cumulative_count)
+  ) |> 
+  ungroup() |> 
+  left_join(first_release, by = 'name') |>
+  filter(date >= first_release) |>
+  left_join(hj, by = 'name') |>
+  ggplot() +
+  geom_textpath(aes(x = date, y = cumulative_count, label = name, hjust = hj, color = color)) + 
+  scale_x_date(name = 'Date', date_breaks = '2 month', date_labels = '%b %Y') +
+  scale_y_continuous(name = 'Count', labels = scales::label_comma(), breaks = scales::pretty_breaks()) +
+  scale_color_identity() +
+  theme_bw()
+```
+
+As with last year's post, a single summary of total downloads misses that some packages have been available for longer than others.
+One (simple) way to account for this is to adjust the downloads by the number of days the package has been available.
+Of course, this doesn't account for potential trends where a brand new package is less likely to be downloaded than a package that has been around for at least a few weeks.
+
+```{r}
+counts_daily |> 
+  left_join(first_release, by = 'name') |> 
+  filter(
+    name %in% new_packages,
+    date >= first_release
+  ) |>
+  group_by(name) |>
+  summarize(
+        days = n(),
+    downloads = sum(count)
+  ) |>
+  mutate(
+    downloads_adjusted = downloads * (365 / days)
+  ) |> 
+  arrange(desc(downloads_adjusted)) |>
+  gt() |> 
+  cols_label(
+    name = 'Package',
+    days = 'Days',
+    downloads = 'Raw',
+    downloads_adjusted = 'Adjusted'
+  ) |> 
+  tab_spanner(
+    label = 'Downloads',
+    columns = c(downloads, downloads_adjusted)
+  ) |> 
+  fmt_number(
+    columns = c(downloads, downloads_adjusted),
+    decimals = 0
+  )
+```
+
+
+# Comparison in growth
+
+Now that there's a fair bit of packages that have been around for at least two years, we can compare the growth in downloads.
+
+```{r}
+#| label: growth
+counts_daily_lst_lst <- pkgs %>%
+  filter(status == 'CRAN') %>%
+  pull(name) %>%
+  cranlogs::cran_downloads(from = '2024-01-01', to = '2024-12-31') |> 
+  rename(name = package)
+counts_lst_lst_yr <- counts_daily_lst_lst %>%
+  group_by(name) %>%
+  summarize(count = sum(count)) %>%
+  arrange(desc(count)) |> 
+  left_join(pkgs, by = 'name')
+
+
+counts_lst_yr |> 
+  filter(!name %in% c(
+    # 2024 submissions
+    'alarmdata', 'planscorer', 'redistverse', 'palette', 'baf', 'opengraph', 
+    # 2025 submissions
+    new_packages
+  )) |> 
+  select(name, county_2025 = count, logo) |> 
+  left_join(counts_lst_lst_yr |> select(name, county_2024 = count), by = 'name') |> 
+  mutate(
+    growth = (county_2025 - county_2024) / county_2024 + 1
+  ) |>
+  arrange(desc(growth)) |>
+  gt() |> 
+  cols_label(
+    name = 'Package',
+    county_2024 = '2024',
+    county_2025 = '2025',
+    growth = 'Growth'
+  ) |>
+  fmt_number(
+    columns = c(county_2024, county_2025),
+    decimals = 0
+  ) |>
+  fmt_percent(
+    columns = growth,
+    decimals = 2
+  ) |> 
+  tab_spanner(
+    label = 'Downloads',
+    columns = c(county_2024, county_2025)
+  ) |> 
+  text_transform(
+    locations = cells_body(columns = logo),
+    fn = function(x) {
+      make_url(x, y = 
+                 local_image(
+                   filename = x,
+                   height = 100
+                 )
+      )
+    }
+  ) |> 
+  cols_label(
+    logo = ''
+  )
+```
+
+# (Ongoing) Development in 2025
+
+Finally, there's always some work going on that hasn't made it to GitHub yet.
+A few notable projects in the works include:
+
+### `redistio`
+
+::: {.column-margin}
+![](../../hexes/hex_redistio.png)
+:::
+
+[`redistio`](https://github.com/christopherkenny/redistio) offers a local redistricting map editor and a local adjacency graph editor.
+Both are powered by Shiny and, as of 2025, Kyle Walker's [`mapgl`](https://walker-data.com/mapgl/) package.
+Map drawers can now completely control the input data and use algorithmic redistricting methods from `redist` to generate plans.
+This is nearly ready for CRAN, once I learn a bit more about testing (fairly complicated) Shiny apps within packages.
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+::: {.column-margin}
+![](../../hexes/hex_ha.png)
+:::
+
+[`ha`](https://christophertkenny.com/ha/) provides access to the HomeAssistant API so that you can change the colors of the lights or play music or anything else without ever leaving RStudio or Positron.
+(Just what you dream about, right?)
+It's a lightweight wrapper that handles formatting requests correctly and ingesting responses into a useful object.
+Due to the flexibility of HomeAssistant, this package will likely stay in a minimal-ish state, with the hope that it makes it for end-users to write a tiny bit of code for things they want to do.
+(For example, toggling a light switch requires you to know the entity ID of the light switch, which is specific to your HomeAssistant setup, but this will handle all of the formatting of the request and response.)
+<br>
+<br>
+<br>
+<br>
+<br>
+
+::: {.column-margin}
+![](../../hexes/hex_pr.png)
+:::
+
+[`pr`](https://christophertkenny.com/pr/) makes new probability classes for probability matrices and cumulative probability matrices.
+These classes are designed as a foundation for some probabilistic models that don't fit well into a tidymodels framework and are the basis for some upcoming work with my team at Princeton.
+<br>
+<br>
+<br>
+<br>
+<br>
