@@ -77,7 +77,7 @@ Things seemed to have stabilized and most of my development energy is going into
 ### `flexoki`
 
 ::: {.column-margin}
-![](../../hexes/hex_flexoki.png)
+![](../../hexes/hex_flexoki.png){width=60%}
 :::
 
 [`flexoki`](https://github.com/christopherkenny/flexoki) implements `ggplot2` scales and themes for working with [Steph Ango's Flexoki](https://stephango.com/flexoki) color palettes.
@@ -89,9 +89,10 @@ By next year, this package will have a slightly clearer purpose with an ongoing 
 <br>
 <br>
 
+### `typr`
 
 ::: {.column-margin}
-![](../../hexes/hex_typr.png)
+![](../../hexes/hex_typr.png){width=60%}
 :::
 
 [`typr`](https://github.com/christopherkenny/typr) provides a way to use the [Typst](https://typst.app/) cli from within R.
@@ -107,8 +108,8 @@ With `typr`, you can compile existing documents, query any feature from the cli,
 ## Updates to existing packages
 
 During 2025, I completed my PhD at Harvard and needed to update my email address on CRAN, as I will lose access to my Harvard email in May 2026.
-As such, every package received at least one update to reflect this change.
-In total, my existing packages receieved *35* CRAN submissions in 2025.
+As such, every package received at least one update to reflect this change, hence the flurry of updates in the late summer.
+In total, my existing packages had *35* CRAN submissions in 2025.
 (Special thanks to Uwe Ligges who handled the manual check for each of the package email updates!)
 
 ```{r}
@@ -127,9 +128,9 @@ Some notable updates this year include:
 * `PL94171` 1.1.3: this adds support for 1990 PL 94-171 redistricting files
 
 Finally, you might note that `geomander` and its dependents had some extra submissions this year in December.
-As with many R bad experiences, Brian Ripley caused this one.
-`geomander` was due for an update to address a CRAN note and, *prior to the deadline*, he yanked the package from CRAN and archived its dependents.
-This led to a flurry of submissions to get everything back on CRAN before the holiday break.
+As with many R bad experiences, Brian Ripley was involved.
+`geomander` was due for an update to address a CRAN note and, *prior to the deadline for fixing it*, he yanked the package from CRAN and archived its dependents.
+This led to a new flurry of submissions to get everything back on CRAN before the holiday break.
 Once again, special thanks to Uwe Ligges and to the [R-pkg-devel list](https://stat.ethz.ch/pipermail/r-package-devel/2025q4/012137.html) for advice and help on getting the packages back on CRAN quickly.
 
 # Package Downloads
@@ -324,15 +325,17 @@ counts_lst_yr |>
   )
 ```
 
+Most packages saw modest growth, with just a few falling short of the prior year.
+
 # (Ongoing) Development in 2025
 
-Finally, there's always some work going on that hasn't made it to GitHub yet.
+Finally, there's always some work going on that hasn't made it to CRAN yet.
 A few notable projects in the works include:
 
 ### `redistio`
 
 ::: {.column-margin}
-![](../../hexes/hex_redistio.png)
+![](../../hexes/hex_redistio.png){width=60%}
 :::
 
 [`redistio`](https://github.com/christopherkenny/redistio) offers a local redistricting map editor and a local adjacency graph editor.
@@ -346,11 +349,13 @@ This is nearly ready for CRAN, once I learn a bit more about testing (fairly com
 <br>
 
 
+### `ha`
+
 ::: {.column-margin}
-![](../../hexes/hex_ha.png)
+![](../../hexes/hex_ha.png){width=60%}
 :::
 
-[`ha`](https://christophertkenny.com/ha/) provides access to the HomeAssistant API so that you can change the colors of the lights or play music or anything else without ever leaving RStudio or Positron.
+[`ha`](https://christophertkenny.com/ha/) provides access to the HomeAssistant API so that you can change the colors of the lights or play music or anything else without ever leaving RStudio/Positron.
 (Just what you dream about, right?)
 It's a lightweight wrapper that handles formatting requests correctly and ingesting responses into a useful object.
 Due to the flexibility of HomeAssistant, this package will likely stay in a minimal-ish state, with the hope that it makes it for end-users to write a tiny bit of code for things they want to do.
@@ -361,8 +366,10 @@ Due to the flexibility of HomeAssistant, this package will likely stay in a mini
 <br>
 <br>
 
+### `pr`
+
 ::: {.column-margin}
-![](../../hexes/hex_pr.png)
+![](../../hexes/hex_pr.png){width=60%}
 :::
 
 [`pr`](https://christophertkenny.com/pr/) makes new probability classes for probability matrices and cumulative probability matrices.

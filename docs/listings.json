@@ -4,12 +4,9 @@
     "items": []
   },
   {
-    "listing": "/index.html",
-    "items": []
-  },
-  {
     "listing": "/blog.html",
     "items": [
+      "/posts/2026-01-07-software-2025/index.html",
       "/posts/2025-06-17-rockland-sare/index.html",
       "/posts/2025-03-21-software-2024/index.html",
       "/posts/2024-06-29-positron-settings/index.html",
@@ -18,6 +15,10 @@
       "/posts/2023-07-07-making-maps-with-feltr/index.html",
       "/posts/2023-07-01-creating-quarto-journal-articles/index.html"
     ]
+  },
+  {
+    "listing": "/index.html",
+    "items": []
   },
   {
     "listing": "/quarto.html",
