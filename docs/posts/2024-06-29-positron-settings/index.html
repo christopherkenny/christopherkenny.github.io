@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.12">
+<meta name="generator" content="quarto-1.9.23">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>Settings, Keybindings, and Extensions for Positron – Christopher T. Kenny</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-076ecbd647e1f0418c5051713cd9b730.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-24f0396d74f8fcdc964f3fbdf970ff43.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f47d5fcd5555beda8143f6a44490cea0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -344,7 +347,7 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"files.trimFinalNewlines"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"files.trimTrailingWhitespace"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="er">//</span> <span class="er">also</span> <span class="er">render</span> <span class="er">trailing</span> <span class="er">whitespace</span><span class="fu">,</span> <span class="er">since</span> <span class="er">it'll</span> <span class="er">get</span> <span class="er">trimmed</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="er">//</span> <span class="er">also</span> <span class="er">render</span> <span class="er">trailing</span> <span class="er">whitespace,</span> <span class="er">since</span> <span class="er">it'll</span> <span class="er">get</span> <span class="er">trimmed</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"editor.renderWhitespace"</span><span class="fu">:</span> <span class="st">"trailing"</span><span class="fu">,</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="er">//</span> <span class="er">better</span> <span class="er">pasting</span></span>
@@ -424,8 +427,8 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 </div>
 <p>I like Shades of Purple as a starting place for the theme. It reminds me of Cobalt in RStudio, which is my go-to theme on Windows. I switch between mac and Windows frequently when working on packages, so I need very different themes to keep everything straight.</p>
 <p>That said, the Shades of Purple has the tab colors inverted, where it highlights inactive tabs and not the active tab, but it’s easy to fix this with the settings from above (and repeated here). It probably doesn’t matter if you have many tabs open, but with just two it’s confusing.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="er">"workbench.colorTheme":</span> <span class="er">"Shades</span> <span class="er">of</span> <span class="er">Purple",</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="er">"workbench.colorCustomizations":</span> <span class="fu">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="st">"workbench.colorTheme"</span><span class="er">:</span> <span class="st">"Shades of Purple"</span><span class="er">,</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"workbench.colorCustomizations"</span><span class="er">:</span> <span class="fu">{</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"[Shades of Purple]"</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"tab.inactiveBackground"</span><span class="fu">:</span> <span class="st">"#222244"</span><span class="fu">,</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"tab.inactiveForeground"</span><span class="fu">:</span> <span class="st">"#FFFFFF"</span><span class="fu">,</span></span>
@@ -535,7 +538,7 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-t._kenny2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 T. Kenny, Christopher. 2024. <span>“Settings, Keybindings, and
-Extensions for Positron.”</span> June 29, 2024. <a href="https://christophertkenny.com/posts/2024-06-29-positron-settings/">https://christophertkenny.com/posts/2024-06-29-positron-settings/</a>.
+Extensions for Positron.”</span> June 29. <a href="https://christophertkenny.com/posts/2024-06-29-positron-settings/">https://christophertkenny.com/posts/2024-06-29-positron-settings/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
