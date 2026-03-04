@@ -352,6 +352,16 @@
         is not installed. Includes utilities to check for typst-cli availability and
         run Typst commands.
       topic_title: Other R packages
+    - name: lobby
+      logo: hexes/hex_lobby.png
+      info: Interact with the US Senate Lobbying Disclosure API
+      link: https://christophertkenny.com/lobby/
+      color: '#b99258'
+      description: Download and read data on lobbying in the United States Congress.
+        Data is queried from the Senate's Application Programming Interface (<a href=""https://lda.senate.gov/api/"">https://lda.senate.gov/api/</a>).
+        This supports filings since 2008. Functions exist for all primary data endpoints,
+        including queries by filings, contributions, registrations, clients, and lobbyists.
+      topic_title: Other R packages
 - category: GitHub
   topics:
   - name: redistricting
@@ -416,16 +426,6 @@
         validate files, and to use a given file as the requirements for a project.
         Handles package installations, when necessary, via pak.
       topic_title: Other R packages
-    - name: lobby
-      logo: hexes/hex_lobby.png
-      info: Interact with the US Senate Lobbying Disclosure API
-      link: https://christophertkenny.com/lobby/
-      color: '#b99258'
-      description: Download and read data on lobbying in the United States Congress.
-        Data is queried from the Senate's Application Programming Interface (<a href=""https://lda.senate.gov/api/"">https://lda.senate.gov/api/</a>).
-        This supports filings since 2008. Functions exist for all primary data endpoints,
-        including queries by filings, contributions, registrations, clients, and lobbyists.
-      topic_title: Other R packages
     - name: pr
       logo: hexes/hex_pr.png
       info: Classes for Probabilities
@@ -435,4 +435,14 @@
         using 'vctrs'. Allows for creation, validation, and pretty printing of each
         class. Includes a special probability matrix type with counts to allow for
         cases with limited possible values.
+      topic_title: Other R packages
+    - name: wf
+      logo: hexes/hex_wf.png
+      info: Artificial Intelligence Workflow Tools
+      link: https://christophertkenny.com/wf/
+      color: '#846892'
+      description: Manage skills for large language model coding agents. Supports
+        installing skills from GitHub or local directories, tracking versions in a
+        lock file, and keeping installations current. Installations can be scoped
+        to a single project or shared globally across projects.
       topic_title: Other R packages
