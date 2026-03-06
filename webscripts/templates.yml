@@ -90,6 +90,11 @@
       type: Quarto
       description: Move a bibliography using the refs div within a Quarto document.
       badges: ["Quarto", "Typst"]
+    - name: pseudocode
+      link: https://github.com/christopherkenny/pseudocode
+      type: Quarto
+      description: Generate and style pseudocode for Typst within a Quarto document.
+      badges: ["Quarto", "Typst"]
 - category: Other templates
   description: Formats for non-journal documents.
   extensions:
