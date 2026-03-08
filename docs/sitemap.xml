@@ -2,66 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://christophertkenny.com/teaching.html</loc>
-    <lastmod>2025-11-12T18:47:55.494Z</lastmod>
+    <lastmod>2025-12-11T18:34:23.323Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/research.html</loc>
-    <lastmod>2025-09-10T18:04:26.883Z</lastmod>
+    <lastmod>2025-12-11T18:34:23.310Z</lastmod>
   </url>
   <url>
-    <loc>https://christophertkenny.com/posts/2026-01-07-software-2025/index.html</loc>
-    <lastmod>2026-01-07T13:05:01.639Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2025-03-21-software-2024/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.840Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2024-01-03-bskyr-bot/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.811Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.786Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/package-relationships.html</loc>
-    <lastmod>2025-09-23T20:15:30.169Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/CV.html</loc>
-    <lastmod>2025-08-05T02:40:54.518Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/blog.html</loc>
-    <lastmod>2025-08-05T02:40:54.724Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/index.html</loc>
-    <lastmod>2025-09-10T16:31:24.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.751Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2023-12-21-cran-wrapped/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.808Z</lastmod>
-  </url>
-  <url>
-    <loc>https://christophertkenny.com/posts/2024-06-29-positron-settings/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.814Z</lastmod>
+    <loc>https://christophertkenny.com/posts/2026-03-08-r-lsp-claude/index.html</loc>
+    <lastmod>2026-03-08T15:59:31.549Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/posts/2025-06-17-rockland-sare/index.html</loc>
-    <lastmod>2025-08-05T02:40:55.851Z</lastmod>
+    <lastmod>2025-06-17T15:04:20.237Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2024-06-29-positron-settings/index.html</loc>
+    <lastmod>2025-03-25T21:04:09.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-12-21-cran-wrapped/index.html</loc>
+    <lastmod>2023-12-21T18:55:00.251Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-07-01-creating-quarto-journal-articles/index.html</loc>
+    <lastmod>2023-07-06T17:38:16.229Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/index.html</loc>
+    <lastmod>2025-12-11T18:34:23.269Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/blog.html</loc>
+    <lastmod>2023-07-08T23:23:24.910Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/CV.html</loc>
+    <lastmod>2024-06-24T20:32:26.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/package-relationships.html</loc>
+    <lastmod>2025-12-11T18:34:23.281Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2023-07-07-making-maps-with-feltr/index.html</loc>
+    <lastmod>2023-07-08T23:23:25.087Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2024-01-03-bskyr-bot/index.html</loc>
+    <lastmod>2024-01-03T20:28:00.448Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2025-03-21-software-2024/index.html</loc>
+    <lastmod>2025-03-25T21:04:09.918Z</lastmod>
+  </url>
+  <url>
+    <loc>https://christophertkenny.com/posts/2026-01-07-software-2025/index.html</loc>
+    <lastmod>2026-01-14T00:40:41.953Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/quarto.html</loc>
-    <lastmod>2025-08-05T02:40:55.873Z</lastmod>
+    <lastmod>2024-08-10T01:00:25.053Z</lastmod>
   </url>
   <url>
     <loc>https://christophertkenny.com/software.html</loc>
-    <lastmod>2025-08-05T02:40:55.874Z</lastmod>
+    <lastmod>2025-04-25T05:13:42.617Z</lastmod>
   </url>
 </urlset>
