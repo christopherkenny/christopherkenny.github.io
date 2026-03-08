@@ -9,7 +9,8 @@ toc-location: left
 
 citation: true
 author:
-  - name: Christopher T. Kenny
+  - name:
+      given: Christopher T.
+      family: Kenny
     url: https://christophertkenny.com
     orcid: 0000-0002-9386-6860
-    

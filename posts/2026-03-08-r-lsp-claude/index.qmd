@@ -2,8 +2,8 @@
 title: "Using an R language server with Claude Code"
 date: "2026-03-08"
 description: |
-  Giving
-categories: [r-pkg]
+  Giving Claude access to an R LSP to improve its interaction with your codebase.
+categories: [ai]
 image: "plugin.png"
 image-alt: "A selection box from Claude Code showing options to install a plugin."
 editor:
