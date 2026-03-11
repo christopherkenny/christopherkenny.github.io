@@ -1,10 +1,6 @@
 ---
 title: "Thinking *SMART*er about election fraud in Rockland County, NY"
 date: "2025-06-17"
-author:
-  - name: "Christopher T. Kenny"
-    url: https://christophertkenny.com
-    orcid: 0000-0002-9386-6860
 citation: true
 description: |
   A look at the data and empirical claims in a local election fraud case brought

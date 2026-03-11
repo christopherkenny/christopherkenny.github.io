@@ -446,3 +446,26 @@
         lock file, and keeping installations current. Installations can be scoped
         to a single project or shared globally across projects.
       topic_title: Other R packages
+    - name: crann
+      logo: hexes/hex_crann.png
+      info: Spanning Tree Methods for Graphs
+      link: https://christophertkenny.com/crann/
+      color: '#223922'
+      description: Implements spanning tree algorithms for undirected graphs represented
+        as 'adj' adjacency lists. Provides enumeration of all spanning trees via Winter's
+        (1986) contraction-based algorithm (<a href=""https://link.springer.com/article/10.1007/BF01939361"">doi:10.1007/BF01939361</a>),
+        counting via Kirchhoff's matrix tree theorem, minimum spanning trees via Kruskal's
+        algorithm, uniform random sampling via Wilson's (1996) loop-erased random
+        walk (<a href=""https://dl.acm.org/doi/10.1145/237814.237880"">oi:10.1145/237814.237880</a>),
+        and structural utilities including fundamental cycles and cuts.
+      topic_title: Other R packages
+    - name: enum
+      logo: hexes/hex_enum.png
+      info: Enumerate Partitions of Grid Graphs
+      link: https://christophertkenny.com/enum/
+      color: '#69464c'
+      description: Enumerates polyomino tilings of grid graphs. Partitions an grid
+        into a specified number of connected pieces where each piece has a size within
+        given bounds, under rook or queen contiguity rules. A translation of the Julia
+        'enumerator' package by Schutzman (2019) (<a href=""https://zenodo.org/records/3468055"">doi:10.5281/zenodo.3467675</a>).
+      topic_title: Other R packages
