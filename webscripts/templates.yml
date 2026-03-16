@@ -133,6 +133,7 @@
       image: https://raw.githubusercontent.com/christopherkenny/ctk-legal/main/template_1.png
       type: Quarto
       description: An expert report template with automatically numbered paragraphs using Quarto and Typst.
+      badges: ["Quarto", "Typst"]
     - name: ctk-invoice
       link: https://github.com/christopherkenny/ctk-invoice
       image: https://raw.githubusercontent.com/christopherkenny/ctk-invoice/main/template_1.png
