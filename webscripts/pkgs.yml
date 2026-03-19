@@ -362,6 +362,16 @@
         This supports filings since 2008. Functions exist for all primary data endpoints,
         including queries by filings, contributions, registrations, clients, and lobbyists.
       topic_title: Other R packages
+    - name: wf
+      logo: hexes/hex_wf.png
+      info: Artificial Intelligence Workflow Tools
+      link: https://christophertkenny.com/wf/
+      color: '#846892'
+      description: Manage skills for large language model coding agents. Supports
+        installing skills from GitHub or local directories, tracking versions in a
+        lock file, and keeping installations current. Installations can be scoped
+        to a single project or shared globally across projects.
+      topic_title: Other R packages
 - category: GitHub
   topics:
   - name: redistricting
@@ -435,16 +445,6 @@
         using 'vctrs'. Allows for creation, validation, and pretty printing of each
         class. Includes a special probability matrix type with counts to allow for
         cases with limited possible values.
-      topic_title: Other R packages
-    - name: wf
-      logo: hexes/hex_wf.png
-      info: Artificial Intelligence Workflow Tools
-      link: https://christophertkenny.com/wf/
-      color: '#846892'
-      description: Manage skills for large language model coding agents. Supports
-        installing skills from GitHub or local directories, tracking versions in a
-        lock file, and keeping installations current. Installations can be scoped
-        to a single project or shared globally across projects.
       topic_title: Other R packages
     - name: crann
       logo: hexes/hex_crann.png

@@ -32,15 +32,10 @@
           year = {2025}
         }
 
-    - title: "Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation"
-      authors: "with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee"
-      url: "https://judgelord.github.io/finreg/participatory-inequality.pdf"
-      award: "Awarded the 2021 Herbert Kaufman Award"
-      abstract: "Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations' wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations' ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success."
-
     - title: "Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias"
       authors: "with Jacob R. Brown and Tyler Simko"
       url: "https://osf.io/preprints/socarxiv/nv5up_v2"
+      award: "Conditionally accepted at Nature Cities"
       abstract: "Residential segregation in the United States is widespread, persistent, and threatens economic opportunity and social cohesion. Most segregation metrics, however, rely on aggregate data with arbitrary spatial boundaries. Sensitivity to those boundaries is well theorized but rarely measured. Leveraging modern redistricting software, we simulate millions of alternative Census tract maps that satisfy Census guidelines, compute segregation for each, and recover the full probabilistic distribution of common indices. These simulations yield new estimates of racial segregation across U.S. cities and, crucially, measure the aggregation‚induced variability hidden in conventional estimates. Encouragingly, values calculated with official tract definitions closely track the mean of the simulated distribution, exhibiting only a slight upward bias, and segregation metrics shift modestly across maps -- though variability grows in smaller cities. While our findings confirm the practical robustness of Census tracts, our data and software provide a general framework for diagnosing and correcting spatial‚aggregation error in other contexts."
       bibtex: |
         @misc{brown2025any,
@@ -77,6 +72,12 @@
       authors: ""
       url: "https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf"
       summary: "Bluesky Social is an offshoot of Twitter, designed to provide a decentralized alternative to traditional social media platforms. bskyr is an R package that provides programmatic access to Bluesky Social. The package wraps the official Bluesky Social API, enabling users to retrieve posts, threads, user profiles, social graphs (e.g., follows, mutes, blocks), curated lists, and starter packs. It also supports content creation and interaction so that users can post, reply, like, repost, and follow directly from R. All data is returned in tidy data frames, making it compatible with standard R workflows for analysis and visualization. This allows users of bskyr to not only collect data for observational studies but also to engage with the platform programmatically, such as posting updates or interacting with other users."
+
+    - title: "Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation"
+      authors: "with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee"
+      url: "https://judgelord.github.io/finreg/participatory-inequality.pdf"
+      award: "Awarded the 2021 Herbert Kaufman Award"
+      abstract: "Research on inequality overlooks administrative policymaking, where most U.S. law is currently made, under pressure from vast flows of money, lobbying, and political mobilization. Analyzing a new database of over 260,000 comments on agency rules implementing the Dodd-Frank Act, we identify the lobbying activities of over 6,000 organizations. Leveraging measures of organizations' wealth, participation in administrative politics, sophistication, and lobbying success, we provide the first large-scale assessment of wealth-based inequality in agency rulemaking. We find that wealthier organizations are more likely to participate in rulemaking and enjoy more success in shifting the content of federal agency rules. These patterns are not explained by membership differentials. More profit-driven organizations are also more likely to participate and enjoy more success in shifting the content of federal agency rules. Wealthier organizations' ability to marshal legal and technical expertise appears to be a key mechanism by which wealth leads to lobbying success."
 
 - category: Publications
   papers:
