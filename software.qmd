@@ -1,7 +1,6 @@
 ---
 title: "Software"
 description: "R Packages"
-date: today
 listing:
   - id: packages
     template: webscripts/software.ejs
@@ -95,6 +94,8 @@ if (FALSE) {
     theme_bw()
 }
 ```
+
+Build status and binaries for all packages are available on [R-universe](https://christopherkenny.r-universe.dev/builds).
 
 ::: {#packages}
 :::

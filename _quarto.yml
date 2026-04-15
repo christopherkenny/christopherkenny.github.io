@@ -27,8 +27,6 @@ website:
     right:
       - icon: twitter
         href: https://twitter.com/Chris_T_Kenny
-      - text: "{{< iconify fa6-brands square-threads >}}"
-        href: https://www.threads.net/@chris_t_kenny
       - text: "{{< iconify simple-icons bluesky >}}"
         href: https://bsky.app/profile/chriskenny.bsky.social
       - icon: github
@@ -37,8 +35,6 @@ website:
         href: https://orcid.org/0000-0002-9386-6860
       - text: "{{< iconify fa6-brands google-scholar >}}"
         href: https://scholar.google.com/citations?user=uVUhHXAAAAAJ
-      - icon: rocket-takeoff-fill
-        href: https://christopherkenny.r-universe.dev/builds
     background: "#B31B1B"
   google-analytics: "G-PBRM1BV0GG"
   twitter-card:
@@ -59,8 +55,7 @@ website:
 format:
   html:
     theme:
-    - yeti
+    - flatly
     - custom.scss
     code-overflow: wrap
     code-copy: true
-    linkcolor: "#006699"

@@ -1,13 +1,14 @@
 ---
 title: "Quarto Extensions"
 description: "Templates and filters for reproducible reports made (mostly) for Quarto"
-date: today
 listing:
   - id: templates
     template: webscripts/templates.ejs
     contents: webscripts/templates.yml
 page-layout: full
 ---
+
+A live gallery with rendered previews of all templates is available at [christophertkenny.com/template-gallery](https://christophertkenny.com/template-gallery/).
 
 ::: {#templates}
 :::

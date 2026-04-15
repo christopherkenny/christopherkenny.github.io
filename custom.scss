@@ -8,11 +8,17 @@ $web-font-path: "https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,
   @import url($web-font-path);
 }
 
-$headings-font-weight: 500 !default;
+$headings-font-weight: 600 !default;
 
 // colors
+$body-bg: #F7F4EF !default;
+$body-color: #222222 !default;
+$link-color: #006699 !default;
+$link-hover-color: #004d73 !default;
 
 $footer-bg: #B31B1B;
+
+/*-- scss:rules --*/
 
 // navbar settings
 // bigger logo
@@ -20,4 +26,18 @@ $footer-bg: #B31B1B;
   max-height: 48px;
   margin-bottom: -4px;
   margin-top: -4px;
+}
+
+// heading typography
+h1, .h1 {
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+h2, .h2 {
+  letter-spacing: -0.03em;
+}
+
+h3, h4, .h3, .h4 {
+  letter-spacing: -0.02em;
 }
