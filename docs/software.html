@@ -103,6 +103,34 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-other .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-logo','listing-info','listing-link','listing-description',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-logo","listing-info","listing-link","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-other'] = new List('listing-other', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PBRM1BV0GG"></script>
 
@@ -860,9 +888,33 @@ window.Quarto = {
 
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+<section id="other-software" class="level2">
+<h2 class="anchored" data-anchor-id="other-software">Other Software</h2>
+<div id="listing-other" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-2">
+    <a href="https://github.com/christopherkenny/dais">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/dais.png" class="img-fluid rounded-start" alt="dais logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title anchored">dais: A Native PDF Presenter Console</h5>
+        
+        <p class="card-text"><small class="text-muted">A presentation console built for researchers and academics using PDF slides made with Beamer or Typst. Designed for standard presentation setups, with a multi-monitor presenter view and speaker notes. Includes tools like a laser pointer, spotlight, and zoom.</small></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

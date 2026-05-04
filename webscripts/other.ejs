@@ -1,0 +1,26 @@
+```{=html}
+
+<div class="list grid">
+
+<% for (const item of items) { %>
+
+  <div class="card-borderless g-col-2">
+    <a href="<%- item.link %>">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- item.logo %>" class="img-fluid rounded-start" alt="<%- item.name %> logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title"><%- item.name %>: <%- item.info %></h5>
+        <% if(item.coauthors){ %>
+          <p class="card-text">(with <%- item.coauthors %>)</p>
+        <% } %>
+        <p class="card-text"><small class="text-muted"><%= item.description %></small></p>
+    </div>
+  </div>
+
+<% } %>
+
+</div>
+
+```

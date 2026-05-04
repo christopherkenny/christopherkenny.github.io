@@ -5,6 +5,9 @@ listing:
   - id: packages
     template: webscripts/software.ejs
     contents: webscripts/pkgs.yml
+  - id: other
+    template: webscripts/other.ejs
+    contents: webscripts/other.yml
 page-layout: full
 ---
 
@@ -98,4 +101,9 @@ if (FALSE) {
 Build status and binaries for all packages are available on [R-universe](https://christopherkenny.r-universe.dev/builds).
 
 ::: {#packages}
+:::
+
+## Other Software
+
+::: {#other}
 :::

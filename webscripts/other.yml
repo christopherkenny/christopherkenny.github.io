@@ -1,0 +1,8 @@
+- name: dais
+  logo: hexes/dais.png
+  info: A Native PDF Presenter Console
+  link: https://github.com/christopherkenny/dais
+  description: A presentation console built for researchers and academics using
+    PDF slides made with Beamer or Typst. Designed for standard presentation
+    setups, with a multi-monitor presenter view and speaker notes. Includes
+    tools like a laser pointer, spotlight, and zoom.
