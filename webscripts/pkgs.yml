@@ -352,6 +352,16 @@
         is not installed. Includes utilities to check for typst-cli availability and
         run Typst commands.
       topic_title: Other R packages
+    - name: manifesto
+      logo: hexes/hex_manifesto.png
+      info: Create Project Manifest Files
+      link: https://christophertkenny.com/manifesto/
+      color: '#FDF6E3'
+      description: Provides TOML representations of packages needed that must be installed
+        to run a project. Includes functions to specify detailed installation functions,
+        validate files, and to use a given file as the requirements for a project.
+        Handles package installations, when necessary, via pak.
+      topic_title: Other R packages
     - name: lobby
       logo: hexes/hex_lobby.png
       info: Interact with the US Senate Lobbying Disclosure API
@@ -396,6 +406,20 @@
         compactness or the number of administrative splits. Maps can be exported as
         assignment files or shapefiles, readable by most other redistricting software.
       topic_title: Packages for redistricting
+  - name: census
+    description: Packages for working with Census Bureau data
+    packages:
+    - name: tinycensus
+      logo: hexes/hex_tinycensus.png
+      info: Lightweight Interface to the US Census Bureau API
+      link: https://christophertkenny.com/tinycensus/
+      color: '#03BB96'
+      description: Download data from the United States Census Bureau API <a href="https://www.census.gov/data/developers/data-sets.html">https://www.census.gov/data/developers/data-sets.html</a>.
+        The package provides lightweight, product-specific interfaces for ACS, decennial
+        census data, PEP, CBP, migration flows, and time-series datasets. It also
+        uses Census metadata endpoints to discover datasets, variables, tables, and
+        supported geographies, with optional spatial output joined through 'tinytiger'.
+      topic_title: Packages for working with Census Bureau data
   - name: plotting
     description: Packages for plotting data
     packages:
@@ -425,16 +449,6 @@
         keeps track of information on the roles of variables like treatment and outcome,
         and provides functionality to store models and their fitted values as columns
         in a data frame.
-      topic_title: Other R packages
-    - name: manifesto
-      logo: hexes/hex_manifesto.png
-      info: Create Project Manifest Files
-      link: https://christophertkenny.com/manifesto/
-      color: '#FDF6E3'
-      description: Provides TOML representations of packages needed that must be installed
-        to run a project. Includes functions to specify detailed installation functions,
-        validate files, and to use a given file as the requirements for a project.
-        Handles package installations, when necessary, via pak.
       topic_title: Other R packages
     - name: pr
       logo: hexes/hex_pr.png
@@ -468,4 +482,55 @@
         into a specified number of connected pieces where each piece has a size within
         given bounds, under rook or queen contiguity rules. A translation of the Julia
         'enumerator' package by Schutzman (2019) (<a href=""https://zenodo.org/records/3468055"">doi:10.5281/zenodo.3467675</a>).
+      topic_title: Other R packages
+    - name: gtscales
+      logo: hexes/hex_gtscales.png
+      info: Color Scale Extensions for 'gt'
+      link: https://christophertkenny.com/gtscales/
+      color: '#f4d08f'
+      description: Adds legend helpers for color-encoded 'gt' tables. The primary
+        interface combines 'gt::data_color()' with matched legends for continuous,
+        binned, quantile, and discrete scales, while lower-level helpers support legend-only
+        and reusable scale specification workflows.
+      topic_title: Other R packages
+    - name: ipf
+      logo: hexes/hex_ipf.png
+      info: Iterative Proportional Fitting
+      link: https://christophertkenny.com/ipf/
+      color: '#0083FA'
+      description: Fast raking for survey weighting. The computational core is written
+        in Rust for speed. Supports multiple raking variables, automatic variable
+        selection, weight bounding, and comprehensive diagnostics.
+      topic_title: Other R packages
+    - name: reon
+      logo: hexes/hex_reon.png
+      info: Read and Write eon Configuration Files
+      link: https://christophertkenny.com/reon/
+      color: '#E85728'
+      description: Parse, create, and write configuration files in the 'eon' format
+        <a href="https://github.com/emilk/eon">https://github.com/emilk/eon</a>. 'eon'
+        is a human-friendly configuration format with optional commas, unquoted identifier
+        keys, and support for comments.
+      topic_title: Other R packages
+    - name: snippet
+      logo: hexes/hex_snippet.png
+      info: Create Nice Code Images
+      link: https://christophertkenny.com/snippet/
+      color: '#AE2C65'
+      description: Render typeset code snippets using 'Typst'. Supports syntax highlighting
+        for many languages, multiple output formats, and theming via 'tmTheme' files.
+        Designed for documentation, teaching materials, and reproducible code presentation.
+      topic_title: Other R packages
+    - name: BCP47
+      logo: hexes/hex_BCP47.png
+      info: Work with Language Tags
+      link: https://christophertkenny.com/BCP47/
+      color: '#E2C8D9'
+      description: Tools to parse, validate, normalize, and match language tags following
+        the Best Current Practice 47 (BCP 47) standard, which defines the syntax (RFC
+        5646, <a href="https://tools.ietf.org/html/rfc5646">https://tools.ietf.org/html/rfc5646</a>)
+        and lookup rules (RFC 4647, <a href="https://tools.ietf.org/html/rfc4647">https://tools.ietf.org/html/rfc4647</a>)
+        for identifying human languages. Includes a bundled snapshot of the IANA Language
+        Subtag Registry (<a href="https://www.iana.org/assignments/language-subtag-registry/">https://www.iana.org/assignments/language-subtag-registry/</a>)
+        with optional support for updating.
       topic_title: Other R packages
