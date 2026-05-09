@@ -1,0 +1,906 @@
+---
+title: "Changes in CRAN submissions in the age of LLMs"
+date: "2026-05-11"
+description: |
+  A brief look at data on CRAN submissions over time.
+categories: [r]
+editor:
+  markdown:
+    wrap: sentence
+knitr:
+  opts_chunk:
+    echo: false
+    warning: false
+---
+
+This is more data on CRAN submissions in 2026, to support and follow-up on the [DDSS blog](https://princeton-ddss.github.io/notes/cran-growth).
+
+```{r}
+#| label: setup
+suppressPackageStartupMessages({
+  library(geomtextpath)
+  library(tidyverse)
+  library(wacolors)
+})
+
+raw_db <- tools::CRAN_package_db() |>
+  as_tibble()
+
+current_pkgs <- raw_db |>
+  select(Package, Published, Maintainer) |>
+  mutate(
+    Published = as.Date(Published),
+    Maintainer = str_remove(Maintainer, '\\s*<[^>]+>') |> str_squish()
+  ) |>
+  distinct(Package, .keep_all = TRUE)
+
+archive_rds <- tempfile(fileext = '.rds')
+download.file(
+  'https://cran.r-project.org/src/contrib/Meta/archive.rds',
+  archive_rds,
+  mode = 'wb'
+)
+archive <- readRDS(archive_rds)
+
+archive_all <- lapply(names(archive), \(pkg) {
+  tibble(Package = pkg, date = as.Date(archive[[pkg]]$mtime))
+}) |>
+  list_rbind()
+
+archive_first <- archive_all |>
+  group_by(Package) |>
+  summarize(archive_first = min(date), .groups = 'drop')
+
+all_pkgs <- current_pkgs |>
+  full_join(archive_first, by = 'Package') |>
+  mutate(
+    first_published = coalesce(archive_first, Published)
+  )
+
+new_by_month <- all_pkgs |>
+  filter(
+    !is.na(first_published),
+    first_published >= as.Date('2016-01-01')
+  ) |>
+  mutate(
+    year = year(first_published),
+    month = month(first_published)
+  ) |>
+  count(year, month, name = 'n_new')
+
+all_submissions <- bind_rows(
+  archive_all,
+  current_pkgs |> rename(date = Published)
+) |>
+  filter(!is.na(date))
+
+parse_authors <- function(x) {
+  if (is.na(x) || !nzchar(x)) {
+    return(character(0))
+  }
+  tryCatch(
+    {
+      persons <- eval(parse(text = x))
+      keep <- vapply(
+        seq_along(persons),
+        \(i) {
+          roles <- persons[[i]]$role
+          !is.null(roles) && any(roles %in% c('aut', 'cre'))
+        },
+        logical(1)
+      )
+      format(persons[keep], include = c('given', 'family')) |>
+        str_squish() |>
+        discard(\(n) n == '' | n == 'NA')
+    },
+    error = \(e) character(0)
+  )
+}
+
+pkg_authors <- raw_db |>
+  select(Package, `Authors@R`) |>
+  mutate(author = lapply(`Authors@R`, parse_authors)) |>
+  select(-`Authors@R`) |>
+  unnest(author)
+
+author_pkgs <- pkg_authors |>
+  left_join(all_pkgs |> select(Package, first_published), by = 'Package') |>
+  filter(!is.na(first_published), !is.na(author), nzchar(author))
+
+parse_deps <- function(x) {
+  if (is.na(x) || !nzchar(x)) {
+    return(character(0))
+  }
+  strsplit(x, ',')[[1]] |>
+    str_remove('\\(.*\\)') |>
+    str_squish() |>
+    discard(\(d) d == '' | d == 'R')
+}
+
+author_debut <- author_pkgs |>
+  group_by(author) |>
+  summarize(author_debut = min(first_published), .groups = 'drop')
+
+pkg_author_novelty <- author_pkgs |>
+  left_join(author_debut, by = 'author') |>
+  mutate(author_is_new = author_debut >= first_published) |>
+  group_by(Package, first_published) |>
+  summarize(
+    n_authors = n(),
+    n_new_authors = sum(author_is_new),
+    all_authors_new = all(author_is_new),
+    .groups = 'drop'
+  )
+
+newcomer_by_year <- pkg_author_novelty |>
+  filter(!is.na(first_published), year(first_published) >= 2010) |>
+  mutate(year = year(first_published)) |>
+  group_by(year) |>
+  summarize(
+    n_pkgs = n(),
+    n_all_new = sum(all_authors_new),
+    pct_all_new = mean(all_authors_new),
+    .groups = 'drop'
+  ) |>
+  filter(year <= year(today()))
+
+author_count <- author_pkgs |>
+  group_by(Package, first_published) |>
+  summarize(n_authors = n_distinct(author), .groups = 'drop') |>
+  filter(!is.na(first_published), year(first_published) >= 2010)
+
+pkg_deps <- raw_db |>
+  select(Package, Imports, Depends, Suggests) |>
+  mutate(
+    imports = lapply(Imports, parse_deps),
+    depends = lapply(Depends, parse_deps),
+    suggests = lapply(Suggests, parse_deps),
+    n_imports = lengths(imports),
+    n_depends = lengths(depends),
+    n_suggests = lengths(suggests),
+    n_hard_deps = n_imports + n_depends
+  ) |>
+  left_join(all_pkgs |> select(Package, first_published), by = 'Package') |>
+  filter(!is.na(first_published), year(first_published) >= 2010)
+
+pkg_size <- raw_db |>
+  select(Package, VignetteBuilder, NeedsCompilation) |>
+  mutate(
+    has_vignette = !is.na(VignetteBuilder),
+    needs_compilation = !is.na(NeedsCompilation) & NeedsCompilation == 'yes'
+  ) |>
+  left_join(
+    pkg_deps |> select(Package, n_hard_deps, n_suggests),
+    by = 'Package'
+  ) |>
+  left_join(all_pkgs |> select(Package, first_published), by = 'Package') |>
+  filter(!is.na(first_published), year(first_published) >= 2010)
+
+size_by_year <- pkg_size |>
+  mutate(year = year(first_published)) |>
+  group_by(year) |>
+  summarize(
+    pct_vignette = mean(has_vignette, na.rm = TRUE),
+    pct_compiled = mean(needs_compilation, na.rm = TRUE),
+    .groups = 'drop'
+  ) |>
+  filter(year <= year(today()))
+
+top_maintainers_current <- current_pkgs |>
+  count(Maintainer, sort = TRUE) |>
+  slice_head(n = 200) |>
+  pull(Maintainer)
+
+top10 <- top_maintainers_current[1:10]
+
+top10_2008 <- all_pkgs |>
+  filter(
+    !is.na(first_published),
+    !is.na(Maintainer),
+    first_published <= as.Date('2008-12-31')
+  ) |>
+  count(Maintainer, sort = TRUE) |>
+  slice_head(n = 10) |>
+  pull(Maintainer)
+
+top_maintainers <- union(top_maintainers_current, top10_2008)
+
+era_levels <- c(
+  '97-00',
+  '01-04',
+  '05-08',
+  '09-12',
+  '13-16',
+  '17-20',
+  '21-24',
+  '25+'
+)
+
+maintainer_era <- all_pkgs |>
+  filter(Maintainer %in% top_maintainers, !is.na(first_published)) |>
+  group_by(Maintainer) |>
+  summarize(first_appearance = min(first_published), .groups = 'drop') |>
+  mutate(
+    era = case_when(
+      year(first_appearance) <= 2000 ~ '97-00',
+      year(first_appearance) <= 2004 ~ '01-04',
+      year(first_appearance) <= 2008 ~ '05-08',
+      year(first_appearance) <= 2012 ~ '09-12',
+      year(first_appearance) <= 2016 ~ '13-16',
+      year(first_appearance) <= 2020 ~ '17-20',
+      year(first_appearance) <= 2024 ~ '21-24',
+      .default = '25+'
+    ) |>
+      factor(levels = era_levels)
+  )
+
+cumulative_data <- all_pkgs |>
+  filter(Maintainer %in% top_maintainers, !is.na(first_published)) |>
+  mutate(year_month = floor_date(first_published, 'month')) |>
+  count(Maintainer, year_month, name = 'n_new') |>
+  arrange(Maintainer, year_month) |>
+  mutate(cumulative = cumsum(n_new), .by = Maintainer) |>
+  left_join(maintainer_era, by = 'Maintainer')
+
+top_authors_current <- pkg_authors |>
+  count(author, sort = TRUE) |>
+  slice_head(n = 200) |>
+  pull(author)
+
+top_authors_10 <- top_authors_current[1:10]
+
+top_authors_2008 <- author_pkgs |>
+  filter(first_published <= as.Date('2008-12-31')) |>
+  count(author, sort = TRUE) |>
+  slice_head(n = 10) |>
+  pull(author)
+
+top_authors <- union(top_authors_current, top_authors_2008)
+
+author_era <- author_pkgs |>
+  filter(author %in% top_authors) |>
+  group_by(author) |>
+  summarize(first_appearance = min(first_published), .groups = 'drop') |>
+  mutate(
+    era = case_when(
+      year(first_appearance) <= 2000 ~ '97-00',
+      year(first_appearance) <= 2004 ~ '01-04',
+      year(first_appearance) <= 2008 ~ '05-08',
+      year(first_appearance) <= 2012 ~ '09-12',
+      year(first_appearance) <= 2016 ~ '13-16',
+      year(first_appearance) <= 2020 ~ '17-20',
+      year(first_appearance) <= 2024 ~ '21-24',
+      .default = '25+'
+    ) |>
+      factor(levels = era_levels)
+  )
+
+author_cumulative <- author_pkgs |>
+  filter(author %in% top_authors) |>
+  mutate(year_month = floor_date(first_published, 'month')) |>
+  count(author, year_month, name = 'n_new') |>
+  arrange(author, year_month) |>
+  mutate(cumulative = cumsum(n_new), .by = author) |>
+  left_join(author_era, by = 'author')
+
+month_week_breaks <- isoweek(as.Date(paste0(
+  '2019-',
+  formatC(1:12, width = 2, flag = '0'),
+  '-01'
+)))
+
+may7_filter <- \(df) {
+  filter(df, month(date) < 5 | (month(date) == 5 & day(date) <= 7))
+}
+```
+
+New package submissions are taking off in 2026:
+
+```{r}
+#| label: fig-new-packages-by-month
+new_by_month |>
+  filter(
+    (year < as.integer(year(today()))) |
+      (year <= as.integer(year(today())) & month < as.integer(month(today())))
+  ) |>
+  ggplot() +
+  geom_line(aes(x = month, y = n_new, color = factor(year), group = year)) +
+  geom_point(aes(x = month, y = n_new, color = factor(year), group = year)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = 1:12,
+    labels = month.abb,
+    minor_breaks = NULL
+  ) +
+  scale_color_viridis_d(option = 'turbo', direction = -1) +
+  labs(
+    title = 'New CRAN packages per month',
+    subtitle = 'Year-over-year comparison since 2016',
+    y = 'New packages',
+    color = 'Year'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+Monthly package submissions, including updates, are up:
+
+```{r}
+#| label: fig-all-submissions-by-month
+all_submissions |>
+  filter(
+    date >= as.Date('2016-01-01'),
+    date < as.Date(x = paste0('2026-', month(today()), '-01'))
+  ) |>
+  mutate(year = year(date), month = month(date)) |>
+  count(year, month, name = 'n') |>
+  ggplot() +
+  geom_line(aes(x = month, y = n, color = factor(year), group = year)) +
+  geom_point(aes(x = month, y = n, color = factor(year), group = year)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = 1:12,
+    labels = month.abb,
+    minor_breaks = NULL
+  ) +
+  scale_color_viridis_d(option = 'turbo', direction = -1) +
+  labs(
+    title = 'All CRAN submissions per month',
+    subtitle = 'Year-over-year comparison since 2016',
+    y = 'Submissions',
+    color = 'Year'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+Increases are relatively consistent across weeks:
+
+```{r}
+#| label: fig-all-submissions-by-week
+all_submissions |>
+  filter(date >= as.Date('2016-01-01')) |>
+  mutate(year = isoyear(date), week = isoweek(date)) |>
+  count(year, week, name = 'n') |>
+  ggplot() +
+  geom_line(
+    aes(x = week, y = n, color = factor(year), group = year),
+    linewidth = 0.5
+  ) +
+  geom_point(
+    aes(x = week, y = n, color = factor(year), group = year),
+    size = 1
+  ) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = month_week_breaks,
+    labels = month.abb,
+    minor_breaks = NULL
+  ) +
+  scale_color_viridis_d(option = 'turbo', direction = -1) +
+  labs(
+    title = 'All CRAN submissions per week',
+    subtitle = 'Year-over-year comparison since 2016',
+    y = 'Submissions',
+    color = 'Year'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+All package submissions are trending up in 2026:
+
+```{r}
+#| label: fig-all-submissions-through-may7
+all_submissions |>
+  may7_filter() |>
+  count(year = year(date), name = 'n') |>
+  ggplot() +
+  geom_col(aes(x = year, y = n)) +
+  scale_x_continuous(breaks = scales::breaks_width(1), minor_breaks = NULL) +
+  scale_y_continuous(
+    name = 'Submissions',
+    breaks = scales::pretty_breaks(),
+    labels = scales::label_comma()
+  ) +
+  labs(
+    title = 'All CRAN submissions through May 7, by year',
+    x = NULL
+  ) +
+  theme_bw(base_family = 'Inter') +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+New package submissions are way above expectations:
+
+```{r}
+#| label: fig-new-packages-through-may7
+all_pkgs |>
+  rename(date = first_published) |>
+  may7_filter() |>
+  count(year = year(date), name = 'n') |>
+  ggplot() +
+  geom_col(aes(x = year, y = n)) +
+  scale_x_continuous(breaks = scales::breaks_width(1), minor_breaks = NULL) +
+  scale_y_continuous(
+    name = 'New packages',
+    breaks = scales::pretty_breaks(n = 8),
+    labels = scales::label_comma()
+  ) +
+  labs(
+    title = 'New CRAN packages through May 7, by year',
+    x = NULL
+  ) +
+  theme_bw(base_family = 'Inter') +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+CRAN submissions from new authors have stayed relatively stable over time, with perhaps a dip in recent years:
+
+```{r}
+#| label: fig-newcomer-authors-by-year
+newcomer_by_year |>
+  ggplot() +
+  geom_col(aes(x = year, y = pct_all_new)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'Percent all-newcomer packages',
+    labels = scales::label_percent(),
+    breaks = scales::pretty_breaks()
+  ) +
+  labs(
+    title = 'Packages where all authors are CRAN newcomers',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+There's a big increase in solo-authored new packages in 2026:
+
+```{r}
+#| label: fig-author-count-share-by-year
+author_count |>
+  filter(year(first_published) <= year(today())) |>
+  mutate(
+    year = year(first_published),
+    n_authors_cat = factor(
+      case_when(
+        n_authors == 1 ~ '1',
+        n_authors == 2 ~ '2',
+        n_authors == 3 ~ '3',
+        n_authors >= 4 ~ '4+'
+      ),
+      levels = c('4+', '3', '2', '1')
+    )
+  ) |>
+  count(year, n_authors_cat) |>
+  group_by(year) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup() |>
+  ggplot() +
+  geom_col(aes(x = year, y = pct, fill = n_authors_cat)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'Percent of packages',
+    labels = scales::label_percent()
+  ) +
+  scale_fill_wa_d('puget', name = 'Authors') +
+  labs(
+    title = 'Author count per new package by year',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+If the trend continues, single authored packages in 2026 would nearly double that of 2025:
+
+```{r}
+#| label: fig-author-count-projected-by-year
+author_count |>
+  filter(year(first_published) <= year(today())) |>
+  mutate(
+    year = year(first_published),
+    n_authors_cat = factor(
+      case_when(
+        n_authors == 1 ~ '1',
+        n_authors == 2 ~ '2',
+        n_authors == 3 ~ '3',
+        n_authors >= 4 ~ '4+'
+      ),
+      levels = c('4+', '3', '2', '1')
+    )
+  ) |>
+  count(year, n_authors_cat) |>
+  mutate(n = if_else(year == year(today()), n * 12 / 5, n)) |>
+  ggplot() +
+  geom_line(
+    aes(x = year, y = n, color = n_authors_cat),
+    data = \(d) filter(d, year < year(today()))
+  ) +
+  geom_line(
+    aes(x = year, y = n, color = n_authors_cat),
+    data = \(d) filter(d, year >= year(today()) - 1),
+    linetype = 'dotted'
+  ) +
+  geom_point(aes(x = year, y = n, color = n_authors_cat)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'New packages',
+    labels = scales::label_comma(),
+    limits = c(0, NA)
+  ) +
+  scale_color_wa_d('puget', name = 'Authors') +
+  labs(
+    title = 'Author count per new package by year',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+This is being driven by solo developers who have previously published packages on CRAN:
+
+```{r}
+#| label: fig-author-profile-share-by-year
+pkg_author_novelty |>
+  filter(
+    !is.na(first_published),
+    year(first_published) >= 2010,
+    year(first_published) <= year(today())
+  ) |>
+  mutate(
+    year = year(first_published),
+    pkg_type = factor(
+      case_when(
+        n_authors == 1 & all_authors_new ~ 'Solo newcomer',
+        n_authors == 1 & !all_authors_new ~ 'Solo experienced',
+        n_authors > 1 ~ 'Multi-author'
+      ),
+      levels = c('Multi-author', 'Solo experienced', 'Solo newcomer')
+    )
+  ) |>
+  count(year, pkg_type) |>
+  group_by(year) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup() |>
+  ggplot() +
+  geom_col(aes(x = year, y = pct, fill = pkg_type)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'Percent of packages',
+    labels = scales::label_percent()
+  ) +
+  scale_fill_wa_d('puget', name = NULL) +
+  labs(
+    title = 'New packages by author profile',
+    subtitle = 'By year of first CRAN submission; structured Authors@R only'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+If the trends continue, experienced developers would nearly hit the same number of packages as multi-author teams:
+
+```{r}
+#| label: fig-author-profile-projected-by-year
+pkg_author_novelty |>
+  filter(
+    !is.na(first_published),
+    year(first_published) >= 2010,
+    year(first_published) <= year(today())
+  ) |>
+  mutate(
+    year = year(first_published),
+    pkg_type = factor(
+      case_when(
+        n_authors == 1 & all_authors_new ~ 'Solo newcomer',
+        n_authors == 1 & !all_authors_new ~ 'Solo experienced',
+        n_authors > 1 ~ 'Multi-author'
+      ),
+      levels = c('Multi-author', 'Solo experienced', 'Solo newcomer')
+    )
+  ) |>
+  count(year, pkg_type) |>
+  mutate(n = if_else(year == year(today()), n * 12 / 5, n)) |>
+  ggplot() +
+  geom_line(aes(x = year, y = n, color = pkg_type), data = \(d) {
+    filter(d, year < year(today()))
+  }) +
+  geom_line(
+    aes(x = year, y = n, color = pkg_type),
+    data = \(d) filter(d, year >= year(today()) - 1),
+    linetype = 'dotted'
+  ) +
+  geom_point(aes(x = year, y = n, color = pkg_type)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'New packages',
+    labels = scales::label_comma(),
+    limits = c(0, NA)
+  ) +
+  scale_color_wa_d('puget', name = NULL) +
+  labs(
+    title = 'New packages by author profile',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+There's been a small increase in the number of dependencies over time, especially from none to 1 or 2:
+
+```{r}
+#| label: fig-hard-dependencies-by-year
+pkg_deps |>
+  filter(year(first_published) <= year(today())) |>
+  mutate(
+    year = year(first_published),
+    deps_cat = factor(
+      case_when(
+        n_hard_deps == 0 ~ '0',
+        n_hard_deps == 1 ~ '1',
+        n_hard_deps == 2 ~ '2',
+        n_hard_deps == 3 ~ '3',
+        n_hard_deps == 4 ~ '4',
+        n_hard_deps == 5 ~ '5',
+        n_hard_deps <= 10 ~ '6-10',
+        TRUE ~ '11+'
+      ),
+      levels = c('11+', '6-10', '5', '4', '3', '2', '1', '0')
+    )
+  ) |>
+  count(year, deps_cat) |>
+  group_by(year) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup() |>
+  ggplot() +
+  geom_col(aes(x = year, y = pct, fill = deps_cat)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'Percent of packages',
+    labels = scales::label_percent()
+  ) +
+  scale_fill_wa_d('puget', name = 'Deps') +
+  labs(
+    title = 'Hard dependencies per new package',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+Yet, data suggests packages are both becoming simpler and better documented, using some basic proxies:
+
+```{r}
+#| label: fig-complexity-indicators-by-year
+size_by_year |>
+  pivot_longer(
+    c(pct_vignette, pct_compiled),
+    names_to = 'metric',
+    values_to = 'value'
+  ) |>
+  mutate(
+    metric = case_when(
+      metric == 'pct_vignette' ~ 'Has vignette',
+      metric == 'pct_compiled' ~ 'Needs compilation'
+    )
+  ) |>
+  ggplot() +
+  geom_line(aes(x = year, y = value, color = metric)) +
+  geom_point(aes(x = year, y = value, color = metric)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = NULL,
+    labels = scales::label_percent(),
+    limits = c(0, NA)
+  ) +
+  scale_color_wa_d('puget', name = NULL) +
+  labs(
+    title = 'Package complexity indicators over time',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+Packages are also including more suggested packages:
+
+```{r}
+#| label: fig-suggested-dependencies-by-year
+pkg_size |>
+  filter(year(first_published) <= year(today())) |>
+  mutate(
+    year = year(first_published),
+    suggests_cat = factor(
+      case_when(
+        n_suggests == 0 ~ '0',
+        n_suggests == 1 ~ '1',
+        n_suggests == 2 ~ '2',
+        n_suggests == 3 ~ '3',
+        n_suggests == 4 ~ '4',
+        n_suggests == 5 ~ '5',
+        n_suggests <= 10 ~ '6-10',
+        TRUE ~ '11+'
+      ),
+      levels = c('11+', '6-10', '5', '4', '3', '2', '1', '0')
+    )
+  ) |>
+  count(year, suggests_cat) |>
+  group_by(year) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup() |>
+  ggplot() +
+  geom_col(aes(x = year, y = pct, fill = suggests_cat)) +
+  scale_x_continuous(
+    name = NULL,
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL
+  ) +
+  scale_y_continuous(
+    name = 'Percent of packages',
+    labels = scales::label_percent()
+  ) +
+  scale_fill_wa_d('puget', name = 'Suggests') +
+  labs(
+    title = 'Suggested dependencies per new package',
+    subtitle = 'By year of first CRAN submission'
+  ) +
+  theme_bw(base_family = 'Inter')
+```
+
+Over the longer period of CRAN, we can see a change in contributions towards the `tidyverse` and `Rcpp` by looking at maintainers:
+
+```{r}
+#| label: fig-cumulative-packages-by-maintainer
+cumulative_data |>
+  ggplot() +
+  geom_line(
+    aes(x = year_month, y = cumulative, group = Maintainer, color = era),
+    data = \(d) filter(d, !Maintainer %in% c(top10, top10_2008)),
+    alpha = 0.4,
+    linewidth = 0.4
+  ) +
+  geom_line(
+    aes(x = year_month, y = cumulative, group = Maintainer, color = era),
+    data = \(d) filter(d, Maintainer %in% top10_2008, !Maintainer %in% top10),
+    alpha = 0.7,
+    linewidth = 0.5
+  ) +
+  geom_textline(
+    aes(
+      x = year_month,
+      y = cumulative,
+      group = Maintainer,
+      color = era,
+      label = Maintainer
+    ),
+    data = \(d) filter(d, Maintainer %in% top10_2008, !Maintainer %in% top10),
+    linewidth = 0.5,
+    size = 3,
+    hjust = (2008 - 1997) / (2026 - 1997),
+    key_glyph = 'path'
+  ) +
+  geom_textline(
+    aes(
+      x = year_month,
+      y = cumulative,
+      group = Maintainer,
+      color = era,
+      label = Maintainer
+    ),
+    data = \(d) filter(d, Maintainer %in% top10),
+    size = 3,
+    hjust = 0.85,
+    key_glyph = 'path'
+  ) +
+  scale_x_date(
+    date_breaks = '2 years',
+    date_labels = '%Y',
+    minor_breaks = NULL
+  ) +
+  scale_color_wa_d('puget') +
+  labs(
+    title = 'Cumulative packages by maintainer over time',
+    subtitle = 'Top 200 current maintainers; labeled at current top 10 and 2008 top 10',
+    x = NULL,
+    y = 'Number of packages',
+    color = 'First active'
+  ) +
+  theme_bw(base_family = 'Inter') +
+  theme(
+    legend.position = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background = element_rect(fill = alpha('white', 0.7), color = NA)
+  )
+```
+
+Looking at authors, instead of just maintainers, highlights the RStudio/Posit contribution in the growing ecosystem:
+
+```{r}
+#| label: fig-cumulative-packages-by-author
+author_cumulative |>
+  ggplot() +
+  geom_line(
+    aes(x = year_month, y = cumulative, group = author, color = era),
+    data = \(d) filter(d, !author %in% c(top_authors_10, top_authors_2008)),
+    alpha = 0.4,
+    linewidth = 0.4
+  ) +
+  geom_line(
+    aes(x = year_month, y = cumulative, group = author, color = era),
+    data = \(d) {
+      filter(d, author %in% top_authors_2008, !author %in% top_authors_10)
+    },
+    alpha = 0.7,
+    linewidth = 0.5
+  ) +
+  geom_textline(
+    aes(
+      x = year_month,
+      y = cumulative,
+      group = author,
+      color = era,
+      label = author
+    ),
+    data = \(d) {
+      filter(d, author %in% top_authors_2008, !author %in% top_authors_10)
+    },
+    linewidth = 0.5,
+    size = 3,
+    hjust = (2008 - 1997) / (2026 - 1997),
+    key_glyph = 'path'
+  ) +
+  geom_textline(
+    aes(
+      x = year_month,
+      y = cumulative,
+      group = author,
+      color = era,
+      label = author
+    ),
+    data = \(d) filter(d, author %in% top_authors_10),
+    linewidth = 0.8,
+    size = 3,
+    hjust = 0.85,
+    key_glyph = 'path'
+  ) +
+  scale_x_date(
+    date_breaks = '2 years',
+    date_labels = '%Y',
+    minor_breaks = NULL
+  ) +
+  scale_color_wa_d('sound_sunset', drop = FALSE) +
+  labs(
+    title = 'Cumulative packages by author over time',
+    subtitle = 'Top 200 current authors (aut/cre); labeled at current top 10 and 2008 top 10',
+    x = NULL,
+    y = 'Cumulative packages',
+    color = 'First active'
+  ) +
+  theme_bw(base_family = 'Inter') +
+  theme(
+    legend.position = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background = element_rect(fill = alpha('white', 0.7), color = NA)
+  )
+```
