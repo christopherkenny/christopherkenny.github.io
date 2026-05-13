@@ -18,7 +18,7 @@ Since that doesn't seem to be happening, this post introduces `dais`, a new PDF 
 You get a PowerPoint-esque presenting feel with a speaker view, but use your Beamer (or Polylux) slides.
 The speaker view includes a preview of the next slide, making it easier for your talk to come across as well-rehearsed.
 
-![](https://github.com/christopherkenny/dais/raw/main/assets/dais.png)
+![](https://github.com/christopherkenny/dais/raw/main/assets/dais.png){width="50%" fig-align="center"}
 
 The goal of `dais` is to have a portable, truly configurable presenter tool.
 Most everything is configurable from keybindings to pointer styles.
@@ -141,9 +141,11 @@ The background is transparent, but can be configured to match your slide theme's
 
 ::: {#fig-text-boxes layout-ncol=2}
 
-![](text-editing.png)
+![Editing](text-editing.png){#fig-text-editing}
 
-![](text-rendered.png)
+![Rendered](text-rendered.png){#fig-text-rendered}
+
+Live editing and rendered text.
 
 :::
 
