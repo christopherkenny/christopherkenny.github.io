@@ -294,6 +294,16 @@
         relies on. Data is returned in a tidy format and posts can be made using a
         simple interface.
       topic_title: Packages interfacing with API services
+    - name: lobby
+      logo: hexes/hex_lobby.png
+      info: Interact with the US Senate Lobbying Disclosure API
+      link: https://christophertkenny.com/lobby/
+      color: '#b99258'
+      description: Download and read data on lobbying in the United States Congress.
+        Data is queried from the Senate's Application Programming Interface (<a href=""https://lda.senate.gov/api/"">https://lda.senate.gov/api/</a>).
+        This supports filings since 2008. Functions exist for all primary data endpoints,
+        including queries by filings, contributions, registrations, clients, and lobbyists.
+      topic_title: Packages interfacing with API services
   - name: other
     description: Other R packages
     packages:
@@ -361,16 +371,6 @@
         to run a project. Includes functions to specify detailed installation functions,
         validate files, and to use a given file as the requirements for a project.
         Handles package installations, when necessary, via pak.
-      topic_title: Other R packages
-    - name: lobby
-      logo: hexes/hex_lobby.png
-      info: Interact with the US Senate Lobbying Disclosure API
-      link: https://christophertkenny.com/lobby/
-      color: '#b99258'
-      description: Download and read data on lobbying in the United States Congress.
-        Data is queried from the Senate's Application Programming Interface (<a href=""https://lda.senate.gov/api/"">https://lda.senate.gov/api/</a>).
-        This supports filings since 2008. Functions exist for all primary data endpoints,
-        including queries by filings, contributions, registrations, clients, and lobbyists.
       topic_title: Other R packages
     - name: wf
       logo: hexes/hex_wf.png

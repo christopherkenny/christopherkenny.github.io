@@ -3,7 +3,7 @@
     - title: "Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors"
       authors: "with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai"
       url: "https://arxiv.org/abs/2407.11336"
-      award: "Conditionally accepted at the American Political Science Review"
+      award: "Forthcoming at the American Political Science Review"
       abstract: "Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York."
       bibtex: |
         @article{mccartan2024redistricting,
@@ -35,7 +35,7 @@
     - title: "Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias"
       authors: "with Jacob R. Brown and Tyler Simko"
       url: "https://osf.io/preprints/socarxiv/nv5up_v2"
-      award: "Conditionally accepted at Nature Cities"
+      award: "Forthcoming at Nature Cities"
       abstract: "Residential segregation in the United States is widespread, persistent, and threatens economic opportunity and social cohesion. Most segregation metrics, however, rely on aggregate data with arbitrary spatial boundaries. Sensitivity to those boundaries is well theorized but rarely measured. Leveraging modern redistricting software, we simulate millions of alternative Census tract maps that satisfy Census guidelines, compute segregation for each, and recover the full probabilistic distribution of common indices. These simulations yield new estimates of racial segregation across U.S. cities and, crucially, measure the aggregation‚induced variability hidden in conventional estimates. Encouragingly, values calculated with official tract definitions closely track the mean of the simulated distribution, exhibiting only a slight upward bias, and segregation metrics shift modestly across maps -- though variability grows in smaller cities. While our findings confirm the practical robustness of Census tracts, our data and software provide a general framework for diagnosing and correcting spatial‚aggregation error in other contexts."
       bibtex: |
         @misc{brown2025any,
