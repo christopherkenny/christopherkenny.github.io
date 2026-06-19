@@ -32,22 +32,6 @@
           year = {2025}
         }
 
-    - title: "Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias"
-      authors: "with Jacob R. Brown and Tyler Simko"
-      url: "https://osf.io/preprints/socarxiv/nv5up_v2"
-      award: "Forthcoming at Nature Cities"
-      abstract: "Residential segregation in the United States is widespread, persistent, and threatens economic opportunity and social cohesion. Most segregation metrics, however, rely on aggregate data with arbitrary spatial boundaries. Sensitivity to those boundaries is well theorized but rarely measured. Leveraging modern redistricting software, we simulate millions of alternative Census tract maps that satisfy Census guidelines, compute segregation for each, and recover the full probabilistic distribution of common indices. These simulations yield new estimates of racial segregation across U.S. cities and, crucially, measure the aggregation‚induced variability hidden in conventional estimates. Encouragingly, values calculated with official tract definitions closely track the mean of the simulated distribution, exhibiting only a slight upward bias, and segregation metrics shift modestly across maps -- though variability grows in smaller cities. While our findings confirm the practical robustness of Census tracts, our data and software provide a general framework for diagnosing and correcting spatial‚aggregation error in other contexts."
-      bibtex: |
-        @misc{brown2025any,
-          doi = {10.31235/osf.io/nv5up_v2}},
-          url = {https://osf.io/preprints/socarxiv/nv5up_v2},
-          author = {Brown, Jacob and Kenny, Christopher T. and Simko, Tyler},
-          keywords = {segregation, measurement, simulation, Census data, measurement error},
-          title = {Any Way You Slice It: Racial Segregation Statistics are Robust to Aggregation Bias},
-          publisher = {SocArXiv},
-          year = {2025}
-        }
-
     - title: "A Multi-District Markov Chain Monte Carlo Sampler for Redistricting"
       url: "https://osf.io/preprints/socarxiv/un8sk_v1"
       abstract: "Random sampling of redistricting plans has become a standard tool for detecting gerrymandering and evaluating proposed maps. Most MCMC redistricting algorithms operate by merging two adjacent districts and splitting them back into two new districts at each step of the chain. I extend this Merge-Split framework with the Multiple Merge Sequential Split (MMSS) algorithm, which generalizes each step to merge ℓ ≥ 2 adjacent districts and repartition them into ℓ new districts via a sequence of ℓ − 1 uniform spanning tree cuts. MMSS targets the same spanning-forest-weighted distribution used by existing samplers, and I derive the Metropolis-Hastings acceptance ratio. I validate the algorithm by comparing samples against exactly enumerated distributions on small grid maps and compare its scalability with two related algorithms on a realistic redistricting problem. The algorithm supports any value of ℓ ≥ 2, giving users direct control over per-step exploration. MMSS is implemented in the open-source redist R package."
@@ -108,6 +92,22 @@
 
 - category: Publications
   papers:
+    - title: "City racial segregation statistics are robust to aggregation bias"
+      authors: "with Jacob R. Brown and Tyler Simko"
+      journal: "Nature Cities"
+      year: "2026"
+      url: "https://www.nature.com/articles/s44284-026-00459-3"
+      abstract: "Residential segregation in US cities threatens economic opportunity and social cohesion. Most segregation estimates rely on aggregate data with arbitrary boundaries such as Census tracts. Sensitivity to boundary choices is well theorized but rarely measured. Here, leveraging redistricting software, we simulate millions of alternative Census tract maps that satisfy Census guidelines, compute segregation for each and estimate probabilistic distributions of common indices. This approach yields new estimates of racial segregation across US cities and measures the aggregation-induced variability hidden in conventional estimates. We find that variability is largely driven by the number of spatial units: simulated segregation in small cities varies widely across plans but converges in larger cities. We find no systematic bias: values calculated using official tract definitions closely track the mean of simulated alternative boundary definitions. While our findings confirm the practical robustness of Census tracts, we provide a general framework for diagnosing and correcting spatial aggregation error in other contexts."
+      bibtex: |
+        @misc{brown2026city,
+          author = {Jacob R. Brown and Christopher T. Kenny and Tyler Simko},
+          title = {City racial segregation statistics are robust to aggregation bias},
+          journal = {Nature Cities},
+          year = {2026},
+          doi = {10.1038/s44284-026-00459-3},
+          URL = {https://www.nature.com/articles/s44284-026-00459-3},
+         eprint = {https://www.nature.com/articles/s44284-026-00459-3.epdf},
+        }
     - title: "Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods"
       authors: "with Cory McCartan, Shiro Kuriwaki, Tyler Simko, and Kosuke Imai"
       journal: "Science Advances"
@@ -115,7 +115,7 @@
       url: "https://www.science.org/doi/10.1126/sciadv.adl2524"
       abstract: "The United States Census Bureau faces a difficult trade-off between the accuracy of Census statistics and the protection of individual information. We conduct the first independent evaluation of bias and noise induced by the Bureau's two main disclosure avoidance systems: the TopDown algorithm employed for the 2020 Census and the swapping algorithm implemented for the 1990, 2000, and 2010 Censuses. Our evaluation leverages the recent release of the Noisy Measure File (NMF) as well as the availability of two independent runs of the TopDown algorithm applied to the 2010 decennial Census. We find that the NMF contains too much noise to be directly useful alone, especially for Hispanic and multiracial populations. TopDown's post-processing dramatically reduces the NMF noise and produces similarly accurate data to swapping in terms of bias and noise. These patterns hold across census geographies with varying population sizes and racial diversity. While the estimated errors for both TopDown and swapping are generally no larger than other sources of Census error, they can be relatively substantial for geographies with small total populations."
       bibtex: |
-        @misc{kenn:etal:24b,
+        @misc{kenny2024evaluating,
           author = {Christopher T. Kenny and Cory McCartan and Shiro Kuriwaki and Tyler Simko and Kosuke Imai},
           title = {Evaluating bias and noise induced by the U.S. Census Bureau's privacy protection methods},
           journal = {Science Advances},
@@ -135,7 +135,7 @@
       url: "https://www.pnas.org/doi/10.1073/pnas.2321196121"
       first_paragraph: "Current and former Census Bureau officials [Jarmin et al.](https://www.pnas.org/doi/10.1073/pnas.2220558120) argue that differential privacy, which underlies the 2020 Census's Disclosure Avoidance System (DAS), satisfies more desirable theoretical criteria than alternatives. They provide detailed criticisms of many published evaluations of the 2020 DAS, including our work. In this letter, we show that their criticisms are unfounded, grossly mischaracterize our research, and ignore critical issues that merit public discussion."
       bibtex: |
-        @article{kenn:etal:24a,
+        @article{kenny2024census,
           title={Census officials must constructively engage with independent evaluations},
           author={Kenny, Christopher T. and McCartan, Cory and Simko, Tyler and Imai, Kosuke},
           journal={Proceedings of the National Academy of Sciences},
@@ -153,7 +153,7 @@
       url: "https://www.pnas.org/doi/10.1073/pnas.2217322120"
       abstract: "Congressional district lines in many U.S. states are drawn by partisan actors, raising concerns about gerrymandering. To isolate the electoral impact of gerrymandering from the effects of other factors including geography and redistricting rules, we compare predicted election outcomes under the enacted plan with those under a large sample of non-partisan, simulated alternative plans for all states. We find that partisan gerrymandering is widespread in the 2020 redistricting cycle, but most of the bias it creates cancels at the national level, giving Republicans two additional seats, on average. In contrast, moderate pro-Republican bias due to geography and redistricting rules remains. Finally, we find that partisan gerrymandering reduces electoral competition and makes the House's partisan composition less responsive to shifts in the national vote."
       bibtex: |
-        @article{kenn:etal:23b,
+        @article{kenny2023widespread,
         author = {Christopher T. Kenny and Cory McCartan and Tyler Simko and Shiro Kuriwaki and Kosuke Imai},
         title = {Widespread partisan gerrymandering mostly cancels nationally, but reduces electoral competition},
         journal = {Proceedings of the National Academy of Sciences},
@@ -173,7 +173,7 @@
       url: "https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1"
       abstract: "In [\"Differential Perspectives: Epistemic Disconnects Surrounding the US Census Bureau's Use of Differential Privacy,\"](https://doi.org/10.1162/99608f92.66882f0e) boyd and Sarathy argue that empirical evaluations of the Census Disclosure Avoidance System (DAS), including our published analysis, failed to recognize how the benchmark data against which the 2020 DAS was evaluated is never a ground truth of population counts. In this commentary, we explain why policy evaluation, which was the main goal of our analysis, is still meaningful without access to a perfect ground truth. We also point out that our evaluation leveraged features specific to the decennial Census and redistricting data, such as block-level population invariance under swapping and voter file racial identification, better approximating a comparison with the ground truth. Lastly, we show that accurate statistical predictions of individual race based on the Bayesian Improved Surname Geocoding, while not a violation of differential privacy, substantially increases the disclosure risk of private information the Census Bureau sought to protect. We conclude by arguing that policy makers must confront a key trade-off between data utility and privacy protection, and an epistemic disconnect alone is insufficient to explain disagreements between policy choices."
       bibtex: |
-        @article{kenn:etal:23,
+        @article{kenny2023comment,
           author = {Kenny, Christopher T. and Kuriwaki, Shiro and McCartan, Cory and Rosenman, Evan T. R. and Simko, Tyler and Imai, Kosuke},
           journal = {Harvard Data Science Review},
           number = {Special Issue 2},
@@ -192,7 +192,7 @@
       url: "https://www.nature.com/articles/s41597-022-01808-2"
       abstract: "This article introduces the 50stateSimulations, a collection of simulated congressional districting plans and underlying code developed by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. The 50stateSimulations allow for the evaluation of enacted and other congressional redistricting plans in the United States. While the use of redistricting simulation algorithms has become standard in academic research and court cases, any simulation analysis requires non-trivial efforts to combine multiple data sets, identify state-specific redistricting criteria, implement complex simulation algorithms, and summarize and visualize simulation outputs. We have developed a complete workflow that facilitates this entire process of simulation-based redistricting analysis for the congressional districts of all 50 states. The resulting 50stateSimulations include ensembles of simulated 2020 congressional redistricting plans and necessary replication data. We also provide the underlying code, which serves as a template for customized analyses. All data and code are free and publicly available. This article details the design, creation, and validation of the data."
       bibtex: |
-        @article{50statesSimulations,
+        @article{mccartan2022simulated,
           title = {Simulated Redistricting Plans for the Analysis and Evaluation of Redistricting in the {{United States}}},
           author = {McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Garcia, George and Wang, Kevin and Wu, Melissa and Kuriwaki, Shiro and Imai, Kosuke},
           year = {2022},
@@ -214,7 +214,7 @@
       coverage: "Covered by [The Washington Post](https://www.washingtonpost.com/local/social-issues/2020-census-differential-privacy-ipums/2021/06/01/6c94b46e-c30d-11eb-93f5-ee9558eecf4b_story.html), [Associated Press](https://apnews.com/article/business-census-2020-technology-e701e313e841674be6396321343b7e49), [NC Policy Watch](http://pulse.ncpolicywatch.org/2021/06/14/expert-census-bureaus-actions-to-protect-individual-privacy-could-have-big-impact-on-redistricting/), and [The Harvard Crimson](https://www.thecrimson.com/article/2021/6/16/researchers-identify-concerns-census-bureau/)"
       abstract: "The US Census Bureau plans to protect the privacy of 2020 Census respondents through its Disclosure Avoidance System (DAS), which attempts to achieve differential privacy guarantees by adding noise to the Census microdata. By applying redistricting simulation and analysis methods to DAS-protected 2010 Census data, we find that the protected data are not of sufficient quality for redistricting purposes. We demonstrate that the injected noise makes it impossible for states to accurately comply with the One Person, One Vote principle. Our analysis finds that the DAS-protected data are biased against certain areas, depending on voter turnout and partisan and racial composition, and that these biases lead to large and unpredictable errors in the analysis of partisan and racial gerrymanders. Finally, we show that the DAS algorithm does not universally protect respondent privacy. Based on the names and addresses of registered voters, we are able to predict their race as accurately using the DAS-protected data as when using the 2010 Census data. Despite this, the DAS-protected data can still inaccurately estimate the number of majority-minority districts. We conclude with recommendations for how the Census Bureau should proceed with privacy protection for the 2020 Census."
       bibtex: |
-        @article{kenn:etal:21,
+        @article{kenny2021use,
         author = {Christopher T. Kenny  and Shiro Kuriwaki  and Cory McCartan  and Evan T. R. Rosenman  and Tyler Simko  and Kosuke Imai },
         title = {The Use of Differential Privacy for Census Data and its Impact on Redistricting: The Case of the 2020 U.S. Census},
         journal = {Science Advances},
@@ -234,7 +234,7 @@
       url: "https://doi.org/10.1080/2330443X.2020.1791773"
       abstract: "As granular data about elections and voters become available, redistricting simulation methods are playing an increasingly important role when legislatures adopt redistricting plans and courts determine their legality. These simulation methods are designed to yield a representative sample of all redistricting plans that satisfy statutory guidelines and requirements such as contiguity, population parity, and compactness. A proposed redistricting plan can be considered gerrymandered if it constitutes an outlier relative to this sample according to partisan fairness metrics. Despite their growing use, an insufficient effort has been made to empirically validate the accuracy of the simulation methods. We apply a recently developed computational method that can efficiently enumerate all possible redistricting plans and yield an independent sample from this population. We show that this algorithm scales to a state with a couple of hundred geographical units. Finally, we empirically examine how existing simulation methods perform on realistic validation datasets."
       bibtex: |
-        @article{fife:etal:20,
+        @article{fifield2020essential,
           author = {Benjamin Fifield and Kosuke Imai and Jun Kawahara and Christopher T. Kenny},
           title = {The Essential Role of Empirical Validation in Legislative Redistricting Simulation},
           journal = {Statistics and Public Policy},
