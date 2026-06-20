@@ -1,4 +1,5 @@
 ---
+title: "Christopher T. Kenny"
 sidebar: false
 format: 
   html:
@@ -12,6 +13,9 @@ include-in-header:
     <style type="text/css">
       h2, .h2 {
         border-bottom: none;
+      }
+      #title-block-header {
+        display: none;
       }
     </style>
 listing:
