@@ -401,7 +401,7 @@
       info: Interactive Redistricting
       link: https://christophertkenny.com/redistio/
       color: '#B6D7A8'
-      description: A point and click editor for districts built on 'shiny' and 'Leaflet'.
+      description: A point and click editor for districts built on 'shiny' and 'mapgl'.
         Users can draw districts and calculate standard redistricting metrics, like
         compactness or the number of administrative splits. Maps can be exported as
         assignment files or shapefiles, readable by most other redistricting software.
@@ -504,7 +504,7 @@
       topic_title: Other R packages
     - name: reon
       logo: hexes/hex_reon.png
-      info: Read and Write eon Configuration Files
+      info: Read and Write 'eon' Configuration Files
       link: https://christophertkenny.com/reon/
       color: '#E85728'
       description: Parse, create, and write configuration files in the 'eon' format
