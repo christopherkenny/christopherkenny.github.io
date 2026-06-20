@@ -29,7 +29,7 @@ Course readings draw on legal authorities, law review articles, expert reports, 
 
 ### Gov 2001: Quantitative Research Methods I
 
-::: {.column-margin}
+::: {.column-margin .teaching-logo}
 ![](figs/gov2k1.webp)
 :::
 
@@ -67,7 +67,7 @@ This workshop introduces researchers to Quarto as a tool for writing reproducibl
 
 ### lawyR:  R Basics for Lawyers
 
-::: {.column-margin}
+::: {.column-margin .teaching-logo}
 ![](figs/hex_lawyR.png)
 :::
 
@@ -79,7 +79,7 @@ An 8 week workshop on basics of R for the social sciences, focusing on relevant 
 
 ### Math Prefresher for Political Scientists
 
-::: {.column-margin}
+::: {.column-margin .teaching-logo}
 ![](figs/hex_mathcamp.png)
 :::
 
