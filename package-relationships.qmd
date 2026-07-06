@@ -14,7 +14,8 @@ get_my_deps <- function(packages) {
   lapply(packages, function(x) {
     dfile <- desc::desc(package = x)
     deps <- gsub(
-      ' ?\\(.+\\)', '',
+      ' ?\\(.+\\)',
+      '',
       c(
         dfile$get_list('Depends', default = character(1)),
         dfile$get_list('Imports', default = character(1)),
@@ -29,7 +30,7 @@ get_my_deps <- function(packages) {
 connect_deps <- function(l) {
   lapply(seq_along(l), function(i) {
     if (length(l[[i]]) > 0) {
-      paste0(l[[i]], ' --> ' , names(l)[i])
+      paste0(l[[i]], ' --> ', names(l)[i])
     }
   }) |>
     unlist() |>
@@ -43,10 +44,19 @@ embrace_deps <- function(packages, cran_packages) {
   }
   redistverse_packages <- c(
     'redistverse',
-    'redist', 'redistmetrics', 'geomander', 'ggredist', 'censable',
-    'tinytiger', 'PL94171', 'alarmdata'
+    'redist',
+    'redistmetrics',
+    'geomander',
+    'ggredist',
+    'censable',
+    'tinytiger',
+    'PL94171',
+    'alarmdata'
   )
-  packages <- c(packages[packages %in% redistverse_packages], packages[!packages %in% redistverse_packages])
+  packages <- c(
+    packages[packages %in% redistverse_packages],
+    packages[!packages %in% redistverse_packages]
+  )
 
   ifelse(
     packages %in% cran_packages,
@@ -56,11 +66,13 @@ embrace_deps <- function(packages, cran_packages) {
 }
 
 deps <- get_my_deps(pkgs$name)
-paste0('  ',
-       c(
-         embrace_deps(pkgs$name),
-         connect_deps(deps)
-       )) |>
+paste0(
+  '  ',
+  c(
+    embrace_deps(pkgs$name),
+    connect_deps(deps)
+  )
+) |>
   cat(sep = '\n')
 ```
 
@@ -97,8 +109,23 @@ flowchart LR
   opengraph{{opengraph}}
   flexoki{{flexoki}}
   typr{{typr}}
-  manifesto((manifesto))
+  manifesto{{manifesto}}
+  adj{{adj}}
+  lobby{{lobby}}
+  pr((pr))
+  rict{{rict}}
+  wf{{wf}}
+  crann((crann))
+  enum((enum))
+  gtscales((gtscales))
+  ipf((ipf))
+  reon((reon))
+  snippet((snippet))
+  BCP47((BCP47))
+  tinycensus((tinycensus))
+  irelink((irelink))
   redistmetrics --> redist
+  baf --> geomander
   censable --> geomander
   tinytiger --> geomander
   tinytiger --> PL94171
@@ -110,6 +137,7 @@ flowchart LR
   redist --> alarmdata
   redistmetrics --> alarmdata
   tinytiger --> alarmdata
+  palette --> ggredist
   redist --> redistverse
   redistmetrics --> redistverse
   geomander --> redistverse
@@ -118,12 +146,20 @@ flowchart LR
   tinytiger --> redistverse
   PL94171 --> redistverse
   alarmdata --> redistverse
+  baf --> redistverse
   palette --> crayons
   opengraph --> bskyr
   geomander --> redistio
   ggredist --> redistio
   redistmetrics --> redistio
+  rict --> redistio
   palette --> flexoki
+  geomander --> rict
+  redist --> rict
+  redistmetrics --> rict
+  adj --> crann
+  typr --> snippet
+  tinytiger --> tinycensus
 ```
 
 
@@ -159,8 +195,11 @@ create_graph(
   invert_selection() |>
   set_node_attrs_ws(node_attr = shape, value = 'ellipse') |>
   clear_selection() |>
-  colorize_node_attrs(node_attr_from = type, node_attr_to = fillcolor,
-                      palette = c('#e07a5f', '#81b29a')) |>
+  colorize_node_attrs(
+    node_attr_from = type,
+    node_attr_to = fillcolor,
+    palette = c('#e07a5f', '#81b29a')
+  ) |>
   set_node_attrs(node_attr = fontcolor, values = 'black') |>
   render_graph(layout = 'kk', )
 ```
