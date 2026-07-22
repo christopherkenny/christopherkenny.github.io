@@ -113,9 +113,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-name','listing-logo','listing-info','listing-link','listing-description',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-name','listing-logo','listing-info','listing-link','listing-year','listing-authors','listing-registry','listing-registry_label','listing-description',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-name","listing-logo","listing-info","listing-link","listing-description"],
+      searchColumns: ["listing-name","listing-logo","listing-info","listing-link","listing-year","listing-authors","listing-registry","listing-registry_label","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -766,6 +766,19 @@ window.Quarto = {
     </div>
   </div>
 
+  <div class="card-borderless g-col-2">
+    <a href="https://christophertkenny.com/ipf/">
+      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ipf.png" class="img-fluid rounded-start" alt="ipf hex logo">
+    </a>
+  </div>
+  <div class="card-borderless g-col-10">
+    <div class="card-body">
+      <h5 class="card-title anchored">ipf: Iterative Proportional Fitting</h5>
+        
+        <p class="card-text"><small class="text-muted">Fast raking for survey weighting. The computational core is written in Rust for speed. Supports multiple raking variables, automatic variable selection, weight bounding, and comprehensive diagnostics.</small></p>
+    </div>
+  </div>
+
 </div>
 
 <h2 class="anchored">Packages on GitHub</h2>
@@ -913,19 +926,6 @@ window.Quarto = {
       <h5 class="card-title anchored">gtscales: Color Scale Extensions for 'gt'</h5>
         
         <p class="card-text"><small class="text-muted">Adds legend helpers for color-encoded 'gt' tables. The primary interface combines 'gt::data_color()' with matched legends for continuous, binned, quantile, and discrete scales, while lower-level helpers support legend-only and reusable scale specification workflows.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/ipf/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ipf.png" class="img-fluid rounded-start" alt="ipf hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">ipf: Iterative Proportional Fitting</h5>
-        
-        <p class="card-text"><small class="text-muted">Fast raking for survey weighting. The computational core is written in Rust for speed. Supports multiple raking variables, automatic variable selection, weight bounding, and comprehensive diagnostics.</small></p>
     </div>
   </div>
 
