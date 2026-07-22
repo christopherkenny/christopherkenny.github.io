@@ -2,6 +2,10 @@
   logo: hexes/dais.png
   info: A Native PDF Presenter Console
   link: https://github.com/christopherkenny/dais
+  year: 2026
+  authors: Christopher T. Kenny
+  registry: https://crates.io/crates/dais
+  registry_label: crates.io
   description: A presentation console built for researchers and academics using
     PDF slides made with Beamer or Typst. Designed for standard presentation
     setups, with a multi-monitor presenter view and speaker notes. Includes

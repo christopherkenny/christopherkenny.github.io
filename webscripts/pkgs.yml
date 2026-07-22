@@ -382,6 +382,15 @@
         lock file, and keeping installations current. Installations can be scoped
         to a single project or shared globally across projects.
       topic_title: Other R packages
+    - name: ipf
+      logo: hexes/hex_ipf.png
+      info: Iterative Proportional Fitting
+      link: https://christophertkenny.com/ipf/
+      color: '#0083FA'
+      description: Fast raking for survey weighting. The computational core is written
+        in Rust for speed. Supports multiple raking variables, automatic variable
+        selection, weight bounding, and comprehensive diagnostics.
+      topic_title: Other R packages
 - category: GitHub
   topics:
   - name: redistricting
@@ -492,15 +501,6 @@
         interface combines 'gt::data_color()' with matched legends for continuous,
         binned, quantile, and discrete scales, while lower-level helpers support legend-only
         and reusable scale specification workflows.
-      topic_title: Other R packages
-    - name: ipf
-      logo: hexes/hex_ipf.png
-      info: Iterative Proportional Fitting
-      link: https://christophertkenny.com/ipf/
-      color: '#0083FA'
-      description: Fast raking for survey weighting. The computational core is written
-        in Rust for speed. Supports multiple raking variables, automatic variable
-        selection, weight bounding, and comprehensive diagnostics.
       topic_title: Other R packages
     - name: reon
       logo: hexes/hex_reon.png

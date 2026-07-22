@@ -107,7 +107,7 @@
       url: "https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf"
       summary: "Bluesky Social is an offshoot of Twitter, designed to provide a decentralized alternative to traditional social media platforms. bskyr is an R package that provides programmatic access to Bluesky Social. The package wraps the official Bluesky Social API, enabling users to retrieve posts, threads, user profiles, social graphs (e.g., follows, mutes, blocks), curated lists, and starter packs. It also supports content creation and interaction so that users can post, reply, like, repost, and follow directly from R. All data is returned in tidy data frames, making it compatible with standard R workflows for analysis and visualization. This allows users of bskyr to not only collect data for observational studies but also to engage with the platform programmatically, such as posting updates or interacting with other users."
 
-    - title: "Inequality in Administrative Democracy: Large-Sample Evidence from American Financial Regulation"
+    - title: "Inequality in Agency Rulemaking"
       authors: "with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee"
       url: "https://judgelord.github.io/finreg/participatory-inequality.pdf"
       award: "Awarded the 2021 Herbert Kaufman Award"
