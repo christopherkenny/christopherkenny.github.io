@@ -102,6 +102,34 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recent-updates .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-update',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      
+      searchColumns: ["listing-date","listing-update"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recent-updates'] = new List('listing-recent-updates', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PBRM1BV0GG"></script>
 
@@ -264,14 +292,184 @@ window.Quarto = {
 </header>
 
 
+<style>
+.justify {
+  text-align: justify !important
+}
+.grid > .g-col-12 {
+  min-width: 0;
+}
+</style>
 <div class="column-screen-inset">
 <div class="grid">
 <div class="g-col-12 g-col-sm-4">
 <section id="christopher-t.-kenny" class="level1 text-center">
 <h1>Christopher T. Kenny</h1>
 <p><img src="figs/ckenny_small.webp" class="img-fluid" style="width:20em"></p>
-<p>Postdoctoral Research Associate, Data-Driven Social Science, Princeton University</p>
+<p>Postdoctoral Research Associate, Data-Driven Social Science<br>Princeton University</p>
 <p><a href="https://twitter.com/Chris_T_Kenny" class="btn btn-outline-primary" role="button"><iconify-icon inline="true" role="img" icon="fa6-brands:twitter" aria-label="Icon twitter from fa6-brands Iconify.design set." title="Icon twitter from fa6-brands Iconify.design set."></iconify-icon></a> <a href="https://scholar.google.com/citations?user=uVUhHXAAAAAJ" class="btn btn-outline-primary" role="button"><iconify-icon inline="true" role="img" icon="fa6-brands:google-scholar" aria-label="Icon google-scholar from fa6-brands Iconify.design set." title="Icon google-scholar from fa6-brands Iconify.design set."></iconify-icon></a> <a href="https://github.com/christopherkenny" class="btn btn-outline-primary" role="button"><iconify-icon inline="true" role="img" icon="fa6-brands:github" aria-label="Icon github from fa6-brands Iconify.design set." title="Icon github from fa6-brands Iconify.design set."></iconify-icon></a> <a href="mailto:ctkenny@princeton.edu" class="btn btn-outline-primary" role="button"><iconify-icon inline="true" role="img" icon="bi:envelope-at" aria-label="Icon envelope-at from bi Iconify.design set." title="Icon envelope-at from bi Iconify.design set."></iconify-icon></a> <a href="cv/kenny_cv.pdf" class="btn btn-outline-primary" role="button"><iconify-icon inline="true" role="img" icon="academicons:cv" aria-label="Icon cv from academicons Iconify.design set." title="Icon cv from academicons Iconify.design set."></iconify-icon></a></p>
+<div id="listing-recent-updates" class="quarto-listing quarto-listing-container-custom">
+
+<style>
+.updates-toggle {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.updates-toggle .bi {
+  transition: transform 0.2s ease;
+}
+
+.updates-toggle[aria-expanded="true"] .bi-chevron-down {
+  transform: rotate(180deg);
+}
+
+.updates-wrap {
+  margin-top: 0.75rem;
+}
+
+.updates-panel {
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.updates-list {
+  background: #ffffff;
+  border: 1px solid #e0dbd4;
+  border-radius: 0.25rem;
+  padding: 0.9rem 1.1rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.updates-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.updates-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.updates-list::-webkit-scrollbar-thumb {
+  background: #e0dbd4;
+  border-radius: 4px;
+}
+
+.update-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-left: 3px solid #B31B1B;
+  padding-left: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.update-item:last-child {
+  margin-bottom: 0;
+}
+
+.update-date {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: #B31B1B;
+  white-space: nowrap;
+}
+
+.update-text {
+  color: #3d3d3d;
+}
+</style>
+
+<div class="updates-wrap">
+  <button class="btn btn-outline-primary updates-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#updatesCollapse" aria-expanded="false" aria-controls="updatesCollapse">
+    Recent Updates <i class="bi bi-chevron-down"></i>
+  </button>
+
+  <div class="collapse updates-panel" id="updatesCollapse">
+    <div class="updates-list">
+      
+        <div class="update-item">
+          <span class="update-date">July 2026</span>
+          <span class="update-text">The Society for Political Methodology awarded me the Statistical Software Award for <a href="software.html#geomander-geographic-tools-for-studying-gerrymandering">geomander</a>.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">July 2026</span>
+          <span class="update-text"><strong>dais</strong>, a PDF presenter console, v0.2.0 is now generally available.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">July 2026</span>
+          <span class="update-text"><a href="research.html#weakening-the-voting-rights-act-reduces-minority-representation-and-electoral-competition">"Weakening the Voting Rights Act Reduces Minority Representation and Electoral Competition"</a> is now available.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">July 2026</span>
+          <span class="update-text"><a href="research.html#sampling-solutions-to-the-modifiable-areal-unit-problem">"Sampling Solutions to the Modifiable Areal Unit Problem"</a> is now available.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">July 2026</span>
+          <span class="update-text"><a href="https://christophertkenny.com/ipf/"><code>ipf</code></a> is now available on CRAN.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">June 2026</span>
+          <span class="update-text"><a href="research.html#city-racial-segregation-statistics-are-robust-to-aggregation-bias">"City Racial Segregation Statistics Are Robust to Aggregation Bias"</a> is now published in <em>Nature Cities</em>.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">May 2026</span>
+          <span class="update-text"><a href="research.html#individual-and-differential-harm-in-redistricting">"Individual and Differential Harm in Redistricting"</a> is forthcoming at <em>Nature Human Behaviour</em>.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">May 2026</span>
+          <span class="update-text"><a href="research.html#the-republican-geographic-advantage-in-congressional-elections-has-largely-disappeared-by-2024">"The Republican Geographic Advantage in Congressional Elections Has Largely Disappeared by 2024"</a> is now available.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">May 2026</span>
+          <span class="update-text"><a href="research.html#a-multi-district-markov-chain-monte-carlo-sampler-for-redistricting">"A Multi-District Markov Chain Monte Carlo Sampler for Redistricting"</a> is now available.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">May 2026</span>
+          <span class="update-text"><a href="research.html#redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">"Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors"</a> is forthcoming at the <em>American Political Science Review</em>.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">May 2026</span>
+          <span class="update-text"><a href="https://christophertkenny.com/manifesto/"><code>manifesto</code></a> is now available on CRAN.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">March 2026</span>
+          <span class="update-text"><a href="https://christophertkenny.com/wf/"><code>wf</code></a> is now available on CRAN.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">March 2026</span>
+          <span class="update-text"><a href="https://christophertkenny.com/lobby/"><code>lobby</code></a> is now available on CRAN.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">February 2026</span>
+          <span class="update-text"><a href="https://christophertkenny.com/rict/"><code>rict</code></a> is now available on CRAN.</span>
+        </div>
+      
+        <div class="update-item">
+          <span class="update-date">February 2026</span>
+          <span class="update-text"><a href="https://alarm-redist.org/adj/"><code>adj</code></a> is now available on CRAN.</span>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
 </section>
 <div id="listing-package-carousel" class="quarto-listing quarto-listing-container-custom">
 

@@ -1,0 +1,104 @@
+```{=html}
+
+<%
+function renderMarkdown(text) {
+  if (!text) return text;
+  return text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+%>
+
+<style>
+.updates-toggle {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.updates-toggle .bi {
+  transition: transform 0.2s ease;
+}
+
+.updates-toggle[aria-expanded="true"] .bi-chevron-down {
+  transform: rotate(180deg);
+}
+
+.updates-wrap {
+  margin-top: 0.75rem;
+}
+
+.updates-panel {
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.updates-list {
+  background: #ffffff;
+  border: 1px solid #e0dbd4;
+  border-radius: 0.25rem;
+  padding: 0.9rem 1.1rem;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.updates-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.updates-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.updates-list::-webkit-scrollbar-thumb {
+  background: #e0dbd4;
+  border-radius: 4px;
+}
+
+.update-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-left: 3px solid #B31B1B;
+  padding-left: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.update-item:last-child {
+  margin-bottom: 0;
+}
+
+.update-date {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: #B31B1B;
+  white-space: nowrap;
+}
+
+.update-text {
+  color: #3d3d3d;
+}
+</style>
+
+<div class="updates-wrap">
+  <button class="btn btn-outline-primary updates-toggle" type="button"
+          data-bs-toggle="collapse" data-bs-target="#updatesCollapse"
+          aria-expanded="false" aria-controls="updatesCollapse">
+    Recent Updates <i class="bi bi-chevron-down"></i>
+  </button>
+
+  <div class="collapse updates-panel" id="updatesCollapse">
+    <div class="updates-list">
+      <% for (const item of items) { %>
+        <div class="update-item">
+          <span class="update-date"><%- item.date %></span>
+          <span class="update-text"><%= renderMarkdown(item.update) %></span>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+```

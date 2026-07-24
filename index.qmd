@@ -23,12 +23,22 @@ listing:
     contents: webscripts/carousel-subset.yml
     template: webscripts/carousel.ejs
     type: custom
+  - id: recent-updates
+    contents: webscripts/updates.yml
+    template: webscripts/updates.ejs
+    type: custom
+    date-format: "MMMM YYYY"
 ---
 
-```{=css}
+```{=html}
+<style>
 .justify {
   text-align: justify !important
 }
+.grid > .g-col-12 {
+  min-width: 0;
+}
+</style>
 ```
 
 :::::: {.column-screen-inset}
@@ -43,11 +53,12 @@ listing:
 
 ![](figs/ckenny_small.webp){width=20em}
 
-
-
-Postdoctoral Research Associate, Data-Driven Social Science, Princeton University
+Postdoctoral Research Associate, Data-Driven Social Science<br>Princeton University
 
 [{{< iconify fa6-brands twitter >}}](https://twitter.com/Chris_T_Kenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands google-scholar >}}](https://scholar.google.com/citations?user=uVUhHXAAAAAJ){.btn .btn-outline-primary .btn role="button"} [{{< iconify fa6-brands github >}}](https://github.com/christopherkenny){.btn .btn-outline-primary .btn role="button"} [{{< iconify bi envelope-at >}}](mailto:ctkenny@princeton.edu){.btn .btn-outline-primary .btn role="button"} [{{< iconify academicons cv >}}](cv/kenny_cv.pdf){.btn .btn-outline-primary .btn role="button"}
+
+::: {#recent-updates}
+:::
 
 :::
 
