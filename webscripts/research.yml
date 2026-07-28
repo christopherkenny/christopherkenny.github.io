@@ -34,7 +34,7 @@
 
     - title: "Sampling Solutions to the Modifiable Areal Unit Problem"
       authors: "With Jacob R. Brown and Tyler Simko"
-      url: "https://osf.io/preprints/socarxiv/un8sk_v1"
+      url: "https://osf.io/preprints/socarxiv/gpq32_v1"
       abstract: "Political scientists often use aggregate spatial units like neighborhoods, precincts, and administrative districts. Statistics based on aggregate data are sensitive to boundary definitions, a well-known issue called the Modifiable Areal Unit Problem. Scholars struggle to investigate this issue because the number of possible aggregations in most applied problems is intractably large. We propose a sampling-based method for measuring geographic aggregation sensitivity. Building on graph partition algorithms developed for legislative redistricting, our approach allows researchers to sample alternative aggregations from a specified target distribution. Researchers can ensure aggregations are realistic for their setting by defining constraints, such as population targets and respect for geographic boundaries. Researchers can then compare estimates across aggregations. We illustrate our approach through applications measuring segregation, racially polarized voting, and the relationship between racial context and exclusionary attitudes. Alternative aggregations can shift estimates in these analyses by 11% to 44% depending on outcome and setting."
       bibtex: |
         @misc{brown2026sampling,
