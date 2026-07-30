@@ -1,21 +1,5 @@
 - category: Selected Working Papers
   papers:
-    - title: "Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors"
-      authors: "with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai"
-      url: "https://arxiv.org/abs/2407.11336"
-      award: "Forthcoming at the American Political Science Review"
-      abstract: "Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York."
-      bibtex: |
-        @article{mccartan2024redistricting,
-          title={Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors},
-          author={McCartan, Cory and Kenny, Christopher T. and  Simko, Tyler and Ebowe, Emma and Zhao, Michael Y. and Imai, Kosuke},
-              year={2024},
-              eprint={2407.11336},
-              archivePrefix={arXiv},
-              primaryClass={stat.AP},
-              url={https://arxiv.org/abs/2407.11336},
-        }
-
     - title: "Individual and Differential Harm in Redistricting"
       authors: "with Cory McCartan"
       url: "https://osf.io/preprints/socarxiv/nc2x7_v2"
@@ -115,6 +99,23 @@
 
 - category: Publications
   papers:
+    - title: "Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors"
+      authors: "with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai"
+      journal: "American Political Science Review"
+      year: "2026"
+      url: "https://www.cambridge.org/core/journals/american-political-science-review/article/redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors/5D85E711B3C401F0D24A9B7BB8C50337"
+      abstract: "Political actors frequently manipulate redistricting plans to gain electoral advantages, a process commonly known as gerrymandering. To address this problem, several states have implemented institutional reforms including the establishment of map-drawing commissions. It is difficult to assess the impact of such reforms because each state structures bundles of complex rules in different ways. We propose to model redistricting processes as a sequential game. The equilibrium solution to the game summarizes multi-step institutional interactions as a single dimensional score. This score measures the leeway political actors have over the partisan lean of the final plan. Using a differences-in-differences design, we demonstrate that reforms reduce partisan bias and increase competitiveness when they constrain partisan actors. We perform a counterfactual policy analysis to estimate the partisan effects of enacting recent institutional reforms nationwide. We find that instituting redistricting commissions generally reduces the current Republican advantage, but Michigan-style reforms would yield a much greater pro-Democratic effect than types of redistricting commissions adopted in Ohio and New York."
+      bibtex: |
+        @article{mccartan2026redistricting,
+          title={Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors},
+          author={McCartan, Cory and Kenny, Christopher T. and Simko, Tyler and Ebowe, Emma and Zhao, Michael Y. and Imai, Kosuke},
+          journal={American Political Science Review},
+          year={2026},
+          pages={1--20},
+          doi={10.1017/S0003055426101610},
+          URL={https://doi.org/10.1017/S0003055426101610},
+        }
+
     - title: "City racial segregation statistics are robust to aggregation bias"
       authors: "with Jacob R. Brown and Tyler Simko"
       journal: "Nature Cities"
