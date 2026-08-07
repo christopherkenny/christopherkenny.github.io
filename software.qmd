@@ -2,13 +2,56 @@
 title: "Software"
 description: "R Packages"
 listing:
-  - id: packages
+  - id: cran-redistricting
     template: webscripts/software.ejs
     contents: webscripts/pkgs.yml
+    include:
+      section: cran-redistricting
+  - id: cran-census
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: cran-census
+  - id: cran-plotting
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: cran-plotting
+  - id: cran-api
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: cran-api
+  - id: cran-other
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: cran-other
+  - id: github-redistricting
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: github-redistricting
+  - id: github-census
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: github-census
+  - id: github-plotting
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: github-plotting
+  - id: github-other
+    template: webscripts/software.ejs
+    contents: webscripts/pkgs.yml
+    include:
+      section: github-other
   - id: other
     template: webscripts/other.ejs
     contents: webscripts/other.yml
 page-layout: full
+toc: true
 ---
 
 ```{r setup, include=FALSE, eval = FALSE}
@@ -100,7 +143,53 @@ if (FALSE) {
 
 Build status and binaries for all packages are available on [R-universe](https://christopherkenny.r-universe.dev/builds).
 
-::: {#packages}
+## Packages on CRAN
+
+### Packages for redistricting
+
+::: {#cran-redistricting}
+:::
+
+### Packages for working with Census Bureau data
+
+::: {#cran-census}
+:::
+
+### Packages for plotting data
+
+::: {#cran-plotting}
+:::
+
+### Packages interfacing with API services
+
+::: {#cran-api}
+:::
+
+### Other R packages
+
+::: {#cran-other}
+:::
+
+## Packages on GitHub
+
+### Packages for redistricting
+
+::: {#github-redistricting}
+:::
+
+### Packages for working with Census Bureau data
+
+::: {#github-census}
+:::
+
+### Packages for plotting data
+
+::: {#github-plotting}
+:::
+
+### Other R packages
+
+::: {#github-other}
 :::
 
 ## Other Software

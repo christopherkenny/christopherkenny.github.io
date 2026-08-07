@@ -1,38 +1,30 @@
 ```{=html}
 
-<% for (const item of items) { %>
+<div class="list grid">
 
-    <h2><%- item.category %></h2>
+    <% for (const item of items) { %>
 
-    <p><%- item.description %></p>
-
-    <div class="list grid">
-
-        <% for (const ext of item.extensions) { %>
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                <% if(ext.image){ %>
-                    <a href="<%- ext.link %>">
-                        <img src="<%- ext.image %>"
-                        class="card-img-top img-fluid rounded-start" alt="<%- ext.name %> first page">
-                    </a>
-                <% } %>
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="<%- ext.link %>"><%- ext.name %></a></h5>
-                            <% if(ext.badges){ %>
-                                <% for (const badge of ext.badges) { %>
-                                    <span class="badge rounded-pill bg-dark"><%- badge %></span>
-                                <% } %>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" <%= metadataAttrs(item) %>>
+            <% if(item.image){ %>
+                <a href="<%- item.link %>">
+                    <img src="<%- item.image %>"
+                    class="card-img-top img-fluid rounded-start" alt="<%- item.name %> first page">
+                </a>
+            <% } %>
+                <div class="card-body">
+                    <h5 class="card-title listing-title"><a href="<%- item.link %>"><%- item.name %></a></h5>
+                        <% if(item.badges){ %>
+                            <% for (const badge of item.badges) { %>
+                                <span class="badge rounded-pill bg-dark"><%- badge %></span>
                             <% } %>
-                        <p class="card-text"><small class="text-muted">
-                            <%= ext.description %>
-                        </small></p>
-                    </div>
-            </div>
+                        <% } %>
+                    <p class="card-text"><small class="text-muted">
+                        <%= item.description %>
+                    </small></p>
+                </div>
+        </div>
 
-        <% } %>
+    <% } %>
 
-    </div>
-
-<% } %>
+</div>
 ```

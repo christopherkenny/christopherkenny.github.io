@@ -2,13 +2,44 @@
 title: "Quarto Extensions"
 description: "Templates and filters for reproducible reports made (mostly) for Quarto"
 listing:
-  - id: templates
+  - id: journal-templates
     template: webscripts/templates.ejs
     contents: webscripts/templates.yml
+    include:
+      section: journal-templates
+  - id: quarto-filters
+    template: webscripts/templates.ejs
+    contents: webscripts/templates.yml
+    include:
+      section: quarto-filters
+  - id: other-templates
+    template: webscripts/templates.ejs
+    contents: webscripts/templates.yml
+    include:
+      section: other-templates
 page-layout: full
+toc: true
 ---
 
 A live gallery with rendered previews of all templates is available at [christophertkenny.com/template-gallery](https://christophertkenny.com/template-gallery/).
 
-::: {#templates}
+## Journal templates
+
+Templates for general science and social science journals.
+
+::: {#journal-templates}
+:::
+
+## Quarto filters
+
+Quarto extensions which provide additional document functions.
+
+::: {#quarto-filters}
+:::
+
+## Other templates
+
+Formats for non-journal documents.
+
+::: {#other-templates}
 :::

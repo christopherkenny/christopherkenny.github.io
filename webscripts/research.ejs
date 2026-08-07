@@ -1,7 +1,6 @@
 ```{=html}
 
 <%
-// Function to convert markdown links to HTML
 function renderMarkdownLinks(text) {
   if (!text) return text;
   return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
@@ -92,94 +91,89 @@ function slugify(text) {
 }
 </style>
 
-<% for (const item of items) { %>
+<div class="list">
 
-    <h2><%- item.category %></h2>
-
-    <div class="list">
-
-      <% for (const paper of item.papers) { %>
-      <div class="research-card">
-          <h5 class="card-title" id="<%- slugify(paper.title) %>">
-              <% if (paper.url) { %>
-                  <a href="<%- paper.url %>" target="_blank"><%- paper.title %></a>
-              <% } else { %>
-                  <%- paper.title %>
-              <% } %>
-          </h5>
-
-          <% if (paper.authors) { %>
-              <p class="paper-authors">(<%- paper.authors %>)</p>
+  <% for (const paper of items) { %>
+  <div class="research-card" <%= metadataAttrs(paper) %>>
+      <h5 class="card-title listing-title" id="<%- slugify(paper.title) %>">
+          <% if (paper.url) { %>
+              <a href="<%- paper.url %>" target="_blank"><%- paper.title %></a>
+          <% } else { %>
+              <%- paper.title %>
           <% } %>
+      </h5>
 
-          <% if (paper.journal && paper.year) { %>
-              <p class="paper-venue"><%- paper.year %>. <%- paper.journal %>.</p>
-          <% } else if (paper.type && paper.year) { %>
-              <p class="paper-venue"><%- paper.type %>. <%- paper.year %>.</p>
-          <% } else if (paper.type) { %>
-              <p class="paper-venue"><%- paper.type %>.</p>
-          <% } %>
+      <% if (paper.authors) { %>
+          <p class="paper-authors">(<%- paper.authors %>)</p>
+      <% } %>
 
-          <% if (paper.award) { %>
-              <p class="paper-award"><%- paper.award %></p>
-          <% } %>
+      <% if (paper.journal && paper.year) { %>
+          <p class="paper-venue"><%- paper.year %>. <%- paper.journal %>.</p>
+      <% } else if (paper.type && paper.year) { %>
+          <p class="paper-venue"><%- paper.type %>. <%- paper.year %>.</p>
+      <% } else if (paper.type) { %>
+          <p class="paper-venue"><%- paper.type %>.</p>
+      <% } %>
 
-          <% if (paper.coverage) { %>
-              <p class="paper-coverage"><%= renderMarkdownLinks(paper.coverage) %></p>
-          <% } %>
+      <% if (paper.award) { %>
+          <p class="paper-award"><%- paper.award %></p>
+      <% } %>
 
-          <% if (paper.description) { %>
-              <p class="paper-description"><%- paper.description %></p>
-          <% } %>
+      <% if (paper.coverage) { %>
+          <p class="paper-coverage"><%= renderMarkdownLinks(paper.coverage) %></p>
+      <% } %>
 
-          <% if (paper.abstract || paper.summary || paper.first_paragraph || paper.bibtex) { %>
-              <div class="mb-2">
-                  <% if (paper.abstract) { %>
-                      <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-<%- slugify(paper.title) %>">
-                          Abstract
-                      </button>
-                  <% } %>
-                  <% if (paper.summary) { %>
-                      <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#summary-<%- slugify(paper.title) %>">
-                          Summary
-                      </button>
-                  <% } %>
-                  <% if (paper.first_paragraph) { %>
-                      <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#first-paragraph-<%- slugify(paper.title) %>">
-                          First paragraph
-                      </button>
-                  <% } %>
-                  <% if (paper.bibtex) { %>
-                      <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-<%- slugify(paper.title) %>">
-                          BibTeX
-                      </button>
-                  <% } %>
-              </div>
+      <% if (paper.description) { %>
+          <p class="paper-description"><%- paper.description %></p>
+      <% } %>
 
+      <% if (paper.abstract || paper.summary || paper.first_paragraph || paper.bibtex) { %>
+          <div class="mb-2">
               <% if (paper.abstract) { %>
-                  <div class="collapse" id="abstract-<%- slugify(paper.title) %>">
-                      <div class="collapse-content"><%- paper.abstract %></div>
-                  </div>
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-<%- slugify(paper.title) %>">
+                      Abstract
+                  </button>
               <% } %>
               <% if (paper.summary) { %>
-                  <div class="collapse" id="summary-<%- slugify(paper.title) %>">
-                      <div class="collapse-content"><%- paper.summary %></div>
-                  </div>
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#summary-<%- slugify(paper.title) %>">
+                      Summary
+                  </button>
               <% } %>
               <% if (paper.first_paragraph) { %>
-                  <div class="collapse" id="first-paragraph-<%- slugify(paper.title) %>">
-                      <div class="collapse-content"><%- paper.first_paragraph %></div>
-                  </div>
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#first-paragraph-<%- slugify(paper.title) %>">
+                      First paragraph
+                  </button>
               <% } %>
               <% if (paper.bibtex) { %>
-                  <div class="collapse" id="bibtex-<%- slugify(paper.title) %>">
-                      <pre><%- paper.bibtex %></pre>
-                  </div>
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#bibtex-<%- slugify(paper.title) %>">
+                      BibTeX
+                  </button>
               <% } %>
-          <% } %>
-      </div>
+          </div>
 
-        <% } %>
-    </div>
-<% } %>
+          <% if (paper.abstract) { %>
+              <div class="collapse" id="abstract-<%- slugify(paper.title) %>">
+                  <div class="collapse-content"><%- paper.abstract %></div>
+              </div>
+          <% } %>
+          <% if (paper.summary) { %>
+              <div class="collapse" id="summary-<%- slugify(paper.title) %>">
+                  <div class="collapse-content"><%- paper.summary %></div>
+              </div>
+          <% } %>
+          <% if (paper.first_paragraph) { %>
+              <div class="collapse" id="first-paragraph-<%- slugify(paper.title) %>">
+                  <div class="collapse-content"><%- paper.first_paragraph %></div>
+              </div>
+          <% } %>
+          <% if (paper.bibtex) { %>
+              <div class="collapse" id="bibtex-<%- slugify(paper.title) %>">
+                  <pre><%- paper.bibtex %></pre>
+              </div>
+          <% } %>
+      <% } %>
+  </div>
+
+    <% } %>
+</div>
 ```

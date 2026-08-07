@@ -78,20 +78,76 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-templates .list');
+    const listingTargetEl = window.document.querySelector('#listing-journal-templates .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-category','listing-description','listing-extensions',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-name','listing-section','listing-categories','listing-link','listing-image','listing-type','listing-badges','listing-description',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-category","listing-description","listing-extensions"],
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-link","listing-image","listing-type","listing-badges","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-templates'] = new List('listing-templates', options);
+    window['quarto-listings']['listing-journal-templates'] = new List('listing-journal-templates', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-quarto-filters .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-link','listing-type','listing-description','listing-badges',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-link","listing-type","listing-description","listing-badges"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-quarto-filters'] = new List('listing-quarto-filters', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-other-templates .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-link','listing-image','listing-type','listing-description','listing-badges',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-link","listing-image","listing-type","listing-description","listing-badges"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-other-templates'] = new List('listing-other-templates', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -234,9 +290,19 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#journal-templates" id="toc-journal-templates" class="nav-link active" data-scroll-target="#journal-templates">Journal templates</a></li>
+  <li><a href="#quarto-filters" id="toc-quarto-filters" class="nav-link" data-scroll-target="#quarto-filters">Quarto filters</a></li>
+  <li><a href="#other-templates" id="toc-other-templates" class="nav-link" data-scroll-target="#other-templates">Other templates</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -250,7 +316,7 @@ window.Quarto = {
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -263,617 +329,645 @@ window.Quarto = {
 
 
 <p>A live gallery with rendered previews of all templates is available at <a href="https://christophertkenny.com/template-gallery/">christophertkenny.com/template-gallery</a>.</p>
-<div id="listing-templates" class="quarto-listing quarto-listing-container-custom">
+<section id="journal-templates" class="level2">
+<h2 class="anchored" data-anchor-id="journal-templates">Journal templates</h2>
+<p>Templates for general science and social science journals.</p>
+<div id="listing-journal-templates" class="quarto-listing quarto-listing-container-custom">
 
-    <h2 class="anchored">Journal templates</h2>
+<div class="list grid">
 
-    <p>Templates for general science and social science journals.</p>
+    
 
-    <div class="list grid">
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/annual-reviews">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/annual-reviews/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Annual Reviews first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/annual-reviews">Annual Reviews</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="0" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/annual-reviews">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/annual-reviews/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Annual Reviews first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/annual-reviews">Annual Reviews</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Annual Reviews drafts.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/apsr">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/apsr/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="APSR first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/apsr">APSR</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Annual Reviews drafts.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="1" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/apsr">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/apsr/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="APSR first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/apsr">APSR</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            For the American Political Science Review submissions.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/cambridge-medium">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/cambridge-medium/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Cambridge Medium first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/cambridge-medium">Cambridge Medium</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Cambridge Medium journal submissions, including PA, PSRM, BJPS, SPQ, and more.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For the American Political Science Review submissions.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/nature">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/nature/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Nature first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/nature">Nature</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="2" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/cambridge-medium">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/cambridge-medium/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Cambridge Medium first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/cambridge-medium">Cambridge Medium</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Springer Nature journal submissions.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/pnas">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/pnas/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="PNAS first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/pnas">PNAS</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Cambridge Medium journal submissions, including PA, PSRM, BJPS, SPQ, and more.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="3" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/nature">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/nature/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Nature first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/nature">Nature</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            For PNAS submissions.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/pnas-si">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/pnas-si/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="PNAS Supporting Information first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/pnas-si">PNAS Supporting Information</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For PNAS SI (appendices) submissions.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Springer Nature journal submissions.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/scientific-data">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/scientific-data/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Scientific Data first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/scientific-data">Scientific Data</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="4" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/pnas">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/pnas/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="PNAS first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/pnas">PNAS</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Scientific Data "Data Descriptors" submissions.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/perspectives">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/perspectives/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Perspectives first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/perspectives">Perspectives</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For PNAS submissions.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="5" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/pnas-si">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/pnas-si/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="PNAS Supporting Information first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/pnas-si">PNAS Supporting Information</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Perspectives on Politics submissions.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/rticles">Science</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">rticles</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Science and Science Advances submissions.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For PNAS SI (appendices) submissions.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/oup">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/oup/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Oxford University Press first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/oup">Oxford University Press</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="6" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/scientific-data">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/scientific-data/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Scientific Data first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/scientific-data">Scientific Data</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For submissions to OUP journals.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/now">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/now/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="now Publishers first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/now">now Publishers</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Scientific Data "Data Descriptors" submissions.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="7" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/perspectives">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/perspectives/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Perspectives first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/perspectives">Perspectives</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            For submissions to now Publishers journals, including QJPS.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-    </div>
-
-    <h2 class="anchored">Quarto filters</h2>
-
-    <p>Quarto extensions which provide additional document functions.</p>
-
-    <div class="list grid">
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/wordcount">wordcount</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">HTML</span>
-                                
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            Insert word counts into the body of a document.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Perspectives on Politics submissions.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/typst-function">typst-function</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="8" data-categories="cnRpY2xlcyUyQ0xhVGVY">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/rticles">Science</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">rticles</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            Add Typst functions to Quarto documents using div and span syntax.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/spellcheck">spellcheck</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">LaTeX</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">HTML</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Science and Science Advances submissions.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="9" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/oup">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/oup/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="Oxford University Press first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/oup">Oxford University Press</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            Print misspelled words to the console using Hunspell.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/typst-refs">typst-refs</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            Move a bibliography using the refs div within a Quarto document.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For submissions to OUP journals.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/pseudocode">pseudocode</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="10" data-categories="UXVhcnRvJTJDTGFUZVg=">
+            
+                <a href="https://github.com/christopherkenny/now">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/now/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="now Publishers first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/now">now Publishers</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            Generate and style pseudocode for Typst within a Quarto document.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/quarto-jot">jot</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For submissions to now Publishers journals, including QJPS.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="quarto-filters" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-filters">Quarto filters</h2>
+<p>Quarto extensions which provide additional document functions.</p>
+<div id="listing-quarto-filters" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="0" data-categories="UXVhcnRvJTJDTGFUZVglMkNIVE1M">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/wordcount">wordcount</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            Include statistics generated by the R package [jot](https://christophertkenny.com/jot/).
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-    </div>
-
-    <h2 class="anchored">Other templates</h2>
-
-    <p>Formats for non-journal documents.</p>
-
-    <div class="list grid">
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/tufte">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/tufte/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="tufte first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/tufte">tufte</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For Tufte-style documents in Quarto with a Typst backend.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/ctk-article">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/ctk-article/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-article first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/ctk-article">ctk-article</a></h5>
+                                <span class="badge rounded-pill bg-dark">HTML</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Insert word counts into the body of a document.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="1" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/typst-function">typst-function</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            A general purpose template for preprints and submissions using Quarto and Typst.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/ctk-memo">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/ctk-memo/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-memo first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/ctk-memo">ctk-memo</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Typst</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For memos in Quarto with a Typst backend.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Add Typst functions to Quarto documents using div and span syntax.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/ctk-syllabus">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/ctk-syllabus/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-syllabus first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/ctk-syllabus">ctk-syllabus</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="2" data-categories="UXVhcnRvJTJDTGFUZVglMkNUeXBzdCUyQ0hUTUw=">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/spellcheck">spellcheck</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For syllabi in Quarto with a Typst backend.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/ctk-legal">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/ctk-legal/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-legal first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/ctk-legal">ctk-legal</a></h5>
+                                <span class="badge rounded-pill bg-dark">LaTeX</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Typst</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            An expert report template with automatically numbered paragraphs using Quarto and Typst.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/ctk-invoice">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/ctk-invoice/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-invoice first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/ctk-invoice">ctk-invoice</a></h5>
+                                <span class="badge rounded-pill bg-dark">HTML</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Print misspelled words to the console using Hunspell.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="3" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/typst-refs">typst-refs</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            An hourly invoice template using Quarto and Typst.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/quarto-cv">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/quarto-cv/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="cv first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/quarto-cv">cv</a></h5>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Typst</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            For a shortcode + BibTeX powered CV in Quarto with a Typst backend.
-                        </small></p>
-                    </div>
-            </div>
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Move a bibliography using the refs div within a Quarto document.
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/projector">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/projector/main/example.gif" class="card-img-top img-fluid rounded-start" alt="projector first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/projector">projector</a></h5>
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="4" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/pseudocode">pseudocode</a></h5>
+                        
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
                             
-                        <p class="card-text"><small class="text-muted">
-                            Make slides in Quarto powered by Typst's Polylux.
-                        </small></p>
-                    </div>
-            </div>
-
-        
-
-            <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light">
-                
-                    <a href="https://github.com/christopherkenny/harvard-diss">
-                        <img src="https://raw.githubusercontent.com/christopherkenny/harvard-diss/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="harvard-diss first page">
-                    </a>
-                
-                    <div class="card-body">
-                        <h5 class="card-title anchored"><a href="https://github.com/christopherkenny/harvard-diss">harvard-diss</a></h5>
+                                <span class="badge rounded-pill bg-dark">Typst</span>
                             
-                                
-                                    <span class="badge rounded-pill bg-dark">Quarto</span>
-                                
-                                    <span class="badge rounded-pill bg-dark">Typst</span>
-                                
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Generate and style pseudocode for Typst within a Quarto document.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="5" data-categories="UXVhcnRv">
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/quarto-jot">jot</a></h5>
+                        
                             
-                        <p class="card-text"><small class="text-muted">
-                            Write a Harvard GSAS Dissertation in Quarto with a Typst backend.
-                        </small></p>
-                    </div>
-            </div>
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Include statistics generated by the R package [jot](https://christophertkenny.com/jot/).
+                    </small></p>
+                </div>
+        </div>
 
-        
+    
 
-    </div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="other-templates" class="level2">
+<h2 class="anchored" data-anchor-id="other-templates">Other templates</h2>
+<p>Formats for non-journal documents.</p>
+<div id="listing-other-templates" class="quarto-listing quarto-listing-container-custom">
 
+<div class="list grid">
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="0" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/tufte">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/tufte/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="tufte first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/tufte">tufte</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For Tufte-style documents in Quarto with a Typst backend.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="1" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/ctk-article">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/ctk-article/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-article first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/ctk-article">ctk-article</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        A general purpose template for preprints and submissions using Quarto and Typst.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="2" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/ctk-memo">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/ctk-memo/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-memo first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/ctk-memo">ctk-memo</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For memos in Quarto with a Typst backend.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="3" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/ctk-syllabus">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/ctk-syllabus/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-syllabus first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/ctk-syllabus">ctk-syllabus</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For syllabi in Quarto with a Typst backend.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="4" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/ctk-lecture">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/ctk-lecture/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-lecture first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/ctk-lecture">ctk-lecture</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For academic lecture notes in Quarto with a Typst backend.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="5" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/ctk-legal">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/ctk-legal/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-legal first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/ctk-legal">ctk-legal</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        An expert report template with automatically numbered paragraphs using Quarto and Typst.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="6" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/ctk-invoice">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/ctk-invoice/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="ctk-invoice first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/ctk-invoice">ctk-invoice</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        An hourly invoice template using Quarto and Typst.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="7" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/quarto-cv">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/quarto-cv/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="cv first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/quarto-cv">cv</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        For a shortcode + BibTeX powered CV in Quarto with a Typst backend.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="8" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/projector">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/projector/main/example.gif" class="card-img-top img-fluid rounded-start" alt="projector first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/projector">projector</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Make slides in Quarto powered by Typst's Polylux.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+        <div class="card g-col-12 g-col-sm-6 g-col-md-3 bg-light" data-index="9" data-categories="UXVhcnRvJTJDVHlwc3Q=">
+            
+                <a href="https://github.com/christopherkenny/harvard-diss">
+                    <img src="https://raw.githubusercontent.com/christopherkenny/harvard-diss/main/template_1.png" class="card-img-top img-fluid rounded-start" alt="harvard-diss first page">
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title listing-title anchored"><a href="https://github.com/christopherkenny/harvard-diss">harvard-diss</a></h5>
+                        
+                            
+                                <span class="badge rounded-pill bg-dark">Quarto</span>
+                            
+                                <span class="badge rounded-pill bg-dark">Typst</span>
+                            
+                        
+                    <p class="card-text"><small class="text-muted">
+                        Write a Harvard GSAS Dissertation in Quarto with a Typst backend.
+                    </small></p>
+                </div>
+        </div>
+
+    
+
+</div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1280,7 +1374,7 @@ window.Quarto = {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Copyright 2021-2025 Christopher T. Kenny.<br> All rights reserved.</p>
+<p>© Copyright 2021-2026 Christopher T. Kenny.<br> All rights reserved.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

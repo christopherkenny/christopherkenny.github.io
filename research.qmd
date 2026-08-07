@@ -2,11 +2,46 @@
 title: "Research"
 description: |
   Research in American Politics and Political Methodology
-listing: 
-  - id: papers
+listing:
+  - id: working-papers
     template: webscripts/research.ejs
     contents: webscripts/research.yml
+    include:
+      section: working-papers
+    categories: true
+  - id: publications
+    template: webscripts/research.ejs
+    contents: webscripts/research.yml
+    include:
+      section: publications
+  - id: works-in-progress
+    template: webscripts/research.ejs
+    contents: webscripts/research.yml
+    include:
+      section: works-in-progress
+  - id: public-writing
+    template: webscripts/research.ejs
+    contents: webscripts/research.yml
+    include:
+      section: public-writing
 ---
 
-::: {#papers}
+## Selected Working Papers
+
+::: {#working-papers}
+:::
+
+## Publications
+
+::: {#publications}
+:::
+
+## Works-in-progress
+
+::: {#works-in-progress}
+:::
+
+## Public Writing
+
+::: {#public-writing}
 :::

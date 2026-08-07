@@ -1,40 +1,31 @@
 
 ```{=html}
 
-<% for (const item of items) { %>
-
-<h2>Packages on <%- item.category %></h2>
-
-  <% for (const topic of item.topics) { %>
-  <% if (item.category == "CRAN") { %>
-     <h3> <%- topic.description %></h3>
-  <% } %>
-
 <div class="list grid">
 
-<% for (const package of topic.packages) { %>
+<% for (const item of items) { %>
 
-  <div class="card-borderless g-col-2">
-    <a href="<%- package.link %>">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- package.logo %>" class="img-fluid rounded-start" alt="<%- package.name %> hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title"><%- package.name %>: <%- package.info %></h5>
-        <% if(package.coauthors){ %>
-          <p class="card-text">(with <%- package.coauthors %>)</p>
-        <% } %>
-        <p class="card-text"><small class="text-muted"><%= package.description %></small></p>
+  <div class="card-borderless g-col-12" <%= metadataAttrs(item) %>>
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="<%- item.link %>">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/<%- item.logo %>" class="img-fluid rounded-start" alt="<%- item.name %> hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title"><%- item.name %>: <%- item.info %></h5>
+            <% if(item.coauthors){ %>
+              <p class="card-text">(with <%- item.coauthors %>)</p>
+            <% } %>
+            <p class="card-text"><small class="text-muted"><%= item.description %></small></p>
+        </div>
+      </div>
     </div>
   </div>
 
 <% } %>
 
 </div>
-
-<% } %>
-
-<% } %>
 
 ```

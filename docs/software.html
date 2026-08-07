@@ -78,20 +78,244 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-packages .list');
+    const listingTargetEl = window.document.querySelector('#listing-cran-redistricting .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-category','listing-topics',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-coauthors','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-category","listing-topics"],
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-coauthors","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-packages'] = new List('listing-packages', options);
+    window['quarto-listings']['listing-cran-redistricting'] = new List('listing-cran-redistricting', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-cran-census .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-coauthors','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-coauthors","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-cran-census'] = new List('listing-cran-census', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-cran-plotting .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title','listing-coauthors',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title","listing-coauthors"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-cran-plotting'] = new List('listing-cran-plotting', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-cran-api .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-cran-api'] = new List('listing-cran-api', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-cran-other .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-cran-other'] = new List('listing-cran-other', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-github-redistricting .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-coauthors','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-coauthors","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-github-redistricting'] = new List('listing-github-redistricting', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-github-census .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-github-census'] = new List('listing-github-census', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-github-plotting .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-coauthors','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-coauthors","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-github-plotting'] = new List('listing-github-plotting', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-github-other .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-section','listing-categories','listing-logo','listing-info','listing-coauthors','listing-status','listing-link','listing-color','listing-topic','listing-description','listing-topic_title',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-section","listing-categories","listing-logo","listing-info","listing-coauthors","listing-status","listing-link","listing-color","listing-topic","listing-description","listing-topic_title"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-github-other'] = new List('listing-github-other', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -262,9 +486,32 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#packages-on-cran" id="toc-packages-on-cran" class="nav-link active" data-scroll-target="#packages-on-cran">Packages on CRAN</a>
+  <ul class="collapse">
+  <li><a href="#packages-for-redistricting" id="toc-packages-for-redistricting" class="nav-link" data-scroll-target="#packages-for-redistricting">Packages for redistricting</a></li>
+  <li><a href="#packages-for-working-with-census-bureau-data" id="toc-packages-for-working-with-census-bureau-data" class="nav-link" data-scroll-target="#packages-for-working-with-census-bureau-data">Packages for working with Census Bureau data</a></li>
+  <li><a href="#packages-for-plotting-data" id="toc-packages-for-plotting-data" class="nav-link" data-scroll-target="#packages-for-plotting-data">Packages for plotting data</a></li>
+  <li><a href="#packages-interfacing-with-api-services" id="toc-packages-interfacing-with-api-services" class="nav-link" data-scroll-target="#packages-interfacing-with-api-services">Packages interfacing with API services</a></li>
+  <li><a href="#other-r-packages" id="toc-other-r-packages" class="nav-link" data-scroll-target="#other-r-packages">Other R packages</a></li>
+  </ul></li>
+  <li><a href="#packages-on-github" id="toc-packages-on-github" class="nav-link" data-scroll-target="#packages-on-github">Packages on GitHub</a>
+  <ul class="collapse">
+  <li><a href="#packages-for-redistricting-1" id="toc-packages-for-redistricting-1" class="nav-link" data-scroll-target="#packages-for-redistricting-1">Packages for redistricting</a></li>
+  <li><a href="#packages-for-working-with-census-bureau-data-1" id="toc-packages-for-working-with-census-bureau-data-1" class="nav-link" data-scroll-target="#packages-for-working-with-census-bureau-data-1">Packages for working with Census Bureau data</a></li>
+  <li><a href="#packages-for-plotting-data-1" id="toc-packages-for-plotting-data-1" class="nav-link" data-scroll-target="#packages-for-plotting-data-1">Packages for plotting data</a></li>
+  <li><a href="#other-r-packages-1" id="toc-other-r-packages-1" class="nav-link" data-scroll-target="#other-r-packages-1">Other R packages</a></li>
+  </ul></li>
+  <li><a href="#other-software" id="toc-other-software" class="nav-link" data-scroll-target="#other-software">Other Software</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -278,7 +525,7 @@ window.Quarto = {
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -291,693 +538,157 @@ window.Quarto = {
 
 
 <p>Build status and binaries for all packages are available on <a href="https://christopherkenny.r-universe.dev/builds">R-universe</a>.</p>
-<div id="listing-packages" class="quarto-listing quarto-listing-container-custom">
-
-<h2 class="anchored">Packages on CRAN</h2>
-
-  
-  
-     <h3 class="anchored"> Packages for redistricting</h3>
-  
+<section id="packages-on-cran" class="level2">
+<h2 class="anchored" data-anchor-id="packages-on-cran">Packages on CRAN</h2>
+<section id="packages-for-redistricting" class="level3">
+<h3 class="anchored" data-anchor-id="packages-for-redistricting">Packages for redistricting</h3>
+<div id="listing-cran-redistricting" class="quarto-listing quarto-listing-container-custom">
 
 <div class="list grid">
 
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/redist/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redist.png" class="img-fluid rounded-start" alt="redist hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">redist: Simulation Methods for Legislative Redistricting</h5>
-        
-          <p class="card-text">(with Cory McCartan, Ben Fifield, and Kosuke Imai)</p>
-        
-        <p class="card-text"><small class="text-muted">Enables researchers to sample redistricting plans from a pre-specified target distribution using Sequential Monte Carlo and Markov Chain Monte Carlo algorithms. The package allows for the implementation of various constraints in the redistricting process such as geographic compactness and population parity requirements. Tools for analysis such as computation of various summary statistics and plotting functionality are also included. The package implements the SMC algorithm of McCartan and Imai (2023), the enumeration algorithm of Fifield, Imai, Kawahara, and Kenny (2020), the Flip MCMC algorithm of Fifield, Higgins, Imai and Tarr (2020), the Merge-split/Recombination algorithms of Carter et al. (2019) and DeFord et al. (2021), and the Short-burst optimization algorithm of Cannon et al. (2020).</small></p>
+  <div class="card-borderless g-col-12" data-index="0" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/redist/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redist.png" class="img-fluid rounded-start" alt="redist hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">redist: Simulation Methods for Legislative Redistricting</h5>
+            
+              <p class="card-text">(with Cory McCartan, Ben Fifield, and Kosuke Imai)</p>
+            
+            <p class="card-text"><small class="text-muted">Enables researchers to sample redistricting plans from a pre-specified target distribution using Sequential Monte Carlo and Markov Chain Monte Carlo algorithms. The package allows for the implementation of various constraints in the redistricting process such as geographic compactness and population parity requirements. Tools for analysis such as computation of various summary statistics and plotting functionality are also included. The package implements the SMC algorithm of McCartan and Imai (2023), the enumeration algorithm of Fifield, Imai, Kawahara, and Kenny (2020), the Flip MCMC algorithm of Fifield, Higgins, Imai and Tarr (2020), the Merge-split/Recombination algorithms of Carter et al. (2019) and DeFord et al. (2021), and the Short-burst optimization algorithm of Cannon et al. (2020).</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/redistmetrics/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistmetrics.png" class="img-fluid rounded-start" alt="redistmetrics hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">redistmetrics: Redistricting metrics</h5>
-        
-          <p class="card-text">(with Cory McCartan, Ben Fifield, and Kosuke Imai)</p>
-        
-        <p class="card-text"><small class="text-muted">Reliable and flexible tools for scoring redistricting plans using common measures and metrics. These functions provide key direct access to tools useful for non-simulation analyses of redistricting plans, such as for measuring compactness or partisan fairness. Tools are designed to work with the 'redist' package seamlessly.</small></p>
+  <div class="card-borderless g-col-12" data-index="1" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/redistmetrics/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistmetrics.png" class="img-fluid rounded-start" alt="redistmetrics hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">redistmetrics: Redistricting metrics</h5>
+            
+              <p class="card-text">(with Cory McCartan, Ben Fifield, and Kosuke Imai)</p>
+            
+            <p class="card-text"><small class="text-muted">Reliable and flexible tools for scoring redistricting plans using common measures and metrics. These functions provide key direct access to tools useful for non-simulation analyses of redistricting plans, such as for measuring compactness or partisan fairness. Tools are designed to work with the 'redist' package seamlessly.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/geomander/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_geomander.png" class="img-fluid rounded-start" alt="geomander hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">geomander: Geographic Tools for Studying Gerrymandering</h5>
-        
-        <p class="card-text"><small class="text-muted">A compilation of tools to complete common tasks for studying gerrymandering. This focuses on the geographic tool side of common problems, such as linking different levels of spatial units or estimating how to break up units. Functions exist for creating redistricting-focused data for the US.</small></p>
+  <div class="card-borderless g-col-12" data-index="2" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/geomander/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_geomander.png" class="img-fluid rounded-start" alt="geomander hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">geomander: Geographic Tools for Studying Gerrymandering</h5>
+            
+            <p class="card-text"><small class="text-muted">A compilation of tools to complete common tasks for studying gerrymandering. This focuses on the geographic tool side of common problems, such as linking different levels of spatial units or estimating how to break up units. Functions exist for creating redistricting-focused data for the US.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/alarmdata/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_alarmdata.png" class="img-fluid rounded-start" alt="alarmdata hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">alarmdata: Download, Merge, and Process Redistricting Data</h5>
-        
-          <p class="card-text">(with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)</p>
-        
-        <p class="card-text"><small class="text-muted">Utility functions to download and process data produced by the ALARM Project, including 2020 redistricting files Kenny and McCartan (2021) <a href="https://alarm-redist.org/posts/2021-08-10-census-2020/">https://alarm-redist.org/posts/2021-08-10-census-2020/</a> and the 50-State Redistricting Simulations of McCartan, Kenny, Simko, Garcia, Wang, Wu, Kuriwaki, and Imai (2022). The package extends the data introduced in McCartan, Kenny, Simko, Garcia, Wang, Wu, Kuriwaki, and Imai (2022) to also include states with only a single district.</small></p>
+  <div class="card-borderless g-col-12" data-index="3" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/alarmdata/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_alarmdata.png" class="img-fluid rounded-start" alt="alarmdata hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">alarmdata: Download, Merge, and Process Redistricting Data</h5>
+            
+              <p class="card-text">(with Cory McCartan, Tyler Simko, Michael Zhao, and Kosuke Imai)</p>
+            
+            <p class="card-text"><small class="text-muted">Utility functions to download and process data produced by the ALARM Project, including 2020 redistricting files Kenny and McCartan (2021) <a href="https://alarm-redist.org/posts/2021-08-10-census-2020/">https://alarm-redist.org/posts/2021-08-10-census-2020/</a> and the 50-State Redistricting Simulations of McCartan, Kenny, Simko, Garcia, Wang, Wu, Kuriwaki, and Imai (2022). The package extends the data introduced in McCartan, Kenny, Simko, Garcia, Wang, Wu, Kuriwaki, and Imai (2022) to also include states with only a single district.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/redistverse/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistverse.png" class="img-fluid rounded-start" alt="redistverse hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">redistverse: Easily Install and Load Redistricting Software</h5>
-        
-          <p class="card-text">(with Cory McCartan)</p>
-        
-        <p class="card-text"><small class="text-muted">Easy installation, loading, and control of packages for redistricting data downloading, spatial data processing, simulation, analysis, and visualization. This package makes it easy to install and load multiple 'redistverse' packages at once. The 'redistverse' is developed and maintained by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. For more details see <a href="https://alarm-redist.org">https://alarm-redist.org</a>.</small></p>
+  <div class="card-borderless g-col-12" data-index="4" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/redistverse/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistverse.png" class="img-fluid rounded-start" alt="redistverse hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">redistverse: Easily Install and Load Redistricting Software</h5>
+            
+              <p class="card-text">(with Cory McCartan)</p>
+            
+            <p class="card-text"><small class="text-muted">Easy installation, loading, and control of packages for redistricting data downloading, spatial data processing, simulation, analysis, and visualization. This package makes it easy to install and load multiple 'redistverse' packages at once. The 'redistverse' is developed and maintained by the Algorithm-Assisted Redistricting Methodology (ALARM) Project. For more details see <a href="https://alarm-redist.org">https://alarm-redist.org</a>.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/baf">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_baf.png" class="img-fluid rounded-start" alt="baf hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">baf: Block Assignment Files</h5>
-        
-        <p class="card-text"><small class="text-muted">Download and read US Census Bureau data relationship files. Provides support for cleaning and using block assignment files since 2010, as described in <a href="https://www.census.gov/geographies/reference-files/time-series/geo/block-assignment-files.html">https://www.census.gov/geographies/reference-files/time-series/geo/block-assignment-files.html</a>. Also includes support for working with block equivalency files, used for years outside of decennial census years.</small></p>
+  <div class="card-borderless g-col-12" data-index="5" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/baf">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_baf.png" class="img-fluid rounded-start" alt="baf hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">baf: Block Assignment Files</h5>
+            
+            <p class="card-text"><small class="text-muted">Download and read US Census Bureau data relationship files. Provides support for cleaning and using block assignment files since 2010, as described in <a href="https://www.census.gov/geographies/reference-files/time-series/geo/block-assignment-files.html">https://www.census.gov/geographies/reference-files/time-series/geo/block-assignment-files.html</a>. Also includes support for working with block equivalency files, used for years outside of decennial census years.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/adj/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_adj.png" class="img-fluid rounded-start" alt="adj hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">adj: Lightweight Adjacency Lists</h5>
-        
-          <p class="card-text">(with Cory McCartan)</p>
-        
-        <p class="card-text"><small class="text-muted">Provides an S3 class to represent graph adjacency lists using 'vctrs'. Allows for creation, subsetting, combining, and pretty printing of these lists. Adjacency lists can be easily converted to zero-indexed lists, which allows for easy passing of objects to low-level languages for processing.</small></p>
+  <div class="card-borderless g-col-12" data-index="6" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/adj/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_adj.png" class="img-fluid rounded-start" alt="adj hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">adj: Lightweight Adjacency Lists</h5>
+            
+              <p class="card-text">(with Cory McCartan)</p>
+            
+            <p class="card-text"><small class="text-muted">Provides an S3 class to represent graph adjacency lists using 'vctrs'. Allows for creation, subsetting, combining, and pretty printing of these lists. Adjacency lists can be easily converted to zero-indexed lists, which allows for easy passing of objects to low-level languages for processing.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/rict/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_rict.png" class="img-fluid rounded-start" alt="rict hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">rict: Redistricting in Clean Tables</h5>
-        
-        <p class="card-text"><small class="text-muted">Provides a suite of tools to create tables that accompany maps. The tools create clean, informative tables for electoral outcomes, compactness, and other  district-level quantities. Most tools are aimed at the redistricting context, but are broadly applicable to other electoral data.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-     <h3 class="anchored"> Packages for working with Census Bureau data</h3>
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://corymccartan.com/PL94171/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_PL94171.png" class="img-fluid rounded-start" alt="PL94171 hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files</h5>
-        
-          <p class="card-text">(with Cory McCartan)</p>
-        
-        <p class="card-text"><small class="text-muted">Tools to process legacy format summary redistricting data files produced by the United States Census Bureau pursuant to P.L. 94-171. These files are generally available earlier but are difficult to work with as-is.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/censable/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_censable.png" class="img-fluid rounded-start" alt="censable hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">censable: Making Census Data More Usable</h5>
-        
-        <p class="card-text"><small class="text-muted">Creates a common framework for organizing, naming, and gathering population, age, race, and ethnicity data from the Census Bureau. Accesses the API <a href="https://www.census.gov/data/developers/data-sets.html">https://www.census.gov/data/developers/data-sets.html</a>. Provides tools for adding information to existing data to line up with Census data.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/tinytiger/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_tinytiger.png" class="img-fluid rounded-start" alt="tinytiger hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">tinytiger: Lightweight Interface to TIGER/Line Shapefiles</h5>
-        
-          <p class="card-text">(with Cory McCartan)</p>
-        
-        <p class="card-text"><small class="text-muted">Download geographic shapes from the United States Census Bureau TIGER/Line Shapefiles <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a>. Functions support downloading and reading in geographic boundary data. All downloads can be set up with a cache to avoid multiple downloads. Data is available back to 2000 for most geographies.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/cvap/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_cvap.png" class="img-fluid rounded-start" alt="cvap hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">cvap: Citizen Voting Age Population</h5>
-        
-        <p class="card-text"><small class="text-muted">Works with the Citizen Voting Age Population special tabulation from the US Census Bureau <a href="https://www.census.gov/programs-surveys/decennial-census/about/voting-rights/cvap.html">https://www.census.gov/programs-surveys/decennial-census/about/voting-rights/cvap.html</a>. Provides tools to download and process raw data. Also provides a downloading interface to processed data. Implements a very basic approach to estimate block level citizen voting age population from block group data.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/ppmf/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ppmf.png" class="img-fluid rounded-start" alt="ppmf hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">ppmf: Read Census Privacy Protected Microdata Files</h5>
-        
-        <p class="card-text"><small class="text-muted">Implements data processing described in to align modern differentially private data with formatting of older US Census data releases. The primary goal is to read in Census Privacy Protected Microdata Files data in a reproducible way. This includes tools for aggregating to relevant levels of geography by creating geographic identifiers which match the US Census Bureau's numbering. Additionally, there are tools for grouping race numeric identifiers into categories, consistent with OMB (Office of Management and Budget) classifications. Functions exist for downloading and linking to existing sources of privacy protected microdata.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/apportion/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_apportion.png" class="img-fluid rounded-start" alt="apportion hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">apportion: Apportion Seats</h5>
-        
-        <p class="card-text"><small class="text-muted">Convert populations into integer number of seats for legislative bodies. Implements apportionment methods used historically and currently in the United States for reapportionment after the Census, as described in <a href="https://www.census.gov/history/www/reference/apportionment/methods_of_apportionment.html">https://www.census.gov/history/www/reference/apportionment/methods_of_apportionment.html</a>.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-     <h3 class="anchored"> Packages for plotting data</h3>
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/dots/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_dots.png" class="img-fluid rounded-start" alt="dots hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">dots: Dot Density Maps</h5>
-        
-        <p class="card-text"><small class="text-muted">Generate point data for representing people within spatial data. This collects a suite of tools for creating simple dot density maps. Several functions from different spatial packages are standardized to take the same arguments so that they can be easily substituted for each other.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://alarm-redist.org/ggredist/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ggredist.png" class="img-fluid rounded-start" alt="ggredist hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting</h5>
-        
-          <p class="card-text">(with Cory McCartan)</p>
-        
-        <p class="card-text"><small class="text-muted">Provides 'ggplot2' extensions for political map making. Implements new geometries for groups of simple feature geometries. Adds palettes and scales for red to blue color mapping and for discrete maps. Implements tools for easy label generation and placement, automatic map coloring, and themes.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/crayons/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_crayons.png" class="img-fluid rounded-start" alt="crayons hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">crayons: Color Palettes from Crayon Boxes</h5>
-        
-        <p class="card-text"><small class="text-muted">Provides color palettes based on crayon colors since the early 1900s. Colors are based on various crayon colors, sets, and promotional palettes, most of which can be found at <a href="https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors">https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors</a>. All palettes are discrete palettes and are not necessarily color-blind friendly. Provides scales for 'ggplot2' for discrete coloring.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/palette/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_palette.png" class="img-fluid rounded-start" alt="palette hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">palette: Color Scheme Helpers</h5>
-        
-        <p class="card-text"><small class="text-muted">Hexadecimal codes are typically used to represent colors in R. Connecting these codes to their colors requires practice or memorization. 'palette' provides a 'vctrs' class for working with color palettes, including printing and plotting functions. The goal of the class is to place visual representations of color palettes directly on or, at least, next to their corresponding character representations. Palette extensions also are provided for data frames using 'pillar'.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/flexoki/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_flexoki.png" class="img-fluid rounded-start" alt="flexoki hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">flexoki: Inky Color Schemes</h5>
-        
-        <p class="card-text"><small class="text-muted">Provides color palettes designed to be reminiscent of text on paper. The color schemes were taken from <a href="https://stephango.com/flexoki">https://stephango.com/flexoki</a>. Includes discrete, continuous, and binned scales that are not necessarily color-blind friendly. Simple scale and theme functions are available for use with 'ggplot2'.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-     <h3 class="anchored"> Packages interfacing with API services</h3>
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/congress/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_congress.png" class="img-fluid rounded-start" alt="congress hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">congress: Access the Congress.gov API</h5>
-        
-        <p class="card-text"><small class="text-muted">Download and read data on United States congressional proceedings. Data is read from the Library of Congress's Congress.gov Application Programming Interface (<a href="https://github.com/LibraryOfCongress/api.congress.gov/">https://github.com/LibraryOfCongress/api.congress.gov/</a>). Functions exist for all version 3 endpoints, including for bills, amendments, congresses, summaries, members, reports, communications, nominations, and treaties.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/feltr">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_feltr.png" class="img-fluid rounded-start" alt="feltr hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">feltr: Access the Felt API</h5>
-        
-        <p class="card-text"><small class="text-muted">Upload, download, and edit internet maps with the Felt API (<a href="https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1">https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1</a>). Allows users to create new maps, edit existing maps, and extract data. Provides tools for working with layers, which represent geographic data, and elements, which are interactive annotations. Spatial data accessed from the API is transformed to work with 'sf'.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/planscorer/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_planscorer.png" class="img-fluid rounded-start" alt="planscorer hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">planscorer: Score Redistricting Plans with PlanScore</h5>
-        
-        <p class="card-text"><small class="text-muted">Provides access to the 'PlanScore' Application Programming Interface (<a href="https://github.com/PlanScore/PlanScore/blob/main/API.md">https://github.com/PlanScore/PlanScore/blob/main/API.md</a>) for scoring redistricting plans. Allows for upload of plans from block assignment files and shape files. For shapes in memory, such as from 'sf' or 'redist', it processes them to save and upload. Includes tools for tidying responses and saving output from the website.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/gptzeror">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_gptzeror.png" class="img-fluid rounded-start" alt="gptzeror hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">gptzeror: Identify Text Written by Large Language Models using GPTZero</h5>
-        
-        <p class="card-text"><small class="text-muted">An R interface to the 'GPTZero' API (<a href="https://gptzero.me/docs">https://gptzero.me/docs</a>). Allows users to classify text into human and computer written with probabilities. Formats the data into data frames where each sentence is an observation. Paragraph-level and document-level predictions are organized to align with the sentences.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/bskyr/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_bskyr.png" class="img-fluid rounded-start" alt="bskyr hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">bskyr: Interact with Bluesky Social</h5>
-        
-        <p class="card-text"><small class="text-muted">Collect data from and make posts on 'Bluesky' Social via the Hypertext Transfer Protocol (HTTP) Application Programming Interface (API), as documented at <a href="https://atproto.com/specs/xrpc">https://atproto.com/specs/xrpc</a>. This further supports broader queries to the Authenticated Transfer (AT) Protocol <a href="https://atproto.com/">https://atproto.com/</a> which 'Bluesky' Social relies on. Data is returned in a tidy format and posts can be made using a simple interface.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/lobby/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_lobby.png" class="img-fluid rounded-start" alt="lobby hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">lobby: Interact with the US Senate Lobbying Disclosure API</h5>
-        
-        <p class="card-text"><small class="text-muted">Download and read data on lobbying in the United States Congress. Data is queried from the Senate's Application Programming Interface (<a href="" https:="" lda.senate.gov="" api="" ""="">https://lda.senate.gov/api/</a>). This supports filings since 2008. Functions exist for all primary data endpoints, including queries by filings, contributions, registrations, clients, and lobbyists.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-     <h3 class="anchored"> Other R packages</h3>
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/divseg/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_divseg.png" class="img-fluid rounded-start" alt="divseg hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">divseg: Compute Diversity and Segregation Indices</h5>
-        
-        <p class="card-text"><small class="text-muted">Implements common measures of diversity and spatial segregation. This package has tools to compute the majority of measures are reviewed in Massey and Denton (1988). Multiple common measures of within-geography diversity are implemented as well. All functions operate on data frames with a 'tidyselect' based workflow.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/name/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_name.png" class="img-fluid rounded-start" alt="name hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">name: Tools for Working with Names</h5>
-        
-        <p class="card-text"><small class="text-muted">A system for organizing column names in data. Aimed at supporting a prefix-based and suffix-based column naming scheme. Extends 'dplyr' functionality to add ordering by function and more explicit renaming.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/jot/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_jot.png" class="img-fluid rounded-start" alt="jot hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">jot: Jot Down Notes for Later</h5>
-        
-        <p class="card-text"><small class="text-muted">Reproducible work requires a record of where every statistic originated. When writing reports, some data is too big to load in the same environment and some statistics take a while to compute. This package offers a way to keep notes on statistics, simple functions, and small objects. Notepads can be locked to avoid accidental updates. Notepads keep track of who added the notes and when the notes were added. A simple text representation is used to allow for clear version histories.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/opengraph/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_opengraph.png" class="img-fluid rounded-start" alt="opengraph hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">opengraph: Process Metadata from the Open Graph Protocol</h5>
-        
-        <p class="card-text"><small class="text-muted">Social media sites often embed cards when links are shared, based on metadata in the Open Graph Protocol (<a href="https://ogp.me/">https://ogp.me/</a>). This supports extracting that metadata from a website. It further allows for the creation of tags to add to a website to support the Open Graph Protocol and provides a list of the standard tags and their required properties.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/typr/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_typr.png" class="img-fluid rounded-start" alt="typr hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">typr: Write and Render Typst Documents</h5>
-        
-        <p class="card-text"><small class="text-muted">Compile Typst files using the typst-cli (<a href="" https:="" typst.app""="">https://typst.app</a>) command line tool. Automatically falls back to rendering via embedded Typst from Quarto (<a href="" https:="" quarto.org""="">https://quarto.org</a>) if Typst is not installed. Includes utilities to check for typst-cli availability and run Typst commands.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/manifesto/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_manifesto.png" class="img-fluid rounded-start" alt="manifesto hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">manifesto: Create Project Manifest Files</h5>
-        
-        <p class="card-text"><small class="text-muted">Provides TOML representations of packages needed that must be installed to run a project. Includes functions to specify detailed installation functions, validate files, and to use a given file as the requirements for a project. Handles package installations, when necessary, via pak.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/wf/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_wf.png" class="img-fluid rounded-start" alt="wf hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">wf: Artificial Intelligence Workflow Tools</h5>
-        
-        <p class="card-text"><small class="text-muted">Manage skills for large language model coding agents. Supports installing skills from GitHub or local directories, tracking versions in a lock file, and keeping installations current. Installations can be scoped to a single project or shared globally across projects.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/ipf/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ipf.png" class="img-fluid rounded-start" alt="ipf hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">ipf: Iterative Proportional Fitting</h5>
-        
-        <p class="card-text"><small class="text-muted">Fast raking for survey weighting. The computational core is written in Rust for speed. Supports multiple raking variables, automatic variable selection, weight bounding, and comprehensive diagnostics.</small></p>
-    </div>
-  </div>
-
-</div>
-
-<h2 class="anchored">Packages on GitHub</h2>
-
-  
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://iqss-research.github.io/ei/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ei.png" class="img-fluid rounded-start" alt="ei hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">ei: Ecological Inference</h5>
-        
-          <p class="card-text">(with Shusei Eshima, Gary King, and Molly Roberts)</p>
-        
-        <p class="card-text"><small class="text-muted">Software accompanying Gary King's book: A Solution to the Ecological Inference Problem. (1997). Princeton University Press. ISBN 978-0691012407.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/redistio/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistio.png" class="img-fluid rounded-start" alt="redistio hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">redistio: Interactive Redistricting</h5>
-        
-        <p class="card-text"><small class="text-muted">A point and click editor for districts built on 'shiny' and 'mapgl'. Users can draw districts and calculate standard redistricting metrics, like compactness or the number of administrative splits. Maps can be exported as assignment files or shapefiles, readable by most other redistricting software.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/tinycensus/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_tinycensus.png" class="img-fluid rounded-start" alt="tinycensus hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">tinycensus: Lightweight Interface to the US Census Bureau API</h5>
-        
-        <p class="card-text"><small class="text-muted">Download data from the United States Census Bureau API <a href="https://www.census.gov/data/developers/data-sets.html">https://www.census.gov/data/developers/data-sets.html</a>. The package provides lightweight, product-specific interfaces for ACS, decennial census data, PEP, CBP, migration flows, and time-series datasets. It also uses Census metadata endpoints to discover datasets, variables, tables, and supported geographies, with optional spatial output joined through 'tinytiger'.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://matthewbjane.com/ThemePark/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ThemePark.png" class="img-fluid rounded-start" alt="ThemePark hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">ThemePark: Themes for 'ggplot2' from Popular Culture</h5>
-        
-          <p class="card-text">(with Matthew B. Jané and Luke C. Pilling)</p>
-        
-        <p class="card-text"><small class="text-muted">Provides 'ggplot2' themes that mirror works from popular culture, such as Barbie, Star Wars, Game of Thrones, and others. The package currently holds 14 themes and a number of corresponding discrete color scales, palettes, and fonts. Each theme (e.g., 'theme_barbie') generates a unique color scheme and font for a 'ggplot2' object that matches the color scheme and font found in the movie, TV show, or video game.</small></p>
-    </div>
-  </div>
-
-</div>
-
-  
-
-<div class="list grid">
-
-  <div class="card-borderless g-col-2">
-    <a href="https://corymccartan.com/causaltbl">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_causaltbl.png" class="img-fluid rounded-start" alt="causaltbl hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">causaltbl: Tidy Causal Data Frames and Tools</h5>
-        
-          <p class="card-text">(with Cory McCartan)</p>
-        
-        <p class="card-text"><small class="text-muted">Provides a 'causal_tbl' class for causal inference. A 'causal_tbl' keeps track of information on the roles of variables like treatment and outcome, and provides functionality to store models and their fitted values as columns in a data frame.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/pr/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_pr.png" class="img-fluid rounded-start" alt="pr hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">pr: Classes for Probabilities</h5>
-        
-        <p class="card-text"><small class="text-muted">Provides S3 classes to represent probability vectors and matrices using 'vctrs'. Allows for creation, validation, and pretty printing of each class. Includes a special probability matrix type with counts to allow for cases with limited possible values.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/crann/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_crann.png" class="img-fluid rounded-start" alt="crann hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">crann: Spanning Tree Methods for Graphs</h5>
-        
-        <p class="card-text"><small class="text-muted">Implements spanning tree algorithms for undirected graphs represented as 'adj' adjacency lists. Provides enumeration of all spanning trees via Winter's (1986) contraction-based algorithm (<a href="" https:="" link.springer.com="" article="" 10.1007="" bf01939361""="">doi:10.1007/BF01939361</a>), counting via Kirchhoff's matrix tree theorem, minimum spanning trees via Kruskal's algorithm, uniform random sampling via Wilson's (1996) loop-erased random walk (<a href="" https:="" dl.acm.org="" doi="" 10.1145="" 237814.237880""="">oi:10.1145/237814.237880</a>), and structural utilities including fundamental cycles and cuts.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/enum/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_enum.png" class="img-fluid rounded-start" alt="enum hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">enum: Enumerate Partitions of Grid Graphs</h5>
-        
-        <p class="card-text"><small class="text-muted">Enumerates polyomino tilings of grid graphs. Partitions an grid into a specified number of connected pieces where each piece has a size within given bounds, under rook or queen contiguity rules. A translation of the Julia 'enumerator' package by Schutzman (2019) (<a href="" https:="" zenodo.org="" records="" 3468055""="">doi:10.5281/zenodo.3467675</a>).</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/gtscales/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_gtscales.png" class="img-fluid rounded-start" alt="gtscales hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">gtscales: Color Scale Extensions for 'gt'</h5>
-        
-        <p class="card-text"><small class="text-muted">Adds legend helpers for color-encoded 'gt' tables. The primary interface combines 'gt::data_color()' with matched legends for continuous, binned, quantile, and discrete scales, while lower-level helpers support legend-only and reusable scale specification workflows.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/reon/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_reon.png" class="img-fluid rounded-start" alt="reon hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">reon: Read and Write 'eon' Configuration Files</h5>
-        
-        <p class="card-text"><small class="text-muted">Parse, create, and write configuration files in the 'eon' format <a href="https://github.com/emilk/eon">https://github.com/emilk/eon</a>. 'eon' is a human-friendly configuration format with optional commas, unquoted identifier keys, and support for comments.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/snippet/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_snippet.png" class="img-fluid rounded-start" alt="snippet hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">snippet: Create Nice Code Images</h5>
-        
-        <p class="card-text"><small class="text-muted">Render typeset code snippets using 'Typst'. Supports syntax highlighting for many languages, multiple output formats, and theming via 'tmTheme' files. Designed for documentation, teaching materials, and reproducible code presentation.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/BCP47/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_BCP47.png" class="img-fluid rounded-start" alt="BCP47 hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">BCP47: Work with Language Tags</h5>
-        
-        <p class="card-text"><small class="text-muted">Tools to parse, validate, normalize, and match language tags following the Best Current Practice 47 (BCP 47) standard, which defines the syntax (RFC 5646, <a href="https://tools.ietf.org/html/rfc5646">https://tools.ietf.org/html/rfc5646</a>) and lookup rules (RFC 4647, <a href="https://tools.ietf.org/html/rfc4647">https://tools.ietf.org/html/rfc4647</a>) for identifying human languages. Includes a bundled snapshot of the IANA Language Subtag Registry (<a href="https://www.iana.org/assignments/language-subtag-registry/">https://www.iana.org/assignments/language-subtag-registry/</a>) with optional support for updating.</small></p>
-    </div>
-  </div>
-
-  <div class="card-borderless g-col-2">
-    <a href="https://christophertkenny.com/irelink/">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_irelink.png" class="img-fluid rounded-start" alt="irelink hex logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">irelink: Fast Probabilistic Record Linkage</h5>
-        
-        <p class="card-text"><small class="text-muted">Performs fast, scalable probabilistic record linkage and deduplication using the Fellegi-Sunter model. Records lacking a shared unique identifier are compared across configurable dimensions using exact, fuzzy, and distance-based comparisons, with model parameters estimated via unsupervised Expectation-Maximization. Multiple SQL backends are supported through 'DBI', enabling execution from laptop-scale ('DuckDB') through to distributed engines. This package is a translation of the Python 'splink' library by Linacre et al. into idiomatic R.</small></p>
+  <div class="card-borderless g-col-12" data-index="7" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/rict/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_rict.png" class="img-fluid rounded-start" alt="rict hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">rict: Redistricting in Clean Tables</h5>
+            
+            <p class="card-text"><small class="text-muted">Provides a suite of tools to create tables that accompany maps. The tools create clean, informative tables for electoral outcomes, compactness, and other  district-level quantities. Most tools are aimed at the redistricting context, but are broadly applicable to other electoral data.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -985,22 +696,777 @@ window.Quarto = {
 
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+</section>
+<section id="packages-for-working-with-census-bureau-data" class="level3">
+<h3 class="anchored" data-anchor-id="packages-for-working-with-census-bureau-data">Packages for working with Census Bureau data</h3>
+<div id="listing-cran-census" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://corymccartan.com/PL94171/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_PL94171.png" class="img-fluid rounded-start" alt="PL94171 hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">PL94171: Tabulate P.L. 94-171 Redistricting Data Summary Files</h5>
+            
+              <p class="card-text">(with Cory McCartan)</p>
+            
+            <p class="card-text"><small class="text-muted">Tools to process legacy format summary redistricting data files produced by the United States Census Bureau pursuant to P.L. 94-171. These files are generally available earlier but are difficult to work with as-is.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="1" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/censable/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_censable.png" class="img-fluid rounded-start" alt="censable hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">censable: Making Census Data More Usable</h5>
+            
+            <p class="card-text"><small class="text-muted">Creates a common framework for organizing, naming, and gathering population, age, race, and ethnicity data from the Census Bureau. Accesses the API <a href="https://www.census.gov/data/developers/data-sets.html">https://www.census.gov/data/developers/data-sets.html</a>. Provides tools for adding information to existing data to line up with Census data.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="2" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/tinytiger/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_tinytiger.png" class="img-fluid rounded-start" alt="tinytiger hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">tinytiger: Lightweight Interface to TIGER/Line Shapefiles</h5>
+            
+              <p class="card-text">(with Cory McCartan)</p>
+            
+            <p class="card-text"><small class="text-muted">Download geographic shapes from the United States Census Bureau TIGER/Line Shapefiles <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a>. Functions support downloading and reading in geographic boundary data. All downloads can be set up with a cache to avoid multiple downloads. Data is available back to 2000 for most geographies.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="3" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/cvap/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_cvap.png" class="img-fluid rounded-start" alt="cvap hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">cvap: Citizen Voting Age Population</h5>
+            
+            <p class="card-text"><small class="text-muted">Works with the Citizen Voting Age Population special tabulation from the US Census Bureau <a href="https://www.census.gov/programs-surveys/decennial-census/about/voting-rights/cvap.html">https://www.census.gov/programs-surveys/decennial-census/about/voting-rights/cvap.html</a>. Provides tools to download and process raw data. Also provides a downloading interface to processed data. Implements a very basic approach to estimate block level citizen voting age population from block group data.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="4" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/ppmf/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ppmf.png" class="img-fluid rounded-start" alt="ppmf hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">ppmf: Read Census Privacy Protected Microdata Files</h5>
+            
+            <p class="card-text"><small class="text-muted">Implements data processing described in to align modern differentially private data with formatting of older US Census data releases. The primary goal is to read in Census Privacy Protected Microdata Files data in a reproducible way. This includes tools for aggregating to relevant levels of geography by creating geographic identifiers which match the US Census Bureau's numbering. Additionally, there are tools for grouping race numeric identifiers into categories, consistent with OMB (Office of Management and Budget) classifications. Functions exist for downloading and linking to existing sources of privacy protected microdata.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="5" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/apportion/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_apportion.png" class="img-fluid rounded-start" alt="apportion hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">apportion: Apportion Seats</h5>
+            
+            <p class="card-text"><small class="text-muted">Convert populations into integer number of seats for legislative bodies. Implements apportionment methods used historically and currently in the United States for reapportionment after the Census, as described in <a href="https://www.census.gov/history/www/reference/apportionment/methods_of_apportionment.html">https://www.census.gov/history/www/reference/apportionment/methods_of_apportionment.html</a>.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="packages-for-plotting-data" class="level3">
+<h3 class="anchored" data-anchor-id="packages-for-plotting-data">Packages for plotting data</h3>
+<div id="listing-cran-plotting" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="cGxvdHRpbmc=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/dots/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_dots.png" class="img-fluid rounded-start" alt="dots hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">dots: Dot Density Maps</h5>
+            
+            <p class="card-text"><small class="text-muted">Generate point data for representing people within spatial data. This collects a suite of tools for creating simple dot density maps. Several functions from different spatial packages are standardized to take the same arguments so that they can be easily substituted for each other.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="1" data-categories="cGxvdHRpbmc=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://alarm-redist.org/ggredist/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ggredist.png" class="img-fluid rounded-start" alt="ggredist hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">ggredist: Scales, Palettes, and Extensions of ggplot2 for Redistricting</h5>
+            
+              <p class="card-text">(with Cory McCartan)</p>
+            
+            <p class="card-text"><small class="text-muted">Provides 'ggplot2' extensions for political map making. Implements new geometries for groups of simple feature geometries. Adds palettes and scales for red to blue color mapping and for discrete maps. Implements tools for easy label generation and placement, automatic map coloring, and themes.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="2" data-categories="cGxvdHRpbmc=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/crayons/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_crayons.png" class="img-fluid rounded-start" alt="crayons hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">crayons: Color Palettes from Crayon Boxes</h5>
+            
+            <p class="card-text"><small class="text-muted">Provides color palettes based on crayon colors since the early 1900s. Colors are based on various crayon colors, sets, and promotional palettes, most of which can be found at <a href="https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors">https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors</a>. All palettes are discrete palettes and are not necessarily color-blind friendly. Provides scales for 'ggplot2' for discrete coloring.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="3" data-categories="cGxvdHRpbmc=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/palette/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_palette.png" class="img-fluid rounded-start" alt="palette hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">palette: Color Scheme Helpers</h5>
+            
+            <p class="card-text"><small class="text-muted">Hexadecimal codes are typically used to represent colors in R. Connecting these codes to their colors requires practice or memorization. 'palette' provides a 'vctrs' class for working with color palettes, including printing and plotting functions. The goal of the class is to place visual representations of color palettes directly on or, at least, next to their corresponding character representations. Palette extensions also are provided for data frames using 'pillar'.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="4" data-categories="cGxvdHRpbmc=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/flexoki/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_flexoki.png" class="img-fluid rounded-start" alt="flexoki hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">flexoki: Inky Color Schemes</h5>
+            
+            <p class="card-text"><small class="text-muted">Provides color palettes designed to be reminiscent of text on paper. The color schemes were taken from <a href="https://stephango.com/flexoki">https://stephango.com/flexoki</a>. Includes discrete, continuous, and binned scales that are not necessarily color-blind friendly. Simple scale and theme functions are available for use with 'ggplot2'.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="packages-interfacing-with-api-services" class="level3">
+<h3 class="anchored" data-anchor-id="packages-interfacing-with-api-services">Packages interfacing with API services</h3>
+<div id="listing-cran-api" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="YXBp">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/congress/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_congress.png" class="img-fluid rounded-start" alt="congress hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">congress: Access the Congress.gov API</h5>
+            
+            <p class="card-text"><small class="text-muted">Download and read data on United States congressional proceedings. Data is read from the Library of Congress's Congress.gov Application Programming Interface (<a href="https://github.com/LibraryOfCongress/api.congress.gov/">https://github.com/LibraryOfCongress/api.congress.gov/</a>). Functions exist for all version 3 endpoints, including for bills, amendments, congresses, summaries, members, reports, communications, nominations, and treaties.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="1" data-categories="YXBp">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/feltr">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_feltr.png" class="img-fluid rounded-start" alt="feltr hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">feltr: Access the Felt API</h5>
+            
+            <p class="card-text"><small class="text-muted">Upload, download, and edit internet maps with the Felt API (<a href="https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1">https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1</a>). Allows users to create new maps, edit existing maps, and extract data. Provides tools for working with layers, which represent geographic data, and elements, which are interactive annotations. Spatial data accessed from the API is transformed to work with 'sf'.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="2" data-categories="YXBp">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/planscorer/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_planscorer.png" class="img-fluid rounded-start" alt="planscorer hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">planscorer: Score Redistricting Plans with PlanScore</h5>
+            
+            <p class="card-text"><small class="text-muted">Provides access to the 'PlanScore' Application Programming Interface (<a href="https://github.com/PlanScore/PlanScore/blob/main/API.md">https://github.com/PlanScore/PlanScore/blob/main/API.md</a>) for scoring redistricting plans. Allows for upload of plans from block assignment files and shape files. For shapes in memory, such as from 'sf' or 'redist', it processes them to save and upload. Includes tools for tidying responses and saving output from the website.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="3" data-categories="YXBp">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/gptzeror">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_gptzeror.png" class="img-fluid rounded-start" alt="gptzeror hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">gptzeror: Identify Text Written by Large Language Models using GPTZero</h5>
+            
+            <p class="card-text"><small class="text-muted">An R interface to the 'GPTZero' API (<a href="https://gptzero.me/docs">https://gptzero.me/docs</a>). Allows users to classify text into human and computer written with probabilities. Formats the data into data frames where each sentence is an observation. Paragraph-level and document-level predictions are organized to align with the sentences.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="4" data-categories="YXBp">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/bskyr/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_bskyr.png" class="img-fluid rounded-start" alt="bskyr hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">bskyr: Interact with Bluesky Social</h5>
+            
+            <p class="card-text"><small class="text-muted">Collect data from and make posts on 'Bluesky' Social via the Hypertext Transfer Protocol (HTTP) Application Programming Interface (API), as documented at <a href="https://atproto.com/specs/xrpc">https://atproto.com/specs/xrpc</a>. This further supports broader queries to the Authenticated Transfer (AT) Protocol <a href="https://atproto.com/">https://atproto.com/</a> which 'Bluesky' Social relies on. Data is returned in a tidy format and posts can be made using a simple interface.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="5" data-categories="YXBp">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/lobby/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_lobby.png" class="img-fluid rounded-start" alt="lobby hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">lobby: Interact with the US Senate Lobbying Disclosure API</h5>
+            
+            <p class="card-text"><small class="text-muted">Download and read data on lobbying in the United States Congress. Data is queried from the Senate's Application Programming Interface (<a href="" https:="" lda.senate.gov="" api="" ""="">https://lda.senate.gov/api/</a>). This supports filings since 2008. Functions exist for all primary data endpoints, including queries by filings, contributions, registrations, clients, and lobbyists.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="other-r-packages" class="level3">
+<h3 class="anchored" data-anchor-id="other-r-packages">Other R packages</h3>
+<div id="listing-cran-other" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/divseg/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_divseg.png" class="img-fluid rounded-start" alt="divseg hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">divseg: Compute Diversity and Segregation Indices</h5>
+            
+            <p class="card-text"><small class="text-muted">Implements common measures of diversity and spatial segregation. This package has tools to compute the majority of measures are reviewed in Massey and Denton (1988). Multiple common measures of within-geography diversity are implemented as well. All functions operate on data frames with a 'tidyselect' based workflow.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="1" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/name/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_name.png" class="img-fluid rounded-start" alt="name hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">name: Tools for Working with Names</h5>
+            
+            <p class="card-text"><small class="text-muted">A system for organizing column names in data. Aimed at supporting a prefix-based and suffix-based column naming scheme. Extends 'dplyr' functionality to add ordering by function and more explicit renaming.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="2" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/jot/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_jot.png" class="img-fluid rounded-start" alt="jot hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">jot: Jot Down Notes for Later</h5>
+            
+            <p class="card-text"><small class="text-muted">Reproducible work requires a record of where every statistic originated. When writing reports, some data is too big to load in the same environment and some statistics take a while to compute. This package offers a way to keep notes on statistics, simple functions, and small objects. Notepads can be locked to avoid accidental updates. Notepads keep track of who added the notes and when the notes were added. A simple text representation is used to allow for clear version histories.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="3" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/opengraph/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_opengraph.png" class="img-fluid rounded-start" alt="opengraph hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">opengraph: Process Metadata from the Open Graph Protocol</h5>
+            
+            <p class="card-text"><small class="text-muted">Social media sites often embed cards when links are shared, based on metadata in the Open Graph Protocol (<a href="https://ogp.me/">https://ogp.me/</a>). This supports extracting that metadata from a website. It further allows for the creation of tags to add to a website to support the Open Graph Protocol and provides a list of the standard tags and their required properties.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="4" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/typr/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_typr.png" class="img-fluid rounded-start" alt="typr hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">typr: Write and Render Typst Documents</h5>
+            
+            <p class="card-text"><small class="text-muted">Compile Typst files using the typst-cli (<a href="" https:="" typst.app""="">https://typst.app</a>) command line tool. Automatically falls back to rendering via embedded Typst from Quarto (<a href="" https:="" quarto.org""="">https://quarto.org</a>) if Typst is not installed. Includes utilities to check for typst-cli availability and run Typst commands.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="5" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/manifesto/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_manifesto.png" class="img-fluid rounded-start" alt="manifesto hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">manifesto: Create Project Manifest Files</h5>
+            
+            <p class="card-text"><small class="text-muted">Provides TOML representations of packages needed that must be installed to run a project. Includes functions to specify detailed installation functions, validate files, and to use a given file as the requirements for a project. Handles package installations, when necessary, via pak.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="6" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/wf/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_wf.png" class="img-fluid rounded-start" alt="wf hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">wf: Artificial Intelligence Workflow Tools</h5>
+            
+            <p class="card-text"><small class="text-muted">Manage skills for large language model coding agents. Supports installing skills from GitHub or local directories, tracking versions in a lock file, and keeping installations current. Installations can be scoped to a single project or shared globally across projects.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="7" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/ipf/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ipf.png" class="img-fluid rounded-start" alt="ipf hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">ipf: Iterative Proportional Fitting</h5>
+            
+            <p class="card-text"><small class="text-muted">Fast raking for survey weighting. The computational core is written in Rust for speed. Supports multiple raking variables, automatic variable selection, weight bounding, and comprehensive diagnostics.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+</section>
+<section id="packages-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="packages-on-github">Packages on GitHub</h2>
+<section id="packages-for-redistricting-1" class="level3">
+<h3 class="anchored" data-anchor-id="packages-for-redistricting-1">Packages for redistricting</h3>
+<div id="listing-github-redistricting" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://iqss-research.github.io/ei/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ei.png" class="img-fluid rounded-start" alt="ei hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">ei: Ecological Inference</h5>
+            
+              <p class="card-text">(with Shusei Eshima, Gary King, and Molly Roberts)</p>
+            
+            <p class="card-text"><small class="text-muted">Software accompanying Gary King's book: A Solution to the Ecological Inference Problem. (1997). Princeton University Press. ISBN 978-0691012407.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="1" data-categories="cmVkaXN0cmljdGluZw==">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/redistio/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_redistio.png" class="img-fluid rounded-start" alt="redistio hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">redistio: Interactive Redistricting</h5>
+            
+            <p class="card-text"><small class="text-muted">A point and click editor for districts built on 'shiny' and 'mapgl'. Users can draw districts and calculate standard redistricting metrics, like compactness or the number of administrative splits. Maps can be exported as assignment files or shapefiles, readable by most other redistricting software.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="packages-for-working-with-census-bureau-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="packages-for-working-with-census-bureau-data-1">Packages for working with Census Bureau data</h3>
+<div id="listing-github-census" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="Y2Vuc3Vz">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/tinycensus/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_tinycensus.png" class="img-fluid rounded-start" alt="tinycensus hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">tinycensus: Lightweight Interface to the US Census Bureau API</h5>
+            
+            <p class="card-text"><small class="text-muted">Download data from the United States Census Bureau API <a href="https://www.census.gov/data/developers/data-sets.html">https://www.census.gov/data/developers/data-sets.html</a>. The package provides lightweight, product-specific interfaces for ACS, decennial census data, PEP, CBP, migration flows, and time-series datasets. It also uses Census metadata endpoints to discover datasets, variables, tables, and supported geographies, with optional spatial output joined through 'tinytiger'.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="packages-for-plotting-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="packages-for-plotting-data-1">Packages for plotting data</h3>
+<div id="listing-github-plotting" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="cGxvdHRpbmc=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://matthewbjane.com/ThemePark/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_ThemePark.png" class="img-fluid rounded-start" alt="ThemePark hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">ThemePark: Themes for 'ggplot2' from Popular Culture</h5>
+            
+              <p class="card-text">(with Matthew B. Jané and Luke C. Pilling)</p>
+            
+            <p class="card-text"><small class="text-muted">Provides 'ggplot2' themes that mirror works from popular culture, such as Barbie, Star Wars, Game of Thrones, and others. The package currently holds 14 themes and a number of corresponding discrete color scales, palettes, and fonts. Each theme (e.g., 'theme_barbie') generates a unique color scheme and font for a 'ggplot2' object that matches the color scheme and font found in the movie, TV show, or video game.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="other-r-packages-1" class="level3">
+<h3 class="anchored" data-anchor-id="other-r-packages-1">Other R packages</h3>
+<div id="listing-github-other" class="quarto-listing quarto-listing-container-custom">
+
+<div class="list grid">
+
+  <div class="card-borderless g-col-12" data-index="0" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://corymccartan.com/causaltbl">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_causaltbl.png" class="img-fluid rounded-start" alt="causaltbl hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">causaltbl: Tidy Causal Data Frames and Tools</h5>
+            
+              <p class="card-text">(with Cory McCartan)</p>
+            
+            <p class="card-text"><small class="text-muted">Provides a 'causal_tbl' class for causal inference. A 'causal_tbl' keeps track of information on the roles of variables like treatment and outcome, and provides functionality to store models and their fitted values as columns in a data frame.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="1" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/pr/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_pr.png" class="img-fluid rounded-start" alt="pr hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">pr: Classes for Probabilities</h5>
+            
+            <p class="card-text"><small class="text-muted">Provides S3 classes to represent probability vectors and matrices using 'vctrs'. Allows for creation, validation, and pretty printing of each class. Includes a special probability matrix type with counts to allow for cases with limited possible values.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="2" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/crann/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_crann.png" class="img-fluid rounded-start" alt="crann hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">crann: Spanning Tree Methods for Graphs</h5>
+            
+            <p class="card-text"><small class="text-muted">Implements spanning tree algorithms for undirected graphs represented as 'adj' adjacency lists. Provides enumeration of all spanning trees via Winter's (1986) contraction-based algorithm (<a href="" https:="" link.springer.com="" article="" 10.1007="" bf01939361""="">doi:10.1007/BF01939361</a>), counting via Kirchhoff's matrix tree theorem, minimum spanning trees via Kruskal's algorithm, uniform random sampling via Wilson's (1996) loop-erased random walk (<a href="" https:="" dl.acm.org="" doi="" 10.1145="" 237814.237880""="">oi:10.1145/237814.237880</a>), and structural utilities including fundamental cycles and cuts.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="3" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/enum/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_enum.png" class="img-fluid rounded-start" alt="enum hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">enum: Enumerate Partitions of Grid Graphs</h5>
+            
+            <p class="card-text"><small class="text-muted">Enumerates polyomino tilings of grid graphs. Partitions an grid into a specified number of connected pieces where each piece has a size within given bounds, under rook or queen contiguity rules. A translation of the Julia 'enumerator' package by Schutzman (2019) (<a href="" https:="" zenodo.org="" records="" 3468055""="">doi:10.5281/zenodo.3467675</a>).</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="4" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/gtscales/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_gtscales.png" class="img-fluid rounded-start" alt="gtscales hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">gtscales: Color Scale Extensions for 'gt'</h5>
+            
+            <p class="card-text"><small class="text-muted">Adds legend helpers for color-encoded 'gt' tables. The primary interface combines 'gt::data_color()' with matched legends for continuous, binned, quantile, and discrete scales, while lower-level helpers support legend-only and reusable scale specification workflows.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="5" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/reon/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_reon.png" class="img-fluid rounded-start" alt="reon hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">reon: Read and Write 'eon' Configuration Files</h5>
+            
+            <p class="card-text"><small class="text-muted">Parse, create, and write configuration files in the 'eon' format <a href="https://github.com/emilk/eon">https://github.com/emilk/eon</a>. 'eon' is a human-friendly configuration format with optional commas, unquoted identifier keys, and support for comments.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="6" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/snippet/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_snippet.png" class="img-fluid rounded-start" alt="snippet hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">snippet: Create Nice Code Images</h5>
+            
+            <p class="card-text"><small class="text-muted">Render typeset code snippets using 'Typst'. Supports syntax highlighting for many languages, multiple output formats, and theming via 'tmTheme' files. Designed for documentation, teaching materials, and reproducible code presentation.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="7" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/BCP47/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_BCP47.png" class="img-fluid rounded-start" alt="BCP47 hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">BCP47: Work with Language Tags</h5>
+            
+            <p class="card-text"><small class="text-muted">Tools to parse, validate, normalize, and match language tags following the Best Current Practice 47 (BCP 47) standard, which defines the syntax (RFC 5646, <a href="https://tools.ietf.org/html/rfc5646">https://tools.ietf.org/html/rfc5646</a>) and lookup rules (RFC 4647, <a href="https://tools.ietf.org/html/rfc4647">https://tools.ietf.org/html/rfc4647</a>) for identifying human languages. Includes a bundled snapshot of the IANA Language Subtag Registry (<a href="https://www.iana.org/assignments/language-subtag-registry/">https://www.iana.org/assignments/language-subtag-registry/</a>) with optional support for updating.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-borderless g-col-12" data-index="8" data-categories="b3RoZXI=">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://christophertkenny.com/irelink/">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/hex_irelink.png" class="img-fluid rounded-start" alt="irelink hex logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">irelink: Fast Probabilistic Record Linkage</h5>
+            
+            <p class="card-text"><small class="text-muted">Performs fast, scalable probabilistic record linkage and deduplication using the Fellegi-Sunter model. Records lacking a shared unique identifier are compared across configurable dimensions using exact, fuzzy, and distance-based comparisons, with model parameters estimated via unsupervised Expectation-Maximization. Multiple SQL backends are supported through 'DBI', enabling execution from laptop-scale ('DuckDB') through to distributed engines. This package is a translation of the Python 'splink' library by Linacre et al. into idiomatic R.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+</section>
 <section id="other-software" class="level2">
 <h2 class="anchored" data-anchor-id="other-software">Other Software</h2>
 <div id="listing-other" class="quarto-listing quarto-listing-container-custom">
 
 <div class="list grid">
 
-  <div class="card-borderless g-col-2">
-    <a href="https://github.com/christopherkenny/dais">
-      <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/dais.png" class="img-fluid rounded-start" alt="dais logo">
-    </a>
-  </div>
-  <div class="card-borderless g-col-10">
-    <div class="card-body">
-      <h5 class="card-title anchored">dais: A Native PDF Presenter Console</h5>
-        
-        <p class="card-text"><small class="text-muted">A presentation console built for researchers and academics using PDF slides made with Beamer or Typst. Designed for standard presentation setups, with a multi-monitor presenter view and speaker notes. Includes tools like a laser pointer, spotlight, and zoom.</small></p>
+  <div class="card-borderless g-col-12" data-index="0">
+    <div class="grid">
+      <div class="g-col-2">
+        <a href="https://github.com/christopherkenny/dais">
+          <img src="https://raw.githubusercontent.com/christopherkenny/christopherkenny.github.io/main/hexes/dais.png" class="img-fluid rounded-start" alt="dais logo">
+        </a>
+      </div>
+      <div class="g-col-10">
+        <div class="card-body">
+          <h5 class="card-title listing-title anchored">dais: A Native PDF Presenter Console</h5>
+            
+            <p class="card-text"><small class="text-muted">A presentation console built for researchers and academics using PDF slides made with Beamer or Typst. Designed for standard presentation setups, with a multi-monitor presenter view and speaker notes. Includes tools like a laser pointer, spotlight, and zoom.</small></p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1418,7 +1884,7 @@ window.Quarto = {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Copyright 2021-2025 Christopher T. Kenny.<br> All rights reserved.</p>
+<p>© Copyright 2021-2026 Christopher T. Kenny.<br> All rights reserved.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

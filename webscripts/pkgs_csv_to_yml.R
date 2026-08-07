@@ -40,28 +40,15 @@ pkgs <- read_csv('pkgs.csv') |>
   left_join(descs, by = "topic") |>
   mutate(topic = factor(topic, levels = unique(descs$topic)))
 
+pkgs <- pkgs |>
+  mutate(
+    topic = as.character(topic),
+    section = paste(tolower(status), topic, sep = '-'),
+    categories = purrr::map(topic, list)
+  ) |>
+  relocate(name, section, categories, .before = 1)
+
 pkgs |>
-  group_by(status) |>
-  group_split() |>
-  lapply(function(x) {
-    list(
-      category = x$status[1],
-      topics = x |>
-        group_by(topic) |>
-        group_split() |>
-        lapply(function(y) {
-          list(
-            name = y$topic[1],
-            description = y$topic_title[1],
-            packages = lapply(seq_len(nrow(y)), function(i) {
-              y |>
-                select(-status, -topic) |>
-                slice(i) |>
-                as.list() |>
-                purrr::discard(is.na)
-            })
-          )
-        })
-    )
-  }) |>
+  purrr::transpose() |>
+  purrr::map(purrr::discard, is.na) |>
   yaml::write_yaml('webscripts/pkgs.yml')
