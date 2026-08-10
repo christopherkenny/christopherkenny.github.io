@@ -13,11 +13,19 @@ function slugify(text) {
 
 <style>
 .research-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid #e0dbd4;
   border-radius: 0.25rem;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
+}
+
+.research-card .card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .research-card .card-title {
@@ -33,6 +41,32 @@ function slugify(text) {
 
 .research-card .card-title a:hover {
   text-decoration: underline;
+}
+
+.research-card .paper-badge {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 1rem;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.research-card .paper-badge.stage-drafting {
+  background: #eaf2fb;
+  color: #1f5fa8;
+}
+
+.research-card .paper-badge.stage-analysis {
+  background: #f3eafb;
+  color: #6a2fa8;
+}
+
+.research-card .paper-badge.progress-early {
+  opacity: 0.7;
 }
 
 .research-card .paper-authors {
@@ -95,13 +129,18 @@ function slugify(text) {
 
   <% for (const paper of items) { %>
   <div class="research-card" <%= metadataAttrs(paper) %>>
-      <h5 class="card-title listing-title" id="<%- slugify(paper.title) %>">
-          <% if (paper.url) { %>
-              <a href="<%- paper.url %>" target="_blank"><%- paper.title %></a>
-          <% } else { %>
-              <%- paper.title %>
+      <div class="card-header-row">
+          <h5 class="card-title listing-title" id="<%- slugify(paper.title) %>">
+              <% if (paper.url) { %>
+                  <a href="<%- paper.url %>" target="_blank"><%- paper.title %></a>
+              <% } else { %>
+                  <%- paper.title %>
+              <% } %>
+          </h5>
+          <% if (paper.stage && paper.progress) { %>
+              <span class="paper-badge stage-<%- paper.stage %> progress-<%- paper.progress %>"><%- paper.stage %>: <%- paper.progress.replace('-', ' ') %></span>
           <% } %>
-      </h5>
+      </div>
 
       <% if (paper.authors) { %>
           <p class="paper-authors">(<%- paper.authors %>)</p>

@@ -141,9 +141,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-section','listing-categories','listing-authors','listing-description',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-title','listing-section','listing-categories','listing-authors','listing-description','listing-stage','listing-progress','listing-abstract',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-title","listing-section","listing-categories","listing-authors","listing-description"],
+      searchColumns: ["listing-title","listing-section","listing-categories","listing-authors","listing-description","listing-stage","listing-progress","listing-abstract"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -320,7 +320,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(27)</span></div><div class="category" data-category="Y2Vuc3Vz">census <span class="quarto-category-count">(8)</span></div><div class="category" data-category="ZGF0YQ==">data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWV0aG9kcw==">methods <span class="quarto-category-count">(7)</span></div><div class="category" data-category="cmVkaXN0cmljdGluZw==">redistricting <span class="quarto-category-count">(18)</span></div><div class="category" data-category="c29mdHdhcmU=">software <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(35)</span></div><div class="category" data-category="Y2Vuc3Vz">census <span class="quarto-category-count">(8)</span></div><div class="category" data-category="ZGF0YQ==">data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bWV0aG9kcw==">methods <span class="quarto-category-count">(13)</span></div><div class="category" data-category="cmVkaXN0cmljdGluZw==">redistricting <span class="quarto-category-count">(25)</span></div><div class="category" data-category="c29mdHdhcmU=">software <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -354,11 +354,19 @@ window.Quarto = {
 
 <style>
 .research-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid #e0dbd4;
   border-radius: 0.25rem;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
+}
+
+.research-card .card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .research-card .card-title {
@@ -374,6 +382,32 @@ window.Quarto = {
 
 .research-card .card-title a:hover {
   text-decoration: underline;
+}
+
+.research-card .paper-badge {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 1rem;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.research-card .paper-badge.stage-drafting {
+  background: #eaf2fb;
+  color: #1f5fa8;
+}
+
+.research-card .paper-badge.stage-analysis {
+  background: #f3eafb;
+  color: #6a2fa8;
+}
+
+.research-card .paper-badge.progress-early {
+  opacity: 0.7;
 }
 
 .research-card .paper-authors {
@@ -436,11 +470,14 @@ window.Quarto = {
 
   
   <div class="research-card" data-index="0" data-categories="bWV0aG9kcyUyQ2NlbnN1cw==">
-      <h5 class="card-title listing-title anchored" id="sampling-solutions-to-the-modifiable-areal-unit-problem">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="sampling-solutions-to-the-modifiable-areal-unit-problem">
+              
+                  <a href="https://osf.io/preprints/socarxiv/gpq32_v1" target="_blank">Sampling Solutions to the Modifiable Areal Unit Problem</a>
+              
+          </h5>
           
-              <a href="https://osf.io/preprints/socarxiv/gpq32_v1" target="_blank">Sampling Solutions to the Modifiable Areal Unit Problem</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(With Jacob R. Brown and Tyler Simko)</p>
@@ -495,11 +532,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="1" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="weakening-the-voting-rights-act-reduces-minority-representation-and-electoral-competition">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="weakening-the-voting-rights-act-reduces-minority-representation-and-electoral-competition">
+              
+                  <a href="https://imai.fas.harvard.edu/research/files/callais.pdf" target="_blank">Weakening the Voting Rights Act reduces minority representation and electoral competition</a>
+              
+          </h5>
           
-              <a href="https://imai.fas.harvard.edu/research/files/callais.pdf" target="_blank">Weakening the Voting Rights Act reduces minority representation and electoral competition</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Brian Zhao, Tyler Simko, and Kosuke Imai)</p>
@@ -538,14 +578,17 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="2" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="intra-partisan-gerrymandering">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="intra-partisan-gerrymandering">
+              
+                  Intra-Partisan Gerrymandering
+              
+          </h5>
           
-              Intra-Partisan Gerrymandering
-          
-      </h5>
+      </div>
 
       
-          <p class="paper-authors">(with Aaron R. Kaufman and Nicholas O. Stephanopoulos)</p>
+          <p class="paper-authors">(with Nicholas O. Stephanopoulos and Aaron R. Kaufman)</p>
       
 
       
@@ -583,11 +626,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="3" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
-      <h5 class="card-title listing-title anchored" id="a-multi-district-markov-chain-monte-carlo-sampler-for-redistricting">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="a-multi-district-markov-chain-monte-carlo-sampler-for-redistricting">
+              
+                  <a href="https://osf.io/preprints/socarxiv/un8sk_v1" target="_blank">A Multi-District Markov Chain Monte Carlo Sampler for Redistricting</a>
+              
+          </h5>
           
-              <a href="https://osf.io/preprints/socarxiv/un8sk_v1" target="_blank">A Multi-District Markov Chain Monte Carlo Sampler for Redistricting</a>
-          
-      </h5>
+      </div>
 
       
 
@@ -641,11 +687,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="4" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="the-republican-geographic-advantage-in-congressional-elections-has-largely-disappeared-by-2024">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="the-republican-geographic-advantage-in-congressional-elections-has-largely-disappeared-by-2024">
+              
+                  <a href="https://osf.io/preprints/socarxiv/svktd_v1" target="_blank">The Republican geographic advantage in congressional elections has largely disappeared by 2024</a>
+              
+          </h5>
           
-              <a href="https://osf.io/preprints/socarxiv/svktd_v1" target="_blank">The Republican geographic advantage in congressional elections has largely disappeared by 2024</a>
-          
-      </h5>
+      </div>
 
       
 
@@ -698,11 +747,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="5" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="principles-and-politics-explicit-rules-bind-lawmakers-and-courts">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="principles-and-politics-explicit-rules-bind-lawmakers-and-courts">
+              
+                  <a href="https://christophertkenny.com/drafts/principles-and-partisanship.pdf" target="_blank">Principles and Politics: Explicit Rules Bind Lawmakers and Courts</a>
+              
+          </h5>
           
-              <a href="https://christophertkenny.com/drafts/principles-and-partisanship.pdf" target="_blank">Principles and Politics: Explicit Rules Bind Lawmakers and Courts</a>
-          
-      </h5>
+      </div>
 
       
 
@@ -739,11 +791,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="6" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="gerrymandering-and-geographic-polarization-have-reduced-electoral-competition">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="gerrymandering-and-geographic-polarization-have-reduced-electoral-competition">
+              
+                  <a href="https://www.arxiv.org/abs/2508.15885" target="_blank">Gerrymandering and geographic polarization have reduced electoral competition</a>
+              
+          </h5>
           
-              <a href="https://www.arxiv.org/abs/2508.15885" target="_blank">Gerrymandering and geographic polarization have reduced electoral competition</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Ethan Jasny, Cory McCartan, Tyler Simko, Melissa Wu, Michael Y. Zhao, Aneetej Arora, Emma Ebowe, Philip O'Sullivan, Taran Samarth, and Kosuke Imai)</p>
@@ -799,11 +854,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="7" data-categories="c29mdHdhcmU=">
-      <h5 class="card-title listing-title anchored" id="bskyr-an-r-package-to-interact-with-bluesky-social">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="bskyr-an-r-package-to-interact-with-bluesky-social">
+              
+                  <a href="https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf" target="_blank">bskyr: An R Package to Interact with Bluesky Social</a>
+              
+          </h5>
           
-              <a href="https://github.com/openjournals/joss-papers/blob/joss.08887/joss.08887/10.21105.joss.08887.pdf" target="_blank">bskyr: An R Package to Interact with Bluesky Social</a>
-          
-      </h5>
+      </div>
 
       
 
@@ -840,11 +898,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="8">
-      <h5 class="card-title listing-title anchored" id="inequality-in-agency-rulemaking">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="inequality-in-agency-rulemaking">
+              
+                  <a href="https://judgelord.github.io/finreg/participatory-inequality.pdf" target="_blank">Inequality in Agency Rulemaking</a>
+              
+          </h5>
           
-              <a href="https://judgelord.github.io/finreg/participatory-inequality.pdf" target="_blank">Inequality in Agency Rulemaking</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Daniel P. Carpenter, Angelo Dagonel, Devin Judge-Lord, Brian Libgober, Steven Rashin, Jacob Waggoner, and Susan Webb Yackee)</p>
@@ -894,11 +955,19 @@ window.Quarto = {
 
 <style>
 .research-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid #e0dbd4;
   border-radius: 0.25rem;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
+}
+
+.research-card .card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .research-card .card-title {
@@ -914,6 +983,32 @@ window.Quarto = {
 
 .research-card .card-title a:hover {
   text-decoration: underline;
+}
+
+.research-card .paper-badge {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 1rem;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.research-card .paper-badge.stage-drafting {
+  background: #eaf2fb;
+  color: #1f5fa8;
+}
+
+.research-card .paper-badge.stage-analysis {
+  background: #f3eafb;
+  color: #6a2fa8;
+}
+
+.research-card .paper-badge.progress-early {
+  opacity: 0.7;
 }
 
 .research-card .paper-authors {
@@ -976,11 +1071,14 @@ window.Quarto = {
 
   
   <div class="research-card" data-index="0" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
-      <h5 class="card-title listing-title anchored" id="individual-and-differential-harm-in-redistricting">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="individual-and-differential-harm-in-redistricting">
+              
+                  <a href="https://www.nature.com/articles/s41562-026-02511-7" target="_blank">Individual and Differential Harm in Redistricting</a>
+              
+          </h5>
           
-              <a href="https://www.nature.com/articles/s41562-026-02511-7" target="_blank">Individual and Differential Harm in Redistricting</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan)</p>
@@ -1038,11 +1136,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="1" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors">
+              
+                  <a href="https://www.cambridge.org/core/journals/american-political-science-review/article/redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors/5D85E711B3C401F0D24A9B7BB8C50337" target="_blank">Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors</a>
+              
+          </h5>
           
-              <a href="https://www.cambridge.org/core/journals/american-political-science-review/article/redistricting-reforms-reduce-gerrymandering-by-constraining-partisan-actors/5D85E711B3C401F0D24A9B7BB8C50337" target="_blank">Redistricting Reforms Reduce Gerrymandering by Constraining Partisan Actors</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan, Tyler Simko, Emma Ebowe, Michael Y. Zhao, and Kosuke Imai)</p>
@@ -1100,11 +1201,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="2" data-categories="Y2Vuc3VzJTJDbWV0aG9kcyUyQ2RhdGE=">
-      <h5 class="card-title listing-title anchored" id="city-racial-segregation-statistics-are-robust-to-aggregation-bias">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="city-racial-segregation-statistics-are-robust-to-aggregation-bias">
+              
+                  <a href="https://www.nature.com/articles/s44284-026-00459-3" target="_blank">City racial segregation statistics are robust to aggregation bias</a>
+              
+          </h5>
           
-              <a href="https://www.nature.com/articles/s44284-026-00459-3" target="_blank">City racial segregation statistics are robust to aggregation bias</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Jacob R. Brown and Tyler Simko)</p>
@@ -1162,11 +1266,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="3" data-categories="Y2Vuc3VzJTJDbWV0aG9kcw==">
-      <h5 class="card-title listing-title anchored" id="evaluating-bias-and-noise-induced-by-the-us-census-bureaus-privacy-protection-methods">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="evaluating-bias-and-noise-induced-by-the-us-census-bureaus-privacy-protection-methods">
+              
+                  <a href="https://www.science.org/doi/10.1126/sciadv.adl2524" target="_blank">Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods</a>
+              
+          </h5>
           
-              <a href="https://www.science.org/doi/10.1126/sciadv.adl2524" target="_blank">Evaluating Bias and Noise Induced by the U.S. Census Bureau's Privacy Protection Methods</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan, Shiro Kuriwaki, Tyler Simko, and Kosuke Imai)</p>
@@ -1227,11 +1334,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="4" data-categories="Y2Vuc3Vz">
-      <h5 class="card-title listing-title anchored" id="census-officials-must-constructively-engage-with-independent-evaluations">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="census-officials-must-constructively-engage-with-independent-evaluations">
+              
+                  <a href="https://www.pnas.org/doi/10.1073/pnas.2321196121" target="_blank">Census Officials Must Constructively Engage with Independent Evaluations</a>
+              
+          </h5>
           
-              <a href="https://www.pnas.org/doi/10.1073/pnas.2321196121" target="_blank">Census Officials Must Constructively Engage with Independent Evaluations</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan, Tyler Simko, and Kosuke Imai)</p>
@@ -1290,11 +1400,14 @@ window.Quarto = {
 
     
   <div class="research-card" data-index="5" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="widespread-partisan-gerrymandering-mostly-cancels-nationally-but-reduces-electoral-competition">
+              
+                  <a href="https://www.pnas.org/doi/10.1073/pnas.2217322120" target="_blank">Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition</a>
+              
+          </h5>
           
-              <a href="https://www.pnas.org/doi/10.1073/pnas.2217322120" target="_blank">Widespread Partisan Gerrymandering Mostly Cancels Nationally, but Reduces Electoral Competition</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan, Tyler Simko, Shiro Kuriwaki, and Kosuke Imai)</p>
@@ -1355,11 +1468,14 @@ eprint = {https://www.pnas.org/doi/pdf/10.1073/pnas.2217322120},
 
     
   <div class="research-card" data-index="6" data-categories="Y2Vuc3Vz">
-      <h5 class="card-title listing-title anchored" id="comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="comment-the-essential-role-of-policy-evaluation-for-the-2020-census-disclosure-avoidance-system">
+              
+                  <a href="https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1" target="_blank">Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System</a>
+              
+          </h5>
           
-              <a href="https://hdsr.mitpress.mit.edu/pub/6ffzuq19/release/1" target="_blank">Comment: The Essential Role of Policy Evaluation for the 2020 Census Disclosure Avoidance System</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko)</p>
@@ -1419,11 +1535,14 @@ eprint = {https://www.pnas.org/doi/pdf/10.1073/pnas.2217322120},
 
     
   <div class="research-card" data-index="7" data-categories="cmVkaXN0cmljdGluZyUyQ2RhdGE=">
-      <h5 class="card-title listing-title anchored" id="simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="simulated-redistricting-plans-for-the-analysis-and-evaluation-of-redistricting-in-the-united-states">
+              
+                  <a href="https://www.nature.com/articles/s41597-022-01808-2" target="_blank">Simulated redistricting plans for the analysis and evaluation of redistricting in the United States</a>
+              
+          </h5>
           
-              <a href="https://www.nature.com/articles/s41597-022-01808-2" target="_blank">Simulated redistricting plans for the analysis and evaluation of redistricting in the United States</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan, Tyler Simko, George Garcia III, Kevin Wang, Melissa Wu, Shiro Kuriwaki, and Kosuke Imai)</p>
@@ -1486,11 +1605,14 @@ eprint = {https://www.pnas.org/doi/pdf/10.1073/pnas.2217322120},
 
     
   <div class="research-card" data-index="8" data-categories="Y2Vuc3VzJTJDcmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-us-census">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="the-use-of-differential-privacy-for-census-data-and-its-impact-on-redistricting-the-case-of-the-2020-us-census">
+              
+                  <a href="https://www.science.org/doi/10.1126/sciadv.abk3283" target="_blank">The use of differential privacy for census data and its impact on redistricting: The case of the 2020 U.S. Census</a>
+              
+          </h5>
           
-              <a href="https://www.science.org/doi/10.1126/sciadv.abk3283" target="_blank">The use of differential privacy for census data and its impact on redistricting: The case of the 2020 U.S. Census</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Shiro Kuriwaki, Cory McCartan, Evan T. R. Rosenman, and Tyler Simko)</p>
@@ -1553,11 +1675,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
     
   <div class="research-card" data-index="9" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
-      <h5 class="card-title listing-title anchored" id="the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="the-essential-role-of-empirical-validation-in-legislative-redistricting-simulation">
+              
+                  <a href="https://doi.org/10.1080/2330443X.2020.1791773" target="_blank">The Essential Role of Empirical Validation in Legislative Redistricting Simulation</a>
+              
+          </h5>
           
-              <a href="https://doi.org/10.1080/2330443X.2020.1791773" target="_blank">The Essential Role of Empirical Validation in Legislative Redistricting Simulation</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Benjamin Fifield, Kosuke Imai, and Jun Kawahara)</p>
@@ -1628,11 +1753,19 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
 <style>
 .research-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid #e0dbd4;
   border-radius: 0.25rem;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
+}
+
+.research-card .card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .research-card .card-title {
@@ -1648,6 +1781,32 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
 .research-card .card-title a:hover {
   text-decoration: underline;
+}
+
+.research-card .paper-badge {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 1rem;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.research-card .paper-badge.stage-drafting {
+  background: #eaf2fb;
+  color: #1f5fa8;
+}
+
+.research-card .paper-badge.stage-analysis {
+  background: #f3eafb;
+  color: #6a2fa8;
+}
+
+.research-card .paper-badge.progress-early {
+  opacity: 0.7;
 }
 
 .research-card .paper-authors {
@@ -1710,11 +1869,16 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
   
   <div class="research-card" data-index="0" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
-      <h5 class="card-title listing-title anchored" id="algorithm-assisted-redistricting-methodology">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="algorithm-assisted-redistricting-methodology">
+              
+                  Algorithm-Assisted Redistricting Methodology
+              
+          </h5>
           
-              Algorithm-Assisted Redistricting Methodology
+              <span class="paper-badge stage-drafting progress-early">drafting: early</span>
           
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Kosuke Imai, Cory McCartan, and Tyler Simko)</p>
@@ -1734,12 +1898,17 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   </div>
 
     
-  <div class="research-card" data-index="1">
-      <h5 class="card-title listing-title anchored" id="an-individual-causal-framework-for-evaluating-electoral-systems">
+  <div class="research-card" data-index="1" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="an-individual-causal-framework-for-evaluating-electoral-systems">
+              
+                  An Individual Causal Framework for Evaluating Electoral Systems
+              
+          </h5>
           
-              An Individual Causal Framework for Evaluating Electoral Systems
+              <span class="paper-badge stage-drafting progress-near-completion">drafting: near completion</span>
           
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(with Cory McCartan)</p>
@@ -1751,6 +1920,312 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
       
 
+      
+
+      
+          <div class="mb-2">
+              
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-an-individual-causal-framework-for-evaluating-electoral-systems">
+                      Abstract
+                  </button>
+              
+              
+              
+              
+          </div>
+
+          
+              <div class="collapse" id="abstract-an-individual-causal-framework-for-evaluating-electoral-systems">
+                  <div class="collapse-content">Social scientists have developed numerous criteria for evaluating different electoral systems. But these largely depend on aggregate features of the electoral system or its results, not on individual outcomes. Because of this, they are not easily adapted to quantify the impacts of electoral systems on individuals or on groups of individuals defined by race, class, or geography. Moreover, they are ill-suited to capture the effects of changes between electoral systems. To overcome these limitations, we propose a unified causal framework for measuring the effects of electoral reforms on individuals: who benefits, who is harmed, where they live, and what groups they belong to. We define causal measures that zero in on voters whose representational outcomes change as a result of the electoral reform, for better or for worse, and can aggregate these individual gains and losses to quantify differential effects on various groups of voters. The framework and proposed measures improve on existing approaches by both focusing on the choices of individual voters and directly incorporating counterfactual electoral systems, which are always relevant in reform settings. We discuss identification and estimation strategies, and demonstrate the utility of our framework through analyses of voting rights litigation in Alabama, the adoption of ranked-choice voting in Alaska, and redistricting criteria changes in Washington.</div>
+              </div>
+          
+          
+          
+          
+      
+  </div>
+
+    
+  <div class="research-card" data-index="2" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="reconsidering-the-normal-vote">
+              
+                  Reconsidering the Normal Vote
+              
+          </h5>
+          
+              <span class="paper-badge stage-drafting progress-near-completion">drafting: near completion</span>
+          
+      </div>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+          <div class="mb-2">
+              
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-reconsidering-the-normal-vote">
+                      Abstract
+                  </button>
+              
+              
+              
+              
+          </div>
+
+          
+              <div class="collapse" id="abstract-reconsidering-the-normal-vote">
+                  <div class="collapse-content">Nearly all empirical work involving American elections rests on a baseline for how a place “usually” votes. However, the observed vote blends a place's long-term partisanship with short-term forces of a single election, biasing downstream studies. I revive Converse's normal vote, which measures how a group would vote when a given election's short-term forces are in balance, and reformulate it as a property of places rather than of individuals. Applying modern ecological inference to precinct-level presidential returns, I estimate how every precinct in the US would vote in a balanced national environment from 2008 to 2024. I also develop a simpler estimator for settings without a harmonized national panel: shift each election to a tied national vote on the logit scale, then average the adjusted precinct returns. I demonstrate the measure in three applications. First, the normal vote yields an estimate that the incumbency advantage is one to three points. Second, replicating a model of candidate quality, the normal vote improves the model's fit compared to using lagged votes. Third, the normal vote reveals that several 2026 mid-decade gerrymanders improve seat counts for Republicans by targeting recently shifted ground rather than durable partisanship.</div>
+              </div>
+          
+          
+          
+          
+      
+  </div>
+
+    
+  <div class="research-card" data-index="3" data-categories="cmVkaXN0cmljdGluZyUyQ3NvZnR3YXJl">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="the-redistverse-a-suite-of-packages-for-redistricting-analysis">
+              
+                  The redistverse: A Suite of Packages for Redistricting Analysis
+              
+          </h5>
+          
+              <span class="paper-badge stage-drafting progress-near-completion">drafting: near completion</span>
+          
+      </div>
+
+      
+          <p class="paper-authors">(with Cory McCartan and Kosuke Imai)</p>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+          <div class="mb-2">
+              
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-the-redistverse-a-suite-of-packages-for-redistricting-analysis">
+                      Abstract
+                  </button>
+              
+              
+              
+              
+          </div>
+
+          
+              <div class="collapse" id="abstract-the-redistverse-a-suite-of-packages-for-redistricting-analysis">
+                  <div class="collapse-content">Redistricting analyses, for both research and litigation, increasingly rely on simulation algorithms to assess the fairness of legislative maps. The redistverse is a family of R packages that provide a comprehensive redistricting analysis pipeline, from data assembly to simulation, analysis, and visualization. The geomander package provides tools for aligning Census data and election returns onto a common precinct geography and for constructing adjacency graphs. The core package, redist, implements Markov chain and sequential Monte Carlo algorithms for generating ensembles of districting plans under realistic legal and geographic constraints. The redistmetrics package provides a suite of metrics for evaluating redistricting plans, including partisan fairness, compactness, and administrative splits. The alarmdata package provides tools for ingesting and reusing data from published research, including data from the Algorithm-Assisted Redistricting Methodology (ALARM) Project Dataverse. The ggredist package provides visualization tools for mapping redistricting plans with ggplot2. Together, these packages provide a robust and reproducible framework for redistricting analysis in R.</div>
+              </div>
+          
+          
+          
+          
+      
+  </div>
+
+    
+  <div class="research-card" data-index="4" data-categories="bWV0aG9kcw==">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="using-ai-agents-as-research-assistants">
+              
+                  Using AI Agents as Research Assistants
+              
+          </h5>
+          
+              <span class="paper-badge stage-drafting progress-near-completion">drafting: near completion</span>
+          
+      </div>
+
+      
+          <p class="paper-authors">(with Tyler Simko)</p>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+          <div class="mb-2">
+              
+                  <button class="btn btn-sm btn-outline-secondary me-1" type="button" data-bs-toggle="collapse" data-bs-target="#abstract-using-ai-agents-as-research-assistants">
+                      Abstract
+                  </button>
+              
+              
+              
+              
+          </div>
+
+          
+              <div class="collapse" id="abstract-using-ai-agents-as-research-assistants">
+                  <div class="collapse-content">Agentic tooling around large language models (LLMs) allow them to serve as peer programmers. We explore the capabilities of these LLM agents to serve as AI Research Assistants (AIRAs). We explain why researchers should consider AIRAs and provide practical guidance for using them. We then apply AIRAs as research assistants overseeing statistical samplers for redistricting plans from start-to-finish, including making calls about mapping substantive constraints onto mathematical ones. We demonstrate that, like human RAs, AIRAs can take on complex tasks which require making judgements or interpretations. Even with only basic instructions and tutorials, AIRAs can provide outputs that are indistinguishable from that of humans in a fraction of the time and cost. We close with concrete recommendations on using AIRAs as research assistants, including setup and validating outputs. Finally, we discuss how AIRAs are equity-inducing, as they substantially lower the resource barriers for large-scale social science research.</div>
+              </div>
+          
+          
+          
+          
+      
+  </div>
+
+    
+  <div class="research-card" data-index="5" data-categories="c29mdHdhcmUlMkNtZXRob2Rz">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="three-workflows-for-verifiable-ai-assisted-research-software">
+              
+                  Three Workflows for Verifiable AI-Assisted Research Software
+              
+          </h5>
+          
+              <span class="paper-badge stage-drafting progress-early">drafting: early</span>
+          
+      </div>
+
+      
+
+      
+
+      
+
+      
+
+      
+          <p class="paper-description">I discuss and demonstrate three practical workflows for developing statistical software with AI when correctness is the fundamental goal.</p>
+      
+
+      
+  </div>
+
+    
+  <div class="research-card" data-index="6" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="algorithmic-fairness-for-redistricting">
+              
+                  Algorithmic Fairness for Redistricting
+              
+          </h5>
+          
+              <span class="paper-badge stage-drafting progress-early">drafting: early</span>
+          
+      </div>
+
+      
+
+      
+
+      
+
+      
+
+      
+          <p class="paper-description">Applies broader measures from algorithmic fairness to the harm and benefits research with Cory McCartan to assess if and when standard measures of partisan fairness are applicable in practice.</p>
+      
+
+      
+  </div>
+
+    
+  <div class="research-card" data-index="7" data-categories="cmVkaXN0cmljdGluZyUyQ21ldGhvZHM=">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="measuring-intra-partisan-gerrymandering">
+              
+                  Measuring Intra-Partisan Gerrymandering
+              
+          </h5>
+          
+              <span class="paper-badge stage-analysis progress-early">analysis: early</span>
+          
+      </div>
+
+      
+          <p class="paper-authors">(with Nicholas O. Stephanopoulos and Aaron R. Kaufman)</p>
+      
+
+      
+
+      
+
+      
+
+      
+          <p class="paper-description">Political science companion piece to our law review article on intra-partisan gerrymandering, developing empirical measures of within-party gerrymandering.</p>
+      
+
+      
+  </div>
+
+    
+  <div class="research-card" data-index="8" data-categories="cmVkaXN0cmljdGluZw==">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="partisan-effects-of-house-expansion">
+              
+                  Partisan Effects of House Expansion
+              
+          </h5>
+          
+              <span class="paper-badge stage-analysis progress-near-completion">analysis: near completion</span>
+          
+      </div>
+
+      
+
+      
+
+      
+
+      
+
+      
+          <p class="paper-description">Assesses how expanding the US House would shift partisan seat outcomes, using redistricting simulations to compare equivalently-sized gerrymanders across House sizes.</p>
+      
+
+      
+  </div>
+
+    
+  <div class="research-card" data-index="9" data-categories="cmVkaXN0cmljdGluZyUyQ2RhdGE=">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="four-decades-of-simulated-congressional-redistricting-plans-for-the-united-states-1990-2020">
+              
+                  Four decades of simulated congressional redistricting plans for the United States, 1990-2020
+              
+          </h5>
+          
+              <span class="paper-badge stage-drafting progress-near-completion">drafting: near completion</span>
+          
+      </div>
+
+      
+          <p class="paper-authors">(with Tyler Simko, Kento Tamaki, Brian Zhou, Aneetej Arora, Jerry Dai, Emma Ebowe, Jack Holland, Cory McCartan, Philip O'Sullivan, Devanshi Shah, Taran Samarth, Melissa Wu, Michael Y. Zhao, and Kosuke Imai)</p>
+      
+
+      
+
+      
+
+      
+
+      
+          <p class="paper-description">Extends our simulated redistricting plans for Congress to three more decades, with additional work modernizing old election data and building historical shapefile equivalents for broader use.</p>
       
 
       
@@ -1767,11 +2242,19 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
 <style>
 .research-card {
+  position: relative;
   background: #ffffff;
   border: 1px solid #e0dbd4;
   border-radius: 0.25rem;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
+}
+
+.research-card .card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .research-card .card-title {
@@ -1787,6 +2270,32 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
 .research-card .card-title a:hover {
   text-decoration: underline;
+}
+
+.research-card .paper-badge {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 1rem;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.research-card .paper-badge.stage-drafting {
+  background: #eaf2fb;
+  color: #1f5fa8;
+}
+
+.research-card .paper-badge.stage-analysis {
+  background: #f3eafb;
+  color: #6a2fa8;
+}
+
+.research-card .paper-badge.progress-early {
+  opacity: 0.7;
 }
 
 .research-card .paper-authors {
@@ -1849,11 +2358,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
   
   <div class="research-card" data-index="0" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="expert-report-in-vote-v-city-of-daytona-beach">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="expert-report-in-vote-v-city-of-daytona-beach">
+              
+                  <a href="https://storage.courtlistener.com/recap/gov.uscourts.flmd.448720/gov.uscourts.flmd.448720.37.3.pdf" target="_blank">Expert Report in VOTE! v. City of Daytona Beach</a>
+              
+          </h5>
           
-              <a href="https://storage.courtlistener.com/recap/gov.uscourts.flmd.448720/gov.uscourts.flmd.448720.37.3.pdf" target="_blank">Expert Report in VOTE! v. City of Daytona Beach</a>
-          
-      </h5>
+      </div>
 
       
 
@@ -1874,11 +2386,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
     
   <div class="research-card" data-index="1" data-categories="Y2Vuc3Vz">
-      <h5 class="card-title listing-title anchored" id="trumps-proposed-snap-census-wont-get-him-the-seats-he-wants">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="trumps-proposed-snap-census-wont-get-him-the-seats-he-wants">
+              
+                  <a href="https://thehill.com/opinion/campaign/5471013-trump-census-undocumented-immigrants/" target="_blank">Trump's proposed snap Census won't get him the seats he wants</a>
+              
+          </h5>
           
-              <a href="https://thehill.com/opinion/campaign/5471013-trump-census-undocumented-immigrants/" target="_blank">Trump's proposed snap Census won't get him the seats he wants</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(With Tyler Simko)</p>
@@ -1899,11 +2414,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
     
   <div class="research-card" data-index="2" data-categories="Y2Vuc3VzJTJDcmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="expert-report-in-sakhnovsky-et-al-v-city-of-daytona-beach">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="expert-report-in-sakhnovsky-et-al-v-city-of-daytona-beach">
+              
+                  <a href="https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf" target="_blank">Expert Report in Sakhnovsky, et al v. City of Daytona Beach</a>
+              
+          </h5>
           
-              <a href="https://christophertkenny.com/files/sakhnovsky_v_daytona_beach_expert_report.pdf" target="_blank">Expert Report in Sakhnovsky, et al v. City of Daytona Beach</a>
-          
-      </h5>
+      </div>
 
       
 
@@ -1924,11 +2442,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
     
   <div class="research-card" data-index="3" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="redistricting-process-reform">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="redistricting-process-reform">
+              
+                  <a href="https://effectivegov.uchicago.edu/primers/redistricting-process-reform" target="_blank">Redistricting Process Reform</a>
+              
+          </h5>
           
-              <a href="https://effectivegov.uchicago.edu/primers/redistricting-process-reform" target="_blank">Redistricting Process Reform</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(With Steve Ansolabehere)</p>
@@ -1949,11 +2470,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
     
   <div class="research-card" data-index="4" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="amici-curiae-brief-of-fair-districts-georgia-and-election-law-clinic-in-support-of-plaintiffs">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="amici-curiae-brief-of-fair-districts-georgia-and-election-law-clinic-in-support-of-plaintiffs">
+              
+                  <a href="https://static1.squarespace.com/static/60a559b59cfc63389f67f892/t/61fdadc3ff205a1aa1bd0ca7/1644015064277/Alpha+Phi+Alpha+Fraternity+v.+Raffensperger+Brief" target="_blank">Amici Curiae Brief of Fair Districts Georgia and Election Law Clinic in Support of Plaintiffs</a>
+              
+          </h5>
           
-              <a href="https://static1.squarespace.com/static/60a559b59cfc63389f67f892/t/61fdadc3ff205a1aa1bd0ca7/1644015064277/Alpha+Phi+Alpha+Fraternity+v.+Raffensperger+Brief" target="_blank">Amici Curiae Brief of Fair Districts Georgia and Election Law Clinic in Support of Plaintiffs</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(With the Election Law Clinic at Harvard Law School)</p>
@@ -1974,11 +2498,14 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
 
     
   <div class="research-card" data-index="5" data-categories="cmVkaXN0cmljdGluZw==">
-      <h5 class="card-title listing-title anchored" id="maryland-congressional-district-memo">
+      <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="maryland-congressional-district-memo">
+              
+                  <a href="https://redistricting.maryland.gov/Documents/Library/mcrc-drafts-2021-0913/2021-0913-memo-algorithms-produced-by-Professor-Rodden.pdf" target="_blank">Maryland Congressional District Memo</a>
+              
+          </h5>
           
-              <a href="https://redistricting.maryland.gov/Documents/Library/mcrc-drafts-2021-0913/2021-0913-memo-algorithms-produced-by-Professor-Rodden.pdf" target="_blank">Maryland Congressional District Memo</a>
-          
-      </h5>
+      </div>
 
       
           <p class="paper-authors">(With Jonathan Rodden)</p>

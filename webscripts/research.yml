@@ -313,59 +313,79 @@
   categories: [redistricting, methods]
   authors: "with Kosuke Imai, Cory McCartan, and Tyler Simko"
   description: "Book project"
+  stage: drafting
+  progress: early
 
 - title: "An Individual Causal Framework for Evaluating Electoral Systems"
   section: works-in-progress
   categories: [redistricting, methods]
   authors: "with Cory McCartan"
+  stage: drafting
+  progress: near-completion
   abstract: "Social scientists have developed numerous criteria for evaluating different electoral systems. But these largely depend on aggregate features of the electoral system or its results, not on individual outcomes. Because of this, they are not easily adapted to quantify the impacts of electoral systems on individuals or on groups of individuals defined by race, class, or geography. Moreover, they are ill-suited to capture the effects of changes between electoral systems. To overcome these limitations, we propose a unified causal framework for measuring the effects of electoral reforms on individuals: who benefits, who is harmed, where they live, and what groups they belong to. We define causal measures that zero in on voters whose representational outcomes change as a result of the electoral reform, for better or for worse, and can aggregate these individual gains and losses to quantify differential effects on various groups of voters. The framework and proposed measures improve on existing approaches by both focusing on the choices of individual voters and directly incorporating counterfactual electoral systems, which are always relevant in reform settings. We discuss identification and estimation strategies, and demonstrate the utility of our framework through analyses of voting rights litigation in Alabama, the adoption of ranked-choice voting in Alaska, and redistricting criteria changes in Washington."
 
 - title: "Reconsidering the Normal Vote"
   section: works-in-progress
   categories: [redistricting, methods]
   authors: ""
+  stage: drafting
+  progress: near-completion
   abstract: "Nearly all empirical work involving American elections rests on a baseline for how a place “usually” votes. However, the observed vote blends a place's long-term partisanship with short-term forces of a single election, biasing downstream studies. I revive Converse's normal vote, which measures how a group would vote when a given election's short-term forces are in balance, and reformulate it as a property of places rather than of individuals. Applying modern ecological inference to precinct-level presidential returns, I estimate how every precinct in the US would vote in a balanced national environment from 2008 to 2024. I also develop a simpler estimator for settings without a harmonized national panel: shift each election to a tied national vote on the logit scale, then average the adjusted precinct returns. I demonstrate the measure in three applications. First, the normal vote yields an estimate that the incumbency advantage is one to three points. Second, replicating a model of candidate quality, the normal vote improves the model's fit compared to using lagged votes. Third, the normal vote reveals that several 2026 mid-decade gerrymanders improve seat counts for Republicans by targeting recently shifted ground rather than durable partisanship."
 
 - title: "The redistverse: A Suite of Packages for Redistricting Analysis"
   section: works-in-progress
   categories: [redistricting, software]
   authors: "with Cory McCartan and Kosuke Imai"
+  stage: drafting
+  progress: near-completion
   abstract: "Redistricting analyses, for both research and litigation, increasingly rely on simulation algorithms to assess the fairness of legislative maps. The redistverse is a family of R packages that provide a comprehensive redistricting analysis pipeline, from data assembly to simulation, analysis, and visualization. The geomander package provides tools for aligning Census data and election returns onto a common precinct geography and for constructing adjacency graphs. The core package, redist, implements Markov chain and sequential Monte Carlo algorithms for generating ensembles of districting plans under realistic legal and geographic constraints. The redistmetrics package provides a suite of metrics for evaluating redistricting plans, including partisan fairness, compactness, and administrative splits. The alarmdata package provides tools for ingesting and reusing data from published research, including data from the Algorithm-Assisted Redistricting Methodology (ALARM) Project Dataverse. The ggredist package provides visualization tools for mapping redistricting plans with ggplot2. Together, these packages provide a robust and reproducible framework for redistricting analysis in R."
 
 - title: "Using AI Agents as Research Assistants"
   section: works-in-progress
   categories: [methods]
   authors: "with Tyler Simko"
+  stage: drafting
+  progress: near-completion
   abstract: "Agentic tooling around large language models (LLMs) allow them to serve as peer programmers. We explore the capabilities of these LLM agents to serve as AI Research Assistants (AIRAs). We explain why researchers should consider AIRAs and provide practical guidance for using them. We then apply AIRAs as research assistants overseeing statistical samplers for redistricting plans from start-to-finish, including making calls about mapping substantive constraints onto mathematical ones. We demonstrate that, like human RAs, AIRAs can take on complex tasks which require making judgements or interpretations. Even with only basic instructions and tutorials, AIRAs can provide outputs that are indistinguishable from that of humans in a fraction of the time and cost. We close with concrete recommendations on using AIRAs as research assistants, including setup and validating outputs. Finally, we discuss how AIRAs are equity-inducing, as they substantially lower the resource barriers for large-scale social science research."
 
 - title: "Three Workflows for Verifiable AI-Assisted Research Software"
   section: works-in-progress
   categories: [software, methods]
   authors: ""
-  abstract: "I discuss and demonstrate three practical workflows for developing statistical software with AI when correctness is the fundamental goal."
+  stage: drafting
+  progress: early
+  description: "I discuss and demonstrate three practical workflows for developing statistical software with AI when correctness is the fundamental goal."
 
 - title: "Algorithmic Fairness for Redistricting"
   section: works-in-progress
   categories: [redistricting, methods]
   authors: ""
-  abstract: "Applies broader measures from algorithmic fairness to the harm and benefits research with Cory McCartan to assess if and when standard measures of partisan fairness are applicable in practice."
+  stage: drafting
+  progress: early
+  description: "Applies broader measures from algorithmic fairness to the harm and benefits research with Cory McCartan to assess if and when standard measures of partisan fairness are applicable in practice."
 
 - title: "Measuring Intra-Partisan Gerrymandering"
   section: works-in-progress
-  categories: [redistricting]
+  categories: [redistricting, methods]
   authors: "with Nicholas O. Stephanopoulos and Aaron R. Kaufman"
+  stage: analysis
+  progress: early
   description: "Political science companion piece to our law review article on intra-partisan gerrymandering, developing empirical measures of within-party gerrymandering."
 
 - title: "Partisan Effects of House Expansion"
   section: works-in-progress
   categories: [redistricting]
   authors: ""
+  stage: analysis
+  progress: near-completion
   description: "Assesses how expanding the US House would shift partisan seat outcomes, using redistricting simulations to compare equivalently-sized gerrymanders across House sizes."
 
 - title: "Four decades of simulated congressional redistricting plans for the United States, 1990-2020"
   section: works-in-progress
   categories: [redistricting, data]
   authors: "with Tyler Simko, Kento Tamaki, Brian Zhou, Aneetej Arora, Jerry Dai, Emma Ebowe, Jack Holland, Cory McCartan, Philip O'Sullivan, Devanshi Shah, Taran Samarth, Melissa Wu, Michael Y. Zhao, and Kosuke Imai"
+  stage: drafting
+  progress: near-completion
   description: "Extends our simulated redistricting plans for Congress to three more decades, with additional work modernizing old election data and building historical shapefile equivalents for broader use."
 
 - title: "Expert Report in VOTE! v. City of Daytona Beach"
