@@ -389,6 +389,14 @@
   progress: near-completion
   description: "Extends our simulated redistricting plans for Congress to three more decades, with additional work modernizing old election data and building historical shapefile equivalents for broader use."
 
+- title: "Brief Amici Curiae of Political Scientists in Support of Plaintiffs-Appellants"
+  section: public-writing
+  categories: [redistricting]
+  type: "Wisconsin Business Leaders for Democracy v. Wisconsin Elections Commission"
+  year: "2026"
+  authors: "Via the Constitutional Accountability Center with Kosuke Imai, Phil Jones, and John Griffin"
+  url: "https://www.theusconstitution.org/wp-content/uploads/2026/09/Brief-of-Amici-Curiae.pdf"
+
 - title: "Expert Report in VOTE! v. City of Daytona Beach"
   section: public-writing
   categories: [redistricting]

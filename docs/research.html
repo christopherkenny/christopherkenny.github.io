@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.16">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -43,10 +46,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2051dbbaa7ae7a279e016470f480e120.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bf9362cb183ae6da60a4811b3b3a7a31.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bf2fdbe2041365c21095008ca500f4ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -169,9 +172,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-section','listing-categories','listing-type','listing-description','listing-year','listing-url','listing-authors',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-title','listing-section','listing-categories','listing-type','listing-year','listing-authors','listing-url','listing-description',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-title","listing-section","listing-categories","listing-type","listing-description","listing-year","listing-url","listing-authors"],
+      searchColumns: ["listing-title","listing-section","listing-categories","listing-type","listing-year","listing-authors","listing-url","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -199,7 +202,7 @@ gtag('config', 'G-PBRM1BV0GG', { 'anonymize_ip': true});
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -320,7 +323,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(35)</span></div><div class="category" data-category="Y2Vuc3Vz">census <span class="quarto-category-count">(8)</span></div><div class="category" data-category="ZGF0YQ==">data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bWV0aG9kcw==">methods <span class="quarto-category-count">(13)</span></div><div class="category" data-category="cmVkaXN0cmljdGluZw==">redistricting <span class="quarto-category-count">(25)</span></div><div class="category" data-category="c29mdHdhcmU=">software <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(36)</span></div><div class="category" data-category="Y2Vuc3Vz">census <span class="quarto-category-count">(8)</span></div><div class="category" data-category="ZGF0YQ==">data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bWV0aG9kcw==">methods <span class="quarto-category-count">(13)</span></div><div class="category" data-category="cmVkaXN0cmljdGluZw==">redistricting <span class="quarto-category-count">(26)</span></div><div class="category" data-category="c29mdHdhcmU=">software <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -2359,6 +2362,34 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   
   <div class="research-card" data-index="0" data-categories="cmVkaXN0cmljdGluZw==">
       <div class="card-header-row">
+          <h5 class="card-title listing-title anchored" id="brief-amici-curiae-of-political-scientists-in-support-of-plaintiffs-appellants">
+              
+                  <a href="https://www.theusconstitution.org/wp-content/uploads/2026/09/Brief-of-Amici-Curiae.pdf" target="_blank">Brief Amici Curiae of Political Scientists in Support of Plaintiffs-Appellants</a>
+              
+          </h5>
+          
+      </div>
+
+      
+          <p class="paper-authors">(Via the Constitutional Accountability Center with Kosuke Imai, Phil Jones, and John Griffin)</p>
+      
+
+      
+          <p class="paper-venue">Wisconsin Business Leaders for Democracy v. Wisconsin Elections Commission. 2026.</p>
+      
+
+      
+
+      
+
+      
+
+      
+  </div>
+
+    
+  <div class="research-card" data-index="1" data-categories="cmVkaXN0cmljdGluZw==">
+      <div class="card-header-row">
           <h5 class="card-title listing-title anchored" id="expert-report-in-vote-v-city-of-daytona-beach">
               
                   <a href="https://storage.courtlistener.com/recap/gov.uscourts.flmd.448720/gov.uscourts.flmd.448720.37.3.pdf" target="_blank">Expert Report in VOTE! v. City of Daytona Beach</a>
@@ -2385,7 +2416,7 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   </div>
 
     
-  <div class="research-card" data-index="1" data-categories="Y2Vuc3Vz">
+  <div class="research-card" data-index="2" data-categories="Y2Vuc3Vz">
       <div class="card-header-row">
           <h5 class="card-title listing-title anchored" id="trumps-proposed-snap-census-wont-get-him-the-seats-he-wants">
               
@@ -2413,7 +2444,7 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   </div>
 
     
-  <div class="research-card" data-index="2" data-categories="Y2Vuc3VzJTJDcmVkaXN0cmljdGluZw==">
+  <div class="research-card" data-index="3" data-categories="Y2Vuc3VzJTJDcmVkaXN0cmljdGluZw==">
       <div class="card-header-row">
           <h5 class="card-title listing-title anchored" id="expert-report-in-sakhnovsky-et-al-v-city-of-daytona-beach">
               
@@ -2441,7 +2472,7 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   </div>
 
     
-  <div class="research-card" data-index="3" data-categories="cmVkaXN0cmljdGluZw==">
+  <div class="research-card" data-index="4" data-categories="cmVkaXN0cmljdGluZw==">
       <div class="card-header-row">
           <h5 class="card-title listing-title anchored" id="redistricting-process-reform">
               
@@ -2469,7 +2500,7 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   </div>
 
     
-  <div class="research-card" data-index="4" data-categories="cmVkaXN0cmljdGluZw==">
+  <div class="research-card" data-index="5" data-categories="cmVkaXN0cmljdGluZw==">
       <div class="card-header-row">
           <h5 class="card-title listing-title anchored" id="amici-curiae-brief-of-fair-districts-georgia-and-election-law-clinic-in-support-of-plaintiffs">
               
@@ -2497,7 +2528,7 @@ eprint = {https://www.science.org/doi/pdf/10.1126/sciadv.abk3283},
   </div>
 
     
-  <div class="research-card" data-index="5" data-categories="cmVkaXN0cmljdGluZw==">
+  <div class="research-card" data-index="6" data-categories="cmVkaXN0cmljdGluZw==">
       <div class="card-header-row">
           <h5 class="card-title listing-title anchored" id="maryland-congressional-district-memo">
               
