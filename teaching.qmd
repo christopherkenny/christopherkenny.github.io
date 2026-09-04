@@ -49,13 +49,44 @@ The goal of political methodology and this course is to give you the tools neces
 Received the Certificate of Distinction in Teaching from the [Derek Bok Center for Teaching and Learning](https://bokcenter.harvard.edu/home).
 
 
-## Short courses and workshops
+## Selected short courses and workshops
+
+### Agentic AI for Political Science Research
+
+Princeton University, Center for the Study of Democratic Politics, **Fall 2026**.
+
+An introduction to using agentic AI tools responsibly to support political science research.
+
+<details>
+<summary>Full Workshop Description</summary>
+
+This workshop introduces effective uses of agentic AI for political science research. Tools like Claude Code and Codex work directly inside a project: running code, executing analyses, and iterating on results. Chris will explain how to customize it with AGENTS.md files and reusable skills. This allows an agent to use a project's conventions and domain knowledge, so it applies the right methods without being re-taught every session. Chris will demonstrate agent-assisted data analysis and simulation workflows, with a short demonstration of using a knowledge graph from relevant literature to support reviewing a draft.
+
+</details>
+
+
+### R Bootcamp for Social Scientists
+
+Princeton University, **Fall 2026**.
+
+Instructor with Eric Manning.
+
+An introductory bootcamp to R for new PhD students across the social sciences, introducing R, the tidyverse, Quarto, and Git/GitHub. Materials for the bootcamp are [available via Princeton DDSS](https://princeton-ddss.github.io/r-bootcamp/).
+
+<details>
+<summary>Full Bootcamp Description</summary>
+
+Incoming social science PhD students are encouraged to attend all or part of Data-Driven Social Science's R Bootcamp, a two-and-a-half day introductory crash course in R. No grades are assigned, participation is voluntary, and partial attendance is welcome.
+
+We will cover R basics, data wrangling, visualization, and simulation. Along the way, we will also introduce students to version control (Git) and typesetting tools (Quarto). Hands-on exercises and assistance will be provided throughout.
+
+Beyond the technical material, this is also a chance to meet your fellow first-year students from other social science departments.
+
+</details>
 
 ### Writing Reproducible Reports and Articles with Quarto
 
 Princeton University, **Fall 2025**.
-
-Instructor.
 
 An introductory workshop to using Quarto for reproducible articles and creating academic websites. Materials for the workshop are [available on GitHub](https://github.com/christopherkenny/quarto-workshop-fall2025).
 
@@ -72,8 +103,6 @@ This workshop introduces researchers to Quarto as a tool for writing reproducibl
 :::
 
 Election Law Clinic at Harvard Law School, **Fall 2022**.
-
-Instructor.
 
 An 8 week workshop on basics of R for the social sciences, focusing on relevant issues to election lawyers.
 
