@@ -84,6 +84,21 @@ Beyond the technical material, this is also a chance to meet your fellow first-y
 
 </details>
 
+### AI in RStudio Without Copy-Paste
+
+Princeton University, **Spring 2026**.
+
+<details>
+<summary>Full Workshop Description</summary>
+This hybrid workshop introduces Posit Assistant, a newly-released service that embeds an AI agent (via Anthropic) directly into RStudio. Posit Assistant has live access to your R session (packages, environment variables, and actual data structures), making its suggestions more accurate and contextually relevant than other isolated agent tools.
+
+We will:
+
+1. discuss the Assistant's security features, pricing, installation, and setup;
+2. compare the Assistant to existing coding agent tools and plugins; and
+3. help you leave the workshop with a configured Assistant in your local RStudio
+</details>
+
 ### Writing Reproducible Reports and Articles with Quarto
 
 Princeton University, **Fall 2025**.
