@@ -718,12 +718,12 @@
     geographies, with optional spatial output joined through 'tinytiger'.
   topic_title: Packages for working with Census Bureau data
 - name: irelink
-  section: github-other
+  section: cran-other
   categories:
   - other
   logo: hexes/hex_irelink.png
   info: Fast Probabilistic Record Linkage
-  status: GitHub
+  status: CRAN
   link: https://christophertkenny.com/irelink/
   color: '#e8f3e8'
   topic: other
