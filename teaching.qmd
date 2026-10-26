@@ -51,6 +51,13 @@ Received the Certificate of Distinction in Teaching from the [Derek Bok Center f
 
 ## Selected short courses and workshops
 
+### AI-as-an-RA (Research Assistant)
+
+Princeton University, Data-Driven Social Sciences, **Fall 2026**
+
+An introduction to using agentic AI as a research assistant, including details on common pitfalls, how to use them effectively, choosing the right model, and a theory of the tradeoff between human and AI RAs.
+Slides are [available here.](https://christophertkenny.com/files/2026-10-26-ddss-aira.pdf)
+
 ### Agentic AI for Political Science Research
 
 Princeton University, Center for the Study of Democratic Politics, **Fall 2026**.
