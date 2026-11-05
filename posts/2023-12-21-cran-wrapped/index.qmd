@@ -84,7 +84,7 @@ It includes functions for the most common apportionment methods:
 - the Adams Method (`app_adams()`)
 - the Balinski Young Method (`app_balinski_young()`)
 - the Dean Method (`app_dean()`)
-- the D’Hondt Method (`app_dhondt()`)
+- the D'Hondt Method (`app_dhondt()`)
 - the Hamilton-Vinton Method (`app_hamilton_vinton()`)
 - the Huntington-Hill Method (`app_huntington_hill()`)
 - the Jefferson Method (`app_jefferson()`)
